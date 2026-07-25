@@ -1,6 +1,7 @@
 /*//////////////////////////|
- DoDA/HUD.zs				|
+// DoDA/HUD.zs
 *///////////////////////////|
+
 class DoDAHUD : BaseStatusBar
 {
     override void Init()

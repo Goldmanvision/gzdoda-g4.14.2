@@ -4,7 +4,7 @@
 [default]
 
 DODA_HELLO = "DoDA online.";
-DODA_TITLE = "Department of Disturbance Affairs";
+DODA_TITLE = "Department of Diplomagic Affairs";
 DODA_AGENT = "DoDA Agent";
 DODA_MISSION = "Mission";
 DODA_COMPLETE = "Mission Complete";

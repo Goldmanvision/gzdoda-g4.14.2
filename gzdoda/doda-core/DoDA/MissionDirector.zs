@@ -25,20 +25,14 @@ class DoDAMissionDirector : EventHandler
         }
     }
 
-    string GetMissionStatusText()
+    clearscope DoDAMissionResult GetMissionResult()
     {
-        switch (MissionResult)
-        {
-        case MISSION_PENDING:
-            return "MISSION: PENDING";
-        case MISSION_SUCCESS:
-            return "MISSION: SUCCESS";
-        }
-        return "MISSION: UNKNOWN";
+        return MissionResult;
     }
 
     void CompleteMission()
     {
         MissionResult = MISSION_SUCCESS;
+        Console.Printf("DoDA: Mission set to SUCCESS.");
     }
 }
