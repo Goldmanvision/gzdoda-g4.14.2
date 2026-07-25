@@ -1,14 +1,12 @@
-/*//////////////////////////|
-// DoDA/MissionOverlay.zs
-*///////////////////////////|
-
 class DoDAMissionOverlay : EventHandler
 {
     override void RenderOverlay(RenderEvent e)
     {
-        Font font = Font.GetFont("SmallFont");
+        Font font = Font.GetFont("DoDAPalmFont");
         int white = Font.FindFontColor("White");
-        String missionText = "UNKNOWN";
+
+        String titleText = "DoDA overlay probe";
+        String missionText = "MISSION: UNKNOWN";
 
         DoDAMissionDirector director = DoDAMissionDirector(EventHandler.Find("DoDAMissionDirector"));
         if (director != null)
@@ -16,28 +14,40 @@ class DoDAMissionOverlay : EventHandler
             switch (director.GetMissionResult())
             {
             case MISSION_PENDING:
-                missionText = "PENDING";
+                missionText = "MISSION: PENDING";
                 break;
 
             case MISSION_IN_PROGRESS:
-                missionText = "IN PROGRESS";
+                missionText = "MISSION: IN PROGRESS";
                 break;
 
             case MISSION_SUCCESS:
-                missionText = "SUCCESS";
+                missionText = "MISSION: SUCCESS";
                 break;
 
             case MISSION_FAILURE:
-                missionText = "FAILURE";
+                missionText = "MISSION: FAILURE";
                 break;
 
             case MISSION_ABORTED:
-                missionText = "ABORTED";
+                missionText = "MISSION: ABORTED";
                 break;
             }
         }
 
-        Screen.DrawText(font, white, 16, 16, "DoDA overlay probe");
-        Screen.DrawText(font, white, 16, 28, "MISSION: " .. missionText);
+        int margin = 0;
+        int screenW = Screen.GetWidth();
+        int lineH = font.GetHeight();
+
+        int rightEdge = screenW - margin;
+
+        int titleX = rightEdge - font.StringWidth(titleText);
+        int missionX = rightEdge - font.StringWidth(missionText);
+
+        int titleY = margin;
+        int missionY = titleY + lineH + 2;
+
+        Screen.DrawText(font, white, titleX, titleY, titleText);
+        Screen.DrawText(font, white, missionX, missionY, missionText);
     }
 }

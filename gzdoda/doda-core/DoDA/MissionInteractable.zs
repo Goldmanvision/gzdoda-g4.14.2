@@ -43,6 +43,12 @@ class DoDAMissionInteractable : Actor
 
         director.CompleteMission();
 
+        Console.MidPrint(
+            Font.GetFont("SmallFont"),
+            "$DODA_MISSION_COMPLETE",
+            true
+        );
+
         Console.Printf("DoDA: MissionDirector mission status updated.");
 
         SetStateLabel("Activated");
@@ -52,11 +58,11 @@ class DoDAMissionInteractable : Actor
     States
     {
     Spawn:
-        BON1 A -1;
+        PLAY E -1;
         Stop;
 
     Activated:
-        BON1 B -1;
+        PLAY B -1;
         Stop;
     }
 }

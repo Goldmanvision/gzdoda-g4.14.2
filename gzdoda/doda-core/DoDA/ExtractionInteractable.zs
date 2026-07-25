@@ -4,6 +4,8 @@
 
 class DoDAExtractionInteractable : Actor
 {
+    bool Activated;
+
     Default
     {
         Radius 16;
@@ -20,6 +22,11 @@ class DoDAExtractionInteractable : Actor
             return false;
         }
 
+        if (Activated)
+        {
+            return false;
+        }
+
         DoDAMissionDirector director =
             DoDAMissionDirector(EventHandler.Find("DoDAMissionDirector"));
 
@@ -31,20 +38,42 @@ class DoDAExtractionInteractable : Actor
 
         if (director.GetMissionResult() != MISSION_SUCCESS)
         {
+            Console.MidPrint(
+                Font.GetFont("SmallFont"),
+                "$DODA_EXTRACTION_LOCKED",
+                true
+            );
+
             Console.Printf("DoDA: Extraction denied. Mission not complete.");
             return false;
         }
 
+        Activated = true;
+
+        Console.MidPrint(
+            Font.GetFont("SmallFont"),
+            "$DODA_EXTRACTION_AUTHORIZED",
+            true
+        );
+
         Console.Printf("DoDA: Extraction authorized.");
 
-        level.ExitLevel(0, false);
+        SetStateLabel("Activated");
         return true;
     }
 
     States
     {
     Spawn:
-        BON1 C -1;
+        PMAP A -1;
+        Stop;
+
+    Activated:
+        PMAP C 100;
+        TNT1 A 0
+        {
+            level.ExitLevel(0, false);
+        }
         Stop;
     }
 }

@@ -8,14 +8,28 @@ gameinfo
     StatusBarClass = "DoDAHUD"
 
     AddEventHandlers = "DoDAMissionDirector"
-    AddEventHandlers = "DoDAMissionOverlay"
+    //AddEventHandlers = "DoDAMissionOverlay"
 
     TitlePage = "DODABG3"
     CreditPage = "DODABG1"
 }
 
-map MAP01 "MISSION DIRECTOR TEST"
+DoomEdNums
 {
-	Sky1 = "SKY1"
-	next = "EndGameS"
+    9301 = "DoDAMissionInteractable"
+    9302 = "DoDAExtractionInteractable"
+    9303 = "DoDADebriefContinueInteractable"
+	9304 = "DoDAMissionCompletePickup"
+}
+
+map MAP01 "MISSION AREA TEST"
+{
+    Sky1 = "SKY1"
+    next = "MAP02"
+}
+
+map MAP02 "DEBRIEF ROOM TEST"
+{
+    Sky1 = "SKY1"
+    next = "EndGameS"
 }

@@ -1,0 +1,29 @@
+Log started: 2026-07-25 07:13:05
+
+----------------------------------------
+
+MAP01 - MISSION AREA TEST
+
+DoDA: Mission initialized as PENDING.
+DoDA: Mission interactable used.
+DoDA: Mission set to SUCCESS.
+----------------------------------------
+Mission complete - exfiltrate now.
+----------------------------------------
+DoDA: MissionDirector mission status updated.
+----------------------------------------
+Extraction is now AUTHORIZED.
+----------------------------------------
+DoDA: Extraction authorized.
+
+----------------------------------------
+
+MAP02 - DEBRIEF ROOM TEST
+
+DoDADebriefContinueInteractable at (-0.0, -64.0) has no frames
+DoDA: Mission initialized as PENDING.
+----------------------------------------
+DEBRIEF - mission recorded.
+----------------------------------------
+DoDA: Debrief confirmation displayed.
+Game saved.
