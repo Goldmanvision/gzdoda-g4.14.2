@@ -1,0 +1,34 @@
+Log started: 2026-07-24 04:23:20
+
+----------------------------------------
+
+MAP01 - Hydroelectric Plant
+
+Could not find patch set gzdoom.
+
+Could not find patch set gzdoom.
+
+DoDA: Mission initialized as PENDING.
+Player [0]: MISSION: UNKNOWN is printed under DODA OVERLAY PROBE
+]summon dodadebugpickup
+DoDA debug pickup acquired.
+DoDA debug pickup used.
+DoDA: Mission set to SUCCESS.
+DoDA: Overlay mission status updated.
+Player [0]: saving this game now...
+Game saved.
+Player [0]: starting new game...
+
+----------------------------------------
+
+MAP01 - Hydroelectric Plant
+
+DoDA: Mission initialized as PENDING.
+Player [0]: DODA OVERLAY PROBE says MISSION: UNKNOWN in new game. About to load the previous save game with the MISSION: SUCCESS state.
+
+----------------------------------------
+
+MAP01 - Hydroelectric Plant
+
+Player [0]: save game loaded, MISSION: SUCCESS state successfully stored.
+Player [0]: ending test.

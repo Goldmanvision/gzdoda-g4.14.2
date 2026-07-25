@@ -1,0 +1,20 @@
+Log started: 2026-07-24 03:42:35
+
+----------------------------------------
+
+MAP01 - Hydroelectric Plant
+
+Could not find patch set gzdoom.
+
+Could not find patch set gzdoom.
+
+DoDA: Mission initialized as PENDING.
+]summon DoDADebugPickup
+DoDA debug pickup acquired.
+DoDA debug pickup used.
+Player [0]: DODA Overlay Probe appears in top left, along with MISSION: PENDING
+]summon DoDADebugPickup
+DoDA debug pickup acquired.
+DoDA debug pickup used.
+Player [0]: I summoned, picked up, and used the debug pickup. MISSION: PENDING still appears on screen, not MISSION: COMPLETE
+Player [0]: ending test
