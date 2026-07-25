@@ -1,0 +1,2 @@
+actor DoDAMissionInteractable : Actor 9301 native {}
+actor DoDAExtractionInteractable : Actor 9302 native {}

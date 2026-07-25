@@ -13,3 +13,9 @@ gameinfo
     TitlePage = "DODABG3"
     CreditPage = "DODABG1"
 }
+
+map MAP01 "MISSION DIRECTOR TEST"
+{
+	Sky1 = "SKY1"
+	next = "EndGameS"
+}
