@@ -1,0 +1,11 @@
+/*//////////////////////////|
+// root/zscript.txt
+*///////////////////////////|
+version "2.4"
+
+#include "DoDA/FieldAgent.zs"
+#include "DoDA/MissionState.zs"
+#include "DoDA/MissionManager.zs"
+#include "DoDA/MissionDirector.zs"
+#include "DoDA/MissionOverlay.zs"
+#include "DoDA/HUD.zs"

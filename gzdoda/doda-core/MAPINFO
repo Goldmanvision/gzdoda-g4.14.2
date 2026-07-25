@@ -1,0 +1,15 @@
+/*//////////////////////////|
+// root/MAPINFO
+*///////////////////////////|
+
+gameinfo
+{
+    PlayerClasses = "FieldAgent"
+    StatusBarClass = "DoDAHUD"
+
+    AddEventHandlers = "DoDAMissionDirector"
+    AddEventHandlers = "DoDAMissionOverlay"
+
+    TitlePage = "DODABG3"
+    CreditPage = "DODABG1"
+}
