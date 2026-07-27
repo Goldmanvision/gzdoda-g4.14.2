@@ -20,6 +20,7 @@ DoomEdNums
     9302 = "DoDAExtractionInteractable"
     9303 = "DoDADebriefContinueInteractable"
 	9304 = "DoDAMissionCompletePickup"
+	9305 = "DoDAMissionTerminal"
 }
 
 map MAP01 "MISSION AREA TEST"

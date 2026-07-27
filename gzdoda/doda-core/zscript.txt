@@ -4,13 +4,29 @@
 version "2.4"
 
 #include "DoDA/FieldAgent.zs"
-#include "DoDA/MissionState.zs"
-#include "DoDA/MissionManager.zs"
-#include "DoDA/MissionDirector.zs"
-// #include "DoDA/MissionOverlay.zs"
-#include "DoDA/DebugTrigger.zs"
-#include "DoDA/MissionCompletePickup.zs"
-#include "DoDA/MissionInteractable.zs"
-#include "DoDA/ExtractionInteractable.zs"
-#include "DoDA/DebriefContinueInteractable.zs"
-#include "DoDA/HUD.zs"
+
+#include "DoDA/MissionSystem/MissionState.zs"
+#include "DoDA/MissionSystem/MissionManager.zs"
+#include "DoDA/MissionSystem/CampaignState.zs"
+#include "DoDA/MissionSystem/MissionDirector.zs"
+#include "DoDA/MissionSystem/LastMissionReport.zs"
+#include "DoDA/MissionSystem/DebugTrigger.zs"
+
+#include "DoDA/MissionSystem/Things/MissionCompletePickup.zs"
+#include "DoDA/MissionSystem/Things/MissionInteractable.zs"
+#include "DoDA/MissionSystem/Things/MissionTerminal.zs"
+#include "DoDA/MissionSystem/Things/ExtractionInteractable.zs"
+#include "DoDA/MissionSystem/Things/DebriefContinueInteractable.zs"
+
+#include "DoDA/UI/FieldAgent/HUD.zs"
+
+#include "DoDA/World/Vehicles/CarActor.zs"
+
+// Temporarily disabled until the baseline compiles again.
+// #include "DoDA/MissionSystem/MissionIds.zs"
+// #include "DoDA/MissionSystem/ObjectiveIds.zs"
+// #include "DoDA/MissionSystem/MissionDefs.zs"
+
+// Keep these disabled until the interactable and car are confirmed.
+// #include "DoDA/World/Computers/LaptopActor.zs"
+// #include "DoDA/World/Computers/DesktopActor.zs"
