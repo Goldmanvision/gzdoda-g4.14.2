@@ -1,0 +1,63 @@
+RECOMMENDED TWO-AI GZDODA WORKFLOW
+
+ROLE A: PERPLEXITY SPACE
+Purpose:
+- ZDoom/GZDoom documentation verification
+- Architecture decisions
+- Milestone planning
+- Risk review
+- API validity checks
+- Final audit of generated code
+
+ROLE B: CHATGPT OPENAI ACCOUNT
+Purpose:
+- Repo-connected drafting
+- Multi-file refactors
+- Branch-scoped implementation
+- Compile-ready code batches
+- PR description and commit draft generation
+
+HARD RULES
+1. Do not let both AIs solve the same coding task independently.
+2. Perplexity approves architecture first.
+3. ChatGPT implements only the approved scope.
+4. Bring ChatGPT output back to Perplexity for audit before merge.
+5. One task = one owner = one branch.
+6. Every task must list:
+   - goal
+   - files allowed to change
+   - constraints
+   - verified APIs
+   - unverified APIs
+   - expected output format
+
+TASK FLOW
+1. Define task in Perplexity.
+2. Produce approved implementation brief.
+3. Send brief to ChatGPT with repo context.
+4. ChatGPT drafts patch or file batch.
+5. Return patch or code to Perplexity.
+6. Audit against docs and milestone rules.
+7. Revise if needed.
+8. Merge only after audit passes.
+
+GOOD TASKS FOR CHATGPT
+- Refactor these 4 files to match this approved class layout.
+- Apply this naming standard consistently.
+- Turn this approved pseudocode into compile-ready ZScript.
+- Prepare a branch-local patch for these files only.
+
+GOOD TASKS FOR PERPLEXITY
+- Verify whether this ZScript API exists in our target docs.
+- Audit this patch for scope, ownership, and deprecated API use.
+- Decide whether this belongs in ZScript or C++.
+- Write the milestone checklist and merge gate.
+
+MERGE GATE
+No implementation is accepted until:
+- repo-aware draft is complete
+- doc-backed audit is complete
+- deprecated APIs are removed or justified
+- ownership boundaries are clear
+- task scope was respected
+- result is added to the architecture log in paste-ready form

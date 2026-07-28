@@ -1,0 +1,949 @@
+I want to build DoDA as a standalone game from scratch in a new GZDoom-based codebase, with no connection to any prior prototype Space or archive.
+
+
+Project goals:
+Build a standalone GZDoDA fork or equivalent source-level game setup.
+
+Treat DoDA as its own game, not as a mod layered on top of Doom.
+
+Start from zero with a clean architecture.
+
+Use the ZDoom/GZDoom docs as the primary technical reference.
+
+Use my DoDA GDD as the design reference.
+
+Keep the implementation modular and practical for a small indie project.
+
+Important constraints:
+
+Do not rely on any prior thread context, prior prototype files, or recovered snippets.
+
+Assume this is a fresh project with empty or minimal starter files.
+
+Prioritize source-level architecture decisions first, then data format decisions, then gameplay systems.
+
+Prefer solutions that can be implemented in a custom GZDoom fork if needed.
+
+Keep the scope focused on a shippable standalone game, not a mod demo.
+
+What I need first:
+
+A recommended project architecture for a standalone GZDoom-based game.
+
+A clean folder / repository structure.
+
+The minimum engine changes, if any, that should be made in a fork.
+
+A plan for player movement, weapon handling, HUD, and free-aim support.
+
+A phased implementation roadmap from empty project to playable prototype.
+
+A risk list of systems that should stay in ZScript versus systems that should move into C++.
+
+A suggested first milestone that proves the standalone foundation is viable.
+
+I want a practical, buildable plan that assumes a small team of one and minimal resources.
+
+Use this as the new Space kickoff. It is written for a team that has no prior context and needs both the project vision and the technical target.
+
+DoDA GZDoDA kickoff
+I am building DoDA: Department of Diplomagic Affairs as a standalone game on a GZDoom-based foundation, with the long-term target being a custom GZDoDA fork or equivalent standalone game package. This is not a Doom mod project in the usual sense; it is intended to become its own game with its own identity, default content, UI, gameplay rules, and distribution path.
+
+
+What DoDA is
+DoDA is a colony-sim-style game with an optional 3D field agent mode. The high-level fantasy is that the player manages a diplomatic agency or department while also being able to take an agent into missions personally when a situation needs hands-on intervention. The game should support both strategic management and moment-to-moment field play, with the field mode using a first-person feel and a firearm / equipment system that can support free aim, stance changes, and tactical interaction.
+
+The intent is to make the game feel like a management sim and a tactical action game sharing the same world, not two separate games glued together. The management layer should affect who you can deploy, what equipment is available, what resources you have, and how missions unfold. The field layer should feed back into the management layer through outcomes like rescued assets, damaged facilities, intelligence, captured items, injuries, and diplomatic consequences.
+
+Core fantasy
+The player is not just a shooter protagonist. The player is the head of a diplomatic and operational bureau managing people, facilities, missions, and consequences. The â€œdepartmentâ€ part matters: there should be administrative structure, personnel roles, supply constraints, mission assignments, and a sense that field work is one part of a larger organization rather than the whole game.
+
+The â€œdiplomagicâ€ part implies a setting where diplomacy, strange technology, occult or magical systems, and practical field operations coexist. That means DoDA should support both grounded operational gameplay and unusual systems such as special tools, anomalous equipment, unusual hostile entities, or magical effects. The exact tone can be serious, dry, bureaucratic, surreal, or a mixture, but the design should preserve the idea that field work is being handled by an agency with internal rules rather than a lone adventurer.
+
+Gameplay pillars
+The project should be built around a few strong pillars:
+
+Strategic management of staff, missions, equipment, and facilities.
+
+A field-agent mode where the player can directly control an operative in first person.
+
+Tactical combat and interaction, with emphasis on controlled aim, positioning, and readable weapon behavior.
+
+Systems that are modular enough to expand into colony-sim behavior without requiring a rewrite.
+
+A presentation style that supports an agency/operations fantasy rather than a pure monster-hunter fantasy.
+
+The management layer should eventually handle things like personnel rosters, assignment types, morale, injury, supplies, mission prep, and facility upgrades. The field layer should support direct action, exploration, combat, objective completion, and extraction or return-to-base style loops.
+
+Expected player loop
+The loop should look something like this:
+
+Review the department state.
+
+Assign agents, equipment, and mission priorities.
+
+Launch or observe an operational mission.
+
+Take direct control of an agent if needed.
+
+Resolve combat, interaction, or objective steps.
+
+Return results to the department layer.
+
+Use the outcome to improve the organization or deal with fallout.
+
+That means the game needs both macro systems and micro systems, and they should share the same data model where possible. The management layer should not feel detached from the field mode. Field success or failure should have visible agency consequences.
+
+Field-mode requirements
+The field mode should feel like a tactical first-person mode that can support:
+
+Free aim or deadzone aim.
+
+Weapon and hand presentation that can be adjusted for stance or look angle.
+
+Context-sensitive interaction.
+
+Clear HUD feedback.
+
+Inventory or equipment handling that fits a compact tactical game.
+
+For the weapon feel, I want a system that can support more deliberate aim behavior than default â€œview is weaponâ€ style presentation. The earlier prototype work explored free-aim and pitch-band presentation, so that concept remains relevant as a design direction even if the implementation changes. The weapon system should be modular enough to support different classes of tools, firearms, and special items later.
+
+Management-layer requirements
+The management layer should support:
+
+Departments or divisions.
+
+Personnel with roles, skills, and assignment states.
+
+Mission lists and operational queues.
+
+Supplies, equipment, and readiness.
+
+Consequences that persist after missions.
+
+A base or headquarters space that acts as the playerâ€™s command center.
+
+This does not need to become a giant 4X system. It should be readable, practical, and suitable for a small team. The point is to make the organization feel alive and operational, not overloaded with simulation for its own sake.
+
+Tone and world design
+The game should support a bureaucratic and slightly absurd operational tone: official procedures, mission classification, equipment handling, department structure, and â€œweird but managedâ€ phenomena. The world can be original fantasy, pseudo-modern, or strange-industrial, but it should consistently feel like a department that handles diplomatic incidents, anomalies, and field operations.
+
+The design should allow for:
+
+Regular humans and specialized agents.
+
+Strange entities or anomalous threats.
+
+Equipment that can be practical, ceremonial, magical, or hybrid.
+
+Missions that may be diplomatic, investigative, retrieval, escort, cleanup, or hostile-response operations.
+
+Technical direction
+The near-term technical target is a standalone GZDoom-based foundation, not a fragile mod patch. GZDoom is mod-friendly and scriptable, but if DoDA is intended to ship as its own game, the project should eventually be structured as a standalone game package or custom fork with its own startup behavior and default data.
+
+
+A custom IWAD or custom game package is relevant here because GZDoom supports standalone game distribution that behaves like a self-contained product rather than a mod loaded alongside Doom data. If the game outgrows what ZScript can reasonably support, then a forked engine path becomes appropriate for low-level features.
+
+
+What the new Space should solve first
+The new Space should begin by defining:
+
+The project architecture.
+
+The gameplay data model.
+
+The minimum standalone startup path.
+
+The separation between management mode and field mode.
+
+Which systems remain in ZScript and which move into C++ if a fork is used.
+
+The first milestone should not be a full content pass. It should be a small but complete foundation that proves the game can boot, show a correct title/state, and support one tiny management loop plus one tiny field loop. That is the right validation point before building content.
+
+ZDoom/GZDoom reference use
+The new Space should use the ZDoom documentation as a primary technical reference for what can be done in ZScript and how the engine expects game data to be structured. The docs around player state, HUD/status bar behavior, weapons, and custom IWADs are especially important because they define the practical limits of a standalone game built on GZDoom.
+
+
+Implementation philosophy
+This project should be built in layers:
+
+First, a stable standalone startup and game identity.
+
+Second, a minimal agent field mode.
+
+Third, a minimal department-management loop.
+
+Fourth, the glue between the two modes.
+
+Fifth, content expansion.
+
+Do not start by building content systems before the foundation is verified. Do not start by optimizing for final polish. Do not treat it as a modding exercise. Treat it as a product architecture exercise with GZDoom as the base technology.
+
+Deliverable expectations
+What I want from the new Space is:
+
+A practical project plan.
+
+A clear folder/repo structure.
+
+A split of what belongs in ZScript versus what belongs in engine code.
+
+A list of the first milestone files and systems.
+
+A roadmap that gets from empty project to playable standalone prototype.
+
+Project identity
+DoDA stands for Department of Diplomagic Affairs. The game is about managing an agency that deals with diplomacy, anomalies, field missions, and operational consequences. It should feel like a bureaucratic tactical sim with optional direct field play, and the standalone goal means it should eventually boot into DoDA directly, not into Doom with a mod attached.
+
+
+Deadzone aim is a free-aim buffer: the weapon does not instantly sit exactly on the camera center, and it does not instantly drag the whole view with every small mouse movement. Instead, the weapon is allowed to float inside a limited range relative to the center of the screen, and only after you push past that range does the view begin to turn more strongly or the weapon begin to lag visibly.
+
+
+What it means
+In the DoDA prototype, deadzone aim meant the gun had its own â€œlocalâ€ aim space separate from the camera. Small mouse movement moved the weapon inside a bounded box, while the actual player view only took over once that box was exceeded. That is why the effect feels like ARMA 3: the weapon has inertia, the camera is not locked to it, and there is a visible delay between where the player looks and where the weapon is pointed.
+
+
+How it should feel
+The important feeling is this:
+
+the camera can keep moving,
+
+the weapon can lag behind,
+
+and the gun recenters or catches up gradually instead of snapping instantly.
+
+
+That makes aiming feel heavier and more deliberate, especially when you are making small corrections. In ARMA-like free aim, the gun can drift away from the exact view center, and you manually â€œworkâ€ the weapon back toward the target rather than having the crosshair do everything for you.
+
+
+How the prototype used it
+The prototype tracked free-aim as a horizontal and vertical offset, then clamped those offsets to a maximum deadzone range. When the offset stayed inside the range, the weapon could remain visually displaced from the exact camera center. When the offset exceeded the limit, the system would start correcting or re-centering, which created the lagging-gun effect you wanted.
+
+
+The prototype also tied that offset to PSprite positioning, so the weapon sprite itself visibly drifted on screen rather than merely changing an invisible math value. That is what made the mechanic feel like real free aim instead of just a hidden aim cone.
+
+
+How it should work in GZDoom
+In GZDoom terms, deadzone aim needs three parts:
+
+Input accumulation. Mouse movement updates a free-aim offset instead of immediately forcing the weapon to center.
+
+Clamp / deadzone. The offset is limited to a maximum range so the weapon cannot drift forever.
+
+Visual presentation. The weapon sprite or overlay is offset on the screen to show the lag.
+
+
+If you want it to behave like the prototype, the weapon should appear to move independently inside that zone, and the player should feel that the aim is slightly detached from the center. That is the whole point of the mechanic: the player is controlling both view and weapon alignment, but not in a perfectly locked way.
+
+
+Why it matters for DoDA
+For DoDA, deadzone aim is not just a gun gimmick. It supports a more tactical field mode, because the player can track targets while still feeling that the weapon has weight, stance, and handling. That makes it a good fit for an agent-based tactical game where precision, posture, and deliberate movement matter more than twitch shooting.
+
+Practical definition for the new Space
+Use this as the project definition:
+
+Deadzone aim = the weapon is allowed to move within a bounded area relative to the screen center.
+
+Small mouse motion moves the weapon first.
+
+Larger motion gradually pulls the camera/aim more fully.
+
+The weapon visually lags behind and recenters smoothly.
+
+The effect should resemble ARMA-style free aim, not a normal centered Doom crosshair system.
+
+
+GZDoom does have native reload support hooks, but it does not magically give you a complete magazine system for a custom weapon by itself. The usual pattern is: use A_WeaponReady(WRF_ALLOWRELOAD) to detect the reload key, then store loaded rounds in a weapon-side variable or a dedicated ammo item, and move rounds between â€œmagazineâ€ and â€œreserveâ€ yourself.
+
+
+Core idea
+For DoDA, the realistic handling model should separate three things:
+
+Reserve ammo, which lives in inventory.
+
+Magazine ammo, which is the rounds currently loaded in the weapon.
+
+Manipulation states, which are the visible animations: eject, insert, rack, clear jam, and ready.
+
+
+That separation is what makes the weapon feel mechanical instead of arcade-like. The visible animation should not be the same thing as the ammo math; the animation is presentation, while the ammo bookkeeping is state logic.
+
+
+How reload should work
+A practical reload flow in GZDoom is:
+
+Player presses reload.
+
+Weapon enters Reload state if WRF_ALLOWRELOAD is enabled.
+
+Weapon checks if the magazine is already full.
+
+If not full, it ejects or transitions into an insertion state.
+
+Reserve ammo is decremented.
+
+Magazine ammo is incremented.
+
+Weapon returns to Ready after the animation finishes.
+
+
+If the weapon is a detachable-magazine weapon, one reload should usually mean â€œswap empty mag out, insert fresh mag, then rack or chamber if needed.â€ If it is a tube-fed or fixed-magazine weapon, the animation may represent loading one round at a time instead. GZDoom can support either model, but the gameplay logic must be authored explicitly.
+
+
+Eject magazine
+For a detachable magazine weapon, ejecting should be its own visible state because it matters tactically and visually. In the simplest version, ejection is only presentation plus a decrement from the weaponâ€™s loaded count to zero or partial count, depending on whether you want to preserve tactical reload behavior.
+
+In a more realistic model:
+
+if the magazine is not empty, the old magazine is retained in a temporary â€œheld magâ€ state,
+
+if the magazine is empty, the weapon transitions to an empty-mag state,
+
+the reserve count is not changed yet until the new magazine is inserted.
+
+
+That is the basis for â€œtactical reloadâ€ behavior, where you can keep a partially used magazine instead of deleting it.
+
+Insert magazine
+Insertion should consume ammo from reserve and place it into the weaponâ€™s loaded-mag counter. This is the cleanest place to use a weapon-side variable such as LoadedRounds, because the weapon itself needs to know how many rounds are currently ready.
+
+
+A typical sequence is:
+
+enter InsertMag,
+
+play the insertion animation,
+
+set or update the loaded count,
+
+then decide whether a rack is needed.
+
+If you want the game to model partial reloads, the inserted mag can be any size up to the weaponâ€™s max capacity. If you want a simpler game, every mag can be treated as full and only the reserve count matters.
+
+
+Rack slide / chamber round
+Racking is a separate operation from inserting a magazine when you want realism. It is the action that chambers a round after a fresh mag is inserted, or after a jam is cleared, or after an empty weapon is reloaded.
+
+In practice, the rack state should:
+
+play a distinct animation,
+
+optionally consume one chambered round if you model that separately,
+
+end in Ready,
+
+and be required only when the weapon is in an â€œempty chamberâ€ condition.
+
+
+This matters because a weapon with a magazine inserted is not always immediately ready to fire in a realistic model. The rack is what turns â€œloadedâ€ into â€œfight-ready.â€
+
+Clear jam
+A jam clear should be a recovery state, not just another reload animation. The weapon should enter a jam state when a jam condition is triggered, then the clear-jam sequence should forcibly return the weapon to a usable state afterward.
+
+A clean model is:
+
+Jam state blocks firing,
+
+ClearJam plays the manipulation animation,
+
+if the weapon has a loaded mag and chamber state, it returns to Ready,
+
+if not, it falls back into Reload or Empty handling.
+
+
+This makes jams feel like problems the player has to resolve, not just a cosmetic interruption.
+
+What GZDoom helps with
+GZDoom helps with the triggering and presentation side:
+
+A_WeaponReady(WRF_ALLOWRELOAD) lets reload key presses route into your reload logic.
+
+
+Weapon state machines can handle the animation flow cleanly.
+
+
+Weapon-side variables or inventory items can track loaded ammo.
+
+
+What GZDoom does not provide automatically is a polished firearm simulation with detachable mags, chamber state, retaining partial mags, and jam clearing all out of the box. That part is yours to script.
+
+
+Best fit for DoDA
+For DoDA, I would implement:
+
+Weapon-side loaded count for each firearm.
+
+Reserve ammo inventory separate from loaded count.
+
+Explicit states for eject, insert, rack, and clear jam.
+
+Tactical reload support only on weapons where it matters.
+
+Simplified weapons for tools or sidearms that do not need full magazine simulation.
+
+That gives you realism where it helps the game and simplicity where it does not. It also scales cleanly from a pistol prototype to a full agency arsenal.
+
+Recommended modeling rule
+Use this rule of thumb:
+
+If the weapon has a detachable magazine, model magazine, chamber, and rack separately.
+
+If the weapon is a simple sidearm or tool, model only reserve ammo and a short reload state.
+
+If the weapon can jam, jam state should interrupt firing and require a clear-jam action.
+
+Weapon actions
+Use these labels in the design doc:
+
+Weapon Action 1: Reload / tactical reload.
+
+Weapon Action 2: Eject magazine.
+
+Weapon Action 3: Insert magazine.
+
+Weapon Action 4: Rack slide / chamber round.
+
+Weapon Action 5: Clear jam.
+
+Weapon Action 6: Alternate fire or context action, if a weapon needs one.
+
+Weapon Action 7: Inspect / check weapon state, if you want a non-combat utility action.
+
+
+Why this labeling works
+This keeps the design agnostic about actual key choice while still giving the code and UI a stable vocabulary. It also matches how GZDoom mods commonly separate the user-facing control label from the underlying command or alias, which is useful when you later decide whether a command should come from KEYCONF, a menu binding, or an in-game context rule.
+
+
+How to describe the behavior
+For the primer, explain each action like this:
+
+Weapon Action 1: Initiates reload flow, usually when the magazine is not full.
+
+Weapon Action 2: Removes the current magazine from the weapon.
+
+Weapon Action 3: Inserts a replacement magazine from inventory or a staged mag pool.
+
+Weapon Action 4: Chambers a round after a magazine change or empty-state reload.
+
+Weapon Action 5: Clears a malfunction and returns the weapon to a ready-capable state.
+
+Weapon Action 6: Performs a weapon-specific secondary function.
+
+Weapon Action 7: Displays or audits the current weapon state without changing it.
+
+
+How to present it in the Space
+You can say the game will eventually bind these through contextual controls, but the design should stay abstract for now. That lets you build the system around behavior first and input mapping second, which is safer for a standalone project because the same action might be keyboard-bound, controller-bound, or hidden behind a contextual interaction depending on platform.
+
+
+Suggested primer wording
+Use this sentence in the new Space:
+
+â€œDoDA weapon handling is split into named weapon actions rather than fixed keys. Weapon Action 1 through Weapon Action 7 cover reload, eject mag, insert mag, rack slide, clear jam, alternate weapon function, and weapon inspection, with actual key bindings assigned later by control context.â€
+
+Weapon handling primer
+DoDA weapon handling should be designed as a set of explicit manipulation actions, not a single all-purpose reload button. The goal is to make weapons feel physical and procedural, like the gun has an internal state the player must manage through clear steps. That means the player may need to eject a magazine, insert a new one, rack a slide, or clear a jam as separate actions depending on the weapon and the situation.
+
+
+Design intent
+The inspiration is the kind of gunwork seen in Beyond Citadel and Receiver 2, where the player is interacting with the firearm as a mechanism rather than just pressing reload and instantly continuing. That style supports tactical decision-making: do you do a fast insert under pressure, do a safer full reload, do you clear the chamber first, do you risk keeping a partial magazine, and do you recover from a malfunction now or retreat first. The game should treat weapon state as something the player reads and manipulates, not something hidden behind a generic animation.
+
+
+Weapon actions
+Use abstract labels in the design so input can remain contextual later:
+
+Weapon Action 1: Reload.
+
+Weapon Action 2: Eject magazine.
+
+Weapon Action 3: Insert magazine.
+
+Weapon Action 4: Rack slide / chamber round.
+
+Weapon Action 5: Clear jam.
+
+Weapon Action 6: Inspect weapon state.
+
+Weapon Action 7: Secondary weapon-specific manipulation.
+
+
+These are not final keys. They are behavior slots that can later be mapped to keyboard, controller, mouse, or contextual interaction depending on the weapon and platform.
+
+
+State flow
+A realistic weapon should move through an internal state flow rather than skipping straight from empty to ready. A useful baseline is:
+
+Ready.
+
+Fire.
+
+Empty or low-mag.
+
+Eject magazine.
+
+Insert magazine.
+
+Rack slide or chamber.
+
+Return to ready.
+
+If malfunctioned, enter jam and clear-jam flow first.
+
+
+That flow gives you tactical reload behavior, empty reload behavior, and jam recovery without forcing every weapon to behave the same way. Some guns may skip eject or rack entirely; others may require all of it.
+
+
+How it should feel
+The player should feel like the gun has weight and procedure. If the weapon is partially loaded, a quick manipulation might preserve the remaining ammo. If the chamber is empty, racking matters. If the gun jams, the player must intentionally fix it instead of getting a free reset.
+
+
+That creates useful tension:
+
+fast reloads are efficient but risky,
+
+careful reloads are safer but slower,
+
+jam clears are emergency procedures,
+
+inspections are for checking readiness before re-engaging.
+
+
+Practical GZDoom interpretation
+In GZDoom, the system should be built around weapon states plus weapon-side counters or inventory state. Native reload hooks exist in the sense that the engine supports reload as a weapon control concept, but the detailed magazine/chamber/jam logic still needs to be authored per weapon. A_WeaponReady(WRF_ALLOWRELOAD) can be part of the control path, but the actual manipulations should be scripted so each firearm can have its own procedure.
+
+
+Suggested project rule
+For DoDA:
+
+pistols and simple sidearms can use a light reload model,
+
+rifles and tactical weapons should use full magazine/chamber/rack logic,
+
+jam-capable weapons should have a dedicated malfunction path,
+
+inspection should be available where it adds readability and player confidence.
+
+
+Short version
+DoDA weapon handling is a procedural gunwork system inspired by Beyond Citadel and Receiver 2. The player should manage reloads as separate actions such as eject magazine, insert magazine, rack slide, clear jam, and inspect weapon state, rather than using one generic reload key.
+
+Movement primer
+DoDA movement should treat the player as having discrete body states: standing, crouched, prone, and vaulting. Each state should change how the player moves through the world, how quickly they can aim, how stable their aim is, and how easily they can fit through space. That gives the game readable tactical movement instead of one universal movement mode.
+
+
+State intent
+Standing is the default combat posture.
+
+Crouch is the lower-profile controlled posture.
+
+Prone is the lowest-profile stealth or stability posture.
+
+Vault is a traversal action for crossing low obstacles or barriers.
+
+
+Each posture should trade mobility for control or concealment. Standing should be fastest and most flexible, crouch should reduce speed but improve stability, prone should minimize exposure but severely reduce mobility, and vault should temporarily override normal control to get the player over geometry cleanly.
+
+
+Aim behavior
+Aim should change with posture in a way the player can feel immediately.
+
+Standing: normal aim speed, normal sensitivity, lowest stability.
+
+Crouch: slightly slower aim speed, slightly reduced sensitivity, improved accuracy or recoil control.
+
+Prone: slowest aim speed, lowest sensitivity, highest stability.
+
+Vault: aim should usually be restricted or softened during the vault animation so the movement reads clearly.
+
+
+For the Space, it is best to separate aim speed from aim sensitivity. Aim speed is how fast the weapon/camera can be rotated by the playerâ€™s input, while sensitivity is the input multiplier applied before it reaches the aim logic. That gives you more control over how posture changes feel without making the controls unpredictable.
+
+
+Movement speed
+Movement speed should follow the same posture hierarchy.
+
+Standing: full walk/run speed.
+
+Crouch: reduced speed, useful for precision or stealth.
+
+Prone: much slower crawl speed.
+
+Vault: short forced movement with no free locomotion until the vault ends.
+
+
+A useful design rule is that crouch and prone should not just slow the player; they should also change the way the playerâ€™s acceleration and turn control feel. That keeps posture meaningful even when the player is not firing.
+
+
+Collision and hitbox
+In GZDoom terms, the player pawnâ€™s physical dimensions matter because the pawn is an actor with radius and height values. For this design, the important rule is that posture should correspond to a smaller occupied volume when the player is crouched or prone, or at least a posture-specific collision profile if fully dynamic resizing is practical in your fork.
+
+
+Recommended design intent:
+
+Standing: full pawn height and normal radius.
+
+Crouch: reduced height, same or slightly narrower radius.
+
+Prone: very low height and possibly a slightly altered radius if the engine implementation supports it safely.
+
+Vault: temporary collision-handling state that lets the pawn clear low obstacles without snagging.
+
+
+If you do not fully resize the pawn, the space should still explain posture as affecting â€œeffective hitbox profileâ€ so the gameplay intent stays clear even if the implementation is simplified.
+
+
+Vaulting
+Vaulting should be a deliberate traversal move, not an automatic jump replacement. It should trigger only when the player is near a valid obstacle and should move them through a short scripted arc or displacement until they land on the other side.
+
+
+Vaulting should usually:
+
+disable firing,
+
+temporarily restrict camera freedom,
+
+keep movement input minimal or ignored,
+
+and preserve momentum only if that is part of the intended movement style.
+
+
+That makes vaulting read as physical traversal instead of an exploitable speed boost.
+
+Suggested tuning model
+A practical tuning model for the Space is:
+
+Standing: best mobility, worst concealment.
+
+Crouch: moderate mobility, moderate concealment, better weapon control.
+
+Prone: worst mobility, best concealment, best steady aim.
+
+Vault: zero combat control during the action, but fast environment traversal.
+
+
+You can then define aim and movement modifiers per posture instead of hardcoding special cases into every weapon. That is much easier to maintain once the game has multiple firearms, stealth situations, and indoor traversal spaces.
+
+
+Space wording
+Use this wording for the new Space:
+
+â€œDoDA movement is posture-based. Standing, crouch, prone, and vault each alter movement speed, aim speed, aim sensitivity, weapon stability, and collision profile so traversal and combat feel physically committed rather than arcade-style.â€
+
+
+Naming rules
+Use a mod-specific prefix on event names and custom actions. The ZDoom docs explicitly recommend prefixing network event names with the mod name so they do not conflict with other mods. For DoDA, that means prefer names like doda_action, doda_reload, doda_vault, and doda_clearjam rather than generic names like actiondown or reload, because generic names are far more likely to collide or become ambiguous later.
+zdoom
++1
+
+Also keep class, member, and method names consistent and scoped. ZScript is case-insensitive, so Player_Posture, player_posture, and PLAYER_POSTURE all resolve to the same identifier family from a collision standpoint. That means the safest approach is to define one naming convention now and keep it uniform across C++ bridge code, ZScript classes, and CSV docs.
+zdoom
+
+Safer table terms
+The earlier CSV labels are fine as documentation labels, but I would tighten them before turning them into implementation names. These are safer replacements:
+
+player_posture instead of player_posture is acceptable, but if it becomes a global or networked field, use doda_player_posture.
+zdoom-docs.github
++1
+
+weapon_mag_count should become doda_weapon_mag_count if it is stored in a shared weapon bridge or handler.
+zdoom-docs.github
++1
+
+weapon_chambered should become doda_weapon_chambered for the same reason.
+zdoom-docs.github
+
+weapon_jammed should become doda_weapon_jammed.
+zdoom-docs.github
+
+movement_speed_mul should become doda_movement_speed_mul if it is a tunable shared outside a single class.
+zdoom-docs.github
+
+aim_speed_mul, aim_sens_mul, and collision_height_mul should similarly get the doda_ prefix if exposed beyond one private class.
+zdoom
++1
+
+The principle is simple: if a value might be referenced by more than one subsystem, prefix it. If it stays fully internal to one class, a shorter name is acceptable.
+
+Methods to avoid
+The earlier text used names like HandleEjectMag, HandleRackSlide, and PerformContextAction. Those are descriptive, but they are generic enough that they can collide with future helper methods or mod merges if you are not careful. Safer versions are:
+zdoom
++1
+
+DoDA_HandleEjectMag
+
+DoDA_HandleInsertMag
+
+DoDA_HandleRackSlide
+
+DoDA_HandleClearJam
+
+DoDA_PerformContextAction
+
+That prefixing convention is especially useful if you later split movement, weapons, vehicles, and UI into separate files or class hierarchies.
+zdoom-docs.github
++1
+
+Event and control names
+For input routing, avoid using plain names like actiondown and actionup in your design docs as the final identifiers. Those are acceptable as conceptual labels, but the actual event string should be mod-scoped, because ConsoleEvent.Name is where conflicts are most visible and the docs recommend prefixing names for exactly that reason. Use a family like:
+zdoom-docs.github
+
+doda_action_down
+
+doda_action_up
+
+doda_reload
+
+doda_reload_release
+
+doda_stance_down
+
+doda_stance_up
+
+That keeps the CSV readable while keeping implementation safe.
+
+ZDoom-style layout
+The docs also warn about file-path collisions, so your resource layout should live under a mod-specific folder rather than generic top-level names. In practice, that means something like DoDA/ or GZDODA/ for script files, constants, and bridge definitions instead of broad names like ZScript/Const.txt. The same logic applies to CSV documentation names, because matching your documentation vocabulary to your file layout makes future porting less error-prone.
+zdoom
+
+Recommended audit result
+I would classify the current tables like this:
+
+Safe as documentation labels: Standing, Crouch, Prone, Vault, Weapon Action 1..7.
+
+Needs prefixing before implementation: player_posture, weapon_mag_count, weapon_chambered, weapon_jammed, movement_speed_mul, aim_speed_mul, aim_sens_mul, collision_height_mul.
+
+Needs renaming for event safety: actiondown, actionup, reload, clearjam, inspect.
+
+Needs method prefixing: HandleEjectMag, HandleRackSlide, PerformContextAction.
+
+
+Next table format
+The cleanest next CSV should use columns like:
+
+DocLabel
+
+ImplName
+
+Scope
+
+CollisionRisk
+
+Notes
+
+That will let you keep the design language readable while marking which names are provisional and which are implementation-safe.
+
+
+
+It is clear, possible, and should be treated as a hard operating constraint for the new Space: no speculative GZDoom code, no invented ZScript APIs, no generic unscoped names, and no fork changes until native GZDoom functionality has been audited first.
+
+The failure mode you describe is typical of continuity loss: later threads treat earlier pseudocode as verified API, duplicate an existing engine facility, or write against a different GZDoom revision. The remedy is not more code; it is a mandatory verification and change-control layer before every implementation step.
+
+Locked standards
+The new Space should use ZDoomâ€™s own style guidance as the base convention: PascalCase identifiers, verb-phrase method names, noun/adjective member names, Is/Has/Can boolean naming, and forward-compatible project prefixes where a mod-specific name could conflict later. The official guidance also says class members use m_, while new identifiers otherwise avoid internal underscores; therefore m_Posture, m_HasMagazine, DoDA_TryStartVault, and EDoDAPosture are preferable to the earlier generic snake-case implementation labels.
+
+
+For a custom project, use DoDA as the class and method prefix, doda. as an event-string namespace, doda_ for CVars, and DODA_ for true compile-time constants. This distinguishes ZScript identifiers from event strings and configuration names rather than applying one convention indiscriminately.
+
+Generated audits
+I created four further CSVs for the Space:
+
+doda_zscript_naming_style.csv: approved naming patterns for classes, members, booleans, methods, enums, event strings, CVars, constants, and files.
+
+doda_native_vs_custom_audit.csv: a â€œnative firstâ€ decision table for crouching, weapon reload flow, input handling, collision, vaulting, CVars, and per-tic updates.
+
+doda_context_action_hierarchy.csv: a single-owner, ordered contextual-action dispatcher that prevents several systems acting on one press.
+
+doda_gzdoom_change_control.csv: the mandatory gates from design proposal through compile, runtime, regression, and prototype freeze.
+
+These complement the earlier naming audit, movement, weapon, and state tables .
+
+Native-first boundary
+GZDoom already has a large native surface: actor collision, player/pawn behavior, weapon state flow, events, CVars, and thinker lifecycles. Custom code should compose with or extend those systems, never recreate them merely because the custom feature is more complex.
+
+
+For example, DoDA should use the existing crouch support as its baseline, then add only the missing prone transition, posture modifiers, and validated vault behavior. Likewise, the firearm model should use ordinary weapon states and existing reload pathways where appropriate, while DoDA weapon classes own the additional magazine, chamber, slide, and malfunction state .
+
+Source-of-truth rule
+Before I provide any code for this Space, the proposal must identify one of four implementation layers:
+
+Layer	Use it for	Rule
+Existing GZDoom feature	Built-in behavior already supported by g4.14.2	Use the native API; do not duplicate it
+ZScript data class	Weapon, pawn, inventory, actor-specific persistent data	Use documented inheritance and scope
+ZScript play logic	Gameplay state, input dispatch, maps, UI-facing behavior	Use one clearly assigned owner
+Fork C++	A capability unavailable through documented ZScript or required engine/device integration	Prove the native/ZScript gap first
+ZScript classes inherit from a base class and are scoped objects, so class choice and scope must be established before defining state or methods. Method declarations require an exact return type and typed arguments, and overridden methods must match the engineâ€™s actual signature rather than a guessed variant.
+
+
+One owner per system
+The new Space should enforce an ownership map:
+
+Input dispatcher owns interpretation of doda.* input events.
+
+Player pawn/controller owns posture transitions, collision-size changes, and posture movement modifiers.
+
+Weapon instance owns magazine, chamber, slide, and jam state.
+
+Vault controller validates obstacle and landing conditions, then owns the short traversal state.
+
+Native engine owns core movement collision, use-line resolution, weapon switching, rendering, and save infrastructure unless a verified fork extension changes one of them .
+
+This prevents the specific class of bug where an EventHandler, a pawn tick, and a weapon tick all write to velocity, stance, or ammo in the same tic.
+
+Required verification gate
+Every future code request should be handled in this order:
+
+Inspect the actual g4.14.2 fork source for the relevant class, method, field, flag, and existing implementation.
+
+Check official ZDoom documentation for syntax, scope, signatures, and data-lump rules.
+
+Search the current project for name collisions across classes, methods, events, CVars, lumps, includes, and bridge functions.
+
+State the native-first decision: existing functionality used, exact gap, and why custom code is needed.
+
+Produce the smallest compilable change against a tagged known-good baseline.
+
+Compile before expansion, then validate on a minimal test map before integration.
+
+
+The ZSCRIPT root unit can contain a version directive and includes; included translation units cannot contain their own version directives. This is a concrete rule that should be recorded in the Space because version-directive duplication is an avoidable parser failure.
+zdoom-docs.github
+
+What I will not do
+For this Space, I will not:
+
+Present pseudocode as verified, compiling ZScript.
+
+Assume a field, flag, or method exists without checking the target version/source.
+
+Recommend generic names such as ActionDown, Reload, Update, State, or HandleThing as final public implementation names.
+
+Add a C++ fork change when documented GZDoom or ZScript capability can do the job.
+
+Continue from an earlier code fragment unless it has been checked against the current fork and compile state.
+
+Expand a subsystem before the minimal version compiles and passes a dedicated test map .
+
+Operational baseline
+The Space is now locked to this working model: GZDoom g4.14.2 source and official ZDoom documentation are authoritative; the current fork is verified before every code change; ZScript is preferred for gameplay; C++ is reserved for proven engine-level gaps; and every subsystem is developed as a small, compile-tested vertical slice
+
+Native-first rule. Every feature must state whether it belongs to stock GZDoom, ZScript, or fork C++ before any code is proposed.
+
+No guessed APIs. Never invent a ZScript method, member, flag, enum, or override signature. If a name is not verified in the target docs/source, it is invalid.
+
+One owner per state. Input, movement, weapon state, vaulting, UI, and persistence each need a single system owner.
+
+Prefix every custom identifier. Use DoDA_, doda_, or another project-scoped prefix for anything public or shared.
+
+No duplicate engine features. If GZDoom already provides the behavior, compose with it rather than rewriting it.
+
+Compile-gated expansion. No feature may expand beyond a minimal slice until the previous slice compiles and runs in a test map.
+
+Version-lock the target. All answers and code must target the exact GZDoom branch/version in use, not â€œcurrent GZDoomâ€ in general.
+
+Source-of-truth hierarchy. ZDoom docs and the checked fork source outrank memory, example code, or older thread context.
+
+No continuity dependency. Each new thread must restate the current baseline, constraints, and verified naming table.
+
+Use audited CSVs as control files. Treat the naming, native-vs-custom, context hierarchy, and change-control tables as canonical planning documents.
+
+All implementation proposals must be checked against the exact GZDoom branch/source and the official ZDoom documentation before code is written. Custom names must be prefixed with the DoDA namespace. Native GZDoom features must be used where available. ZScript or C++ may only extend verified gaps. Every subsystem must have a single owner, a minimal compile-tested slice, and a collision audit before merge. No thread may rely on prior conversation context unless the current baseline and audited tables are restated in the prompt.
+
+What else to store as CSV
+Beyond the naming and native-vs-custom tables, the most useful CSVs are:
+
+API surface audit. Columns: Feature, NativeClass, NativeMethodOrProperty, Status, Notes.
+
+Scope audit. Columns: Item, Scope, Owner, Persistence, AllowedLayer.
+
+Override audit. Columns: Class, Method, SignatureVerified, Version, Notes.
+
+Lump/asset audit. Columns: LumpType, FilenamePattern, Purpose, CollisionRisk, Notes.
+
+Implementation gate audit. Columns: Feature, PrototypeState, Compiles, Runs, BlockedBy.
+
+Input map audit. Columns: Action, Context, Dispatcher, Fallback, NativeFallbackExists.
+
+UI/HUD audit. Columns: Element, NativeSystem, CustomNeed, Owner, Notes.
+
+Those will help prevent the specific errors that come from expanding too fast across threads.
+
+Treat the uploaded kickoff document as the current project baseline. Do not rely on old thread context unless it is restated in the current kickoff, the current Space files, or a verified audit table. If there is any conflict, the latest uploaded kickoff wins.
+
+Use the exact GZDoom branch and exact ZScript version as the source of truth. Never answer from generic Doom-engine knowledge when a branch-specific detail is required. If a method, member, flag, scope, or override signature is not verified against the current branch and the official docs, it is not valid for implementation.
+
+Native-first rule: if GZDoom already provides the behavior, use the native system and extend it only as needed. Do not rewrite existing engine functionality unless a verified gap requires a fork-level change.
+
+No guessed ZScript. Do not invent methods, fields, constants, flags, scopes, or event signatures. If a name or signature has not been verified, treat it as unverified and do not present it as compiling code.
+
+Prefix all custom identifiers. Use project-scoped prefixes for all implementation names: DoDA_ for classes and methods, doda_ for CVars and event strings, and DODA_ for compile-time constants. Avoid generic names that could collide with engine additions later.
+
+Respect ZDoom naming style. Use PascalCase for identifiers, verb phrases for methods, noun phrases for members, and boolean names prefixed with Is, Has, or Can. Avoid unnecessary underscores in new identifiers unless the project convention explicitly requires them.
+
+One owner per system. Every system must have a single owner: input dispatcher, pawn movement, weapon state, vaulting, UI, persistence, or engine-level bridge. Do not let multiple ticks or handlers rewrite the same state in parallel.
+
+Use docs before memory. Official ZDoom documentation outranks model memory, older thread context, or example snippets. If the docs and a prior answer disagree, the docs win.
+
+Use version-locked top-level structure. Only the root ZScript translation unit may contain a version directive. Included files may not. File structure must follow the current ZScript top-level rules exactly.
+
+Keep gameplay state out of CVars unless it is user-facing configuration. CVars are for settings, not for per-pawn or per-weapon runtime state. Runtime state belongs in actors, player state, inventory, or a verified engine-side bridge.
+
+Use compile-gated development. No system expands past a minimal playable slice until the previous slice compiles and runs in a test map. Warnings and parser errors are blockers until explained and fixed.
+
+Always do a collision audit. Before proposing code, check for conflicts across class names, method names, event names, CVars, lumps, includes, and file paths. Do not assume a name is safe because it reads well.
+
+Separate design labels from implementation names. It is acceptable to use readable design labels in docs and CSVs, but implementation names must be audited and prefixed. For example, â€œWeapon Action 1â€ is a design label, not a final code identifier.
+
+Prefer modular CSV control files. Use CSV tables as canonical project control files for naming, native-vs-custom decisions, scope ownership, override signatures, and change-control gates. If a table disagrees with a casual answer, the table wins.
+
+No continuity dependence. Assume each new thread starts cold. Restate the current baseline, verified naming tables, and exact implementation assumptions before proposing code or architecture.
+
+Ask for verification, not assumption. If a feature could belong to stock GZDoom, ZScript, or C++ fork code, identify the owner first and only then propose the smallest change. Do not answer with speculative implementation until ownership is established.
+
+Keep the project specialized. Stay focused on GZDoom, ZScript, engine-source integration, and SLADE3 workflow. Do not drift into generic C++, Unreal, Unity, or unrelated engine advice unless directly relevant to a verified integration boundary.
+
+Recommended operating files:
+
+kickoff instruction document.
+
+ZDoom docs text archive.
+
+naming audit CSV.
+
+native-vs-custom audit CSV.
+
+context-action hierarchy CSV.
+
+change-control CSV.
+
+any verified source-signature notes.
+
+The Space should behave like a locked technical pipeline, not a brainstorming thread: verified docs first, exact branch/source second, native feature reuse third, custom extensions only for proven gaps, and every custom name prefixed and audited.
+
+Thread rollover rule: when a thread is too long or context becomes fuzzy, freeze the current thread as archive-only and start a new thread in the same Space as the current working thread. The new thread must not defer work to another future thread. It must immediately accept the current baseline, current verified files, and current task scope, then continue from there. Any phrase like â€œuse this in the next threadâ€ is only a handoff marker, not a request to defer action again.
+
+When this thread becomes bloated, treat it as archive-only and start a new thread in the same Space as the current working thread. The new thread must immediately state that it is the active working thread for DoDA and must not defer work to yet another future thread.
+
+The new thread must begin from the current verified baseline, not from old conversation memory. It must restate the current branch/version, current Space files, current CSV audit files, and the current task scope before answering any code or architecture question.
+
+Do not use phrases like â€œuse this in the next threadâ€ as a way to postpone work again. If a handoff is needed, it is only a single rollover marker, not an instruction to keep deferring. The next thread must act on the handoff immediately.
+
+If the current thread has already produced verified control files, naming audits, or baseline docs, those files become the source of truth. The new thread must consult them first and must preserve their naming, scope, and change-control rules.
+
+Never continue from an unverified fragment of prior thread context. If the new thread does not have the required baseline in the current prompt or files, it must ask for the missing baseline or use the archived files, rather than guessing.
+
+Treat the rollover as a clean reset of conversation state, not a reset of project state. The project continues; only the dialogue thread changes.
+
+The new thread must not ask the user to repeat the same rollover instructions unless the baseline is genuinely missing. It must accept the rollout package once and proceed.
+
+The order is always:
+
+Archive the bloated thread.
+
+Open a new working thread in the same Space.
+
+Paste the current baseline and control files.
+
+Restate the active task.
+
+Continue immediately.

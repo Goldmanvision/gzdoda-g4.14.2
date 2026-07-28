@@ -1,0 +1,1816 @@
+/*//////////////////////////|
+// DoDA/MissionSystem/Things/DebriefContinueInteractable.zs
+*///////////////////////////|*/
+
+class DoDADebriefContinueInteractable : Actor
+{
+    bool Activated;
+
+    Default
+    {
+        Radius 8;
+        Height 8;
+
+        +SOLID;
+        +USESPECIAL;
+    }
+
+    override bool Used(Actor user)
+    {
+        if (user == null)
+        {
+            return false;
+        }
+
+        if (Activated)
+        {
+            return false;
+        }
+
+        Activated = true;
+
+        DoDALastMissionReport report =
+            DoDALastMissionReport(user.FindInventory("DoDALastMissionReport"));
+
+        if (report != null)
+        {
+            report.ClearReport();
+        }
+        else
+        {
+            Console.Printf(
+                "DoDA: No LastMissionReport found to clear on return to field."
+            );
+        }
+
+        DoDACampaignState campaignState =
+            DoDACampaignState(user.FindInventory("DoDACampaignState"));
+
+        if (campaignState == null)
+        {
+            user.GiveInventory("DoDACampaignState", 1);
+            campaignState = DoDACampaignState(user.FindInventory("DoDACampaignState"));
+        }
+
+        if (campaignState != null)
+        {
+            campaignState.AdvanceToNextMission();
+        }
+        else
+        {
+            Console.Printf("DoDA: CampaignState not found during mission advance.");
+        }
+
+        Console.Printf("DoDA: Returning to field.");
+
+        Console.MidPrint(
+            Font.GetFont("DoDAPalmFont"),
+            "$DODA_RETURNING_TO_FIELD",
+            true
+        );
+
+        SetStateLabel("Activated");
+        return true;
+    }
+
+    States
+    {
+    Spawn:
+    Idle:
+        DLP1 A 4;
+        DLP1 B 4;
+        DLP1 C 4;
+        DLP1 D 4;
+        DLP1 E 4;
+        DLP1 F 4;
+        DLP1 G 4;
+        DLP1 H 4;
+        DLP1 I 4;
+        DLP1 J 4;
+        DLP1 K 4;
+        DLP1 L 4;
+        Loop;
+
+    Activated:
+        DLP2 A 3;
+        DLP2 B 3;
+        DLP2 C 3;
+        DLP2 D 3;
+        DLP2 E 3;
+        DLP2 F 3;
+        DLP2 G 3;
+        DLP2 H 3;
+        DLP2 I 3;
+        DLP2 J 3;
+        DLP2 K 3;
+        DLP2 L 3;
+        DLP2 M 3;
+        DLP2 N 3;
+        DLP2 O 8;
+        DLPO A -1
+        {
+            level.ChangeLevel("MAP01");
+        }
+        Stop;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*//////////////////////////|
+// DoDA/MissionSystem/Things/MissionCompletePickup.zs
+*///////////////////////////|*/
+
+class DoDAMissionCompletePickup : Inventory
+{
+    Default
+    {
+        Radius 20;
+        Height 16;
+        Scale 0.3;
+
+        Inventory.Amount 1;
+        Inventory.MaxAmount 1;
+
+        +COUNTITEM;
+        +INVENTORY.INVBAR;
+    }
+
+    override bool Use(bool pickup)
+    {
+        if (Owner == null)
+        {
+            Console.Printf("DoDA: Mission pickup has no inventory owner.");
+            return false;
+        }
+
+        DoDACampaignState campaignState =
+            DoDACampaignState(Owner.FindInventory("DoDACampaignState"));
+
+        if (campaignState == null)
+        {
+            Console.Printf("DoDA: CampaignState not found for mission pickup.");
+            return false;
+        }
+
+        if (level.MapName != "MAP01")
+        {
+            Console.MidPrint(
+                Font.GetFont("SmallFont"),
+                "$DODA_INACTIVE_OBJECTIVE",
+                true
+            );
+
+            Console.Printf(
+                "DoDA: Mission pickup use denied. Map=%s NextMissionIndex=%d",
+                level.MapName,
+                campaignState.GetNextMissionIndex()
+            );
+
+            return false;
+        }
+
+        if (campaignState.GetNextMissionIndex() < 0 || campaignState.GetNextMissionIndex() > 1)
+        {
+            Console.MidPrint(
+                Font.GetFont("SmallFont"),
+                "$DODA_INACTIVE_OBJECTIVE",
+                true
+            );
+
+            Console.Printf(
+                "DoDA: Mission pickup use denied. Map=%s NextMissionIndex=%d",
+                level.MapName,
+                campaignState.GetNextMissionIndex()
+            );
+
+            return false;
+        }
+
+        DoDAMissionDirector director =
+            DoDAMissionDirector(EventHandler.Find("DoDAMissionDirector"));
+
+        if (director == null)
+        {
+            Console.Printf("DoDA: MissionDirector not found for mission pickup.");
+            return false;
+        }
+
+        if (director.GetMissionPercentComplete() >= 100)
+        {
+            Console.Printf("DoDA: Mission pickup ignored. Mission already complete.");
+            return false;
+        }
+
+        Console.Printf("DoDA: Mission item used from player inventory.");
+
+        director.CompleteMission();
+
+        Console.MidPrint(
+            Font.GetFont("SmallFont"),
+            "$DODA_MISSION_COMPLETE",
+            true
+        );
+
+        return true;
+    }
+
+    States
+    {
+    Spawn:
+        EVI1 A -1;
+        Stop;
+    }
+}/*//////////////////////////|
+// DoDA/MissionSystem/Things/MissionInteractable.zs
+*///////////////////////////|*/
+
+class DoDAMissionInteractable : Actor
+{
+    bool HasBeenUsed;
+
+    Default
+    {
+        Radius 8;
+        Height 28;
+        Scale 0.4;
+
+        +SOLID;
+        +USESPECIAL;
+    }
+
+    override bool Used(Actor user)
+    {
+        if (user == null)
+        {
+            return false;
+        }
+
+        if (HasBeenUsed)
+        {
+            Console.Printf("DoDA: Informant already used.");
+
+            Console.MidPrint(
+                Font.GetFont("DoDAPalmFont"),
+                "INFORMANT: We already spoke.",
+                true
+            );
+
+            SetStateLabel("InformantAlreadyUsed");
+            return false;
+        }
+
+        DoDACampaignState campaignState =
+            DoDACampaignState(user.FindInventory("DoDACampaignState"));
+
+        if (campaignState == null)
+        {
+            Console.Printf("DoDA: CampaignState missing during informant use.");
+            return false;
+        }
+
+        if (campaignState.NextMissionIndex != 0 || level.MapName != "MAP01")
+        {
+            Console.Printf(
+                "DoDA: Informant inactive. Map=%s NextMissionIndex=%d",
+                level.MapName,
+                campaignState.NextMissionIndex
+            );
+
+            Console.MidPrint(
+                Font.GetFont("DoDAPalmFont"),
+                "$DODA_INACTIVE_OBJECTIVE",
+                true
+            );
+
+            return false;
+        }
+
+        DoDAMissionDirector director =
+            DoDAMissionDirector(EventHandler.Find("DoDAMissionDirector"));
+
+        if (director == null)
+        {
+            Console.Printf("DoDA: MissionDirector not found during informant use.");
+            return false;
+        }
+
+        HasBeenUsed = true;
+
+        Console.Printf("DoDA: Informant used.");
+
+        Console.MidPrint(
+            Font.GetFont("DoDAPalmFont"),
+            "INFORMANT: I have what you need.",
+            true
+        );
+
+        SetStateLabel("InformantUsed");
+        director.CompleteMission();
+
+        return true;
+    }
+
+    States
+    {
+    Spawn:
+    InformantIdle:
+        DSUI P 100;
+        DSUI B 100;
+        DSUI C 20;
+        DSUI D 10;
+        DSUI E 100;
+        DSUI C 10;
+        DSUI D 20;
+        DSUI F 100;
+        DSUI C 10;
+        DSUI D 20;
+        Loop;
+
+    InformantUsed:
+        DSUI L 10;
+        DSUI A 5;
+        DSUI P 10;
+        DSUI A 5;
+        DSUI I 20;
+        DSUI K -1;
+        Stop;
+
+    InformantAlreadyUsed:
+        DSUI J 100;
+        DSUI K -1;
+        Stop;
+    }
+}/*//////////////////////////|
+// DoDA/MissionSystem/Things/MissionTerminal.zs
+*///////////////////////////|*/
+
+class DoDAMissionTerminal : Actor
+{
+    bool Activated;
+
+    Default
+    {
+        Radius 8;
+        Height 8;
+        Scale 0.5;
+
+        +SOLID;
+        +USESPECIAL;
+    }
+
+    override bool Used(Actor user)
+    {
+        if (user == null)
+        {
+            return false;
+        }
+
+        DoDACampaignState campaignState =
+            DoDACampaignState(user.FindInventory("DoDACampaignState"));
+
+        if (campaignState == null)
+        {
+            Console.Printf("DoDA: CampaignState missing during terminal use.");
+            return false;
+        }
+
+        if (campaignState.NextMissionIndex != 1 || level.MapName != "MAP01")
+        {
+            Console.Printf(
+                "DoDA: Terminal inactive for mission index %d.",
+                campaignState.NextMissionIndex
+            );
+
+            Console.MidPrint(
+                Font.GetFont("DoDAPalmFont"),
+                "$DODA_TERMINAL_INACTIVE",
+                true
+            );
+
+            return false;
+        }
+
+        if (Activated)
+        {
+            Console.Printf("DoDA: Terminal already used.");
+            SetStateLabel("Activated");
+            return false;
+        }
+
+        DoDAMissionDirector director =
+            DoDAMissionDirector(EventHandler.Find("DoDAMissionDirector"));
+
+        if (director == null)
+        {
+            Console.Printf("DoDA: MissionDirector not found during terminal use.");
+            return false;
+        }
+
+        Activated = true;
+
+        Console.Printf("DoDA: Mission terminal used.");
+        SetStateLabel("Activated");
+        director.CompleteMission();
+
+        return true;
+    }
+
+    States
+    {
+    Spawn:
+    Idle:
+        DCSV K 4;
+        DCSV L 4;
+        DCSV M 4;
+        DCSV N 4;
+        DCSV O 4;
+        DCSV P 4;
+        DCSV Q 4;
+        DCSV R 4;
+        DCSV S 4;
+        DCSV T 4;
+        DCSV U 4;
+        DCSV V 4;
+        DCSV W 4;
+        DCSV X 4;
+        DCSV Y 4;
+        DCSV Z 4;
+        DCSW A 4;
+        DCSW B 4;
+        DCSW C 4;
+        DCSW D 4;
+        DCSW E 4;
+        DCSW F 4;
+        DCSW G 4;
+        DCSW H 4;
+        DCSW I 4;
+        DCSW J 4;
+        DCSW K 4;
+        DCSW L 4;
+        Loop;
+
+    Activated:
+        DCSR A -1;
+        Stop;
+    }
+}/*//////////////////////////|
+// DoDA/MissionSystem/CampaignState.zs
+*///////////////////////////|
+
+class DoDACampaignState : Inventory
+{
+    int NextMissionIndex;
+    bool WasLoggedThisMap;
+
+    Default
+    {
+        Inventory.Amount 1;
+        Inventory.MaxAmount 1;
+
+        +INVENTORY.UNDROPPABLE;
+        +INVENTORY.UNCLEARABLE;
+    }
+
+    override void Tick()
+    {
+        Super.Tick();
+
+        if (Owner == null)
+        {
+            return;
+        }
+
+        if (WasLoggedThisMap)
+        {
+            return;
+        }
+
+        WasLoggedThisMap = true;
+
+        Console.Printf(
+            "DoDA CampaignState observed: Map=%s NextMissionIndex=%d OwnerClass=%s",
+            level.MapName,
+            NextMissionIndex,
+            Owner.GetClassName()
+        );
+    }
+
+    void MarkMapSeen()
+    {
+        WasLoggedThisMap = false;
+    }
+
+    clearscope int GetNextMissionIndex()
+    {
+        return NextMissionIndex;
+    }
+
+    void EnsureInitialized()
+    {
+        Console.Printf(
+            "DoDA CampaignState initialized: Map=%s NextMissionIndex=%d",
+            level.MapName,
+            NextMissionIndex
+        );
+    }
+
+    void AdvanceToNextMission()
+    {
+        NextMissionIndex = NextMissionIndex + 1;
+        WasLoggedThisMap = false;
+
+        Console.Printf(
+            "DoDA CampaignState advanced: Map=%s NextMissionIndex=%d",
+            level.MapName,
+            NextMissionIndex
+        );
+    }
+}/*//////////////////////////|
+// DoDA/MissionSystem/DebugTrigger.zs
+*///////////////////////////|
+
+class DoDADebugTrigger : Actor
+{
+    Default
+    {
+        +NOBLOCKMAP;
+        +NOSECTOR;
+        +NOGRAVITY;
+        +FLOAT;
+        Radius 8;
+        Height 8;
+    }
+
+    States
+    {
+    Spawn:
+        TNT1 A 1;
+        Stop;
+    }
+}/*//////////////////////////|
+// DoDA/MissionSystem/LastMissionReport.zs
+*///////////////////////////|
+
+class DoDALastMissionReport : Inventory
+{
+    bool HasReport;
+    bool WasLoggedThisMap;
+
+    DoDAMissionResult ReportResult;
+    int ReportPercentComplete;
+    int ReportPhase;
+    string ReportMissionName;
+    string ReportObjective;
+
+    Default
+    {
+        Inventory.Amount 1;
+        Inventory.MaxAmount 1;
+
+        +INVENTORY.UNDROPPABLE;
+        +INVENTORY.UNCLEARABLE;
+    }
+
+    override void Tick()
+    {
+        Super.Tick();
+
+        if (Owner == null)
+        {
+            return;
+        }
+
+        if (!HasReport)
+        {
+            return;
+        }
+
+        if (WasLoggedThisMap)
+        {
+            return;
+        }
+
+        WasLoggedThisMap = true;
+
+        Console.Printf(
+            "DoDA LastMissionReport observed: Map=%s Mission=%s Status=%d Progress=%d Phase=%d Objective=%s OwnerClass=%s",
+            level.MapName,
+            ReportMissionName,
+            ReportResult,
+            ReportPercentComplete,
+            ReportPhase,
+            ReportObjective,
+            Owner.GetClassName()
+        );
+    }
+
+    void StoreFromDirector(DoDAMissionDirector director)
+    {
+        if (director == null)
+        {
+            return;
+        }
+
+        HasReport = true;
+        WasLoggedThisMap = false;
+
+        ReportResult = director.GetMissionResult();
+        ReportPercentComplete = director.GetMissionPercentComplete();
+        ReportPhase = director.GetMissionPhase();
+        ReportMissionName = director.GetMissionName();
+        ReportObjective = director.GetMissionDescription();
+
+        Console.Printf(
+            "DoDA LastMissionReport stored: Map=%s Mission=%s Status=%d Progress=%d Phase=%d Objective=%s",
+            level.MapName,
+            ReportMissionName,
+            ReportResult,
+            ReportPercentComplete,
+            ReportPhase,
+            ReportObjective
+        );
+    }
+
+    void ClearReport()
+    {
+        if (!HasReport)
+        {
+            Console.Printf("DoDA LastMissionReport clear requested, but no active report existed on Map=%s", level.MapName);
+            return;
+        }
+
+        Console.Printf(
+            "DoDA LastMissionReport cleared: Map=%s Mission=%s Status=%d Progress=%d Phase=%d Objective=%s",
+            level.MapName,
+            ReportMissionName,
+            ReportResult,
+            ReportPercentComplete,
+            ReportPhase,
+            ReportObjective
+        );
+
+        HasReport = false;
+        WasLoggedThisMap = false;
+
+        ReportResult = MISSION_UNKNOWN;
+        ReportPercentComplete = 0;
+        ReportPhase = 0;
+        ReportMissionName = "";
+        ReportObjective = "";
+    }
+
+    clearscope bool GetHasReport()
+    {
+        return HasReport;
+    }
+
+    clearscope DoDAMissionResult GetReportResult()
+    {
+        return ReportResult;
+    }
+
+    clearscope int GetReportPercentComplete()
+    {
+        return ReportPercentComplete;
+    }
+
+    clearscope int GetReportPhase()
+    {
+        return ReportPhase;
+    }
+
+    clearscope String GetReportMissionName()
+    {
+        return ReportMissionName;
+    }
+
+    clearscope String GetReportObjective()
+    {
+        return ReportObjective;
+    }
+}/*//////////////////////////|
+// DoDA/MissionSystem/MissionDefs.zs
+*///////////////////////////|*/
+
+class DoDAMissionDef : Object
+{
+    EDoDAMissionId MissionId;
+    EDoDAObjectiveId ObjectiveId;
+    String MissionNameKey;
+    String ObjectiveKey;
+    String FieldMap;
+}
+
+class DoDAMissionDefs : Object
+{
+    static DoDAMissionDef CreateDef(
+        EDoDAMissionId missionId,
+        EDoDAObjectiveId objectiveId,
+        String missionNameKey,
+        String objectiveKey,
+        String fieldMap
+    )
+    {
+        let def = new("DoDAMissionDef");
+        def.MissionId = missionId;
+        def.ObjectiveId = objectiveId;
+        def.MissionNameKey = missionNameKey;
+        def.ObjectiveKey = objectiveKey;
+        def.FieldMap = fieldMap;
+        return def;
+    }
+
+    static DoDAMissionDef GetDef(EDoDAMissionId missionId)
+    {
+        switch (missionId)
+        {
+        case DMDMission01:
+            return CreateDef(
+                DMDMission01,
+                DODInformant,
+                "DODA_MISSION_01_NAME",
+                "DODA_MISSION_01_OBJECTIVE",
+                "MAP01"
+            );
+
+        case DMDMission02:
+            return CreateDef(
+                DMDMission02,
+                DODTerminal,
+                "DODA_MISSION_02_NAME",
+                "DODA_MISSION_02_OBJECTIVE",
+                "MAP01"
+            );
+
+        case DMDMission03:
+            return CreateDef(
+                DMDMission03,
+                DODSecondaryFile,
+                "DODA_MISSION_03_NAME",
+                "DODA_MISSION_03_OBJECTIVE",
+                "MAP01"
+            );
+        }
+
+        return null;
+    }
+}/*//////////////////////////|
+// DoDA/MissionSystem/MissionDirector.zs
+*///////////////////////////|
+
+class DoDAMissionDirector : EventHandler
+{
+    DoDAMissionResult MissionResult;
+    int MissionIndex;
+    int MissionPercentComplete;
+    int MissionPhase;
+    string MissionName;
+    string MissionDescription;
+
+    bool bIsSaveGame;
+    bool bIsReopen;
+
+    void ConfigureMissionForIndex(int index)
+    {
+        MissionIndex = index;
+
+        if (index <= 0)
+        {
+            MissionName = "Mission 01";
+            MissionDescription = "talk to INFORMANT.";
+        }
+        else if (index == 1)
+        {
+            MissionName = "Mission 02";
+            MissionDescription = "collect evidence from TERMINAL.";
+        }
+        else
+        {
+            MissionName = "Mission 03";
+            MissionDescription = "secure the SECONDARY FILE.";
+        }
+    }
+
+    void LogMissionState(string label)
+    {
+        Console.Printf(
+            "DoDA Director [%s] Map=%s Save=%d Reopen=%d Result=%d Index=%d Progress=%d Phase=%d Name=%s Description=%s",
+            label,
+            level.MapName,
+            bIsSaveGame,
+            bIsReopen,
+            MissionResult,
+            MissionIndex,
+            MissionPercentComplete,
+            MissionPhase,
+            MissionName,
+            MissionDescription
+        );
+    }
+
+    void LogHUDSnapshot(string label)
+    {
+        Console.Printf(
+            "DoDA HUD Snapshot [%s] Source=Director Map=%s Mission=%s Status=%d Progress=%d Phase=%d Objective=%s",
+            label,
+            level.MapName,
+            MissionName,
+            MissionResult,
+            MissionPercentComplete,
+            MissionPhase,
+            MissionDescription
+        );
+    }
+
+    override void WorldLoaded(WorldEvent e)
+    {
+        bIsSaveGame = e.IsSaveGame;
+        bIsReopen = e.IsReopen;
+
+        Console.Printf(
+            "DoDA Director WorldLoaded: Map=%s Save=%d Reopen=%d",
+            level.MapName,
+            e.IsSaveGame,
+            e.IsReopen
+        );
+
+        LogMissionState("before initialization gate");
+
+        if (!e.IsSaveGame && !e.IsReopen)
+        {
+            int configuredIndex = 0;
+            PlayerPawn playerPawn = players[consoleplayer].mo;
+            DoDACampaignState campaignState = null;
+
+            if (playerPawn != null)
+            {
+                campaignState = DoDACampaignState(
+                    playerPawn.FindInventory("DoDACampaignState")
+                );
+
+                if (campaignState == null)
+                {
+                    playerPawn.GiveInventory("DoDACampaignState", 1);
+
+                    campaignState = DoDACampaignState(
+                        playerPawn.FindInventory("DoDACampaignState")
+                    );
+                }
+            }
+
+            if (campaignState != null)
+            {
+                campaignState.EnsureInitialized();
+                configuredIndex = campaignState.GetNextMissionIndex();
+            }
+            else
+            {
+                Console.Printf("DoDA: CampaignState unavailable during WorldLoaded.");
+            }
+
+            MissionResult = MISSION_PENDING;
+            MissionPercentComplete = 0;
+            MissionPhase = 1;
+            ConfigureMissionForIndex(configuredIndex);
+
+            Console.Printf("DoDA Mission initialized as PENDING.");
+        }
+        else
+        {
+            Console.Printf("DoDA Director initialization skipped for save/reopen.");
+        }
+
+        LogMissionState("after initialization gate");
+        LogHUDSnapshot("after WorldLoaded");
+
+        if (level.MapName == "MAP02" && !e.IsSaveGame && !e.IsReopen)
+        {
+            Console.MidPrint(
+                Font.GetFont("SmallFont"),
+                "$DODA_DEBRIEF_CONFIRMED",
+                true
+            );
+
+            Console.Printf("DoDA Debrief confirmation displayed.");
+        }
+    }
+
+    clearscope DoDAMissionResult GetMissionResult()
+    {
+        return MissionResult;
+    }
+
+    clearscope int GetMissionIndex()
+    {
+        return MissionIndex;
+    }
+
+    clearscope int GetMissionPercentComplete()
+    {
+        return MissionPercentComplete;
+    }
+
+    clearscope int GetMissionPhase()
+    {
+        return MissionPhase;
+    }
+
+    clearscope String GetMissionName()
+    {
+        return MissionName;
+    }
+
+    clearscope String GetMissionDescription()
+    {
+        return MissionDescription;
+    }
+
+    void CompleteMission()
+    {
+        Console.Printf("DoDA Director CompleteMission called.");
+        LogMissionState("before CompleteMission");
+
+        MissionResult = MISSION_SUCCESS;
+        MissionPercentComplete = 100;
+        MissionPhase = 2;
+        MissionDescription = "log evidence on LAPTOP.";
+
+        Console.Printf("DoDA Mission set to SUCCESS.");
+        LogMissionState("after CompleteMission");
+        LogHUDSnapshot("after CompleteMission");
+    }
+}
+
+/*//////////////////////////|
+// DoDA/MissionSystem/MissionIds.zs
+*///////////////////////////|
+
+enum EDoDAMissionId
+{
+    DMDInvalid = -1,
+    DMDMission01,
+    DMDMission02,
+    DMDMission03
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*//////////////////////////|
+// DoDA/MissionSystem/MissionOverlay.zs
+*///////////////////////////|
+
+class DoDAMissionOverlay : EventHandler
+{
+    override void RenderOverlay(RenderEvent e)
+    {
+        Font font = Font.GetFont("DoDAPalmFont");
+        int white = Font.FindFontColor("White");
+
+        String titleText = "DoDA overlay probe";
+        String missionText = "MISSION: UNKNOWN";
+
+        DoDAMissionDirector director = DoDAMissionDirector(EventHandler.Find("DoDAMissionDirector"));
+        if (director != null)
+        {
+            switch (director.GetMissionResult())
+            {
+            case MISSION_PENDING:
+                missionText = "MISSION: PENDING";
+                break;
+
+            case MISSION_IN_PROGRESS:
+                missionText = "MISSION: IN PROGRESS";
+                break;
+
+            case MISSION_SUCCESS:
+                missionText = "MISSION: SUCCESS";
+                break;
+
+            case MISSION_FAILURE:
+                missionText = "MISSION: FAILURE";
+                break;
+
+            case MISSION_ABORTED:
+                missionText = "MISSION: ABORTED";
+                break;
+            }
+        }
+
+        int margin = 0;
+        int screenW = Screen.GetWidth();
+        int lineH = font.GetHeight();
+
+        int rightEdge = screenW - margin;
+
+        int titleX = rightEdge - font.StringWidth(titleText);
+        int missionX = rightEdge - font.StringWidth(missionText);
+
+        int titleY = margin;
+        int missionY = titleY + lineH + 2;
+
+        Screen.DrawText(font, white, titleX, titleY, titleText);
+        Screen.DrawText(font, white, missionX, missionY, missionText);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/*//////////////////////////|
+// DoDA/MissionSystem/MissionState.zs
+*///////////////////////////|
+
+enum DoDAMissionResult
+{
+    MISSION_UNKNOWN,
+    MISSION_PENDING,
+    MISSION_IN_PROGRESS,
+    MISSION_SUCCESS,
+    MISSION_FAILURE,
+    MISSION_ABORTED
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*//////////////////////////|
+// DoDA/MissionSystem/MissionTransferProbe.zs
+*///////////////////////////|
+
+class DoDAMissionTransferProbe : Inventory
+{
+    int StoredMissionResult;
+    string LastReportedMap;
+
+    Default
+    {
+        Inventory.Amount 1;
+        Inventory.MaxAmount 1;
+
+        +INVENTORY.UNDROPPABLE;
+        +INVENTORY.UNCLEARABLE;
+    }
+
+    override void Tick()
+    {
+        Super.Tick();
+
+        if (Owner == null)
+        {
+            return;
+        }
+
+        if (LastReportedMap == level.MapName)
+        {
+            return;
+        }
+
+        LastReportedMap = level.MapName;
+
+        Console.Printf(
+            "DoDA TransferProbe observed: Map=%s Value=%d OwnerClass=%s",
+            level.MapName,
+            StoredMissionResult,
+            Owner.GetClassName()
+        );
+    }
+
+    void StoreMissionResult(DoDAMissionResult result)
+    {
+        StoredMissionResult = result;
+
+        Console.Printf(
+            "DoDA TransferProbe stored: Map=%s Value=%d",
+            level.MapName,
+            StoredMissionResult
+        );
+    }
+}
+
+
+/*//////////////////////////|
+// DoDA/MissionSystem/ObjectiveIds.zs
+*///////////////////////////|
+
+enum EDoDAObjectiveId
+{
+    DODInvalid = -1,
+    DODInformant,
+    DODTerminal,
+    DODSecondaryFile
+}
+
+
+/*//////////////////////////|
+// DoDA/UI/FieldAgent/HUD.zs
+*///////////////////////////|
+
+class DoDAHUD : BaseStatusBar
+{
+    private String LastLoggedKey;
+    private String LastLoggedSource;
+
+    void LogHUDSelection(
+        string sourceLabel,
+        String missionText,
+        String statusText,
+        String progressText,
+        String phaseText,
+        String objectiveText
+    )
+    {
+        String key =
+            level.MapName .. "|" ..
+            sourceLabel .. "|" ..
+            missionText .. "|" ..
+            statusText .. "|" ..
+            progressText .. "|" ..
+            phaseText .. "|" ..
+            objectiveText;
+
+        if (LastLoggedKey == key && LastLoggedSource == sourceLabel)
+        {
+            return;
+        }
+
+        LastLoggedKey = key;
+        LastLoggedSource = sourceLabel;
+
+        Console.Printf(
+            "DoDA HUD Snapshot [Draw source change] Source=%s Map=%s %s | %s | %s | %s | %s",
+            sourceLabel,
+            level.MapName,
+            missionText,
+            statusText,
+            progressText,
+            phaseText,
+            objectiveText
+        );
+    }
+
+    override void Draw(int state, double TicFrac)
+    {
+        Super.Draw(state, TicFrac);
+
+        Font font = Font.GetFont("DoDAPalmFont");
+        int black = Font.FindFontColor("Black");
+
+        String titleText = "FBI: DODA TAPLINE CONNECTED";
+        String missionText = "MISSION: UNKNOWN";
+        String statusText = "STATUS: UNKNOWN";
+        String progressText = "PROGRESS: 0%";
+        String phaseText = "PHASE: UNKNOWN";
+        String objectiveText = "OBJECTIVE: UNKNOWN";
+        String sourceLabel = "None";
+
+        DoDAMissionDirector director =
+            DoDAMissionDirector(EventHandler.Find("DoDAMissionDirector"));
+
+        PlayerPawn playerPawn = CPlayer != null ? CPlayer.mo : null;
+        DoDALastMissionReport report = null;
+
+        if (playerPawn != null)
+        {
+            report = DoDALastMissionReport(
+                playerPawn.FindInventory("DoDALastMissionReport")
+            );
+        }
+
+        bool hasReport = report != null && report.GetHasReport();
+
+        if (level.MapName == "MAP02")
+        {
+            if (hasReport)
+            {
+                sourceLabel = "LastMissionReport";
+
+                missionText = "MISSION: " .. report.GetReportMissionName();
+                progressText = "PROGRESS: " .. report.GetReportPercentComplete() .. "%";
+                objectiveText = "OBJECTIVE: " .. report.GetReportObjective();
+
+                switch (report.GetReportResult())
+                {
+                case MISSION_PENDING:
+                    statusText = "STATUS: PENDING";
+                    break;
+
+                case MISSION_IN_PROGRESS:
+                    statusText = "STATUS: IN PROGRESS";
+                    break;
+
+                case MISSION_SUCCESS:
+                    statusText = "STATUS: SUCCESS";
+                    break;
+
+                case MISSION_FAILURE:
+                    statusText = "STATUS: FAILURE";
+                    break;
+
+                case MISSION_ABORTED:
+                    statusText = "STATUS: ABORTED";
+                    break;
+
+                default:
+                    statusText = "STATUS: UNKNOWN";
+                    break;
+                }
+
+                switch (report.GetReportPhase())
+                {
+                case 1:
+                    phaseText = "PHASE: OBJECTIVE";
+                    break;
+
+                case 2:
+                    phaseText = "PHASE: EXTRACTION";
+                    break;
+
+                default:
+                    phaseText = "PHASE: UNKNOWN";
+                    break;
+                }
+            }
+            else
+            {
+                sourceLabel = "DebriefCleared";
+                missionText = "MISSION: DEBRIEF CLOSED";
+                statusText = "STATUS: RETURNED TO FIELD";
+                progressText = "PROGRESS: 0%";
+                phaseText = "PHASE: COMPLETE";
+                objectiveText = "OBJECTIVE: await new deployment.";
+            }
+        }
+        else if (director != null)
+        {
+            sourceLabel = "MissionDirector";
+
+            missionText = "MISSION: " .. director.GetMissionName();
+            progressText = "PROGRESS: " .. director.GetMissionPercentComplete() .. "%";
+            objectiveText = "OBJECTIVE: " .. director.GetMissionDescription();
+
+            switch (director.GetMissionResult())
+            {
+            case MISSION_PENDING:
+                statusText = "STATUS: PENDING";
+                break;
+
+            case MISSION_IN_PROGRESS:
+                statusText = "STATUS: IN PROGRESS";
+                break;
+
+            case MISSION_SUCCESS:
+                statusText = "STATUS: SUCCESS";
+                break;
+
+            case MISSION_FAILURE:
+                statusText = "STATUS: FAILURE";
+                break;
+
+            case MISSION_ABORTED:
+                statusText = "STATUS: ABORTED";
+                break;
+
+            default:
+                statusText = "STATUS: UNKNOWN";
+                break;
+            }
+
+            switch (director.GetMissionPhase())
+            {
+            case 1:
+                phaseText = "PHASE: OBJECTIVE";
+                break;
+
+            case 2:
+                phaseText = "PHASE: EXTRACTION";
+                break;
+
+            default:
+                phaseText = "PHASE: UNKNOWN";
+                break;
+            }
+        }
+
+        LogHUDSelection(
+            sourceLabel,
+            missionText,
+            statusText,
+            progressText,
+            phaseText,
+            objectiveText
+        );
+
+        int panelWidth = 540;
+        int panelHeight = 225;
+        int margin = 24;
+        int padding = 16;
+        int lineGap = 2;
+
+        int panelX = Screen.GetWidth() - panelWidth - margin;
+        int panelY = margin;
+
+        int textX = panelX + padding + 4;
+
+        int titleY = panelY + padding;
+        int missionY = titleY + font.GetHeight() + lineGap;
+        int statusY = missionY + font.GetHeight() + lineGap;
+        int progressY = statusY + font.GetHeight() + lineGap;
+        int phaseY = progressY + font.GetHeight() + lineGap;
+        int objectiveY = phaseY + font.GetHeight() + lineGap;
+
+        Screen.Clear(
+            panelX,
+            panelY,
+            panelX + panelWidth,
+            panelY + panelHeight,
+            Color(196, 207, 163)
+        );
+
+        Screen.DrawThickLine(panelX, panelY, panelX + panelWidth, panelY, 8.0, Color(0, 0, 0));
+        Screen.DrawThickLine(panelX, panelY + panelHeight, panelX + panelWidth, panelY + panelHeight, 8.0, Color(0, 0, 0));
+        Screen.DrawThickLine(panelX, panelY, panelX, panelY + panelHeight, 8.0, Color(0, 0, 0));
+        Screen.DrawThickLine(panelX + panelWidth, panelY, panelX + panelWidth, panelY + panelHeight, 8.0, Color(0, 0, 0));
+
+        int inner = 6;
+        Color innerBorderColor = Color(155, 188, 15);
+
+        Screen.DrawThickLine(panelX + inner, panelY + inner, panelX + panelWidth - inner, panelY + inner, 8.0, innerBorderColor);
+        Screen.DrawThickLine(panelX + inner, panelY + panelHeight - inner, panelX + panelWidth - inner, panelY + panelHeight - inner, 8.0, innerBorderColor);
+        Screen.DrawThickLine(panelX + inner, panelY + inner, panelX + inner, panelY + panelHeight - inner, 8.0, innerBorderColor);
+        Screen.DrawThickLine(panelX + panelWidth - inner, panelY + inner, panelX + panelWidth - inner, panelY + panelHeight - inner, 8.0, innerBorderColor);
+
+        Screen.DrawText(font, black, textX, titleY, titleText);
+        Screen.DrawText(font, black, textX, missionY, missionText);
+        Screen.DrawText(font, black, textX, statusY, statusText);
+        Screen.DrawText(font, black, textX, progressY, progressText);
+        Screen.DrawText(font, black, textX, phaseY, phaseText);
+        Screen.DrawText(font, black, textX, objectiveY, objectiveText);
+    }
+}
+
+
+
+/*//////////////////////////|
+// DoDA/World/Computers/DesktopActor.zs
+*///////////////////////////|*/
+
+class DoDADesktopActor : Actor
+{
+    bool Activated;
+
+    Default
+    {
+        Radius 20;
+        Height 20;
+
+        +SOLID;
+        +USESPECIAL;
+    }
+
+    override bool Used(Actor user)
+    {
+        if (user == null)
+        {
+            return false;
+        }
+
+        Activated = !Activated;
+
+        if (Activated)
+        {
+            SetStateLabel("Ready");
+        }
+        else
+        {
+            SetStateLabel("ScreenSaver");
+        }
+
+        return true;
+    }
+
+    States
+    {
+    Spawn:
+    ScreenSaver:
+        DCSV A-] 4;
+        DCSW A-I 4;
+        Loop;
+
+    Ready:
+        DCSR A -1;
+        Stop;
+    }
+}
+
+
+/*//////////////////////////|
+// DoDA/MissionSystem/Things/MissionInteractable.zs
+*///////////////////////////|*/
+
+class DoDAMissionInteractable : Actor
+{
+    bool HasBeenUsed;
+
+    Default
+    {
+        Radius 8;
+        Height 28;
+        Scale 0.5;
+
+        +SOLID;
+        +USESPECIAL;
+    }
+
+    override bool Used(Actor user)
+    {
+        if (user == null)
+        {
+            return false;
+        }
+
+        if (HasBeenUsed)
+        {
+            Console.Printf("DoDA: Informant already used.");
+            return false;
+        }
+
+        HasBeenUsed = true;
+
+        Console.Printf("DoDA: Informant visual interaction test passed.");
+
+        Console.MidPrint(
+            Font.GetFont("DoDAPalmFont"),
+            "INFORMANT: I have what you need.",
+            true
+        );
+
+        SetStateLabel("InformantUsed");
+        return true;
+    }
+
+    States
+    {
+    Spawn:
+    InformantIdle:
+        DSUI A 6;
+        DSUI B 6;
+        DSUI C 6;
+        DSUI D 6;
+        DSUI E 6;
+        DSUI F 6;
+        DSUI I 6;
+        DSUI J 6;
+        Loop;
+
+    InformantUsed:
+        DSUI K 8;
+        DSUI L 8;
+        DSUI P -1;
+        Stop;
+    }
+}
+
+/*//////////////////////////|
+// DoDA/FieldAgent.zs
+*///////////////////////////|
+
+class FieldAgent : DoomPlayer
+{
+Default
+{
+    Player.DisplayName "DoDA Agent";
+    Player.StartItem "Fist";
+    //Player.StartItem "Pistol";
+    //Player.StartItem "Clip", 50;
+    Player.CrouchSprite "PLYC";
+}
+}
+
+/*//////////////////////////|
+// root/CVARINFO
+*///////////////////////////|
+
+DoDAPalmFont
+{
+    A STCFN065
+    B STCFN066
+    C STCFN067
+    D STCFN068
+    E STCFN069
+    F STCFN070
+    G STCFN071
+    H STCFN072
+    I STCFN073
+    J STCFN074
+    K STCFN075
+    L STCFN076
+    M STCFN077
+    N STCFN078
+    O STCFN079
+    P STCFN080
+    Q STCFN081
+    R STCFN082
+    S STCFN083
+    T STCFN084
+    U STCFN085
+    V STCFN086
+    W STCFN087
+    X STCFN088
+    Y STCFN089
+    Z STCFN090
+
+    a STCFN097
+    b STCFN098
+    c STCFN099
+    d STCFN100
+    e STCFN101
+    f STCFN102
+    g STCFN103
+    h STCFN104
+    i STCFN105
+    j STCFN106
+    k STCFN107
+    l STCFN108
+    m STCFN109
+    n STCFN110
+    o STCFN111
+    p STCFN112
+    q STCFN113
+    r STCFN114
+    s STCFN115
+    t STCFN116
+    u STCFN117
+    v STCFN118
+    w STCFN119
+    x STCFN120
+    y STCFN121
+    z STCFN122
+
+    0 STCFN048
+    1 STCFN049
+    2 STCFN050
+    3 STCFN051
+    4 STCFN052
+    5 STCFN053
+    6 STCFN054
+    7 STCFN055
+    8 STCFN056
+    9 STCFN057
+
+    ! STCFN033
+    ( STCFN040
+    ) STCFN041
+    , STCFN044
+    - STCFN045
+    . STCFN046
+    / STCFN047
+    : STCFN058
+    ? STCFN063
+	
+	
+
+    SpaceWidth 8
+}
+
+/*//////////////////////////|
+// root/GAMEINFO
+*///////////////////////////|
+STARTUPTITLE = "DoDA"
+STARTUPCOLORS = "FFFFFF", "203060"
+STARTUPTYPE = Doom
+
+
+/*//////////////////////////|
+// root/LANGUAGE
+*///////////////////////////|
+
+[default]
+
+DODA_HELLO = "DoDA online.";
+DODA_TITLE = "Department of Diplomagic Affairs";
+DODA_AGENT = "DoDA Agent";
+DODA_MISSION = "Mission";
+DODA_COMPLETE = "Mission Complete";
+
+DODA_MISSION_COMPLETE = "Mission complete - exfiltrate now.";
+DODA_EXTRACTION_LOCKED = "Extraction LOCKED - complete your objective first.";
+DODA_EXTRACTION_AUTHORIZED = "Extraction is now AUTHORIZED.";
+
+DODA_DEBRIEF_CONFIRMED = "DEBRIEF - mission recorded.";
+DODA_RETURNING_TO_FIELD = "Returning to field...";
+
+/*//////////////////////////|
+// root/MAPINFO
+*///////////////////////////|
+
+gameinfo
+{
+    PlayerClasses = "FieldAgent"
+    StatusBarClass = "DoDAHUD"
+
+    AddEventHandlers = "DoDAMissionDirector"
+    //AddEventHandlers = "DoDAMissionOverlay"
+
+    TitlePage = "DODABG3"
+    CreditPage = "DODABG1"
+}
+
+DoomEdNums
+{
+    9301 = "DoDAMissionInteractable"
+    9302 = "DoDAExtractionInteractable"
+    9303 = "DoDADebriefContinueInteractable"
+	9304 = "DoDAMissionCompletePickup"
+	9305 = "DoDAMissionTerminal"
+}
+
+map MAP01 "MISSION AREA TEST"
+{
+    Sky1 = "SKY1"
+    next = "MAP02"
+}
+
+map MAP02 "DEBRIEF ROOM TEST"
+{
+    Sky1 = "SKY1"
+    next = "EndGameS"
+}
+
+
+/*//////////////////////////|
+// root/MENUDEF
+*///////////////////////////|
+
+// DoDA minimal menu bootstrap.
+// Stock engine menus remain in place for now.
+
+
+/*//////////////////////////|
+// root/zscript.txt
+*///////////////////////////|
+version "2.4"
+
+#include "DoDA/FieldAgent.zs"
+
+#include "DoDA/MissionSystem/MissionState.zs"
+#include "DoDA/MissionSystem/MissionManager.zs"
+#include "DoDA/MissionSystem/CampaignState.zs"
+#include "DoDA/MissionSystem/MissionDirector.zs"
+#include "DoDA/MissionSystem/LastMissionReport.zs"
+#include "DoDA/MissionSystem/DebugTrigger.zs"
+
+#include "DoDA/MissionSystem/Things/MissionCompletePickup.zs"
+#include "DoDA/MissionSystem/Things/MissionInteractable.zs"
+#include "DoDA/MissionSystem/Things/MissionTerminal.zs"
+#include "DoDA/MissionSystem/Things/ExtractionInteractable.zs"
+#include "DoDA/MissionSystem/Things/DebriefContinueInteractable.zs"
+
+#include "DoDA/UI/FieldAgent/HUD.zs"
+
+#include "DoDA/World/Vehicles/CarActor.zs"
+
+// Temporarily disabled until the baseline compiles again.
+// #include "DoDA/MissionSystem/MissionIds.zs"
+// #include "DoDA/MissionSystem/ObjectiveIds.zs"
+// #include "DoDA/MissionSystem/MissionDefs.zs"
+
+// Keep these disabled until the interactable and car are confirmed.
+// #include "DoDA/World/Computers/LaptopActor.zs"
+// #include "DoDA/World/Computers/DesktopActor.zs"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
