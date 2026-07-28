@@ -1,36 +1,5 @@
-ZDoom Docs
-Introduction
-Meta
-ZScript Language
-ACS
-ZScript API
-Base
-Actor
-CVar
-EFSkillProperty
-ESkillProperty
-ESoundFlags
-EStateUseFlags
-EmptyTokenType
-Object
 State
-StringTable
-Thinker
-Wads
-Basic Types
-Drawing
-Event Handling
-Globals
-Intermissions
-Level Data
-Players
-Sound
-Concepts
-Data Formats
 
-
-State
-Show declaration
 struct State clearScope;
 Represents a state on an Actor. Data in State is read-only and is copied as needed to its respective locations for modification, as it is merely a view into the global constant state table.
 
