@@ -22,10 +22,9 @@ version "2.4"
 
 #include "DoDA/World/Vehicles/CarActor.zs"
 
-// Temporarily disabled until the baseline compiles again.
-// #include "DoDA/MissionSystem/MissionIds.zs"
-// #include "DoDA/MissionSystem/ObjectiveIds.zs"
-// #include "DoDA/MissionSystem/MissionDefs.zs"
+#include "DoDA/MissionSystem/MissionIds.zs"
+#include "DoDA/MissionSystem/ObjectiveIds.zs"
+#include "DoDA/MissionSystem/MissionDefs.zs"
 
 // Keep these disabled until the interactable and car are confirmed.
 // #include "DoDA/World/Computers/LaptopActor.zs"
