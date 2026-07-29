@@ -64,4 +64,67 @@ class DoDAMissionDefs : Object
 
         return null;
     }
+
+    static DoDAMissionDef GetDefForIndex(int missionIndex)
+    {
+        switch (missionIndex)
+        {
+        case 0:
+            return GetDef(DMDMission01);
+
+        case 1:
+            return GetDef(DMDMission02);
+
+        case 2:
+            return GetDef(DMDMission03);
+        }
+
+        return null;
+    }
+
+    static bool IsObjectiveActive(int missionIndex, EDoDAObjectiveId objectiveId, String mapName)
+    {
+        let def = GetDefForIndex(missionIndex);
+
+        if (def == null)
+        {
+            return false;
+        }
+
+        return def.ObjectiveId == objectiveId && def.FieldMap == mapName;
+    }
+
+    static String GetMissionNameText(int missionIndex)
+    {
+        switch (missionIndex)
+        {
+        case 0:
+            return "Mission 01";
+
+        case 1:
+            return "Mission 02";
+
+        case 2:
+            return "Mission 03";
+        }
+
+        return "Mission";
+    }
+
+    static String GetObjectiveText(int missionIndex)
+    {
+        switch (missionIndex)
+        {
+        case 0:
+            return "talk to INFORMANT.";
+
+        case 1:
+            return "collect evidence from TERMINAL.";
+
+        case 2:
+            return "secure the SECONDARY FILE.";
+        }
+
+        return "complete the current objective.";
+    }
 }

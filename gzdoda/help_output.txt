@@ -1,0 +1,3 @@
+OS: Windows 11 (or higher) (NT 10.0) Build 26200
+    
+GZDoom version <unknown version>

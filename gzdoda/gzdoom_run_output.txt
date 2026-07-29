@@ -1,0 +1,40 @@
+OS: Windows 11 (or higher) (NT 10.0) Build 26200
+    
+GZDoom version <unknown version>
+W_Init: Init WADfiles.
+adding C:/dev/gzdoda-g4.14.2/gzdoda/gzdoom.pk3, 709 lumps
+adding C:/dev/gzdoda-g4.14.2/gzdoda/game_support.pk3, 3309 lumps
+adding ./freedoom2.wad, 3610 lumps
+adding C:/dev/gzdoda-g4.14.2/gzdoda/game_widescreen_gfx.pk3, 214 lumps
+adding doda-core, 268 lumps
+S_Init: Setting up sound.
+I_InitSound: Initializing OpenAL
+  Opened device OpenAL Soft on HDMI Splitter (NVIDIA High Definition Audio)
+  EFX enabled
+I_InitInput
+I_StartupMouse
+I_StartupKeyboard
+I_StartupXInput
+I_StartupRawPS2
+I_StartupDirectInputJoystick
+Vulkan device: NVIDIA GeForce RTX 2060 SUPER
+Vulkan device type: discrete gpu
+Vulkan version: 1.4.341 (api) 610.248.0 (driver)
+Max. texture size: 32768
+Max. uniform buffer range: 65536
+Min. uniform buffer offset alignment: 64
+Resolution: 1518 x 817
+I_Init: Setting up machine state.
+CPU speed: 3850 MHz
+CPU Vendor ID: AuthenticAMD
+  Name: AMD Ryzen 9 3950X 16-Core Processor 
+  Family 23 (23), Model 113, Stepping 0
+  Features: SSE2 SSE3 SSSE3 SSE4.1 SSE4.2 AVX AVX2 F16C FMA3 BMI1 BMI2 HyperThreading
+V_Init: allocate screen.
+ST_Init: Init startup screen.
+Checking cmd-line parameters...
+S_InitData: Load sound definitions.
+G_ParseMapInfo: Load map definitions.
+Texman.Init: Init texture manager.
+ParseTeamInfo: Load team definitions.
+LoadActors: Load actor definitions.

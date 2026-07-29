@@ -18,21 +18,8 @@ class DoDAMissionDirector : EventHandler
     {
         MissionIndex = index;
 
-        if (index <= 0)
-        {
-            MissionName = "Mission 01";
-            MissionDescription = "talk to INFORMANT.";
-        }
-        else if (index == 1)
-        {
-            MissionName = "Mission 02";
-            MissionDescription = "collect evidence from TERMINAL.";
-        }
-        else
-        {
-            MissionName = "Mission 03";
-            MissionDescription = "secure the SECONDARY FILE.";
-        }
+        MissionName = DoDAMissionDefs.GetMissionNameText(index);
+        MissionDescription = DoDAMissionDefs.GetObjectiveText(index);
     }
 
     void LogMissionState(string label)

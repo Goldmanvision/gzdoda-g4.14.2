@@ -48,7 +48,11 @@ class DoDAMissionInteractable : Actor
 
         int missionId = campaignState.NextMissionIndex;
 
-        if (!DoDAMissionDefs.IsObjectiveActive(missionId, DODInformant, level.MapName))
+        if (!DoDAMissionDefs.IsObjectiveActive(
+            missionId,
+            DODInformant,
+            level.MapName
+        ))
         {
             Console.Printf(
                 "DoDA: Informant inactive. Map=%s MissionId=%d",
@@ -65,14 +69,14 @@ class DoDAMissionInteractable : Actor
             return false;
         }
 
-        EventHandler directorHandler = EventHandler.Find(class<DoDAMissionDirector>);
-        if (directorHandler == null)
+        DoDAMissionDirector director =
+            DoDAMissionDirector(EventHandler.Find("DoDAMissionDirector"));
+
+        if (director == null)
         {
             Console.Printf("DoDA: MissionDirector not found during informant use.");
             return false;
         }
-        
-        DoDAMissionDirector director = DoDAMissionDirector(directorHandler);
 
         HasBeenUsed = true;
 
