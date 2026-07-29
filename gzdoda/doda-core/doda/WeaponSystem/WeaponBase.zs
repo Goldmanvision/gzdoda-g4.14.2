@@ -53,20 +53,12 @@ class DoDAPistol : DoomWeapon
         Stop;
     }
 
-    action void A_DoDAWeaponPose()
+}
+
+extend class StateProvider
+{
+    protected action void A_DoDAWeaponPose()
     {
-        if (self == null)
-        {
-            return;
-        }
-
-        Actor owner = self.Owner;
-        if (owner == null)
-        {
-            return;
-        }
-
-        PlayerPawn player = PlayerPawn(owner);
         if (player == null)
         {
             return;
@@ -97,29 +89,11 @@ class DoDAPistol : DoomWeapon
         psp.y = int(WEAPONTOP + Clamp(yOffset, -10.0, 10.0));
     }
 
-    action void A_DoDAWeaponFire()
+    protected action void A_DoDAWeaponFire()
     {
-        if (self == null)
-        {
-            return;
-        }
-
-        Actor owner = self.Owner;
-        if (owner == null)
-        {
-            return;
-        }
-
-        PlayerPawn player = PlayerPawn(owner);
         if (player == null)
         {
             return;
-        }
-
-        Actor shooter = owner;
-        if (shooter != player)
-        {
-            shooter = player;
         }
 
         Weapon weap = player.ReadyWeapon;
@@ -133,7 +107,7 @@ class DoDAPistol : DoomWeapon
             return;
         }
 
-        DoDAWeaponAimController aimController = DoDAWeaponAimController(owner.FindInventory("DoDAWeaponAimController"));
+        DoDAWeaponAimController aimController = DoDAWeaponAimController(player.FindInventory("DoDAWeaponAimController"));
 
         double weaponYaw = Angle;
         double weaponPitch = Pitch;
@@ -143,14 +117,9 @@ class DoDAPistol : DoomWeapon
         }
 
         int damage = 5;
-        shooter.LineAttack(weaponYaw, PLAYERMISSILERANGE, weaponPitch, damage, "Hitscan", "BulletPuff");
-
-        if (player != null)
-        {
-            player.SetPsprite(PSP_FLASH, weap.FindState("Flash"), true);
-        }
-
-        shooter.A_StartSound("weapons/pistol", CHAN_WEAPON);
+        player.LineAttack(weaponYaw, PLAYERMISSILERANGE, weaponPitch, damage, "Hitscan", "BulletPuff");
+        player.SetPsprite(PSP_FLASH, weap.FindState("Flash"), true);
+        player.A_StartSound("weapons/pistol", CHAN_WEAPON);
 
         if (aimController != null)
         {
