@@ -2,60 +2,7 @@
 // DoDA/WeaponSystem/WeaponBase.zs
 *///////////////////////////|
 
-class DoDAPistol : DoomWeapon
-{
-    Default
-    {
-        Weapon.SelectionOrder 1900;
-        Weapon.AmmoUse 1;
-        Weapon.AmmoGive 20;
-        Weapon.SlotNumber 0;
-        Weapon.AmmoType "Clip";
-        Inventory.MaxAmount 1;
-        Inventory.Amount 1;
-        +WEAPON.WIMPY_WEAPON;
-        Inventory.PickupMessage "$PICKUP_PISTOL_DROPPED";
-        Obituary "$OB_MPPISTOL";
-        Tag "$TAG_PISTOL";
-    }
-
-    States
-    {
-    Ready:
-        PISG A 0 A_DoDAWeaponPose;
-        PISG A 1 A_WeaponReady;
-        Loop;
-
-    Deselect:
-        PISG A 1 A_Lower;
-        Loop;
-
-    Select:
-        PISG A 1 A_Raise;
-        Goto Ready;
-
-    Fire:
-        PISG A 4 A_DoDAWeaponFire;
-        PISG A 0 A_DoDAWeaponPose;
-        PISG B 6 A_ReFire;
-        PISG C 4;
-        PISG B 5 A_ReFire;
-        Goto Ready;
-
-    Flash:
-        PISF A 7 Bright A_Light1;
-        Goto LightDone;
-        PISF A 7 Bright A_Light1;
-        Goto LightDone;
-
-    Spawn:
-        PIST A -1;
-        Stop;
-    }
-
-}
-
-extend class StateProvider
+class DoDAWeaponBase : DoomWeapon
 {
     protected action void A_DoDAWeaponPose()
     {
@@ -130,6 +77,54 @@ extend class StateProvider
     }
 }
 
-class DoDAWeaponBase : DoDAPistol
+class DoDAPistol : DoDAWeaponBase
 {
+    Default
+    {
+        Weapon.SelectionOrder 1900;
+        Weapon.AmmoUse 1;
+        Weapon.AmmoGive 20;
+        Weapon.SlotNumber 0;
+        Weapon.AmmoType "Clip";
+        Inventory.MaxAmount 1;
+        Inventory.Amount 1;
+        +WEAPON.WIMPY_WEAPON;
+        Inventory.PickupMessage "$PICKUP_PISTOL_DROPPED";
+        Obituary "$OB_MPPISTOL";
+        Tag "$TAG_PISTOL";
+    }
+
+    States
+    {
+    Ready:
+        PISG A 0 A_DoDAWeaponPose;
+        PISG A 1 A_WeaponReady;
+        Loop;
+
+    Deselect:
+        PISG A 1 A_Lower;
+        Loop;
+
+    Select:
+        PISG A 1 A_Raise;
+        Goto Ready;
+
+    Fire:
+        PISG A 4 A_DoDAWeaponFire;
+        PISG A 0 A_DoDAWeaponPose;
+        PISG B 6 A_ReFire;
+        PISG C 4;
+        PISG B 5 A_ReFire;
+        Goto Ready;
+
+    Flash:
+        PISF A 7 Bright A_Light1;
+        Goto LightDone;
+        PISF A 7 Bright A_Light1;
+        Goto LightDone;
+
+    Spawn:
+        PIST A -1;
+        Stop;
+    }
 }
