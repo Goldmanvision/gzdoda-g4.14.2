@@ -32,12 +32,3 @@ version "2.4"
 // Keep these disabled until the interactable and car are confirmed.
 // #include "DoDA/World/Computers/LaptopActor.zs"
 // #include "DoDA/World/Computers/DesktopActor.zs"
-<<<<<<< Updated upstream
-
-/*//////////////////////////|
-// DoDA/MissionSystem/Things/MissionInteractable.zs
-*///////////////////////////|*/
-
-=======
-// testing the new autosave button
->>>>>>> Stashed changes
