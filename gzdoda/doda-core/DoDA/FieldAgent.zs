@@ -11,14 +11,11 @@ class FieldAgent : DoomPlayer
 Default
 {
     Player.DisplayName "DoDA Agent";
-<<<<<<< Updated upstream
     Player.StartItem "DoDAWeaponBase";
     Player.StartItem "Clip", 50;
-=======
     Player.StartItem "Fist";
     Player.StartItem "DoDADeadzonePistol";
     Player.StartItem "Clip", 24;
->>>>>>> Stashed changes
     Player.CrouchSprite "PLYC";
 }
 }
