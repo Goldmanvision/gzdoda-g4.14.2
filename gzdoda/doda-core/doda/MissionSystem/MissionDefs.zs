@@ -84,7 +84,7 @@ class DoDAMissionDefs : Object
 
     static bool IsObjectiveActive(int missionIndex, EDoDAObjectiveId objectiveId, String mapName)
     {
-        let def = GetDefForIndex(missionIndex);
+        DoDAMissionDef def = GetDefForIndex(missionIndex);
 
         if (def == null)
         {
