@@ -1,6 +1,6 @@
 /*//////////////////////////|
 // DoDA/Weapons/DeadzonePistol.zs
-*///////////////////////////|
+*///////////////////////////|*/
 
 class DoDADeadzonePistol : Weapon
 {
@@ -22,13 +22,13 @@ class DoDADeadzonePistol : Weapon
 
     action void DoDAApplyDeadzonePose()
     {
-        if (!self.player || !self.player.mo)
+        if (self == null || self.player == null || self.player.mo == null)
         {
             return;
         }
 
         let fieldAgent = FieldAgent(self.player.mo);
-        if (!fieldAgent)
+        if (fieldAgent == null)
         {
             return;
         }
@@ -43,45 +43,49 @@ class DoDADeadzonePistol : Weapon
         A_OverlayScale(PSP_WEAPON, 1.0, 1.0, WOF_INTERPOLATE);
     }
 
+    action void DoDAWeaponReadyTick()
+    {
+        A_WeaponReady(WRF_NOSECONDARY);
+        DoDAApplyDeadzonePose();
+    }
+
+    action void DoDAWeaponFire()
+    {
+        if (self == null || self.player == null || self.player.mo == null)
+        {
+            return;
+        }
+
+        let fieldAgent = FieldAgent(self.player.mo);
+        if (fieldAgent == null)
+        {
+            return;
+        }
+
+        double spread = fieldAgent.IsAiming ? 0.35 : 4.5;
+        A_FireBullets(spread, spread, -1, 10, "BulletPuff");
+        A_StartSound("weapons/pistol", CHAN_WEAPON);
+        DoDAApplyDeadzonePose();
+    }
+
     States
     {
     Select:
-        PISG A 1 A_Raise();
+        PISG A 1 A_Raise;
         Loop;
 
     Deselect:
-        PISG A 1 A_Lower();
+        PISG A 1 A_Lower;
         Loop;
 
     Ready:
-        PISG A 1
-        {
-            A_WeaponReady(WRF_NOSECONDARY);
-            DoDAApplyDeadzonePose();
-        }
+        PISG A 1 DoDAWeaponReadyTick;
         Loop;
 
     Fire:
-        PISG A 1
-        {
-            if (!self.player || !self.player.mo)
-            {
-                return;
-            }
-
-            let fieldAgent = FieldAgent(self.player.mo);
-            if (!fieldAgent)
-            {
-                return;
-            }
-
-            double spread = fieldAgent.IsAiming ? 0.35 : 4.5;
-            A_FireBullets(spread, spread, -1, 10, "BulletPuff");
-            A_StartSound("weapons/pistol", CHAN_WEAPON);
-            DoDAApplyDeadzonePose();
-        }
-        PISG B 1 DoDAApplyDeadzonePose();
-        PISG C 1 DoDAApplyDeadzonePose();
+        PISG A 1 DoDAWeaponFire;
+        PISG B 1 DoDAApplyDeadzonePose;
+        PISG C 1 DoDAApplyDeadzonePose;
         Goto Ready;
     }
 }
