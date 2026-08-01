@@ -11,8 +11,8 @@ version "2.4"
 #include "DoDA/MissionSystem/MissionDirector.zs"
 #include "DoDA/MissionSystem/LastMissionReport.zs"
 #include "DoDA/MissionSystem/DebugTrigger.zs"
-#include "DoDA/WeaponSystem/WeaponAimController.zs"
-#include "DoDA/WeaponSystem/WeaponBase.zs"
+// #include "DoDA/WeaponSystem/WeaponAimController.zs"
+// #include "DoDA/WeaponSystem/WeaponBase.zs"
 
 #include "DoDA/MissionSystem/Things/MissionCompletePickup.zs"
 #include "DoDA/MissionSystem/Things/MissionInteractable.zs"
@@ -22,8 +22,8 @@ version "2.4"
 
 #include "DoDA/UI/FieldAgent/HUD.zs"
 
-#include "DoDA/World/Vehicles/CarActor.zs"
-#include "DoDA/Weapons/DeadzonePistol.zs"
+
+// #include "DoDA/Weapons/DeadzonePistol.zs"
 
 #include "DoDA/MissionSystem/MissionIds.zs"
 #include "DoDA/MissionSystem/ObjectiveIds.zs"
@@ -32,3 +32,4 @@ version "2.4"
 // Keep these disabled until the interactable and car are confirmed.
 // #include "DoDA/World/Computers/LaptopActor.zs"
 // #include "DoDA/World/Computers/DesktopActor.zs"
+// #include "DoDA/World/Vehicles/CarActor.zs"
