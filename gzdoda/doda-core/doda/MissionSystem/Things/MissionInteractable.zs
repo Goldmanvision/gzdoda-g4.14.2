@@ -37,7 +37,9 @@ class DoDAMissionInteractable : Actor
             return false;
         }
 
-        DoDACampaignState campaignState = DoDACampaignState(user.FindInventory("DoDACampaignState"));
+        DoDACampaignState campaignState =
+            DoDACampaignState(user.FindInventory("DoDACampaignState"));
+
         if (campaignState == null)
         {
             Console.Printf("DoDA: CampaignState missing during informant use.");
@@ -53,7 +55,10 @@ class DoDAMissionInteractable : Actor
         ))
         {
             DoDAMissionDef missionDef = DoDAMissionDefs.GetDef(missionId);
-            if (missionDef == null || missionDef.ObjectiveId != DODInformant || missionDef.FieldMap != level.MapName)
+
+            if (missionDef == null ||
+                missionDef.ObjectiveId != DODInformant ||
+                missionDef.FieldMap != level.MapName)
             {
                 Console.Printf(
                     "DoDA: Informant inactive. Map=%s MissionId=%d",
@@ -71,13 +76,16 @@ class DoDAMissionInteractable : Actor
             }
         }
 
-        DoDAMissionDirector director = DoDAMissionDirector(DoDAUtils.FindThing("DoDAMissionDirector"));
+        DoDAMissionDirector director = DoDAMissionDirector(
+            EventHandler.Find("DoDAMissionDirector")
+        );
+
         if (director == null)
         {
             Console.Printf("DoDA: MissionDirector not found during informant use.");
             return false;
         }
-
+		
         HasBeenUsed = true;
 
         Console.Printf("DoDA: Informant used.");
