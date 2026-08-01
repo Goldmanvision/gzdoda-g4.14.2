@@ -1,7 +1,85 @@
 /*//////////////////////////|
 // DoDA/WeaponSystem/WeaponAimController.zs
-*///////////////////////////|
+*///////////////////////////|*/
 
+class DoDAWeaponAimController : Inventory
+{
+    double PoseYaw;
+    double PosePitch;
+
+    Default
+    {
+        Inventory.Amount 1;
+        Inventory.MaxAmount 1;
+
+        +INVENTORY.UNDROPPABLE;
+        +INVENTORY.UNCLEARABLE;
+    }
+
+    static DoDAWeaponAimController FindFor(Actor pawn)
+    {
+        if (pawn == null)
+        {
+            return null;
+        }
+
+        return DoDAWeaponAimController(
+            pawn.FindInventory("DoDAWeaponAimController")
+        );
+    }
+
+    void SetPose(double yaw, double pitch)
+    {
+        PoseYaw = yaw;
+        PosePitch = pitch;
+    }
+
+    void ClearPose()
+    {
+        PoseYaw = 0.0;
+        PosePitch = 0.0;
+    }
+
+    void GetPose(out double yaw, out double pitch)
+    {
+        yaw = PoseYaw;
+        pitch = PosePitch;
+    }
+
+    bool GetOwnerViewAngles(out double yaw, out double pitch)
+    {
+        if (Owner == null)
+        {
+            yaw = 0.0;
+            pitch = 0.0;
+            return false;
+        }
+
+        yaw = Owner.Angle;
+        pitch = Owner.Pitch;
+        return true;
+    }
+
+    bool GetWorldAim(out double yaw, out double pitch)
+    {
+        double viewYaw;
+        double viewPitch;
+
+        if (!GetOwnerViewAngles(viewYaw, viewPitch))
+        {
+            yaw = PoseYaw;
+            pitch = PosePitch;
+            return false;
+        }
+
+        yaw = viewYaw + PoseYaw;
+        pitch = viewPitch + PosePitch;
+        return true;
+    }
+}
+
+
+/*
 enum DoDAWeaponAimMode
 {
     WAIM_HipFire,
@@ -293,17 +371,34 @@ class DoDAWeaponAimController : Inventory
         CurrentPitchOffset = Clamp(CurrentPitchOffset + pitchDelta, -profile.MaxOffsetPitch, profile.MaxOffsetPitch);
     }
 
-    void ApplyRecoil(double pitchImpulse, double yawImpulse)
+        void ApplyRecoil(double pitchImpulse, double yawImpulse)
     {
-        DoDAWeaponAimProfile profile = DoDAWeaponAimProfile::GetProfile(AimMode);
+        DoDAWeaponAimProfile profile =
+            DoDAWeaponAimProfile.GetProfile(AimMode);
 
-        RecoilPitch += pitchImpulse != 0.0 ? pitchImpulse : profile.RecoilPitchImpulse;
-        RecoilYaw += yawImpulse != 0.0 ? yawImpulse : profile.RecoilYawImpulse;
+        if (pitchImpulse != 0.0)
+        {
+            RecoilPitch += pitchImpulse;
+        }
+        else
+        {
+            RecoilPitch += profile.RecoilPitchImpulse;
+        }
+
+        if (yawImpulse != 0.0)
+        {
+            RecoilYaw += yawImpulse;
+        }
+        else
+        {
+            RecoilYaw += profile.RecoilYawImpulse;
+        }
     }
-
+	
     void GetWeaponPose(out double outYaw, out double outPitch)
     {
-        DoDAWeaponAimProfile profile = DoDAWeaponAimProfile::GetProfile(AimMode);
+        DoDAWeaponAimProfile profile =
+    DoDAWeaponAimProfile.GetProfile(AimMode);
         double swayYaw = Sin(SwayPhase) * profile.SwayAmplitude;
         double swayPitch = Cos(SwayPhase * 1.15) * profile.SwayAmplitude * 0.75;
 
@@ -513,3 +608,4 @@ class DoDAWeaponAimInitializer : EventHandler
         }
     }
 }
+*/

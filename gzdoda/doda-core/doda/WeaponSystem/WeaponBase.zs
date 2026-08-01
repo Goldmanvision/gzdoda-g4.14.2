@@ -1,6 +1,6 @@
 /*//////////////////////////|
 // DoDA/WeaponSystem/WeaponBase.zs
-*///////////////////////////|
+*///////////////////////////|*/
 
 class DoDAWeaponBase : DoomWeapon
 {
@@ -11,14 +11,10 @@ class DoDAWeaponBase : DoomWeapon
             return;
         }
 
-        DoDAWeaponAimController aimController = DoDAWeaponAimController(player.FindInventory("DoDAWeaponAimController"));
-        if (aimController == null)
-        {
-            return;
-        }
+        DoDAWeaponAimController aimController =
+            DoDAWeaponAimController(player.FindInventory("DoDAWeaponAimController"));
 
-        PSprite psp = player.GetPSprite(PSP_WEAPON);
-        if (psp == null)
+        if (aimController == null)
         {
             return;
         }
@@ -32,8 +28,11 @@ class DoDAWeaponBase : DoomWeapon
         double xOffset = sideBase + weaponYaw * 0.3;
         double yOffset = weaponPitch * 0.25;
 
-        psp.x = int(Clamp(xOffset, -28.0, 28.0));
-        psp.y = int(WEAPONTOP + Clamp(yOffset, -10.0, 10.0));
+        A_WeaponOffset(
+            Clamp(xOffset, -28.0, 28.0),
+            Clamp(yOffset, -10.0, 10.0),
+            0
+        );
     }
 
     protected action void A_DoDAWeaponFire()
@@ -54,25 +53,23 @@ class DoDAWeaponBase : DoomWeapon
             return;
         }
 
-        DoDAWeaponAimController aimController = DoDAWeaponAimController(player.FindInventory("DoDAWeaponAimController"));
+        DoDAWeaponAimController aimController =
+            DoDAWeaponAimController(player.FindInventory("DoDAWeaponAimController"));
 
-        double weaponYaw = Angle;
-        double weaponPitch = Pitch;
+        double weaponYaw = player.Angle;
+        double weaponPitch = player.Pitch;
         if (aimController != null)
         {
             aimController.GetMuzzleAlignment(weaponYaw, weaponPitch);
         }
 
-        int damage = 5;
-        player.LineAttack(weaponYaw, PLAYERMISSILERANGE, weaponPitch, damage, "Hitscan", "BulletPuff");
+        player.LineAttack(weaponYaw, PLAYERMISSILERANGE, weaponPitch, 5, "Hitscan", "BulletPuff");
         player.SetPsprite(PSP_FLASH, weap.FindState("Flash"), true);
         player.A_StartSound("weapons/pistol", CHAN_WEAPON);
 
         if (aimController != null)
         {
-            double namedPistolPitchKick = 8.0;
-            double namedPistolYawKick = 2.5;
-            aimController.ApplyRecoil(namedPistolPitchKick, namedPistolYawKick);
+            aimController.ApplyRecoil(8.0, 2.5);
         }
     }
 }
@@ -118,8 +115,6 @@ class DoDAPistol : DoDAWeaponBase
         Goto Ready;
 
     Flash:
-        PISF A 7 Bright A_Light1;
-        Goto LightDone;
         PISF A 7 Bright A_Light1;
         Goto LightDone;
 

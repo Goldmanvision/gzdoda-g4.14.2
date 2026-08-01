@@ -1,7 +1,22 @@
 /*//////////////////////////|
 // DoDA/FieldAgent.zs
-*///////////////////////////|
+*///////////////////////////|*/
 
+class FieldAgent : DoomPlayer
+{
+    override void BeginPlay()
+    {
+        Super.BeginPlay();
+
+        if (FindInventory("DoDAWeaponAimController") == null)
+        {
+            GiveInventory("DoDAWeaponAimController", 1);
+        }
+    }
+}
+
+
+/*
 class FieldAgent : DoomPlayer
 {
     double DeadzoneX;
@@ -19,3 +34,4 @@ Default
     Player.CrouchSprite "PLYC";
 }
 }
+*/
