@@ -4,17 +4,38 @@
 
 class FieldAgent : DoomPlayer
 {
-    override void BeginPlay()
-    {
-        Super.BeginPlay();
+	Default
+	{
+		Player.DisplayName "DoDA Agent";
+		Player.StartItem "DoDAPistol";
+		Player.StartItem "Clip", 50;
+		Player.CrouchSprite "PLYC";
+	}
 
-        if (FindInventory("DoDAWeaponAimController") == null)
-        {
-            GiveInventory("DoDAWeaponAimController", 1);
-        }
-    }
+	override void BeginPlay()
+	{
+		Super.BeginPlay();
+
+		if(FindInventory("DoDAWeaponAimController") == null)
+		{
+			GiveInventory("DoDAWeaponAimController", 1);
+		}
+
+		DoDAWeaponAimController aimController =
+			DoDAWeaponAimController(
+				FindInventory("DoDAWeaponAimController")
+			);
+
+		if(aimController != null)
+		{
+			aimController.SetPose(12.0, -4.0);
+
+			Console.PrintF(
+				"DoDA: Debug weapon pose applied. Yaw=12.0 Pitch=-4.0"
+			);
+		}
+	}
 }
-
 
 /*
 class FieldAgent : DoomPlayer

@@ -25,8 +25,8 @@ version "2.4"
 
 #include "DoDA/UI/FieldAgent/HUD.zs"
 
- #include "DoDA/WeaponSystem/WeaponAimController.zs"
-// #include "DoDA/WeaponSystem/WeaponBase.zs"
+#include "DoDA/WeaponSystem/WeaponAimController.zs"
+#include "DoDA/WeaponSystem/WeaponBase.zs"
 // #include "DoDA/Weapons/DeadzonePistol.zs"
 
 // Keep these disabled until the interactable and car are confirmed.
