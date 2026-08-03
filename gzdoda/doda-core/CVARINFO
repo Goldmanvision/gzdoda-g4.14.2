@@ -1,3 +1,10 @@
 /*//////////////////////////|
 // root/CVARINFO
 *///////////////////////////|
+user bool doda_debug_force_deadzone = false;
+user bool doda_debug_print_now = false;
+
+user float doda_debug_sprite_x = 0.0;
+user float doda_debug_sprite_y = 0.0;
+user float doda_debug_sprite_rot = 0.0;
+user float doda_debug_sprite_scale = 1.0;

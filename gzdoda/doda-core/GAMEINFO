@@ -1,6 +1,3 @@
 /*//////////////////////////|
 // root/GAMEINFO
 *///////////////////////////|
-STARTUPTITLE = "DoDA"
-STARTUPCOLORS = "FFFFFF", "203060"
-STARTUPTYPE = Doom

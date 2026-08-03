@@ -1,14 +1,8 @@
-/*//////////////////////////|
-// root/MAPINFO
-*///////////////////////////|
-
 gameinfo
 {
     PlayerClasses = "FieldAgent"
     StatusBarClass = "DoDAHUD"
-
     AddEventHandlers = "DoDAMissionDirector"
-    //AddEventHandlers = "DoDAMissionOverlay"
 
     TitlePage = "DODABG3"
     CreditPage = "DODABG1"
@@ -19,8 +13,8 @@ DoomEdNums
     9301 = "DoDAMissionInteractable"
     9302 = "DoDAExtractionInteractable"
     9303 = "DoDADebriefContinueInteractable"
-	9304 = "DoDAMissionCompletePickup"
-	9305 = "DoDAMissionTerminal"
+    9304 = "DoDAMissionCompletePickup"
+    9305 = "DoDAMissionTerminal"
 }
 
 map MAP01 "MISSION AREA TEST"

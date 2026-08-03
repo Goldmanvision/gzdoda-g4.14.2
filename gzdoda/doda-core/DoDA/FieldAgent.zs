@@ -1,58 +1,121 @@
-/*//////////////////////////|
-// DoDA/FieldAgent.zs
-*///////////////////////////|*/
-
 class FieldAgent : DoomPlayer
 {
-	Default
-	{
-		Player.DisplayName "DoDA Agent";
-		Player.StartItem "DoDAPistol";
-		Player.StartItem "Clip", 50;
-		Player.CrouchSprite "PLYC";
-	}
+    private bool m_IsDeadzoneAimMode;
+    private double m_AimX;
+    private double m_AimY;
 
-	override void BeginPlay()
-	{
-		Super.BeginPlay();
+    Default
+    {
+        Player.DisplayName "DoDA Agent";
+        Player.StartItem "DoDAPistol";
+        Player.StartItem "Clip", 50;
+        Player.CrouchSprite "PLYC";
+        Health 100;
+        Radius 16;
+        Height 56;
+        Player.ViewHeight 41;
+        Player.JumpZ 8;
+        Speed 1;
+        PainChance 255;
+        Player.ColorRange 0, 0;
+    }
 
-		if(FindInventory("DoDAWeaponAimController") == null)
-		{
-			GiveInventory("DoDAWeaponAimController", 1);
-		}
+    override void Tick()
+    {
+        Super.Tick();
 
-		DoDAWeaponAimController aimController =
-			DoDAWeaponAimController(
-				FindInventory("DoDAWeaponAimController")
-			);
+        if (player == null)
+        {
+            return;
+        }
 
-		if(aimController != null)
-		{
-			aimController.SetPose(12.0, -4.0);
+        bool deadzoneRequested = (player.cmd.buttons & BT_ALTATTACK) != 0;
+        SetDeadzoneAimMode(deadzoneRequested);
 
-			Console.PrintF(
-				"DoDA: Debug weapon pose applied. Yaw=12.0 Pitch=-4.0"
-			);
-		}
-	}
+        if (!m_IsDeadzoneAimMode)
+        {
+            m_AimX = 0.0;
+            m_AimY = 0.0;
+        }
+    }
+
+    void SetDeadzoneAimMode(bool enabled)
+    {
+        m_IsDeadzoneAimMode = enabled;
+        if (!enabled)
+        {
+            m_AimX = 0.0;
+            m_AimY = 0.0;
+        }
+    }
+
+    clearscope bool IsDeadzoneAimActive()
+    {
+        return m_IsDeadzoneAimMode;
+    }
+
+    clearscope double GetDeadzoneX()
+    {
+        return m_AimX;
+    }
+
+    clearscope double GetDeadzoneY()
+    {
+        return m_AimY;
+    }
+
+    void AimDeadzoneMouse(int mouseX, int mouseY)
+    {
+        if (!m_IsDeadzoneAimMode || player == null)
+        {
+            return;
+        }
+
+        double dx = mouseX * 1.5;
+        double dy = mouseY * 1.5;
+
+        double nextX = m_AimX + dx;
+        double nextY = m_AimY + dy;
+
+        double limitX = Screen.GetWidth() / 8.0;
+        double limitY = Screen.GetHeight() / 8.0;
+
+        double overflowX = 0.0;
+        double overflowY = 0.0;
+
+        if (nextX < -limitX)
+        {
+            overflowX = nextX + limitX;
+            nextX = -limitX;
+        }
+        else if (nextX > limitX)
+        {
+            overflowX = nextX - limitX;
+            nextX = limitX;
+        }
+
+        if (nextY < -limitY)
+        {
+            overflowY = nextY + limitY;
+            nextY = -limitY;
+        }
+        else if (nextY > limitY)
+        {
+            overflowY = nextY - limitY;
+            nextY = limitY;
+        }
+
+        m_AimX = nextX;
+        m_AimY = nextY;
+
+        if (overflowX != 0.0)
+        {
+            A_SetViewAngle(angle + overflowX * 0.35);
+        }
+
+        if (overflowY != 0.0)
+        {
+            A_SetViewPitch(pitch - overflowY * 0.25);
+        }
+    }
 }
-
-/*
-class FieldAgent : DoomPlayer
-{
-    double DeadzoneX;
-    double DeadzoneY;
-    bool IsAiming;
-
-Default
-{
-    Player.DisplayName "DoDA Agent";
-    Player.StartItem "DoDAWeaponBase";
-    Player.StartItem "Clip", 50;
-    Player.StartItem "Fist";
-    Player.StartItem "DoDADeadzonePistol";
-    Player.StartItem "Clip", 24;
-    Player.CrouchSprite "PLYC";
-}
-}
-*/

@@ -1,14 +1,14 @@
-Log started: 2026-08-02 02:22:04
+Log started: 2026-08-02 08:54:46
 GZDoom version <unknown version>
 W_Init: Init WADfiles.
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/gzdoom.pk3, 709 lumps
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/game_support.pk3, 3309 lumps
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/freedoom2.wad, 3610 lumps
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/game_widescreen_gfx.pk3, 214 lumps
-adding C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core, 272 lumps
+adding C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core, 274 lumps
 S_Init: Setting up sound.
 I_InitSound: Initializing OpenAL
-  Opened device OpenAL Soft on HDMI Splitter (NVIDIA High Definition Audio)
+  Opened device OpenAL Soft on Headphones (Beats Studio Buds)
   EFX enabled
 I_InitInput
 I_StartupMouse
@@ -23,7 +23,7 @@ Vulkan extensions: VK_KHR_16bit_storage VK_KHR_8bit_storage VK_KHR_bind_memory2 
 Max. texture size: 32768
 Max. uniform buffer range: 65536
 Min. uniform buffer offset alignment: 64
-Resolution: 1520 x 825
+Resolution: 1518 x 817
 I_Init: Setting up machine state.
 CPU speed: 3850 MHz
 CPU Vendor ID: AuthenticAMD
@@ -38,37 +38,7 @@ G_ParseMapInfo: Load map definitions.
 Texman.Init: Init texture manager.
 ParseTeamInfo: Load team definitions.
 LoadActors: Load actor definitions.
-script parsing took 510.68 ms
-R_Init: Init Doom refresh subsystem.
-DecalLibrary: Load decals.
-Adding dehacked patch freedoom2.wad:DEHACKED
-Patch installed
-M_Init: Init menus.
-P_Init: Init Playloop state.
-ParseSBarInfo: Loading custom status bar definition.
-===========================================================================
-This is Freedoom, the free content first person shooter.
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 248:
+Unexpected identifier
+Expecting ';' or ','
 
-Freedoom is freely redistributable under the terms of the modified BSD
-license. Check out the Freedoom website for more information:
-
-    https://freedoom.github.io/
-============================================================================
-D_CheckNetGame: Checking network game status.
-Init complete.
-
-----------------------------------------
-
-MAP01 - MISSION AREA TEST
-
-DoDA: Debug weapon pose applied. Yaw=12.0 Pitch=-4.0
-DoDA Director WorldLoaded: Map=MAP01 Save=0 Reopen=0
-DoDA Director [before initialization gate] Map=MAP01 Save=0 Reopen=0 Result=0 Index=0 Progress=0 Phase=0 Name= Description=
-DoDA CampaignState initialized: Map=MAP01 NextMissionIndex=0
-DoDA Mission initialized as PENDING.
-DoDA Director [after initialization gate] Map=MAP01 Save=0 Reopen=0 Result=1 Index=0 Progress=0 Phase=1 Name=Mission 01 Description=talk to INFORMANT.
-DoDA HUD Snapshot [after WorldLoaded] Source=Director Map=MAP01 Mission=Mission 01 Status=1 Progress=0 Phase=1 Objective=talk to INFORMANT.
-DoDA CampaignState observed: Map=MAP01 NextMissionIndex=0 OwnerClass=FieldAgent
-DoDA HUD Snapshot [Draw source change] Source=MissionDirector Map=MAP01 MISSION: Mission 01 | STATUS: PENDING | PROGRESS: 0% | PHASE: OBJECTIVE | OBJECTIVE: talk to INFORMANT.
-]summon dodapistol
-Picked up a pistol.

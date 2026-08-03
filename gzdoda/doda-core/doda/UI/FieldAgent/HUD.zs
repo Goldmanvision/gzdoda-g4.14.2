@@ -1,246 +1,37 @@
 /*//////////////////////////|
 // DoDA/UI/FieldAgent/HUD.zs
-*///////////////////////////|
+//
+// HUD compositor.
+// This is the one and only StatusBarClass.
+// It owns no mission logic and no deadzone logic.
+// It only coordinates draw modules.
+*///////////////////////////|*/
 
 class DoDAHUD : BaseStatusBar
 {
-    private String LastLoggedKey;
-    private String LastLoggedSource;
+    private DoDAHUDTapline m_Tapline;
+    private DoDAHUDDeadzone m_Deadzone;
 
-    void LogHUDSelection(
-        string sourceLabel,
-        String missionText,
-        String statusText,
-        String progressText,
-        String phaseText,
-        String objectiveText
-    )
+    override void Init()
     {
-        String key =
-            level.MapName .. "|" ..
-            sourceLabel .. "|" ..
-            missionText .. "|" ..
-            statusText .. "|" ..
-            progressText .. "|" ..
-            phaseText .. "|" ..
-            objectiveText;
+        Super.Init();
 
-        if (LastLoggedKey == key && LastLoggedSource == sourceLabel)
-        {
-            return;
-        }
-
-        LastLoggedKey = key;
-        LastLoggedSource = sourceLabel;
-
-        Console.Printf(
-            "DoDA HUD Snapshot [Draw source change] Source=%s Map=%s %s | %s | %s | %s | %s",
-            sourceLabel,
-            level.MapName,
-            missionText,
-            statusText,
-            progressText,
-            phaseText,
-            objectiveText
-        );
+        m_Tapline = new("DoDAHUDTapline");
+        m_Deadzone = new("DoDAHUDDeadzone");
     }
 
-    override void Draw(int state, double TicFrac)
+    override void Draw(int state, double ticFrac)
     {
-        Super.Draw(state, TicFrac);
+        Super.Draw(state, ticFrac);
 
-        Font font = Font.GetFont("DoDAPalmFont");
-        int black = Font.FindFontColor("Black");
-
-        String titleText = "FBI: DODA TAPLINE CONNECTED";
-        String missionText = "MISSION: UNKNOWN";
-        String statusText = "STATUS: UNKNOWN";
-        String progressText = "PROGRESS: 0%";
-        String phaseText = "PHASE: UNKNOWN";
-        String objectiveText = "OBJECTIVE: UNKNOWN";
-        String sourceLabel = "None";
-
-        DoDAMissionDirector director =
-            DoDAMissionDirector(EventHandler.Find("DoDAMissionDirector"));
-
-        PlayerPawn playerPawn = CPlayer != null ? CPlayer.mo : null;
-        DoDALastMissionReport report = null;
-
-        if (playerPawn != null)
+        if (m_Tapline != null)
         {
-            report = DoDALastMissionReport(
-                playerPawn.FindInventory("DoDALastMissionReport")
-            );
+            m_Tapline.DrawTapline(CPlayer);
         }
 
-        bool hasReport = report != null && report.GetHasReport();
-
-        if (level.MapName == "MAP02")
+        if (m_Deadzone != null)
         {
-            if (hasReport)
-            {
-                sourceLabel = "LastMissionReport";
-
-                missionText = "MISSION: " .. report.GetReportMissionName();
-                progressText = "PROGRESS: " .. report.GetReportPercentComplete() .. "%";
-                objectiveText = "OBJECTIVE: " .. report.GetReportObjective();
-
-                switch (report.GetReportResult())
-                {
-                case MISSION_PENDING:
-                    statusText = "STATUS: PENDING";
-                    break;
-
-                case MISSION_IN_PROGRESS:
-                    statusText = "STATUS: IN PROGRESS";
-                    break;
-
-                case MISSION_SUCCESS:
-                    statusText = "STATUS: SUCCESS";
-                    break;
-
-                case MISSION_FAILURE:
-                    statusText = "STATUS: FAILURE";
-                    break;
-
-                case MISSION_ABORTED:
-                    statusText = "STATUS: ABORTED";
-                    break;
-
-                default:
-                    statusText = "STATUS: UNKNOWN";
-                    break;
-                }
-
-                switch (report.GetReportPhase())
-                {
-                case 1:
-                    phaseText = "PHASE: OBJECTIVE";
-                    break;
-
-                case 2:
-                    phaseText = "PHASE: EXTRACTION";
-                    break;
-
-                default:
-                    phaseText = "PHASE: UNKNOWN";
-                    break;
-                }
-            }
-            else
-            {
-                sourceLabel = "DebriefCleared";
-                missionText = "MISSION: DEBRIEF CLOSED";
-                statusText = "STATUS: RETURNED TO FIELD";
-                progressText = "PROGRESS: 0%";
-                phaseText = "PHASE: COMPLETE";
-                objectiveText = "OBJECTIVE: await new deployment.";
-            }
+            m_Deadzone.DrawDeadzone(CPlayer);
         }
-        else if (director != null)
-        {
-            sourceLabel = "MissionDirector";
-
-            missionText = "MISSION: " .. director.GetMissionName();
-            progressText = "PROGRESS: " .. director.GetMissionPercentComplete() .. "%";
-            objectiveText = "OBJECTIVE: " .. director.GetMissionDescription();
-
-            switch (director.GetMissionResult())
-            {
-            case MISSION_PENDING:
-                statusText = "STATUS: PENDING";
-                break;
-
-            case MISSION_IN_PROGRESS:
-                statusText = "STATUS: IN PROGRESS";
-                break;
-
-            case MISSION_SUCCESS:
-                statusText = "STATUS: SUCCESS";
-                break;
-
-            case MISSION_FAILURE:
-                statusText = "STATUS: FAILURE";
-                break;
-
-            case MISSION_ABORTED:
-                statusText = "STATUS: ABORTED";
-                break;
-
-            default:
-                statusText = "STATUS: UNKNOWN";
-                break;
-            }
-
-            switch (director.GetMissionPhase())
-            {
-            case 1:
-                phaseText = "PHASE: OBJECTIVE";
-                break;
-
-            case 2:
-                phaseText = "PHASE: EXTRACTION";
-                break;
-
-            default:
-                phaseText = "PHASE: UNKNOWN";
-                break;
-            }
-        }
-
-        LogHUDSelection(
-            sourceLabel,
-            missionText,
-            statusText,
-            progressText,
-            phaseText,
-            objectiveText
-        );
-
-        int panelWidth = 540;
-        int panelHeight = 225;
-        int margin = 24;
-        int padding = 16;
-        int lineGap = 2;
-
-        int panelX = Screen.GetWidth() - panelWidth - margin;
-        int panelY = margin;
-
-        int textX = panelX + padding + 4;
-
-        int titleY = panelY + padding;
-        int missionY = titleY + font.GetHeight() + lineGap;
-        int statusY = missionY + font.GetHeight() + lineGap;
-        int progressY = statusY + font.GetHeight() + lineGap;
-        int phaseY = progressY + font.GetHeight() + lineGap;
-        int objectiveY = phaseY + font.GetHeight() + lineGap;
-
-        Screen.Clear(
-            panelX,
-            panelY,
-            panelX + panelWidth,
-            panelY + panelHeight,
-            Color(196, 207, 163)
-        );
-
-        Screen.DrawThickLine(panelX, panelY, panelX + panelWidth, panelY, 8.0, Color(0, 0, 0));
-        Screen.DrawThickLine(panelX, panelY + panelHeight, panelX + panelWidth, panelY + panelHeight, 8.0, Color(0, 0, 0));
-        Screen.DrawThickLine(panelX, panelY, panelX, panelY + panelHeight, 8.0, Color(0, 0, 0));
-        Screen.DrawThickLine(panelX + panelWidth, panelY, panelX + panelWidth, panelY + panelHeight, 8.0, Color(0, 0, 0));
-
-        int inner = 6;
-        Color innerBorderColor = Color(155, 188, 15);
-
-        Screen.DrawThickLine(panelX + inner, panelY + inner, panelX + panelWidth - inner, panelY + inner, 8.0, innerBorderColor);
-        Screen.DrawThickLine(panelX + inner, panelY + panelHeight - inner, panelX + panelWidth - inner, panelY + panelHeight - inner, 8.0, innerBorderColor);
-        Screen.DrawThickLine(panelX + inner, panelY + inner, panelX + inner, panelY + panelHeight - inner, 8.0, innerBorderColor);
-        Screen.DrawThickLine(panelX + panelWidth - inner, panelY + inner, panelX + panelWidth - inner, panelY + panelHeight - inner, 8.0, innerBorderColor);
-
-        Screen.DrawText(font, black, textX, titleY, titleText);
-        Screen.DrawText(font, black, textX, missionY, missionText);
-        Screen.DrawText(font, black, textX, statusY, statusText);
-        Screen.DrawText(font, black, textX, progressY, progressText);
-        Screen.DrawText(font, black, textX, phaseY, phaseText);
-        Screen.DrawText(font, black, textX, objectiveY, objectiveText);
     }
 }

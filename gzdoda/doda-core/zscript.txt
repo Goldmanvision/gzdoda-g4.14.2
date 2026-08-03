@@ -1,10 +1,14 @@
 /*//////////////////////////|
 // root/zscript.txt
-*///////////////////////////|*/
-
+*///////////////////////////|
 version "2.4"
 
 #include "DoDA/FieldAgent.zs"
+#include "DoDA/WeaponSystem/WeaponBase.zs"
+#include "DoDA/Aim/AimInput.zs"
+#include "DoDA/UI/FieldAgent/HUD.zs"
+#include "DoDA/UI/FieldAgent/HUDTapline.zs"
+#include "DoDA/UI/FieldAgent/HUDDeadzone.zs"
 
 #include "DoDA/MissionSystem/MissionIds.zs"
 #include "DoDA/MissionSystem/ObjectiveIds.zs"
@@ -23,10 +27,14 @@ version "2.4"
 #include "DoDA/MissionSystem/Things/ExtractionInteractable.zs"
 #include "DoDA/MissionSystem/Things/DebriefContinueInteractable.zs"
 
-#include "DoDA/UI/FieldAgent/HUD.zs"
 
-#include "DoDA/WeaponSystem/WeaponAimController.zs"
-#include "DoDA/WeaponSystem/WeaponBase.zs"
+
+
+//#include "DoDA/WeaponSystem/WeaponAimController.zs"
+//#include "DoDA/Input/AimInput.zs"
+
+
+
 // #include "DoDA/Weapons/DeadzonePistol.zs"
 
 // Keep these disabled until the interactable and car are confirmed.
