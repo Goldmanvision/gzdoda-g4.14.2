@@ -581,44 +581,44 @@ class DoDAPistol: Weapon
 		}
 	}
 
-	action weapon void DoDA_FireTrace()
+	action void DoDA_FireTrace()
 	{
-		fireLockTics = 9;
+		invoker.fireLockTics = 9;
 
-		bool realAltFire = (owner.player.cmd.buttons & BT_ALTATTACK) != 0;
-		CVar dbgDeadzone = CVar.GetCVar('doda_debug_force_deadzone', owner.player);
+		bool realAltFire = (invoker.owner.player.cmd.buttons & BT_ALTATTACK) != 0;
+		CVar dbgDeadzone = CVar.GetCVar('doda_debug_force_deadzone', invoker.owner.player);
 		bool forceDeadzone = dbgDeadzone ? dbgDeadzone.GetBool() : false;
 		bool deadzoneActive = realAltFire || forceDeadzone;
 
-		double spread = deadzoneActive ? deadzoneSpread : hipfireSpread;
-		bool isOffhand = (weaponhand == Hand_Left);
+		double spread = deadzoneActive ? invoker.deadzoneSpread : invoker.hipfireSpread;
+		bool isOffhand = (invoker.weaponhand == Hand_Left);
 		if(isOffhand)
 		{
-			spread *= offhandSpreadMult;
+			spread *= invoker.offhandSpreadMult;
 		}
 
 		double randAngle = FRandom[DoDASpread](0.0, 360.0);
 		double randRadius = FRandom[DoDASpread](0.0, spread);
 
-		double fireYaw = owner.angle + (cos(randAngle) * randRadius);
-		double firePitch = owner.pitch + (sin(randAngle) * randRadius);
+		double fireYaw = invoker.owner.angle + (cos(randAngle) * randRadius);
+		double firePitch = invoker.owner.pitch + (sin(randAngle) * randRadius);
 
-		A_StartSound("weapons/pistol", CHAN_WEAPON);
+		invoker.A_StartSound("weapons/pistol", CHAN_WEAPON);
 
 		FLineTraceData trace;
 		double attackZ =
-			owner.height * 0.5
-			- owner.floorclip
-			+ owner.player.mo.AttackZOffset * owner.player.crouchFactor;
+			invoker.owner.height * 0.5
+			- invoker.owner.floorclip
+			+ invoker.owner.player.mo.AttackZOffset * invoker.owner.player.crouchFactor;
 
-		bool hit = owner.LineTrace(
+		bool hit = invoker.owner.LineTrace(
 			fireYaw,
 			2048,
 			firePitch,
 			0,
 			attackZ,
 			0,
-			leanAppliedOffset,
+			invoker.leanAppliedOffset,
 			trace
 		);
 
@@ -629,7 +629,7 @@ class DoDAPistol: Weapon
 
 		if(trace.HitType == TRACE_HitWall || trace.HitType == TRACE_HitFloor || trace.HitType == TRACE_HitCeiling)
 		{
-			Spawn("BulletPuff", trace.HitLocation);
+			invoker.Spawn("BulletPuff", trace.HitLocation);
 			return;
 		}
 
@@ -643,8 +643,8 @@ class DoDAPistol: Weapon
 
 			int damage = headshot ? 35 : 10;
 
-			target.DamageMobj(owner, owner, damage, 'Hitscan');
-			Spawn("BulletPuff", trace.HitLocation);
+			target.DamageMobj(invoker.owner, invoker.owner, damage, 'Hitscan');
+			invoker.Spawn("BulletPuff", trace.HitLocation);
 		}
 	}
 
