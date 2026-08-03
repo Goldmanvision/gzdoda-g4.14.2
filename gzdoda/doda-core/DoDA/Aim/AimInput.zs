@@ -32,7 +32,8 @@ class DoDAAimReceiver : EventHandler
             return;
         }
 
-        PlayerInfo p = players[consoleplayer];
+        int pnum = e.Player;
+        PlayerInfo p = players[pnum];
         if (p == null || p.mo == null)
         {
             return;

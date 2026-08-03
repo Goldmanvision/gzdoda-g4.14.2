@@ -1,14 +1,14 @@
-Log started: 2026-08-02 08:54:46
+Log started: 2026-08-03 09:46:10
 GZDoom version <unknown version>
 W_Init: Init WADfiles.
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/gzdoom.pk3, 709 lumps
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/game_support.pk3, 3309 lumps
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/freedoom2.wad, 3610 lumps
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/game_widescreen_gfx.pk3, 214 lumps
-adding C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core, 274 lumps
+adding C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core, 280 lumps
 S_Init: Setting up sound.
 I_InitSound: Initializing OpenAL
-  Opened device OpenAL Soft on Headphones (Beats Studio Buds)
+  Opened device OpenAL Soft on Speakers (Steam Streaming Speakers)
   EFX enabled
 I_InitInput
 I_StartupMouse
@@ -23,7 +23,7 @@ Vulkan extensions: VK_KHR_16bit_storage VK_KHR_8bit_storage VK_KHR_bind_memory2 
 Max. texture size: 32768
 Max. uniform buffer range: 65536
 Min. uniform buffer offset alignment: 64
-Resolution: 1518 x 817
+Resolution: 1920 x 1080
 I_Init: Setting up machine state.
 CPU speed: 3850 MHz
 CPU Vendor ID: AuthenticAMD
@@ -38,7 +38,37 @@ G_ParseMapInfo: Load map definitions.
 Texman.Init: Init texture manager.
 ParseTeamInfo: Load team definitions.
 LoadActors: Load actor definitions.
-Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 248:
-Unexpected identifier
-Expecting ';' or ','
-
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 586:
+Self pointer used in ambiguous context; VM execution may abort!
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 588:
+Self pointer used in ambiguous context; VM execution may abort!
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 589:
+Self pointer used in ambiguous context; VM execution may abort!
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 593:
+Self pointer used in ambiguous context; VM execution may abort!
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 593:
+Self pointer used in ambiguous context; VM execution may abort!
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 594:
+Self pointer used in ambiguous context; VM execution may abort!
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 597:
+Self pointer used in ambiguous context; VM execution may abort!
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 603:
+Self pointer used in ambiguous context; VM execution may abort!
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 604:
+Self pointer used in ambiguous context; VM execution may abort!
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 610:
+Self pointer used in ambiguous context; VM execution may abort!
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 611:
+Self pointer used in ambiguous context; VM execution may abort!
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 612:
+Self pointer used in ambiguous context; VM execution may abort!
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 612:
+Self pointer used in ambiguous context; VM execution may abort!
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 614:
+Self pointer used in ambiguous context; VM execution may abort!
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 621:
+Self pointer used in ambiguous context; VM execution may abort!
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 646:
+Self pointer used in ambiguous context; VM execution may abort!
+Script error, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weaponbase.zs" line 646:
+Self pointer used in ambiguous context; VM execution may abort!

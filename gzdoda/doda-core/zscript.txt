@@ -10,6 +10,10 @@ version "2.4"
 #include "DoDA/UI/FieldAgent/HUDTapline.zs"
 #include "DoDA/UI/FieldAgent/HUDDeadzone.zs"
 
+// #include "DoDA/Test/DoDA_TestHUD.zs"
+// #include "DoDA/Test/DoDA_TestPlayer.zs"
+// #include "DoDA/Test/DoDA_TestWeapon.zs"
+
 #include "DoDA/MissionSystem/MissionIds.zs"
 #include "DoDA/MissionSystem/ObjectiveIds.zs"
 #include "DoDA/MissionSystem/MissionDefs.zs"
