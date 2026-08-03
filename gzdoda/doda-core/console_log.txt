@@ -1,11 +1,11 @@
-Log started: 2026-08-03 10:07:23
+Log started: 2026-08-03 10:25:05
 GZDoom version <unknown version>
 W_Init: Init WADfiles.
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/gzdoom.pk3, 709 lumps
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/game_support.pk3, 3309 lumps
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/freedoom2.wad, 3610 lumps
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/game_widescreen_gfx.pk3, 214 lumps
-adding C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core, 277 lumps
+adding C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core, 278 lumps
 S_Init: Setting up sound.
 I_InitSound: Initializing OpenAL
   Opened device OpenAL Soft on Speakers (Steam Streaming Speakers)
@@ -38,7 +38,7 @@ G_ParseMapInfo: Load map definitions.
 Texman.Init: Init texture manager.
 ParseTeamInfo: Load team definitions.
 LoadActors: Load actor definitions.
-script parsing took 520.00 ms
+script parsing took 517.98 ms
 R_Init: Init Doom refresh subsystem.
 DecalLibrary: Load decals.
 Adding dehacked patch freedoom2.wad:DEHACKED
@@ -56,6 +56,7 @@ license. Check out the Freedoom website for more information:
 ============================================================================
 D_CheckNetGame: Checking network game status.
 Init complete.
+"vid_fullscreen" = "false"
 
 ----------------------------------------
 
@@ -71,62 +72,27 @@ SWAP deadzone=0 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=0.00 hand=
 DoDA CampaignState observed: Map=MAP01 NextMissionIndex=0 OwnerClass=FieldAgent
 DoDA HUD Snapshot [Draw source change] Source=MissionDirector Map=MAP01 MISSION: Mission 01 | STATUS: PENDING | PROGRESS: 0% | PHASE: OBJECTIVE | OBJECTIVE: talk to INFORMANT.
 SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=0.00 hand=1 pending=1 latched=1 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=7.38 hand=1 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-HANDCOMMIT hand=0 pending=0 latched=0 deadzone=1 yawGap=10.36
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=11.72 hand=0 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=5.04 hand=0 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-HANDCOMMIT hand=1 pending=1 latched=0 deadzone=1 yawGap=2.93
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=1.35 hand=1 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-4.28 hand=1 pending=1 latched=1 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-2.50 hand=1 pending=1 latched=1 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=6.99 hand=1 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-HANDCOMMIT hand=0 pending=0 latched=0 deadzone=1 yawGap=9.98
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=10.67 hand=0 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=4.51 hand=0 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-HANDCOMMIT hand=1 pending=1 latched=0 deadzone=1 yawGap=0.29
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-2.87 hand=1 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-4.63 hand=1 pending=1 latched=1 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=0.17 hand=1 pending=1 latched=1 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=6.14 hand=1 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-HANDCOMMIT hand=0 pending=0 latched=0 deadzone=1 yawGap=11.15
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=13.26 hand=0 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=2.46 hand=0 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-HANDCOMMIT hand=1 pending=1 latched=0 deadzone=1 yawGap=-0.71
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-3.17 hand=1 pending=1 latched=1 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-1.02 hand=1 pending=1 latched=1 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=6.01 hand=1 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-HANDCOMMIT hand=0 pending=0 latched=0 deadzone=1 yawGap=6.01
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=6.01 hand=0 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=5.71 hand=0 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-HANDCOMMIT hand=1 pending=1 latched=0 deadzone=1 yawGap=5.00
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=4.65 hand=1 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-3.26 hand=1 pending=1 latched=1 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=3.23 hand=1 pending=1 latched=1 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=8.15 hand=1 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-HANDCOMMIT hand=0 pending=0 latched=0 deadzone=1 yawGap=10.28
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=11.90 hand=0 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=4.94 hand=0 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-HANDCOMMIT hand=1 pending=1 latched=0 deadzone=1 yawGap=0.90
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-2.79 hand=1 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-5.43 hand=1 pending=1 latched=1 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-2.10 hand=1 pending=1 latched=1 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=6.16 hand=1 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-HANDCOMMIT hand=0 pending=0 latched=0 deadzone=1 yawGap=6.69
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=7.22 hand=0 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=3.39 hand=0 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-HANDCOMMIT hand=1 pending=1 latched=0 deadzone=1 yawGap=1.46
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=0.76 hand=1 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-3.64 hand=1 pending=1 latched=1 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=3.01 hand=1 pending=1 latched=1 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=6.52 hand=1 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-HANDCOMMIT hand=0 pending=0 latched=0 deadzone=1 yawGap=7.58
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=8.63 hand=0 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=4.84 hand=0 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-HANDCOMMIT hand=1 pending=1 latched=0 deadzone=1 yawGap=4.31
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=3.96 hand=1 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=6.07 hand=1 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-HANDCOMMIT hand=0 pending=0 latched=0 deadzone=1 yawGap=6.07
-SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=6.25 hand=0 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
-SWAP deadzone=0 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=0.00 hand=0 pending=1 latched=1 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
-HANDCOMMIT hand=1 pending=1 latched=1 deadzone=0 yawGap=0.00
+SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=6.15 hand=1 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
+HANDCOMMIT hand=0 pending=0 latched=0 deadzone=1 yawGap=6.15
+SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=6.15 hand=0 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
+SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=4.38 hand=0 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
+HANDCOMMIT hand=1 pending=1 latched=0 deadzone=1 yawGap=3.50
+SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=2.79 hand=1 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
+SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-3.36 hand=1 pending=1 latched=1 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
+SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-1.28 hand=1 pending=1 latched=1 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
+SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=6.10 hand=1 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
+HANDCOMMIT hand=0 pending=0 latched=0 deadzone=1 yawGap=8.03
+SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=10.09 hand=0 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
+SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=4.52 hand=0 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
+HANDCOMMIT hand=1 pending=1 latched=0 deadzone=1 yawGap=-1.11
+SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-5.50 hand=1 pending=1 latched=1 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
+SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-1.58 hand=1 pending=1 latched=1 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
+SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=6.51 hand=1 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
+HANDCOMMIT hand=0 pending=0 latched=0 deadzone=1 yawGap=6.86
+SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=6.86 hand=0 pending=0 latched=0 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
+SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=4.58 hand=0 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
+HANDCOMMIT hand=1 pending=1 latched=0 deadzone=1 yawGap=1.94
+SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-0.17 hand=1 pending=1 latched=0 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
+SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-3.33 hand=1 pending=1 latched=1 hasLatch=1 leanSwap=0 leanLock=1 fireLock=0
+SWAP deadzone=1 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=-2.81 hand=1 pending=1 latched=1 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
 SWAP deadzone=0 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=0.00 hand=1 pending=1 latched=1 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0

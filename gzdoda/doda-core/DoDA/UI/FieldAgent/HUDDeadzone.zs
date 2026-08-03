@@ -2,12 +2,39 @@ class DoDAHUDDeadzone : Object
 {
     void DrawDeadzone(PlayerInfo currentPlayer)
     {
-        PlayerPawn playerPawn = currentPlayer != null ? currentPlayer.mo : null;
-        FieldAgent agent = FieldAgent(playerPawn);
-
-        if (agent == null || !agent.IsDeadzoneAimActive())
+        if (currentPlayer == null || currentPlayer.mo == null)
         {
             return;
+        }
+
+        PlayerPawn playerPawn = currentPlayer.mo;
+        FieldAgent agent = FieldAgent(playerPawn);
+
+        bool hasWeaponState = false;
+        bool weaponDeadzoneActive = false;
+        double yawGap = 0.0;
+        double pitchGap = 0.0;
+        double deadzoneDegrees = 0.0;
+
+        if (currentPlayer.ReadyWeapon != null)
+        {
+            let weaponState = DoDAPistol(currentPlayer.ReadyWeapon);
+            if (weaponState != null)
+            {
+                hasWeaponState = true;
+                weaponDeadzoneActive = weaponState.deadzoneActiveHUD;
+                yawGap = weaponState.yawGap;
+                pitchGap = weaponState.pitchGap;
+                deadzoneDegrees = weaponState.deadzoneDegrees;
+            }
+        }
+
+        if (!hasWeaponState || !weaponDeadzoneActive)
+        {
+            if (agent == null || !agent.IsDeadzoneAimActive())
+            {
+                return;
+            }
         }
 
         int screenWidth = Screen.GetWidth();
@@ -16,16 +43,35 @@ class DoDAHUDDeadzone : Object
         int centerX = screenWidth / 2;
         int centerY = screenHeight / 2;
 
-        int deadzoneHalfWidth = screenWidth / 8;
-        int deadzoneHalfHeight = screenHeight / 8;
+        double aspect = screenWidth / double(screenHeight);
+        double refAspect = 4.0 / 3.0;
+        double halfFovBase = currentPlayer.FOV * 0.5;
+        double halfFovYaw = atan(tan(halfFovBase) * (aspect / refAspect));
+        double halfFovPitch = halfFovBase;
 
-        int left = centerX - deadzoneHalfWidth;
-        int right = centerX + deadzoneHalfWidth;
-        int top = centerY - deadzoneHalfHeight;
-        int bottom = centerY + deadzoneHalfHeight;
+        double dotX = centerX - (tan(yawGap) / tan(halfFovYaw)) * centerX;
+        double dotY = centerY + (tan(pitchGap) / tan(halfFovPitch)) * centerY;
 
-        int dotX = centerX + int(agent.GetDeadzoneX());
-        int dotY = centerY + int(agent.GetDeadzoneY());
+        double boxHalfWidth = 0.0;
+        double boxHalfHeight = 0.0;
+
+        if (hasWeaponState && weaponDeadzoneActive)
+        {
+            boxHalfWidth = (tan(deadzoneDegrees) / tan(halfFovYaw)) * centerX;
+            boxHalfHeight = (tan(deadzoneDegrees) / tan(halfFovPitch)) * centerY;
+        }
+        else
+        {
+            boxHalfWidth = screenWidth / 8.0;
+            boxHalfHeight = screenHeight / 8.0;
+            dotX = centerX + int(agent.GetDeadzoneX());
+            dotY = centerY + int(agent.GetDeadzoneY());
+        }
+
+        int left = int(centerX - boxHalfWidth);
+        int right = int(centerX + boxHalfWidth);
+        int top = int(centerY - boxHalfHeight);
+        int bottom = int(centerY + boxHalfHeight);
 
         Color boxColor = Color(0, 255, 0);
         Color centerColor = Color(96, 255, 96);
@@ -39,7 +85,7 @@ class DoDAHUDDeadzone : Object
         Screen.DrawThickLine(centerX - 4, centerY, centerX + 4, centerY, 1, centerColor);
         Screen.DrawThickLine(centerX, centerY - 4, centerX, centerY + 4, 1, centerColor);
 
-        Screen.DrawThickLine(dotX - 3, dotY, dotX + 3, dotY, 2, dotColor);
-        Screen.DrawThickLine(dotX, dotY - 3, dotX, dotY + 3, 2, dotColor);
+        Screen.DrawThickLine(int(dotX - 3), int(dotY), int(dotX + 3), int(dotY), 2, dotColor);
+        Screen.DrawThickLine(int(dotX), int(dotY - 3), int(dotX), int(dotY + 3), 2, dotColor);
     }
 }
