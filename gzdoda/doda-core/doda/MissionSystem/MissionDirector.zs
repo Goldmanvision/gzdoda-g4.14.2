@@ -14,7 +14,7 @@ class DoDAMissionDirector : EventHandler
     bool bIsSaveGame;
     bool bIsReopen;
 
-    void ConfigureMissionForIndex(int index)
+void ConfigureMissionForIndex(int index)
 {
     MissionIndex = index;
 
@@ -32,8 +32,8 @@ class DoDAMissionDirector : EventHandler
         return;
     }
 
-    MissionName = missionDef.MissionNameKey;
-    MissionDescription = missionDef.ObjectiveKey;
+    MissionName = StringTable.Localize("$" .. missionDef.MissionNameKey);
+    MissionDescription = StringTable.Localize("$" .. missionDef.ObjectiveKey);
 }
 
     void LogMissionState(string label)
