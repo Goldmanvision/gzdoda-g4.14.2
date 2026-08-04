@@ -1,57 +1,91 @@
-/*//////////////////////////
-// DoDA/UI/FieldAgent/HUDDeadzone.zs
-*///////////////////////////*/
-
-class HUDDeadzone : StaticEventHandler
+class DoDAHUDDeadzone : Object
 {
-    override void OnRegister()
+    void DrawDeadzone(PlayerInfo currentPlayer)
     {
-        SetOrder(100);
-        IsUiProcessor = false;
-        RequireMouse = false;
-    }
-
-    override ui void RenderOverlay(RenderEvent e)
-    {
-        int pnum = ConsolePlayer;
-        if (pnum < 0 || pnum >= MAXPLAYERS)
+        if (currentPlayer == null || currentPlayer.mo == null)
         {
             return;
         }
 
-        PlayerInfo p = Players[pnum];
-        if (p == null || p.mo == null)
+        PlayerPawn playerPawn = currentPlayer.mo;
+        FieldAgent agent = FieldAgent(playerPawn);
+
+        bool hasWeaponState = false;
+        bool weaponDeadzoneActive = false;
+        double yawGap = 0.0;
+        double pitchGap = 0.0;
+        double deadzoneDegrees = 0.0;
+
+        if (currentPlayer.ReadyWeapon != null)
         {
-            return;
+            let weaponState = DoDAPistol(currentPlayer.ReadyWeapon);
+            if (weaponState != null)
+            {
+                hasWeaponState = true;
+                weaponDeadzoneActive = weaponState.deadzoneActiveHUD;
+                yawGap = weaponState.yawGap;
+                pitchGap = weaponState.pitchGap;
+                deadzoneDegrees = weaponState.deadzoneDegrees;
+            }
         }
 
-        DoDADeadzoneController controller =
-            DoDADeadzoneController(p.mo.FindInventory("DoDADeadzoneController"));
-
-        if (controller == null || !controller.IsDeadzoneActive())
+        if (!hasWeaponState || !weaponDeadzoneActive)
         {
-            return;
+            if (agent == null || !agent.IsDeadzoneAimActive())
+            {
+                return;
+            }
         }
 
-        double w = Screen.GetWidth();
-        double h = Screen.GetHeight();
-        double cx = w * 0.5;
-        double cy = h * 0.5;
+        int screenWidth = Screen.GetWidth();
+        int screenHeight = Screen.GetHeight();
 
-        double yawLimit = controller.GetYawLimit();
-        double pitchLimit = controller.GetPitchLimit();
-        double yawGap = controller.GetYawGap();
-        double pitchGap = controller.GetPitchGap();
+        int centerX = screenWidth / 2;
+        int centerY = screenHeight / 2;
 
-        double yawFrac = (yawLimit > 0.0) ? (yawGap / yawLimit) : 0.0;
-        double pitchFrac = (pitchLimit > 0.0) ? (pitchGap / pitchLimit) : 0.0;
+        double aspect = screenWidth / double(screenHeight);
+        double refAspect = 4.0 / 3.0;
+        double halfFovBase = currentPlayer.FOV * 0.5;
+        double halfFovYaw = atan(tan(halfFovBase) * (aspect / refAspect));
+        double halfFovPitch = halfFovBase;
 
-        double ringRadius = 18.0;
-        double markerX = cx + (yawFrac * ringRadius);
-        double markerY = cy + (pitchFrac * ringRadius);
+        double dotX = centerX - (tan(yawGap) / tan(halfFovYaw)) * centerX;
+        double dotY = centerY + (tan(pitchGap) / tan(halfFovPitch)) * centerY;
 
-        Screen.DrawLine(cx - 10, cy, cx + 10, cy, color(255, 255, 255), 128);
-        Screen.DrawLine(cx, cy - 10, cx, cy + 10, color(255, 255, 255), 128);
-        Screen.DrawFrame(markerX - 3, markerY - 3, 6, 6);
+        double boxHalfWidth = 0.0;
+        double boxHalfHeight = 0.0;
+
+        if (hasWeaponState && weaponDeadzoneActive)
+        {
+            boxHalfWidth = (tan(deadzoneDegrees) / tan(halfFovYaw)) * centerX;
+            boxHalfHeight = (tan(deadzoneDegrees) / tan(halfFovPitch)) * centerY;
+        }
+        else
+        {
+            boxHalfWidth = screenWidth / 8.0;
+            boxHalfHeight = screenHeight / 8.0;
+            dotX = centerX + int(agent.GetDeadzoneX());
+            dotY = centerY + int(agent.GetDeadzoneY());
+        }
+
+        int left = int(centerX - boxHalfWidth);
+        int right = int(centerX + boxHalfWidth);
+        int top = int(centerY - boxHalfHeight);
+        int bottom = int(centerY + boxHalfHeight);
+
+        Color boxColor = Color(0, 255, 0);
+        Color centerColor = Color(96, 255, 96);
+        Color dotColor = Color(255, 0, 0);
+
+        Screen.DrawThickLine(left, top, right, top, 2, boxColor);
+        Screen.DrawThickLine(right, top, right, bottom, 2, boxColor);
+        Screen.DrawThickLine(right, bottom, left, bottom, 2, boxColor);
+        Screen.DrawThickLine(left, bottom, left, top, 2, boxColor);
+
+        Screen.DrawThickLine(centerX - 4, centerY, centerX + 4, centerY, 1, centerColor);
+        Screen.DrawThickLine(centerX, centerY - 4, centerX, centerY + 4, 1, centerColor);
+
+        Screen.DrawThickLine(int(dotX - 3), int(dotY), int(dotX + 3), int(dotY), 2, dotColor);
+        Screen.DrawThickLine(int(dotX), int(dotY - 3), int(dotY + 3), int(dotY + 3), 2, dotColor);
     }
 }

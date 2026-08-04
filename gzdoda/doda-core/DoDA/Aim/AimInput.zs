@@ -6,12 +6,11 @@ class DoDAAimInput : StaticEventHandler
 {
     override void OnRegister()
     {
-        IsUiProcessor = true;
         RequireMouse = true;
         SetOrder(-100);
     }
 
-    override ui bool InputProcess(InputEvent e)
+    override bool InputProcess(InputEvent e)
     {
         if (e.Type != InputEvent.Type_Mouse)
         {
