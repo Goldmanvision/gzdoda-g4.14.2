@@ -21,7 +21,7 @@ class DoDAMissionDefs : Object
         String fieldMap
     )
     {
-        let def = new("DoDAMissionDef");
+        DoDAMissionDef def = new("DoDAMissionDef");
         def.MissionId = missionId;
         def.ObjectiveId = objectiveId;
         def.MissionNameKey = missionNameKey;
