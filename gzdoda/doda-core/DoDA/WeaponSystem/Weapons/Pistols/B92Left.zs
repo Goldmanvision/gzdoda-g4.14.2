@@ -6,10 +6,11 @@ class DoDAB92Left : DoDAPistol
 {
     Default
     {
-        Weapon.SlotNumber 2;
+        Weapon.SlotNumber 1;
         Weapon.SelectionOrder 100;
         Weapon.AmmoType "Clip";
         Weapon.AmmoUse 1;
+		Weapon.AmmoGive 13;
         +WEAPON.NOAUTOFIRE;
         Tag "DoDA B92 Left";
         Inventory.PickupMessage "Picked up the DoDA B92 Left";

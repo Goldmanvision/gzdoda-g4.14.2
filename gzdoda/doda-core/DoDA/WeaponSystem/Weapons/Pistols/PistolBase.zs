@@ -10,7 +10,7 @@ class DoDAPistol : DoDAWeapon
     {
         Weapon.AmmoType "Clip";
         Weapon.AmmoUse 1;
-        Weapon.AmmoGive 0;
+        Weapon.AmmoGive 20;
         Weapon.Kickback 100;
         +WEAPON.NOAUTOFIRE;
         Tag "DoDA Pistol Base";

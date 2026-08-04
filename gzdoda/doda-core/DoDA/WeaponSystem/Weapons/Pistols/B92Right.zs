@@ -6,7 +6,7 @@ class DoDAB92Right : DoDAPistol
 {
     Default
     {
-        Weapon.SlotNumber 2;
+        Weapon.SlotNumber 3;
         Weapon.SelectionOrder 100;
         Weapon.AmmoType "Clip";
         Weapon.AmmoUse 1;
