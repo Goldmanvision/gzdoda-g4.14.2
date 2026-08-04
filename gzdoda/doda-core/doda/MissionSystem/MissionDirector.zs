@@ -15,12 +15,26 @@ class DoDAMissionDirector : EventHandler
     bool bIsReopen;
 
     void ConfigureMissionForIndex(int index)
-    {
-        MissionIndex = index;
+{
+    MissionIndex = index;
 
-        MissionName = DoDAMissionDefs.GetMissionNameText(index);
-        MissionDescription = DoDAMissionDefs.GetObjectiveText(index);
+    DoDAMissionDef missionDef = DoDAMissionDefs.GetDefForIndex(index);
+
+    if (missionDef == null)
+    {
+        Console.Printf(
+            "DoDA: No mission definition found for index %d.",
+            index
+        );
+
+        MissionName = "Mission";
+        MissionDescription = "complete the current objective.";
+        return;
     }
+
+    MissionName = missionDef.MissionNameKey;
+    MissionDescription = missionDef.ObjectiveKey;
+}
 
     void LogMissionState(string label)
     {

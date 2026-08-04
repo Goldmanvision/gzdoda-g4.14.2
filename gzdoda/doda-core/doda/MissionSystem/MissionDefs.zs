@@ -107,38 +107,4 @@ class DoDAMissionDefs : Object
 
         return true;
     }
-
-    static String GetMissionNameText(int missionIndex)
-    {
-        switch (missionIndex)
-        {
-        case 0:
-            return "Mission 01";
-
-        case 1:
-            return "Mission 02";
-
-        case 2:
-            return "Mission 03";
-        }
-
-        return "Mission";
-    }
-
-    static String GetObjectiveText(int missionIndex)
-    {
-        switch (missionIndex)
-        {
-        case 0:
-            return "talk to INFORMANT.";
-
-        case 1:
-            return "collect evidence from TERMINAL.";
-
-        case 2:
-            return "secure the SECONDARY FILE.";
-        }
-
-        return "complete the current objective.";
-    }
 }
