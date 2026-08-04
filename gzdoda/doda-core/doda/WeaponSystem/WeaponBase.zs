@@ -1,3 +1,7 @@
+/*//////////////////////////
+// DoDA/WeaponSystem/WeaponBase.zs
+*///////////////////////////*/
+
 class DoDAPistol : Weapon
 {
     double camYaw;
@@ -138,8 +142,6 @@ class DoDAPistol : Weapon
             return;
         }
 
-        baseYawDeadzone = 10.0;
-        basePitchDeadzone = 5.0;
         normalFOV = 90.0;
         zoomedFOV = 65.0;
         crouchZoomBonus = 8.0;
@@ -188,12 +190,16 @@ class DoDAPistol : Weapon
             leanDistance = 20.0;
         }
 
-        bool realAltFire = (owner.player.cmd.buttons & BT_ALTATTACK) != 0;
-        CVar dbgDeadzone = CVar.GetCVar('doda_debug_force_deadzone', owner.player);
-        bool forceDeadzone = dbgDeadzone ? dbgDeadzone.GetBool() : false;
-        bool deadzoneActive = realAltFire || forceDeadzone;
+        DoDADeadzoneController dz =
+            DoDADeadzoneController(owner.FindInventory("DoDADeadzoneController"));
 
+        bool deadzoneActive = (dz != null) ? dz.IsDeadzoneActive() : false;
         deadzoneActiveHUD = deadzoneActive;
+
+        double effectiveYawDeadzone = (dz != null) ? dz.GetYawLimit() : 10.0;
+        double effectivePitchDeadzone = (dz != null) ? dz.GetPitchLimit() : 5.0;
+        yawGap = (dz != null) ? dz.GetYawGap() : 0.0;
+        pitchGap = (dz != null) ? dz.GetPitchGap() : 0.0;
 
         bool holdingFire = (owner.player.cmd.buttons & BT_ATTACK) != 0;
         bool firePressed = holdingFire && !wasHoldingFire;
@@ -269,8 +275,6 @@ class DoDAPistol : Weapon
         }
         owner.A_SetSpeed(moveMultiplier);
 
-        double effectiveYawDeadzone = baseYawDeadzone + (crouchYawBonus * crouchAmount);
-        double effectivePitchDeadzone = basePitchDeadzone;
         double effectiveZoomFOV = zoomedFOV - (crouchZoomBonus * crouchAmount);
 
         double targetLean = 0.0;
@@ -326,15 +330,6 @@ class DoDAPistol : Weapon
 
         if (releasedThisTic)
         {
-            owner.angle = camYaw;
-            owner.pitch = camPitch;
-            owner.A_SetViewAngle(0.0, SPF_INTERPOLATE);
-            owner.A_SetViewPitch(0.0, SPF_INTERPOLATE);
-
-            yawGap = 0.0;
-            pitchGap = 0.0;
-            deadzoneDegrees = 0.0;
-
             hasLatchedSwap = false;
             pendingHand = Hand_Right;
             latchedHand = Hand_Right;
@@ -343,15 +338,6 @@ class DoDAPistol : Weapon
         }
         else if (!deadzoneActive)
         {
-            camYaw = owner.angle;
-            camPitch = owner.pitch;
-            deadzoneDegrees = 0.0;
-            yawGap = 0.0;
-            pitchGap = 0.0;
-
-            owner.A_SetViewAngle(0.0, SPF_INTERPOLATE);
-            owner.A_SetViewPitch(0.0, SPF_INTERPOLATE);
-
             hasLatchedSwap = false;
             pendingHand = Hand_Right;
             latchedHand = Hand_Right;
@@ -360,22 +346,23 @@ class DoDAPistol : Weapon
         }
         else
         {
-            deadzoneDegrees = effectiveYawDeadzone;
+            double swapLeftDeg = effectiveYawDeadzone * 0.30;
+            double swapRightDeg = effectiveYawDeadzone * 0.60;
 
-            double rawYawGap = DeltaAngle(camYaw, owner.angle);
-            double rawPitchGap = DeltaAngle(camPitch, owner.pitch);
-
-            double targetYaw = owner.angle - Clamp(rawYawGap, -effectiveYawDeadzone, effectiveYawDeadzone);
-            double targetPitch = owner.pitch - Clamp(rawPitchGap, -effectivePitchDeadzone, effectivePitchDeadzone);
-
-            camYaw = camYaw + (DeltaAngle(camYaw, targetYaw) * smoothing);
-            camPitch = camPitch + (DeltaAngle(camPitch, targetPitch) * smoothing);
-
-            yawGap = DeltaAngle(camYaw, owner.angle);
-            pitchGap = DeltaAngle(camPitch, owner.pitch);
-
-            owner.A_SetViewAngle(-yawGap, SPF_INTERPOLATE);
-            owner.A_SetViewPitch(-pitchGap, SPF_INTERPOLATE);
+            if (yawGap < -swapLeftDeg)
+            {
+                latchedHand = Hand_Right;
+                hasLatchedSwap = true;
+            }
+            else if (yawGap > swapRightDeg)
+            {
+                latchedHand = Hand_Left;
+                hasLatchedSwap = true;
+            }
+            else
+            {
+                hasLatchedSwap = false;
+            }
         }
 
         wasDeadzoneActive = deadzoneActive;
@@ -585,10 +572,10 @@ class DoDAPistol : Weapon
     {
         invoker.fireLockTics = 9;
 
-        bool realAltFire = (invoker.owner.player.cmd.buttons & BT_ALTATTACK) != 0;
-        CVar dbgDeadzone = CVar.GetCVar('doda_debug_force_deadzone', invoker.owner.player);
-        bool forceDeadzone = dbgDeadzone ? dbgDeadzone.GetBool() : false;
-        bool deadzoneActive = realAltFire || forceDeadzone;
+        DoDADeadzoneController dz =
+            DoDADeadzoneController(invoker.owner.FindInventory("DoDADeadzoneController"));
+
+        bool deadzoneActive = (dz != null) ? dz.IsDeadzoneActive() : false;
 
         double spread = deadzoneActive ? invoker.deadzoneSpread : invoker.hipfireSpread;
         bool isOffhand = (invoker.weaponhand == Hand_Left);
@@ -673,8 +660,8 @@ class DoDAPistol : Weapon
             DoDA_FireTrace();
         }
         B92L C 1;
-		B92L D 1;
-		B92L F 1;
+        B92L D 1;
+        B92L F 1;
         B92L B 1 A_ReFire;
         Goto Ready;
     }
