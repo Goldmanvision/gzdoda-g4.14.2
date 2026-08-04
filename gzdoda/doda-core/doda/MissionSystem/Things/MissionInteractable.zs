@@ -54,26 +54,19 @@ class DoDAMissionInteractable : Actor
             level.MapName
         ))
         {
-            DoDAMissionDef missionDef = DoDAMissionDefs.GetDef(missionId);
+            Console.Printf(
+                "DoDA: Informant inactive. Map=%s MissionId=%d",
+                level.MapName,
+                missionId
+            );
 
-            if (missionDef == null ||
-                missionDef.ObjectiveId != DODInformant ||
-                missionDef.FieldMap != level.MapName)
-            {
-                Console.Printf(
-                    "DoDA: Informant inactive. Map=%s MissionId=%d",
-                    level.MapName,
-                    missionId
-                );
+            Console.MidPrint(
+                Font.GetFont("DoDAPalmFont"),
+                "$DODA_INACTIVE_OBJECTIVE",
+                true
+            );
 
-                Console.MidPrint(
-                    Font.GetFont("DoDAPalmFont"),
-                    "$DODA_INACTIVE_OBJECTIVE",
-                    true
-                );
-
-                return false;
-            }
+            return false;
         }
 
         DoDAMissionDirector director = DoDAMissionDirector(
@@ -85,7 +78,7 @@ class DoDAMissionInteractable : Actor
             Console.Printf("DoDA: MissionDirector not found during informant use.");
             return false;
         }
-		
+
         HasBeenUsed = true;
 
         Console.Printf("DoDA: Informant used.");

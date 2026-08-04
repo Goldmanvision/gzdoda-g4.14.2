@@ -16,7 +16,6 @@ class FieldAgent : DoomPlayer
         Player.ViewHeight 41;
         Player.JumpZ 8;
         Speed 1;
-        PainChance 255;
         Player.ColorRange 0, 0;
     }
 
@@ -80,33 +79,14 @@ class FieldAgent : DoomPlayer
         double limitX = Screen.GetWidth() / 8.0;
         double limitY = Screen.GetHeight() / 8.0;
 
-        double overflowX = 0.0;
-        double overflowY = 0.0;
+        double clampedX = Clamp(nextX, -limitX, limitX);
+        double clampedY = Clamp(nextY, -limitY, limitY);
 
-        if (nextX < -limitX)
-        {
-            overflowX = nextX + limitX;
-            nextX = -limitX;
-        }
-        else if (nextX > limitX)
-        {
-            overflowX = nextX - limitX;
-            nextX = limitX;
-        }
+        double overflowX = nextX - clampedX;
+        double overflowY = nextY - clampedY;
 
-        if (nextY < -limitY)
-        {
-            overflowY = nextY + limitY;
-            nextY = -limitY;
-        }
-        else if (nextY > limitY)
-        {
-            overflowY = nextY - limitY;
-            nextY = limitY;
-        }
-
-        m_AimX = nextX;
-        m_AimY = nextY;
+        m_AimX = clampedX;
+        m_AimY = clampedY;
 
         if (overflowX != 0.0)
         {

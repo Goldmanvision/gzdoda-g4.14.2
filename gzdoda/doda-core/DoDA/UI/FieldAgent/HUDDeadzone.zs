@@ -86,6 +86,6 @@ class DoDAHUDDeadzone : Object
         Screen.DrawThickLine(centerX, centerY - 4, centerX, centerY + 4, 1, centerColor);
 
         Screen.DrawThickLine(int(dotX - 3), int(dotY), int(dotX + 3), int(dotY), 2, dotColor);
-        Screen.DrawThickLine(int(dotX), int(dotY - 3), int(dotX), int(dotY + 3), 2, dotColor);
+        Screen.DrawThickLine(int(dotX), int(dotY - 3), int(dotY + 3), int(dotY + 3), 2, dotColor);
     }
 }

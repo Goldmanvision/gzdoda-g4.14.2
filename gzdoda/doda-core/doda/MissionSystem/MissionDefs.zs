@@ -82,16 +82,30 @@ class DoDAMissionDefs : Object
         return null;
     }
 
-    static bool IsObjectiveActive(int missionIndex, EDoDAObjectiveId objectiveId, String mapName)
+    static bool IsObjectiveActive(
+        int missionIndex,
+        EDoDAObjectiveId objectiveId,
+        String mapName
+    )
     {
-        DoDAMissionDef def = GetDefForIndex(missionIndex);
+        DoDAMissionDef missionDef = GetDefForIndex(missionIndex);
 
-        if (def == null)
+        if (missionDef == null)
         {
             return false;
         }
 
-        return def.ObjectiveId == objectiveId && def.FieldMap == mapName;
+        if (missionDef.ObjectiveId != objectiveId)
+        {
+            return false;
+        }
+
+        if (missionDef.FieldMap != mapName)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     static String GetMissionNameText(int missionIndex)
