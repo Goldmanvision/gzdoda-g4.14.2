@@ -32,11 +32,17 @@ class DoDAMissionTerminal : Actor
             return false;
         }
 
-        if (campaignState.NextMissionIndex != 1 || level.MapName != "MAP01")
+        int missionId = campaignState.NextMissionIndex;
+
+        if (!DoDAMissionDefs.IsObjectiveActive(
+            missionId,
+            DODTerminal,
+            level.MapName
+        ))
         {
             Console.Printf(
                 "DoDA: Terminal inactive for mission index %d.",
-                campaignState.NextMissionIndex
+                missionId
             );
 
             Console.MidPrint(

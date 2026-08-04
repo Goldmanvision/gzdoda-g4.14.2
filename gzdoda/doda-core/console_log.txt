@@ -1,4 +1,4 @@
-Log started: 2026-08-03 23:47:22
+Log started: 2026-08-03 23:57:55
 GZDoom version <unknown version>
 W_Init: Init WADfiles.
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/gzdoom.pk3, 709 lumps
@@ -38,7 +38,7 @@ G_ParseMapInfo: Load map definitions.
 Texman.Init: Init texture manager.
 ParseTeamInfo: Load team definitions.
 LoadActors: Load actor definitions.
-script parsing took 530.25 ms
+script parsing took 578.31 ms
 R_Init: Init Doom refresh subsystem.
 DecalLibrary: Load decals.
 Adding dehacked patch freedoom2.wad:DEHACKED
@@ -74,10 +74,6 @@ DoDA: Terminal inactive for mission index 0.
 ----------------------------------------
 DODA_TERMINAL_INACTIVE
 ----------------------------------------
-DoDA: Extraction denied. Mission not complete.
-----------------------------------------
-Extraction LOCKED - complete your objective first.
-----------------------------------------
 DoDA: Informant used.
 ----------------------------------------
 INFORMANT: I have what you need.
@@ -88,10 +84,6 @@ DoDA Mission set to SUCCESS.
 DoDA Director [after CompleteMission] Map=MAP01 Save=0 Reopen=0 Result=3 Index=0 Progress=100 Phase=2 Name=Mission 01 Description=log evidence on LAPTOP.
 DoDA HUD Snapshot [after CompleteMission] Source=Director Map=MAP01 Mission=Mission 01 Status=3 Progress=100 Phase=2 Objective=log evidence on LAPTOP.
 DoDA HUD Snapshot [Draw source change] Source=MissionDirector Map=MAP01 MISSION: Mission 01 | STATUS: SUCCESS | PROGRESS: 100% | PHASE: EXTRACTION | OBJECTIVE: log evidence on LAPTOP.
-DoDA: Terminal inactive for mission index 0.
-----------------------------------------
-DODA_TERMINAL_INACTIVE
-----------------------------------------
 DoDA: Extraction authorized.
 ----------------------------------------
 Extraction is now AUTHORIZED.
@@ -121,10 +113,6 @@ DoDA: Terminal inactive for mission index 0.
 ----------------------------------------
 DODA_TERMINAL_INACTIVE
 ----------------------------------------
-DoDA: Informant inactive. Map=MAP02 MissionId=0
-----------------------------------------
-DODA_INACTIVE_OBJECTIVE
-----------------------------------------
 DoDA: No LastMissionReport found to clear on return to field.
 DoDA CampaignState advanced: Map=MAP02 NextMissionIndex=1
 DoDA: Returning to field.
@@ -148,10 +136,6 @@ Game saved.
 DoDA: Informant inactive. Map=MAP01 MissionId=1
 ----------------------------------------
 DODA_INACTIVE_OBJECTIVE
-----------------------------------------
-DoDA: Extraction denied. Mission not complete.
-----------------------------------------
-Extraction LOCKED - complete your objective first.
 ----------------------------------------
 DoDA: Mission terminal used.
 DoDA Director CompleteMission called.
@@ -189,6 +173,10 @@ DoDA: Terminal inactive for mission index 1.
 ----------------------------------------
 DODA_TERMINAL_INACTIVE
 ----------------------------------------
+DoDA: Informant inactive. Map=MAP02 MissionId=1
+----------------------------------------
+DODA_INACTIVE_OBJECTIVE
+----------------------------------------
 DoDA: No LastMissionReport found to clear on return to field.
 DoDA CampaignState advanced: Map=MAP02 NextMissionIndex=2
 DoDA: Returning to field.
@@ -209,14 +197,6 @@ DoDA Director [after initialization gate] Map=MAP01 Save=0 Reopen=0 Result=1 Ind
 DoDA HUD Snapshot [after WorldLoaded] Source=Director Map=MAP01 Mission=Mission 03 Status=1 Progress=0 Phase=1 Objective=secure the SECONDARY FILE.
 DoDA HUD Snapshot [Draw source change] Source=MissionDirector Map=MAP01 MISSION: Mission 03 | STATUS: PENDING | PROGRESS: 0% | PHASE: OBJECTIVE | OBJECTIVE: secure the SECONDARY FILE.
 Game saved.
-You got a pickup
-----------------------------------------
-A secret is revealed!
-----------------------------------------
-----------------------------------------
-DODA_INACTIVE_OBJECTIVE
-----------------------------------------
-DoDA: Mission pickup use denied. Map=MAP01 NextMissionIndex=2
 DoDA: Informant inactive. Map=MAP01 MissionId=2
 ----------------------------------------
 DODA_INACTIVE_OBJECTIVE
