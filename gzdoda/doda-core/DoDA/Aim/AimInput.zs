@@ -1,28 +1,23 @@
-/*//////////////////////////
+///////////////////////////
 // DoDA/Aim/AimInput.zs
-*///////////////////////////*/
+///////////////////////////
 
 class DoDAAimInput : StaticEventHandler
 {
     override void OnRegister()
     {
         RequireMouse = true;
+        IsUiProcessor = true;
         SetOrder(-100);
     }
 
-    override bool InputProcess(InputEvent e)
+    override bool UiProcess(UiEvent e)
     {
-        if (e.Type != InputEvent.Type_Mouse)
+        if (e.MouseX != 0 || e.MouseY != 0)
         {
-            return false;
+            EventHandler.SendNetworkEvent("DoDA_DeadzoneMouse", e.MouseX, e.MouseY);
         }
 
-        if (e.MouseX == 0 && e.MouseY == 0)
-        {
-            return false;
-        }
-
-        EventHandler.SendNetworkEvent("DoDA_DeadzoneMouse", e.MouseX, e.MouseY, 0);
-        return true;
+        return false;
     }
 }

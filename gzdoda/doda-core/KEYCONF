@@ -1,0 +1,11 @@
+/*//////////////////////////|
+// root/KEYCONF
+*///////////////////////////|
+
+// DoDA input bindings
+// Right mouse button toggles deadzone aim mode while held.
+
+addmenukey DoDA Aim Mode
+alias DoDA_AimMode "DoDA_SetDeadzone 1"
+alias -DoDA_AimMode "DoDA_SetDeadzone 0"
+bind mouse2 "DoDA_AimMode"

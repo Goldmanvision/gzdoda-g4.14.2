@@ -1,4 +1,8 @@
-class DoDAPistol : Weapon
+///////////////////////////
+// DoDA/WeaponSystem/WeaponBase.zs
+///////////////////////////
+
+class DoDAWeapon : Weapon
 {
     double camYaw;
     double camPitch;
@@ -47,6 +51,7 @@ class DoDAPistol : Weapon
 
     bool lastDebugPrintToggleState;
     bool deadzoneActiveHUD;
+    bool lastSentDeadzoneActive;
 
     double handDipAmount;
     int pendingHand;
@@ -68,15 +73,7 @@ class DoDAPistol : Weapon
 
     Default
     {
-        Weapon.SlotNumber 2;
-        Weapon.SelectionOrder 100;
-        Weapon.AmmoType "Clip";
-        Weapon.AmmoUse 1;
-        Weapon.AmmoGive 0;
-        Weapon.Kickback 100;
         +WEAPON.NOAUTOAIM;
-        Tag "DoDA Test Weapon";
-        Inventory.PickupMessage "Picked up the DoDA Test Weapon";
     }
 
     void PrintDebugSpriteOffsets()
@@ -193,6 +190,12 @@ class DoDAPistol : Weapon
         bool forceDeadzone = dbgDeadzone ? dbgDeadzone.GetBool() : false;
         bool deadzoneActive = realAltFire || forceDeadzone;
 
+        if (deadzoneActive != lastSentDeadzoneActive)
+        {
+            EventHandler.SendNetworkEvent("DoDA_SetDeadzone", deadzoneActive ? 1 : 0);
+            lastSentDeadzoneActive = deadzoneActive;
+        }
+
         deadzoneActiveHUD = deadzoneActive;
 
         bool holdingFire = (owner.player.cmd.buttons & BT_ATTACK) != 0;
@@ -212,14 +215,8 @@ class DoDAPistol : Weapon
 
         if (isLeaning)
         {
-            if (scrollUp && !wasScrollUp)
-            {
-                leanDistance = Clamp(leanDistance + scrollStep, minLeanDistance, maxLeanDistance);
-            }
-            if (scrollDown && !wasScrollDown)
-            {
-                leanDistance = Clamp(leanDistance - scrollStep, minLeanDistance, maxLeanDistance);
-            }
+            if (scrollUp && !wasScrollUp) leanDistance = Clamp(leanDistance + scrollStep, minLeanDistance, maxLeanDistance);
+            if (scrollDown && !wasScrollDown) leanDistance = Clamp(leanDistance - scrollStep, minLeanDistance, maxLeanDistance);
         }
         wasScrollUp = scrollUp;
         wasScrollDown = scrollDown;
@@ -228,18 +225,9 @@ class DoDAPistol : Weapon
         bool isCrouching = crouchAmount > 0.05;
 
         double sensMultiplier = baseSensitivity;
-        if (isLeaning)
-        {
-            sensMultiplier *= leanSensitivityMult;
-        }
-        if (isCrouching)
-        {
-            sensMultiplier *= crouchSensitivityMult;
-        }
-        if (isLeaning && isCrouching)
-        {
-            sensMultiplier *= bothSensitivityMult;
-        }
+        if (isLeaning) sensMultiplier *= leanSensitivityMult;
+        if (isCrouching) sensMultiplier *= crouchSensitivityMult;
+        if (isLeaning && isCrouching) sensMultiplier *= bothSensitivityMult;
         sensMultiplier = Clamp(sensMultiplier, minSensitivity, 1.0);
 
         if (!sensInitialized)
@@ -252,36 +240,24 @@ class DoDAPistol : Weapon
         double rawYawDelta = DeltaAngle(prevAngle, owner.angle);
         double rawPitchDelta = DeltaAngle(prevPitch, owner.pitch);
 
-        owner.A_SetViewAngle(prevAngle + (rawYawDelta * sensMultiplier));
-        owner.A_SetViewPitch(prevPitch + (rawPitchDelta * sensMultiplier));
+        owner.angle = prevAngle + (rawYawDelta * sensMultiplier);
+        owner.pitch = prevPitch + (rawPitchDelta * sensMultiplier);
 
         prevAngle = owner.angle;
         prevPitch = owner.pitch;
 
         double moveMultiplier = baseMoveMult;
-        if (isCrouching)
-        {
-            moveMultiplier *= crouchMoveMult;
-        }
-        if (isLeaning)
-        {
-            moveMultiplier *= leanMoveMult;
-        }
-        owner.A_SetSpeed(moveMultiplier);
+        if (isCrouching) moveMultiplier *= crouchMoveMult;
+        if (isLeaning) moveMultiplier *= leanMoveMult;
+        owner.Speed = moveMultiplier;
 
         double effectiveYawDeadzone = baseYawDeadzone + (crouchYawBonus * crouchAmount);
         double effectivePitchDeadzone = basePitchDeadzone;
         double effectiveZoomFOV = zoomedFOV - (crouchZoomBonus * crouchAmount);
 
         double targetLean = 0.0;
-        if (leaningLeft && !leaningRight)
-        {
-            targetLean = -1.0;
-        }
-        if (leaningRight && !leaningLeft)
-        {
-            targetLean = 1.0;
-        }
+        if (leaningLeft && !leaningRight) targetLean = -1.0;
+        if (leaningRight && !leaningLeft) targetLean = 1.0;
 
         leanAmount = leanAmount + ((targetLean - leanAmount) * leanSmoothing);
 
@@ -380,10 +356,7 @@ class DoDAPistol : Weapon
 
         wasDeadzoneActive = deadzoneActive;
 
-        if (fireLockTics > 0)
-        {
-            fireLockTics--;
-        }
+        if (fireLockTics > 0) fireLockTics--;
 
         CVar devSwapCvar = CVar.GetCVar('dev_swaphand', owner.player);
         bool devSwapNow = devSwapCvar ? devSwapCvar.GetBool() : false;
@@ -451,8 +424,7 @@ class DoDAPistol : Weapon
 
         pendingHand = hasLatchedSwap ? latchedHand : Hand_Right;
 
-        if (
-            deadzoneActive != lastLoggedDeadzoneActive
+        if (deadzoneActive != lastLoggedDeadzoneActive
             || weaponhand != lastLoggedHand
             || pendingHand != lastLoggedPendingHand
             || latchedHand != lastLoggedLatchedHand
@@ -460,8 +432,7 @@ class DoDAPistol : Weapon
             || leanSwapActive != lastLoggedLeanSwapActive
             || leaningLeftPressed
             || leaningRightPressed
-            || devSwapPressed
-        )
+            || devSwapPressed)
         {
             PrintSwapDebug(
                 deadzoneActive,
@@ -489,15 +460,6 @@ class DoDAPistol : Weapon
                 if (handDipAmount >= 1.0)
                 {
                     weaponhand = pendingHand;
-
-                    Console.Printf(
-                        "HANDCOMMIT hand=%d pending=%d latched=%d deadzone=%d yawGap=%.2f",
-                        weaponhand,
-                        pendingHand,
-                        latchedHand,
-                        deadzoneActive ? 1 : 0,
-                        yawGap
-                    );
                 }
             }
             else
@@ -526,10 +488,7 @@ class DoDAPistol : Weapon
 
         double tilt = tiltMagnitude * tiltSign;
         tilt = -tilt;
-        if (flipNow)
-        {
-            tilt = -tilt;
-        }
+        if (flipNow) tilt = -tilt;
 
         double handXOffset = flipNow ? -baseSpriteXOffset : baseSpriteXOffset;
         double appliedRestOffset = flipNow ? (-restXOffset + offhandFineTune) : restXOffset;
@@ -549,10 +508,7 @@ class DoDAPistol : Weapon
         debugSpriteRot = dbgRot ? dbgRot.GetFloat() : 0.0;
         debugSpriteScale = dbgScale ? dbgScale.GetFloat() : 1.0;
 
-        if (debugSpriteScale < 0.05)
-        {
-            debugSpriteScale = 0.05;
-        }
+        if (debugSpriteScale < 0.05) debugSpriteScale = 0.05;
 
         bool printNow = dbgPrint ? dbgPrint.GetBool() : false;
         if (printNow != lastDebugPrintToggleState)
@@ -564,20 +520,32 @@ class DoDAPistol : Weapon
             }
         }
 
-        owner.A_OverlayOffset(PSP_WEAPON, lastSpriteX + debugSpriteX, lastSpriteY + debugSpriteY, 0);
-        owner.A_SetSpriteAngle(lastRotation + debugSpriteRot, AAPTR_DEFAULT);
-
         if (firePressed && fireLockTics <= 0)
         {
-            SetStateLabel("Fire");
+            owner.player.SetPSprite(PSP_WEAPON, ResolveState("Fire"));
         }
 
-        if (owner.player.cmd.buttons & BT_ATTACK)
+        PSprite finalWeaponLayer = owner.player.GetPSprite(PSP_WEAPON);
+        if (finalWeaponLayer)
         {
-            if (fireLockTics <= 0)
+            State readyState = ResolveState("Ready");
+            if (finalWeaponLayer.CurState == readyState)
             {
-                owner.player.SetPSprite(PSP_WEAPON, ResolveState("Fire"));
+                finalWeaponLayer.frame = 0;
             }
+
+            double finalX = lastSpriteX + debugSpriteX;
+            double finalY = lastSpriteY + debugSpriteY;
+            double finalRot = lastRotation + debugSpriteRot;
+
+            finalWeaponLayer.x = finalX;
+            finalWeaponLayer.y = finalY;
+            finalWeaponLayer.bFlip = flipNow;
+            finalWeaponLayer.rotation = finalRot;
+            finalWeaponLayer.HAlign = PSPA_CENTER;
+            finalWeaponLayer.VAlign = PSPA_CENTER;
+            finalWeaponLayer.bPivotPercent = true;
+            finalWeaponLayer.pivot = (0.5, 0.5);
         }
     }
 
@@ -591,11 +559,8 @@ class DoDAPistol : Weapon
         bool deadzoneActive = realAltFire || forceDeadzone;
 
         double spread = deadzoneActive ? invoker.deadzoneSpread : invoker.hipfireSpread;
-        bool isOffhand = (invoker.weaponhand == Hand_Left);
-        if (isOffhand)
-        {
-            spread *= invoker.offhandSpreadMult;
-        }
+        bool isOffhand = (invoker.weaponhand == invoker.Hand_Left);
+        if (isOffhand) spread *= invoker.offhandSpreadMult;
 
         double randAngle = FRandom[DoDASpread](0.0, 360.0);
         double randRadius = FRandom[DoDASpread](0.0, spread);
@@ -603,7 +568,7 @@ class DoDAPistol : Weapon
         double fireYaw = invoker.owner.angle + (cos(randAngle) * randRadius);
         double firePitch = invoker.owner.pitch + (sin(randAngle) * randRadius);
 
-        invoker.A_StartSound("weapons/pistol", CHAN_WEAPON);
+        A_StartSound("weapons/pistol", CHAN_WEAPON);
 
         FLineTraceData trace;
         double attackZ =
@@ -629,7 +594,7 @@ class DoDAPistol : Weapon
 
         if (trace.HitType == TRACE_HitWall || trace.HitType == TRACE_HitFloor || trace.HitType == TRACE_HitCeiling)
         {
-            invoker.Spawn("BulletPuff", trace.HitLocation);
+            Spawn("BulletPuff", trace.HitLocation);
             return;
         }
 
@@ -644,38 +609,7 @@ class DoDAPistol : Weapon
             int damage = headshot ? 35 : 10;
 
             target.DamageMobj(invoker.owner, invoker.owner, damage, 'Hitscan');
-            invoker.Spawn("BulletPuff", trace.HitLocation);
+            Spawn("BulletPuff", trace.HitLocation);
         }
-    }
-
-    states
-    {
-    Spawn:
-        B92L G -1;
-        Stop;
-
-    Ready:
-        B92L G 1 A_WeaponReady(WRF_NOFIRE);
-        Loop;
-
-    Deselect:
-        B92L G 1 A_Lower;
-        Loop;
-
-    Select:
-        B92L G 1 A_Raise;
-        Loop;
-
-    Fire:
-        B92L A 1;
-        B92L B 1 Bright
-        {
-            DoDA_FireTrace();
-        }
-        B92L C 1;
-		B92L D 1;
-		B92L F 1;
-        B92L B 1 A_ReFire;
-        Goto Ready;
     }
 }

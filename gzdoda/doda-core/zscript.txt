@@ -3,31 +3,34 @@
 *///////////////////////////|
 version "2.4"
 
+#include "DoDA/Aim/DeadzoneController.zs"
+#include "DoDA/Aim/AimInput.zs"
 #include "DoDA/FieldAgent.zs"
 
-#include "DoDA/WeaponSystem/WeaponBase.zs"
-
-#include "DoDA/Aim/AimInput.zs"
-#include "DoDA/Aim/AimReceiver.zs"
-#include "DoDA/Aim/DeadzoneController.zs"
-
-#include "DoDA/UI/FieldAgent/HUD.zs"
+#include "DoDA/UI/FieldAgent/HUDDeadzoneBridge.zs"
 #include "DoDA/UI/FieldAgent/HUDTapline.zs"
 #include "DoDA/UI/FieldAgent/HUDDeadzone.zs"
+#include "DoDA/UI/FieldAgent/HUD.zs"
+
+#include "DoDA/WeaponSystem/WeaponBase.zs"
+#include "DoDA/WeaponSystem/Weapons/Pistols/PistolBase.zs"
+#include "DoDA/WeaponSystem/Weapons/Pistols/B92Left.zs"
+#include "DoDA/WeaponSystem/Weapons/Pistols/B92Right.zs"
 
 #include "DoDA/MissionSystem/MissionIds.zs"
 #include "DoDA/MissionSystem/ObjectiveIds.zs"
 #include "DoDA/MissionSystem/MissionDefs.zs"
-
 #include "DoDA/MissionSystem/MissionState.zs"
-#include "DoDA/MissionSystem/MissionManager.zs"
 #include "DoDA/MissionSystem/CampaignState.zs"
-#include "DoDA/MissionSystem/MissionDirector.zs"
 #include "DoDA/MissionSystem/LastMissionReport.zs"
+#include "DoDA/MissionSystem/MissionManager.zs"
+#include "DoDA/MissionSystem/MissionDirector.zs"
 #include "DoDA/MissionSystem/DebugTrigger.zs"
 
-#include "DoDA/MissionSystem/Things/MissionCompletePickup.zs"
+#include "DoDA/MissionSystem/Things/MissionPickupMarkers.zs"
+#include "DoDA/MissionSystem/Things/ObjectivePickup.zs"
+#include "DoDA/MissionSystem/Things/MissionPickup.zs"
 #include "DoDA/MissionSystem/Things/MissionInteractable.zs"
 #include "DoDA/MissionSystem/Things/MissionTerminal.zs"
 #include "DoDA/MissionSystem/Things/ExtractionInteractable.zs"
-#include "DoDA/MissionSystem/Things/DebriefContinueInteractable.zs"
+#include "DoDA/MissionSystem/Things/DeployMissionInteractable.zs"

@@ -1,8 +1,8 @@
 /*//////////////////////////|
-// DoDA/MissionSystem/Things/DebriefContinueInteractable.zs
+// DoDA/MissionSystem/Things/DeployMissionInteractable.zs
 *///////////////////////////|*/
 
-class DoDADebriefContinueInteractable : Actor
+class DoDADeployMissionInteractable : Actor
 {
     bool Activated;
 

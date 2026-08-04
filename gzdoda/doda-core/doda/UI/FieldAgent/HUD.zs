@@ -1,11 +1,6 @@
-/*//////////////////////////|
+///////////////////////////
 // DoDA/UI/FieldAgent/HUD.zs
-//
-// HUD compositor.
-// This is the one and only StatusBarClass.
-// It owns no mission logic and no deadzone logic.
-// It only coordinates draw modules.
-*///////////////////////////|*/
+///////////////////////////
 
 class DoDAHUD : BaseStatusBar
 {
@@ -29,9 +24,27 @@ class DoDAHUD : BaseStatusBar
             m_Tapline.DrawTapline(CPlayer);
         }
 
-        if (m_Deadzone != null)
+        if (m_Deadzone != null && CPlayer != null && CPlayer.mo != null)
         {
-            m_Deadzone.DrawDeadzone(CPlayer);
+            bool active = DeadzoneHUDBridge.IsDeadzoneAimActive();
+            double deadzoneX = DeadzoneHUDBridge.GetDeadzoneX();
+            double deadzoneY = DeadzoneHUDBridge.GetDeadzoneY();
+            double yawLimit = DeadzoneHUDBridge.GetDeadzoneYawLimit();
+            double pitchLimit = DeadzoneHUDBridge.GetDeadzonePitchLimit();
+            double fov = CPlayer.FOV;
+            int screenWidth = Screen.GetWidth();
+            int screenHeight = Screen.GetHeight();
+
+            m_Deadzone.DrawDeadzone(
+                active,
+                deadzoneX,
+                deadzoneY,
+                yawLimit,
+                pitchLimit,
+                fov,
+                screenWidth,
+                screenHeight
+            );
         }
     }
 }
