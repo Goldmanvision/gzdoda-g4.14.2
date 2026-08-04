@@ -34,7 +34,13 @@ class DoDAMissionCompletePickup : Inventory
             return false;
         }
 
-        if (level.MapName != "MAP01")
+        int missionId = campaignState.GetNextMissionIndex();
+
+        if (!DoDAMissionDefs.IsObjectiveActive(
+            missionId,
+            DODSecondaryFile,
+            level.MapName
+        ))
         {
             Console.MidPrint(
                 Font.GetFont("SmallFont"),
@@ -45,24 +51,7 @@ class DoDAMissionCompletePickup : Inventory
             Console.Printf(
                 "DoDA: Mission pickup use denied. Map=%s NextMissionIndex=%d",
                 level.MapName,
-                campaignState.GetNextMissionIndex()
-            );
-
-            return false;
-        }
-
-        if (campaignState.GetNextMissionIndex() < 0 || campaignState.GetNextMissionIndex() > 1)
-        {
-            Console.MidPrint(
-                Font.GetFont("SmallFont"),
-                "$DODA_INACTIVE_OBJECTIVE",
-                true
-            );
-
-            Console.Printf(
-                "DoDA: Mission pickup use denied. Map=%s NextMissionIndex=%d",
-                level.MapName,
-                campaignState.GetNextMissionIndex()
+                missionId
             );
 
             return false;

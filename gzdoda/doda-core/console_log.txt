@@ -1,4 +1,4 @@
-Log started: 2026-08-03 23:57:55
+Log started: 2026-08-04 00:03:06
 GZDoom version <unknown version>
 W_Init: Init WADfiles.
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/gzdoom.pk3, 709 lumps
@@ -38,7 +38,7 @@ G_ParseMapInfo: Load map definitions.
 Texman.Init: Init texture manager.
 ParseTeamInfo: Load team definitions.
 LoadActors: Load actor definitions.
-script parsing took 578.31 ms
+script parsing took 651.19 ms
 R_Init: Init Doom refresh subsystem.
 DecalLibrary: Load decals.
 Adding dehacked patch freedoom2.wad:DEHACKED
@@ -70,10 +70,14 @@ DoDA HUD Snapshot [after WorldLoaded] Source=Director Map=MAP01 Mission=Mission 
 SWAP deadzone=0 lean=0 leanL=0 leanR=0 pressL=0 pressR=0 dev=0 yawGap=0.00 hand=1 pending=1 latched=1 hasLatch=0 leanSwap=0 leanLock=1 fireLock=0
 DoDA CampaignState observed: Map=MAP01 NextMissionIndex=0 OwnerClass=FieldAgent
 DoDA HUD Snapshot [Draw source change] Source=MissionDirector Map=MAP01 MISSION: Mission 01 | STATUS: PENDING | PROGRESS: 0% | PHASE: OBJECTIVE | OBJECTIVE: talk to INFORMANT.
-DoDA: Terminal inactive for mission index 0.
+You got a pickup
 ----------------------------------------
-DODA_TERMINAL_INACTIVE
+A secret is revealed!
 ----------------------------------------
+----------------------------------------
+DODA_INACTIVE_OBJECTIVE
+----------------------------------------
+DoDA: Mission pickup use denied. Map=MAP01 NextMissionIndex=0
 DoDA: Informant used.
 ----------------------------------------
 INFORMANT: I have what you need.
@@ -84,6 +88,10 @@ DoDA Mission set to SUCCESS.
 DoDA Director [after CompleteMission] Map=MAP01 Save=0 Reopen=0 Result=3 Index=0 Progress=100 Phase=2 Name=Mission 01 Description=log evidence on LAPTOP.
 DoDA HUD Snapshot [after CompleteMission] Source=Director Map=MAP01 Mission=Mission 01 Status=3 Progress=100 Phase=2 Objective=log evidence on LAPTOP.
 DoDA HUD Snapshot [Draw source change] Source=MissionDirector Map=MAP01 MISSION: Mission 01 | STATUS: SUCCESS | PROGRESS: 100% | PHASE: EXTRACTION | OBJECTIVE: log evidence on LAPTOP.
+DoDA: Terminal inactive for mission index 0.
+----------------------------------------
+DODA_TERMINAL_INACTIVE
+----------------------------------------
 DoDA: Extraction authorized.
 ----------------------------------------
 Extraction is now AUTHORIZED.
@@ -105,6 +113,10 @@ DEBRIEF - mission recorded.
 DoDA Debrief confirmation displayed.
 DoDA HUD Snapshot [Draw source change] Source=DebriefCleared Map=MAP02 MISSION: DEBRIEF CLOSED | STATUS: RETURNED TO FIELD | PROGRESS: 0% | PHASE: COMPLETE | OBJECTIVE: await new deployment.
 Game saved.
+DoDA: Informant inactive. Map=MAP02 MissionId=0
+----------------------------------------
+DODA_INACTIVE_OBJECTIVE
+----------------------------------------
 DoDA: Informant inactive. Map=MAP02 MissionId=0
 ----------------------------------------
 DODA_INACTIVE_OBJECTIVE
@@ -133,6 +145,10 @@ DoDA Director [after initialization gate] Map=MAP01 Save=0 Reopen=0 Result=1 Ind
 DoDA HUD Snapshot [after WorldLoaded] Source=Director Map=MAP01 Mission=Mission 02 Status=1 Progress=0 Phase=1 Objective=collect evidence from TERMINAL.
 DoDA HUD Snapshot [Draw source change] Source=MissionDirector Map=MAP01 MISSION: Mission 02 | STATUS: PENDING | PROGRESS: 0% | PHASE: OBJECTIVE | OBJECTIVE: collect evidence from TERMINAL.
 Game saved.
+----------------------------------------
+DODA_INACTIVE_OBJECTIVE
+----------------------------------------
+DoDA: Mission pickup use denied. Map=MAP01 NextMissionIndex=1
 DoDA: Informant inactive. Map=MAP01 MissionId=1
 ----------------------------------------
 DODA_INACTIVE_OBJECTIVE
@@ -197,11 +213,87 @@ DoDA Director [after initialization gate] Map=MAP01 Save=0 Reopen=0 Result=1 Ind
 DoDA HUD Snapshot [after WorldLoaded] Source=Director Map=MAP01 Mission=Mission 03 Status=1 Progress=0 Phase=1 Objective=secure the SECONDARY FILE.
 DoDA HUD Snapshot [Draw source change] Source=MissionDirector Map=MAP01 MISSION: Mission 03 | STATUS: PENDING | PROGRESS: 0% | PHASE: OBJECTIVE | OBJECTIVE: secure the SECONDARY FILE.
 Game saved.
+DoDA: Mission item used from player inventory.
+DoDA Director CompleteMission called.
+DoDA Director [before CompleteMission] Map=MAP01 Save=0 Reopen=0 Result=1 Index=2 Progress=0 Phase=1 Name=Mission 03 Description=secure the SECONDARY FILE.
+DoDA Mission set to SUCCESS.
+DoDA Director [after CompleteMission] Map=MAP01 Save=0 Reopen=0 Result=3 Index=2 Progress=100 Phase=2 Name=Mission 03 Description=log evidence on LAPTOP.
+DoDA HUD Snapshot [after CompleteMission] Source=Director Map=MAP01 Mission=Mission 03 Status=3 Progress=100 Phase=2 Objective=log evidence on LAPTOP.
+----------------------------------------
+Mission complete - exfiltrate now.
+----------------------------------------
+DoDA HUD Snapshot [Draw source change] Source=MissionDirector Map=MAP01 MISSION: Mission 03 | STATUS: SUCCESS | PROGRESS: 100% | PHASE: EXTRACTION | OBJECTIVE: log evidence on LAPTOP.
+You got a pickup
+----------------------------------------
+A secret is revealed!
+----------------------------------------
+DoDA: Mission pickup ignored. Mission already complete.
 DoDA: Informant inactive. Map=MAP01 MissionId=2
 ----------------------------------------
 DODA_INACTIVE_OBJECTIVE
 ----------------------------------------
 DoDA: Terminal inactive for mission index 2.
+----------------------------------------
+DODA_TERMINAL_INACTIVE
+----------------------------------------
+DoDA: Extraction authorized.
+----------------------------------------
+Extraction is now AUTHORIZED.
+----------------------------------------
+
+----------------------------------------
+
+MAP02 - DEBRIEF ROOM TEST
+
+DoDA Director WorldLoaded: Map=MAP02 Save=0 Reopen=0
+DoDA Director [before initialization gate] Map=MAP02 Save=0 Reopen=0 Result=0 Index=0 Progress=0 Phase=0 Name= Description=
+DoDA CampaignState initialized: Map=MAP02 NextMissionIndex=2
+DoDA Mission initialized as PENDING.
+DoDA Director [after initialization gate] Map=MAP02 Save=0 Reopen=0 Result=1 Index=2 Progress=0 Phase=1 Name=Mission 03 Description=secure the SECONDARY FILE.
+DoDA HUD Snapshot [after WorldLoaded] Source=Director Map=MAP02 Mission=Mission 03 Status=1 Progress=0 Phase=1 Objective=secure the SECONDARY FILE.
+----------------------------------------
+DEBRIEF - mission recorded.
+----------------------------------------
+DoDA Debrief confirmation displayed.
+DoDA HUD Snapshot [Draw source change] Source=DebriefCleared Map=MAP02 MISSION: DEBRIEF CLOSED | STATUS: RETURNED TO FIELD | PROGRESS: 0% | PHASE: COMPLETE | OBJECTIVE: await new deployment.
+Game saved.
+DoDA: Informant inactive. Map=MAP02 MissionId=2
+----------------------------------------
+DODA_INACTIVE_OBJECTIVE
+----------------------------------------
+DoDA: Terminal inactive for mission index 2.
+----------------------------------------
+DODA_TERMINAL_INACTIVE
+----------------------------------------
+DoDA: No LastMissionReport found to clear on return to field.
+DoDA CampaignState advanced: Map=MAP02 NextMissionIndex=3
+DoDA: Returning to field.
+----------------------------------------
+Returning to field...
+----------------------------------------
+DoDA CampaignState observed: Map=MAP02 NextMissionIndex=3 OwnerClass=FieldAgent
+
+----------------------------------------
+
+MAP01 - MISSION AREA TEST
+
+DoDA Director WorldLoaded: Map=MAP01 Save=0 Reopen=0
+DoDA Director [before initialization gate] Map=MAP01 Save=0 Reopen=0 Result=0 Index=0 Progress=0 Phase=0 Name= Description=
+DoDA CampaignState initialized: Map=MAP01 NextMissionIndex=3
+DoDA Mission initialized as PENDING.
+DoDA Director [after initialization gate] Map=MAP01 Save=0 Reopen=0 Result=1 Index=3 Progress=0 Phase=1 Name=Mission Description=complete the current objective.
+DoDA HUD Snapshot [after WorldLoaded] Source=Director Map=MAP01 Mission=Mission Status=1 Progress=0 Phase=1 Objective=complete the current objective.
+DoDA HUD Snapshot [Draw source change] Source=MissionDirector Map=MAP01 MISSION: Mission | STATUS: PENDING | PROGRESS: 0% | PHASE: OBJECTIVE | OBJECTIVE: complete the current objective.
+Game saved.
+----------------------------------------
+DODA_INACTIVE_OBJECTIVE
+----------------------------------------
+DoDA: Mission pickup use denied. Map=MAP01 NextMissionIndex=3
+DoDA: Informant inactive. Map=MAP01 MissionId=3
+----------------------------------------
+DODA_INACTIVE_OBJECTIVE
+----------------------------------------
+DoDA: Terminal inactive for mission index 3.
 ----------------------------------------
 DODA_TERMINAL_INACTIVE
 ----------------------------------------
