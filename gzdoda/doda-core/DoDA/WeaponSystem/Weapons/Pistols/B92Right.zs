@@ -1,20 +1,5 @@
-///////////////////////////
-// DoDA/WeaponSystem/Weapons/Pistols/B92Right.zs
-///////////////////////////
-
 class DoDAB92Right : DoDAPistol
 {
-    Default
-    {
-        Weapon.SlotNumber 3;
-        Weapon.SelectionOrder 100;
-        Weapon.AmmoType "Clip";
-        Weapon.AmmoUse 1;
-        +WEAPON.NOAUTOFIRE;
-        Tag "DoDA B92 Right";
-        Inventory.PickupMessage "Picked up the DoDA B92 Right";
-    }
-
     States
     {
     Spawn:
@@ -30,11 +15,23 @@ class DoDAB92Right : DoDAPistol
         Loop;
 
     Deselect:
-        B92R G 1 A_Lower;
+        B92R G 2 A_Lower;
+        B92R F 2 A_Lower;
+        B92R E 2 A_Lower;
+        B92R D 2 A_Lower;
+        B92R C 2 A_Lower;
+        B92R B 2 A_Lower;
+        B92R A 2 A_Lower;
         Loop;
 
     Select:
-        B92R G 1 A_Raise;
+        B92R A 2 A_Raise;
+        B92R B 2 A_Raise;
+        B92R C 2 A_Raise;
+        B92R D 2 A_Raise;
+        B92R E 2 A_Raise;
+        B92R F 2 A_Raise;
+        B92R G 2 A_Raise;
         Loop;
 
     Fire:

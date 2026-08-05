@@ -6,10 +6,9 @@ class DoDAHUDDeadzone : Object
 {
     void DrawDeadzone(
         bool active,
-        double deadzoneX,
-        double deadzoneY,
-        double yawLimit,
-        double pitchLimit,
+        double yawGap,
+        double pitchGap,
+        double deadzoneDegrees,
         double fov,
         int screenWidth,
         int screenHeight
@@ -25,14 +24,13 @@ class DoDAHUDDeadzone : Object
             return;
         }
 
-        double cx = screenWidth / 2.0;
-        double cy = screenHeight / 2.0;
-
         if (fov <= 1.0)
         {
             fov = 90.0;
         }
 
+        double cx = screenWidth * 0.3;
+        double cy = screenHeight * 0.3;
         double aspect = screenWidth / double(screenHeight);
         double refAspect = 4.0 / 3.0;
 
@@ -40,30 +38,18 @@ class DoDAHUDDeadzone : Object
         double halfFovYaw = ATan(Tan(halfFovBase) * (aspect / refAspect));
         double halfFovPitch = halfFovBase;
 
-        double dotX = cx + deadzoneX;
-        double dotY = cy + deadzoneY;
+        double dotX = cx - (Tan(yawGap) / Tan(halfFovYaw)) * cx;
+        double dotY = cy + (Tan(pitchGap) / Tan(halfFovPitch)) * cy;
 
-        double boxHalfWidth = (Tan(yawLimit) / Tan(halfFovYaw)) * cx;
-        double boxHalfHeight = (Tan(pitchLimit) / Tan(halfFovPitch)) * cy;
+        double boxHalfX = (Tan(deadzoneDegrees) / Tan(halfFovYaw)) * cx;
 
-        int left = int(cx - boxHalfWidth);
-        int right = int(cx + boxHalfWidth);
-        int top = int(cy - boxHalfHeight);
-        int bottom = int(cy + boxHalfHeight);
+        Color green = Color(0, 255, 0);
+        Color red = Color(255, 0, 0);
 
-        Color boxColor = Color(0, 255, 0);
-        Color centerColor = Color(96, 255, 96);
-        Color dotColor = Color(255, 0, 0);
+        Screen.DrawThickLine(int(cx - boxHalfX), 0, int(cx - boxHalfX), screenHeight, 2, green);
+        Screen.DrawThickLine(int(cx + boxHalfX), 0, int(cx + boxHalfX), screenHeight, 2, green);
 
-        Screen.DrawThickLine(left, top, right, top, 2, boxColor);
-        Screen.DrawThickLine(right, top, right, bottom, 2, boxColor);
-        Screen.DrawThickLine(right, bottom, left, bottom, 2, boxColor);
-        Screen.DrawThickLine(left, bottom, left, top, 2, boxColor);
-
-        Screen.DrawThickLine(int(cx - 4), int(cy), int(cx + 4), int(cy), 1, centerColor);
-        Screen.DrawThickLine(int(cx), int(cy - 4), int(cx), int(cy + 4), 1, centerColor);
-
-        Screen.DrawThickLine(int(dotX - 3), int(dotY), int(dotX + 3), int(dotY), 2, dotColor);
-        Screen.DrawThickLine(int(dotX), int(dotY - 3), int(dotX), int(dotY + 3), 2, dotColor);
+        Screen.DrawThickLine(int(dotX - 3), int(dotY), int(dotX + 3), int(dotY), 2, red);
+        Screen.DrawThickLine(int(dotX), int(dotY - 3), int(dotX), int(dotY + 3), 2, red);
     }
 }

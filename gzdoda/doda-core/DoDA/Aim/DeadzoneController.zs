@@ -17,8 +17,8 @@ class DoDADeadzoneController : StaticEventHandler
 
     override void OnRegister()
     {
-        DeadzoneYawLimit = 12.0;
-        DeadzonePitchLimit = 8.0;
+        DeadzoneYawLimit = 24.0;
+        DeadzonePitchLimit = 16.0;
         SetOrder(-90);
     }
 
@@ -77,8 +77,14 @@ class DoDADeadzoneController : StaticEventHandler
             return;
         }
 
-        YawGap = Clamp(YawGap + (PendingMouseX * 1.5), -DeadzoneYawLimit, DeadzoneYawLimit);
-        PitchGap = Clamp(PitchGap + (PendingMouseY * 1.5), -DeadzonePitchLimit, DeadzonePitchLimit);
+        double mouseScale = 0.85;
+        double smoothing = 0.55;
+
+        double targetYaw = Clamp(YawGap + (PendingMouseX * mouseScale), -DeadzoneYawLimit, DeadzoneYawLimit);
+        double targetPitch = Clamp(PitchGap + (PendingMouseY * mouseScale), -DeadzonePitchLimit, DeadzonePitchLimit);
+
+        YawGap = YawGap + ((targetYaw - YawGap) * smoothing);
+        PitchGap = PitchGap + ((targetPitch - PitchGap) * smoothing);
 
         PendingMouseX = 0.0;
         PendingMouseY = 0.0;
