@@ -8,7 +8,8 @@ class DoDAHUDDeadzone : Object
         bool active,
         double yawGap,
         double pitchGap,
-        double deadzoneDegrees,
+        double yawLimit,
+        double pitchLimit,
         double fov,
         int screenWidth,
         int screenHeight
@@ -29,27 +30,95 @@ class DoDAHUDDeadzone : Object
             fov = 90.0;
         }
 
-        double cx = screenWidth * 0.3;
-        double cy = screenHeight * 0.3;
-        double aspect = screenWidth / double(screenHeight);
+        let [viewX, viewY, viewWidth, viewHeight] =
+            Screen.GetViewWindow();
+
+        if (viewWidth <= 0 || viewHeight <= 0)
+        {
+            return;
+        }
+
+        double halfViewWidth = viewWidth * 0.5;
+        double halfViewHeight = viewHeight * 0.5;
+
+        double cx = viewX + halfViewWidth;
+        double cy = viewY + halfViewHeight;
+
+        double aspect = viewWidth / double(viewHeight);
         double refAspect = 4.0 / 3.0;
 
         double halfFovBase = fov * 0.5;
-        double halfFovYaw = ATan(Tan(halfFovBase) * (aspect / refAspect));
-        double halfFovPitch = halfFovBase;
+        double halfFovYaw = ATan(
+            Tan(halfFovBase) * (aspect / refAspect)
+        );
 
-        double dotX = cx - (Tan(yawGap) / Tan(halfFovYaw)) * cx;
-        double dotY = cy + (Tan(pitchGap) / Tan(halfFovPitch)) * cy;
+        double halfFovPitch = ATan(
+            Tan(halfFovYaw) / aspect
+        );
 
-        double boxHalfX = (Tan(deadzoneDegrees) / Tan(halfFovYaw)) * cx;
+        // Signed FieldAgent/fire-trace contract:
+        // negative yaw = right on screen;
+        // positive pitch = down on screen.
+        double dotX = cx
+            - (Tan(yawGap) / Tan(halfFovYaw)) * halfViewWidth;
 
-        Color green = Color(0, 255, 0);
-        Color red = Color(255, 0, 0);
+        double dotY = cy
+            + (Tan(pitchGap) / Tan(halfFovPitch)) * halfViewHeight;
 
-        Screen.DrawThickLine(int(cx - boxHalfX), 0, int(cx - boxHalfX), screenHeight, 2, green);
-        Screen.DrawThickLine(int(cx + boxHalfX), 0, int(cx + boxHalfX), screenHeight, 2, green);
+        double boxHalfX = (
+            Tan(yawLimit) / Tan(halfFovYaw)
+        ) * halfViewWidth;
 
-        Screen.DrawThickLine(int(dotX - 3), int(dotY), int(dotX + 3), int(dotY), 2, red);
-        Screen.DrawThickLine(int(dotX), int(dotY - 3), int(dotX), int(dotY + 3), 2, red);
+        double boxHalfY = (
+            Tan(pitchLimit) / Tan(halfFovPitch)
+        ) * halfViewHeight;
+
+        int left = int(cx - boxHalfX);
+        int top = int(cy - boxHalfY);
+        int width = int(boxHalfX * 2.0);
+        int height = int(boxHalfY * 2.0);
+
+        Screen.Dim(Color(0, 255, 0), 0.20, left, top, width, 2);
+        Screen.Dim(
+            Color(0, 255, 0),
+            0.20,
+            left,
+            top + height - 2,
+            width,
+            2
+        );
+
+        Screen.Dim(Color(0, 255, 0), 0.15, left, top, 2, height);
+        Screen.Dim(
+            Color(0, 255, 0),
+            0.15,
+            left + width - 2,
+            top,
+            2,
+            height
+        );
+
+        // Bright, small red X reticle.
+        int reticleX = int(dotX);
+        int reticleY = int(dotY);
+        Color reticleColor = Color(255, 32, 32);
+
+        Screen.DrawThickLine(
+            reticleX - 4,
+            reticleY - 4,
+            reticleX + 4,
+            reticleY + 4,
+            2,
+            reticleColor
+        );
+
+        Screen.DrawThickLine(
+            reticleX + 4,
+            reticleY - 4,
+            reticleX - 4,
+            reticleY + 4,
+            2,
+            reticleColor
+        );
     }
 }

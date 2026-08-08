@@ -7,7 +7,7 @@ gameinfo
 {
     PlayerClasses = "FieldAgent"
     StatusBarClass = "DoDAHUD"
-    AddEventHandlers = "DoDAMissionDirector", "DoDAAimInput", "DoDADeadzoneController"
+    AddEventHandlers = "DoDAMissionDirector", "DoDAAimInput"
 
     TitlePage = "DODABG3"
     CreditPage = "DODABG1"

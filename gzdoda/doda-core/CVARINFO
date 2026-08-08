@@ -1,11 +1,21 @@
 /*//////////////////////////|
 // root/CVARINFO
 *///////////////////////////|
-// DoDA deadzone tuning
 
-user float doda_deadzone_yaw_limit = 12.0;
-user float doda_deadzone_pitch_limit = 8.0;
-user float doda_camera_ease = 0.20;
-user float doda_gap_ease = 0.35;
-user bool doda_deadzone_enabled = false;
-user bool doda_camera_priority = false;
+// Active deadzone aim input.
+user float doda_aim_sensitivity = 0.20;
+user float doda_raw_mouse_x = 0.0;
+user float doda_raw_mouse_y = 0.0;
+
+// Deadzone development controls.
+user bool doda_debug_force_deadzone = false;
+
+// Weapon presentation development controls.
+user float doda_debug_sprite_x = 0.0;
+user float doda_debug_sprite_y = 0.0;
+user float doda_debug_sprite_rot = 0.0;
+user float doda_debug_sprite_scale = 1.0;
+user bool doda_debug_print_now = false;
+
+// Weapon-hand development control.
+user bool dev_swaphand = false;

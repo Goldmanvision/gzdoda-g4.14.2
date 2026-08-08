@@ -2,7 +2,7 @@
 // DoDA/Aim/AimInput.zs
 ///////////////////////////
 
-class DoDAAimInput : StaticEventHandler
+class DoDAAimInput : EventHandler
 {
     override void OnRegister()
     {
@@ -17,22 +17,43 @@ class DoDAAimInput : StaticEventHandler
             return false;
         }
 
-        let controller = DoDADeadzoneController(EventHandler.Find("DoDADeadzoneController"));
-        if (controller == null)
+        if (e.MouseX == 0 && e.MouseY == 0)
         {
             return false;
         }
 
-        if (!controller.IsDeadzoneAimActive())
+        let agent = FieldAgent(players[consoleplayer].mo);
+
+        if (agent == null || !agent.IsDeadzoneAimActive())
         {
             return false;
         }
 
-        if (e.MouseX != 0 || e.MouseY != 0)
+        CVar mouseXCVar = CVar.GetCVar(
+            'doda_raw_mouse_x',
+            players[consoleplayer]
+        );
+
+        CVar mouseYCVar = CVar.GetCVar(
+            'doda_raw_mouse_y',
+            players[consoleplayer]
+        );
+
+        if (mouseXCVar)
         {
-            EventHandler.SendNetworkEvent("DoDA_DeadzoneMouse", e.MouseX, e.MouseY);
+            mouseXCVar.SetFloat(
+                mouseXCVar.GetFloat() + e.MouseX
+            );
         }
 
+        if (mouseYCVar)
+        {
+            mouseYCVar.SetFloat(
+                mouseYCVar.GetFloat() + e.MouseY
+            );
+        }
+
+        // FieldAgent consumes these values and applies deadzone/overflow motion.
         return true;
     }
 }
