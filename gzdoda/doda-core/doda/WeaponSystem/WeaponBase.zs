@@ -156,7 +156,7 @@ class DoDAWeapon : Weapon
 
         let pawn = PlayerPawn(owner);
 
-        if (pawn == null)
+        if (pawn == null || pawn.health <= 0)
         {
             return;
         }
@@ -405,7 +405,11 @@ class DoDAWeapon : Weapon
             }
         }
 
-        if (!readyWasSelf || weaponSprite == null)
+        if (
+            !readyWasSelf
+            || weaponSprite == null
+            || weaponSprite.CurState == null
+        )
         {
             return;
         }
@@ -448,6 +452,17 @@ class DoDAWeapon : Weapon
 
     action void DoDA_FireTrace()
     {
+        if (
+            invoker == null
+            || invoker.owner == null
+            || invoker.owner.player == null
+            || invoker.owner.health <= 0
+            || invoker.owner.player.mo == null
+        )
+        {
+            return;
+        }
+
         invoker.fireLockTics = 9;
 
         let agent = FieldAgent(invoker.owner);
@@ -502,6 +517,10 @@ class DoDAWeapon : Weapon
             + invoker.owner.player.mo.AttackZOffset
                 * invoker.owner.player.crouchFactor;
 
+        double leanOffset = invoker.leanController != null
+            ? invoker.leanController.GetAppliedOffset()
+            : 0.0;
+
         bool hit = invoker.owner.LineTrace(
             fireYaw,
             2048.0,
@@ -509,7 +528,7 @@ class DoDAWeapon : Weapon
             0,
             attackZ,
             0.0,
-            invoker.leanController.GetAppliedOffset(),
+            leanOffset,
             trace
         );
 

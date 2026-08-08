@@ -33,12 +33,45 @@ class FieldAgent : DoomPlayer
         DeadzonePitchLimit = 8.0;
     }
 
+    void ResetDeadzoneAim()
+    {
+        DeadzoneAimActive = false;
+        ReticleYawOffset = 0.0;
+        ReticlePitchOffset = 0.0;
+        SmoothedMouseX = 0.0;
+        SmoothedMouseY = 0.0;
+
+        if (player == null)
+        {
+            return;
+        }
+
+        CVar mouseXCVar = CVar.GetCVar('doda_raw_mouse_x', player);
+        CVar mouseYCVar = CVar.GetCVar('doda_raw_mouse_y', player);
+
+        if (mouseXCVar)
+        {
+            mouseXCVar.SetFloat(0.0);
+        }
+
+        if (mouseYCVar)
+        {
+            mouseYCVar.SetFloat(0.0);
+        }
+    }
+
     override void Tick()
     {
         Super.Tick();
 
         if (player == null)
         {
+            return;
+        }
+
+        if (health <= 0)
+        {
+            ResetDeadzoneAim();
             return;
         }
 
@@ -63,21 +96,7 @@ class FieldAgent : DoomPlayer
 
         if (!deadzoneActive)
         {
-            ReticleYawOffset = 0.0;
-            ReticlePitchOffset = 0.0;
-            SmoothedMouseX = 0.0;
-            SmoothedMouseY = 0.0;
-
-            if (mouseXCVar)
-            {
-                mouseXCVar.SetFloat(0.0);
-            }
-
-            if (mouseYCVar)
-            {
-                mouseYCVar.SetFloat(0.0);
-            }
-
+            ResetDeadzoneAim();
             return;
         }
 
