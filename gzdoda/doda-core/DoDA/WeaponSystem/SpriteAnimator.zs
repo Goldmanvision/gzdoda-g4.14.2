@@ -111,9 +111,12 @@ class DoDASpriteAnimator : Object
     }
 
     // Used only while native A_Lower/A_Raise owns weaponSprite.y.
+    // debugY is accepted to match the common WeaponBase call signature,
+    // but is intentionally ignored so native transition motion is preserved.
     play void ApplyTransition(
         PSprite weaponSprite,
         double debugX,
+        double debugY,
         double debugRotation
     )
     {

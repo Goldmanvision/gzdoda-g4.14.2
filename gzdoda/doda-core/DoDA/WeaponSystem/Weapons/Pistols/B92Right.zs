@@ -9,32 +9,89 @@ class DoDAB92Right : DoDAPistol
         return DoDAHandSwapController.Hand_Right;
     }
 
+    // The standard Reload state starts here. If no left-hand B92 exists in
+    // the player's inventory, redirect immediately to the solo sequence.
+    action state DoDA_SelectRightReloadAnimation()
+    {
+        let pistol = DoDAPistol(invoker);
+
+        if (
+            pistol == null
+            || pistol.owner == null
+            || pistol.owner.FindInventory('DoDAB92Left') == null
+        )
+        {
+            return ResolveState("ReloadSolo");
+        }
+
+        return null;
+    }
+
     States
     {
     Spawn:
         B92R G -1;
         Stop;
 
-    // BT_ALTATTACK is owned by FieldAgent as the deadzone modifier.
+    // Reload is controlled by DoDAWeapon.RequestLowestLoadedPistolReload().
     Ready:
         B92R G 1 A_WeaponReady(
-            WRF_ALLOWZOOM | WRF_NOSECONDARY
+            WRF_ALLOWZOOM
+            | WRF_NOSECONDARY
         );
         Loop;
 
     AltFire:
         Goto Ready;
 
-    // Three native lower steps per tic. The G pose slides down quickly until
-    // A_Lower completes the actual pending-weapon transition.
+    // Dual-Beretta reload. This runs only when the player owns DoDAB92Left.
+    Reload:
+        TNT1 A 0 DoDA_SelectRightReloadAnimation;
+        R92R A 2 DoDA_BeginReload;
+        R92R B 2;
+        R92R C 2;
+        R92R D 2;
+        R92R E 2;
+        R92R F 2;
+        R92R G 2;
+        R92R H 2;
+        R92R I 2;
+        R92R J 2;
+        R92R K 2;
+        R92R L 2;
+        B92R D 2;
+        B92R E 2 DoDA_CommitReload;
+        B92R F 2;
+        B92R G 2;
+        Goto Ready;
+
+    // Solo-right Beretta reload. This runs only when the player does not
+    // own DoDAB92Left. B92RE0 remains the magazine-seat/chamber moment.
+    ReloadSolo:
+        S92R A 2 DoDA_BeginReload;
+        S92R B 2;
+        S92R C 2;
+        S92R D 2;
+        S92R E 2;
+        S92R F 2;
+        S92R G 2;
+        S92R H 2;
+        S92R I 2;
+        S92R J 2;
+        S92R K 2;
+        S92R L 2;
+        B92R D 2;
+        B92R E 2 DoDA_CommitReload;
+        B92R F 2;
+        B92R G 2;
+        Goto Ready;
+
     Deselect:
         B92R G 0 A_Lower;
         B92R G 0 A_Lower;
         B92R G 1 A_Lower;
         Loop;
 
-    // Three native raise steps per tic. A_Raise returns to Ready once the
-    // weapon reaches its normal ready height.
     Select:
         B92R G 0 A_Raise;
         B92R G 0 A_Raise;

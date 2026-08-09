@@ -15,26 +15,46 @@ class DoDAB92Left : DoDAPistol
         B92L G -1;
         Stop;
 
-    // BT_ALTATTACK is owned by FieldAgent as the deadzone modifier.
+    // Reload is controlled by DoDAWeapon.RequestLowestLoadedPistolReload().
+    // Do not add WRF_ALLOWRELOAD here: native reload would bypass DoDA's
+    // lowest-loaded-pistol selection and full-magazine validation.
     Ready:
         B92L G 1 A_WeaponReady(
-            WRF_ALLOWZOOM | WRF_NOSECONDARY
+            WRF_ALLOWZOOM
+            | WRF_NOSECONDARY
         );
         Loop;
 
     AltFire:
         Goto Ready;
 
-    // Three native lower steps per tic. The G pose slides down quickly until
-    // A_Lower completes the actual pending-weapon transition.
+    // The first frame validates the queued reload request. The ammo transfer
+    // happens precisely on B92LE0, the magazine-seat/chamber frame.
+    Reload:
+        R92L A 2 DoDA_BeginReload;
+        R92L B 2;
+        R92L C 2;
+        R92L D 2;
+        R92L E 2;
+        R92L F 2;
+        R92L G 2;
+        R92L H 2;
+        R92L I 2;
+        R92L J 2;
+        R92L K 2;
+        R92L L 2;
+        B92L D 2;
+        B92L E 2 DoDA_CommitReload;
+        B92L F 2;
+        B92L G 2;
+        Goto Ready;
+
     Deselect:
         B92L G 0 A_Lower;
         B92L G 0 A_Lower;
         B92L G 1 A_Lower;
         Loop;
 
-    // Three native raise steps per tic. A_Raise returns to Ready once the
-    // weapon reaches its normal ready height.
     Select:
         B92L G 0 A_Raise;
         B92L G 0 A_Raise;

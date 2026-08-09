@@ -6,6 +6,7 @@ class DoDAHUD : BaseStatusBar
 {
     private DoDAHUDTapline m_Tapline;
     private DoDAHUDDeadzone m_Deadzone;
+    private DoDAHUDWeapon m_Weapon;
 
     override void Init()
     {
@@ -13,6 +14,56 @@ class DoDAHUD : BaseStatusBar
 
         m_Tapline = new("DoDAHUDTapline");
         m_Deadzone = new("DoDAHUDDeadzone");
+        m_Weapon = new("DoDAHUDWeapon");
+    }
+
+    void DrawWeaponHUD()
+    {
+        if (
+            m_Weapon == null
+            || CPlayer == null
+            || CPlayer.mo == null
+        )
+        {
+            return;
+        }
+
+        Weapon readyWeapon = CPlayer.ReadyWeapon;
+
+        let primary = DoDAWeaponHUDBridge.GetActiveWeaponData(
+            readyWeapon
+        );
+
+        if (primary == null || !primary.Available)
+        {
+            return;
+        }
+
+        let companion = DoDAWeaponHUDBridge.GetCompanionWeaponData(
+            CPlayer.mo,
+            readyWeapon
+        );
+
+        int reserveRounds =
+            DoDAWeaponHUDBridge.GetReserveRounds(
+                readyWeapon
+            );
+
+        m_Weapon.DrawWeaponReadout(
+            primary.Label,
+            primary.Available,
+            primary.Equipped,
+            primary.MagazineRounds,
+            primary.MagazineCapacity,
+            primary.ChamberLoaded,
+            companion != null ? companion.Label : "",
+            companion != null && companion.Available,
+            companion != null && companion.Equipped,
+            companion != null ? companion.MagazineRounds : 0,
+            companion != null ? companion.MagazineCapacity : 0,
+            companion != null && companion.ChamberLoaded,
+            reserveRounds
+        );
     }
 
     override void Draw(int state, double ticFrac)
@@ -28,6 +79,8 @@ class DoDAHUD : BaseStatusBar
         {
             return;
         }
+
+        DrawWeaponHUD();
 
         let agent = FieldAgent(CPlayer.mo);
 

@@ -18,6 +18,7 @@ class DoDAWeapon : Weapon
     int fireLockTics;
     bool wasDevSwapHand;
     bool wasHoldingFire;
+    bool wasReloadHeld;
     bool initialized;
 
     DoDALeanInput leanInput;
@@ -100,6 +101,11 @@ class DoDAWeapon : Weapon
             return "AltFire";
         }
 
+        if (weaponSprite.CurState == ResolveState("Reload"))
+        {
+            return "Reload";
+        }
+
         if (weaponSprite.CurState == ResolveState("Deselect"))
         {
             return "Deselect";
@@ -143,6 +149,92 @@ class DoDAWeapon : Weapon
             requestGate ? 1 : 0,
             fireLockTics
         );
+    }
+
+    void RequestLowestLoadedPistolReload(
+        DoDAPistol activePistol
+    )
+    {
+        if (
+            owner == null
+            || owner.player == null
+            || activePistol == null
+            || owner.player.PendingWeapon != WP_NOCHANGE
+        )
+        {
+            return;
+        }
+
+        let leftPistol = DoDAPistol(
+            owner.FindInventory('DoDAB92Left')
+        );
+
+        let rightPistol = DoDAPistol(
+            owner.FindInventory('DoDAB92Right')
+        );
+
+        bool leftCanReload = leftPistol != null
+            && leftPistol.CanReload();
+
+        bool rightCanReload = rightPistol != null
+            && rightPistol.CanReload();
+
+        // Both pistols are full, or neither can draw a usable magazine.
+        if (!leftCanReload && !rightCanReload)
+        {
+            return;
+        }
+
+        DoDAPistol reloadTarget = null;
+
+        if (leftCanReload && !rightCanReload)
+        {
+            reloadTarget = leftPistol;
+        }
+        else if (rightCanReload && !leftCanReload)
+        {
+            reloadTarget = rightPistol;
+        }
+        else if (
+            leftPistol.GetLoadedRoundCount()
+            < rightPistol.GetLoadedRoundCount()
+        )
+        {
+            reloadTarget = leftPistol;
+        }
+        else if (
+            rightPistol.GetLoadedRoundCount()
+            < leftPistol.GetLoadedRoundCount()
+        )
+        {
+            reloadTarget = rightPistol;
+        }
+        else
+        {
+            // Equal load: retain the player’s selected-hand preference.
+            reloadTarget = activePistol;
+        }
+
+        if (reloadTarget == null)
+        {
+            return;
+        }
+
+        reloadTarget.QueueReload();
+
+        if (reloadTarget == activePistol)
+        {
+            owner.player.SetPSprite(
+                PSP_WEAPON,
+                ResolveState("Reload")
+            );
+        }
+        else
+        {
+            // The queued target starts Reload when its Select transition
+            // finishes and it reaches Ready.
+            owner.player.PendingWeapon = reloadTarget;
+        }
     }
 
     override void Tick()
@@ -248,6 +340,10 @@ class DoDAWeapon : Weapon
         bool attackPressed = attackDown && !wasHoldingFire;
         wasHoldingFire = attackDown;
 
+        bool reloadDown = (owner.player.cmd.buttons & BT_RELOAD) != 0;
+        bool reloadPressed = reloadDown && !wasReloadHeld;
+        wasReloadHeld = reloadDown;
+
         CVar devSwapCVar = CVar.GetCVar(
             'dev_swaphand',
             owner.player
@@ -287,12 +383,48 @@ class DoDAWeapon : Weapon
 
         bool readyWasSelf = readyWeapon == self;
 
+        // Complete a queued low-magazine reload after an automatic
+        // hand-switch reaches Ready.
+        if (
+            readyWasSelf
+            && pistol != null
+            && pistol.IsReloadQueued()
+            && pendingWeapon == WP_NOCHANGE
+            && weaponSprite != null
+            && weaponSprite.CurState == ResolveState("Ready")
+        )
+        {
+            owner.player.SetPSprite(
+                PSP_WEAPON,
+                ResolveState("Reload")
+            );
+
+            weaponSprite = owner.player.GetPSprite(PSP_WEAPON);
+        }
+
+        // DoDA owns reload selection. This compares both pistols and never
+        // starts an animation if neither one can genuinely reload.
+        if (
+            readyWasSelf
+            && pistol != null
+            && reloadPressed
+            && pendingWeapon == WP_NOCHANGE
+            && fireLockTics <= 0
+        )
+        {
+            RequestLowestLoadedPistolReload(pistol);
+            pendingWeapon = owner.player.PendingWeapon;
+            weaponSprite = owner.player.GetPSprite(PSP_WEAPON);
+        }
+
         bool requestGate =
             pistol != null
             && readyWasSelf
             && pendingWeapon == WP_NOCHANGE
             && requestedHand != actualHand
-            && fireLockTics <= 0;
+            && fireLockTics <= 0
+            && (weaponSprite == null
+                || weaponSprite.CurState != ResolveState("Reload"));
 
         bool pipelineChanged =
             !pipelineInitialized
@@ -422,13 +554,18 @@ class DoDAWeapon : Weapon
                 ResolveState("Fire")
             );
 
+        bool isReloadState =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("Reload")
+            );
+
         bool isDeselectState =
             weaponSprite.CurState == ResolveState("Deselect");
 
         bool isSelectState =
             weaponSprite.CurState == ResolveState("Select");
 
-        if (isReadyState || isFireState)
+        if (isReadyState || isFireState || isReloadState)
         {
             spriteAnimator.Apply(
                 weaponSprite,
@@ -445,6 +582,7 @@ class DoDAWeapon : Weapon
             spriteAnimator.ApplyTransition(
                 weaponSprite,
                 debugSpriteX,
+                debugSpriteY,
                 debugSpriteRot
             );
         }
@@ -463,6 +601,20 @@ class DoDAWeapon : Weapon
             return;
         }
 
+        let pistol = DoDAPistol(
+            invoker.owner.player.ReadyWeapon
+        );
+
+        if (pistol == null || !pistol.ConsumeFiredRound())
+        {
+            Console.Printf(
+                "[DODA/WEAPON] dry fire hand=%d",
+                pistol != null ? pistol.GetWeaponHand() : -1
+            );
+
+            return;
+        }
+
         invoker.fireLockTics = 9;
 
         let agent = FieldAgent(invoker.owner);
@@ -470,12 +622,7 @@ class DoDAWeapon : Weapon
         bool deadzoneActive = agent != null
             && agent.IsDeadzoneAimActive();
 
-        let pistol = DoDAPistol(
-            invoker.owner.player.ReadyWeapon
-        );
-
-        bool isLeftHand = pistol != null
-            && pistol.GetWeaponHand() == Hand_Left;
+        bool isLeftHand = pistol.GetWeaponHand() == Hand_Left;
 
         double spread = invoker.hipfireSpread;
 

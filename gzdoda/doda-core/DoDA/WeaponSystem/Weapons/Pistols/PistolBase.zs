@@ -4,19 +4,49 @@
 
 class DoDAPistol : DoDAWeapon
 {
+    const MagazineCapacity = 15;
+
     bool adsActive;
+
+    // Each concrete pistol inventory instance has independent firearm state.
+    int magazineRounds;
+    bool chamberLoaded;
+    bool firearmStateInitialized;
+
+    // Set by WeaponBase when this pistol is the chosen reload target.
+    bool reloadQueued;
+    bool reloadInProgress;
 
     Default
     {
-        Weapon.AmmoType "Clip";
-        Weapon.AmmoUse 1;
-        Weapon.AmmoGive 20;
         Weapon.Kickback 100;
 
         +WEAPON.NOAUTOFIRE;
 
         Tag "DoDA Pistol Base";
         Inventory.PickupMessage "Picked up the DoDA Pistol";
+    }
+
+    void EnsureFirearmState()
+    {
+        if (firearmStateInitialized)
+        {
+            return;
+        }
+
+        magazineRounds = MagazineCapacity;
+        chamberLoaded = true;
+        firearmStateInitialized = true;
+    }
+
+    Ammo GetReserveAmmo()
+    {
+        if (owner == null)
+        {
+            return null;
+        }
+
+        return Ammo(owner.FindInventory('Clip'));
     }
 
     bool IsADSActive()
@@ -29,7 +59,211 @@ class DoDAPistol : DoDAWeapon
         adsActive = active;
     }
 
-    // B92Right is the inherited/default hand. DoDAB92Left overrides this.
+    clearscope bool UsesWeaponHUD()
+    {
+        return true;
+    }
+
+    clearscope String GetHUDWeaponLabel()
+    {
+        return "B92";
+    }
+
+    clearscope int GetMagazineRounds()
+    {
+        return magazineRounds;
+    }
+
+    clearscope int GetMagazineCapacity()
+    {
+        return MagazineCapacity;
+    }
+
+    clearscope bool IsChamberLoaded()
+    {
+        return chamberLoaded;
+    }
+
+    clearscope int GetReserveRounds()
+    {
+        if (owner == null)
+        {
+            return 0;
+        }
+
+        let reserveAmmo = Ammo(owner.FindInventory('Clip'));
+
+        return reserveAmmo != null
+            ? reserveAmmo.Amount
+            : 0;
+    }
+
+    int GetLoadedRoundCount()
+    {
+        EnsureFirearmState();
+
+        return magazineRounds + (chamberLoaded ? 1 : 0);
+    }
+
+    bool IsFullyLoaded()
+    {
+        EnsureFirearmState();
+
+        return magazineRounds >= MagazineCapacity
+            && chamberLoaded;
+    }
+
+    bool NeedsReload()
+    {
+        return !IsFullyLoaded();
+    }
+
+    bool CanFireRound()
+    {
+        EnsureFirearmState();
+        return chamberLoaded;
+    }
+
+    bool ConsumeFiredRound()
+    {
+        EnsureFirearmState();
+
+        if (!chamberLoaded)
+        {
+            return false;
+        }
+
+        if (magazineRounds > 0)
+        {
+            magazineRounds--;
+            chamberLoaded = true;
+        }
+        else
+        {
+            chamberLoaded = false;
+        }
+
+        return true;
+    }
+
+    bool CanReload()
+    {
+        EnsureFirearmState();
+
+        if (IsFullyLoaded())
+        {
+            return false;
+        }
+
+        let reserveAmmo = GetReserveAmmo();
+
+        if (reserveAmmo == null)
+        {
+            return false;
+        }
+
+        return reserveAmmo.Amount + magazineRounds > 0;
+    }
+
+    void QueueReload()
+    {
+        if (CanReload())
+        {
+            reloadQueued = true;
+        }
+    }
+
+    bool IsReloadQueued()
+    {
+        return reloadQueued;
+    }
+
+    void ClearReloadQueue()
+    {
+        reloadQueued = false;
+        reloadInProgress = false;
+    }
+
+    bool CommitReload()
+    {
+        EnsureFirearmState();
+
+        if (!CanReload())
+        {
+            return false;
+        }
+
+        let reserveAmmo = GetReserveAmmo();
+
+        if (reserveAmmo == null)
+        {
+            return false;
+        }
+
+        // Return unused rounds in the removed magazine to shared reserve.
+        reserveAmmo.Amount += magazineRounds;
+        magazineRounds = 0;
+
+        int roundsToLoad = Min(
+            MagazineCapacity,
+            reserveAmmo.Amount
+        );
+
+        magazineRounds = roundsToLoad;
+        reserveAmmo.Amount -= roundsToLoad;
+
+        // A reload from an empty chamber chambers one round from the new mag.
+        if (!chamberLoaded && magazineRounds > 0)
+        {
+            magazineRounds--;
+            chamberLoaded = true;
+        }
+
+        Console.Printf(
+            "[DODA/WEAPON] reload hand=%d mag=%d chamber=%d reserve=%d",
+            GetWeaponHand(),
+            magazineRounds,
+            chamberLoaded ? 1 : 0,
+            reserveAmmo.Amount
+        );
+
+        return true;
+    }
+
+    // Called on the first R92L/R92R animation frame. It protects against
+    // a stale queued request after reserve ammo changes.
+    action void DoDA_BeginReload()
+    {
+        let pistol = DoDAPistol(invoker);
+
+        if (pistol == null || !pistol.reloadQueued || !pistol.CanReload())
+        {
+            if (invoker != null)
+            {
+                invoker.SetStateLabel("Ready");
+            }
+
+            return;
+        }
+
+        pistol.reloadQueued = false;
+        pistol.reloadInProgress = true;
+    }
+
+    // Called on B92LE0/B92RE0: the supplied magazine-seat/chamber frame.
+    action void DoDA_CommitReload()
+    {
+        let pistol = DoDAPistol(invoker);
+
+        if (pistol == null || !pistol.reloadInProgress)
+        {
+            return;
+        }
+
+        pistol.CommitReload();
+        pistol.reloadInProgress = false;
+    }
+
     virtual int GetWeaponHand()
     {
         return DoDAHandSwapController.Hand_Right;
@@ -67,7 +301,6 @@ class DoDAPistol : DoDAWeapon
             return false;
         }
 
-        // GZDoom uses WP_NOCHANGE to mean that no switch is pending.
         if (owner.player.PendingWeapon != WP_NOCHANGE)
         {
             return false;
@@ -84,8 +317,6 @@ class DoDAPistol : DoDAWeapon
             return false;
         }
 
-        // A_WeaponReady on the current weapon detects this request and starts
-        // the native Deselect -> Select transition.
         owner.player.PendingWeapon = targetWeapon;
 
         Console.Printf(
@@ -101,5 +332,6 @@ class DoDAPistol : DoDAWeapon
     override void Tick()
     {
         Super.Tick();
+        EnsureFirearmState();
     }
 }
