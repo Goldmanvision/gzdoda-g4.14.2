@@ -1,11 +1,33 @@
-// DoDA input bindings
+/*//////////////////////////|
+// root/KEYCONF
+*///////////////////////////|
+
+// DoDA input bindings.
 
 addkeysection "DoDA Controls" DoDAControls
+
+
+// Deadzone Aim Mode.
+// This existing binding is preserved unchanged.
 
 addmenukey "DoDA Aim Mode" +doda_aimmode
 alias +doda_aimmode "DoDA_SetDeadzone 1"
 alias -doda_aimmode "DoDA_SetDeadzone 0"
 defaultbind mouse2 +doda_aimmode
+
+
+// Swap Beretta.
+// A held key sets the action CVar; WeaponBase consumes only its rising edge,
+// so one V press creates exactly one B92 class-swap request.
+
+addmenukey "Swap Beretta" +doda_swapberetta
+alias +doda_swapberetta "doda_swap_beretta 1"
+alias -doda_swapberetta "doda_swap_beretta 0"
+defaultbind v +doda_swapberetta
+
+
+// Reload.
+// This existing binding is preserved unchanged.
 
 addmenukey "Reload Weapon" +reload
 defaultbind r +reload

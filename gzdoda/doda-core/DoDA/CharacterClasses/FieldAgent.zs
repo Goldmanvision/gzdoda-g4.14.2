@@ -20,9 +20,9 @@ class FieldAgent : DoomPlayer
     Default
     {
         Player.DisplayName "Field Agent";
-        //Player.StartItem "DoDAB92Left";
+        Player.StartItem "DoDAB92Left";
         Player.StartItem "DoDAB92Right";
-        Player.StartItem "Clip", 50;
+        Player.StartItem "Clip", 100;
     }
 
     override void PostBeginPlay()

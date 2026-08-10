@@ -16,7 +16,7 @@ class DoDAWeapon : Weapon
     double offhandSpreadMult;
 
     int fireLockTics;
-    bool wasDevSwapHand;
+    bool wasSwapBerettaHeld;
     bool wasHoldingFire;
     bool wasReloadHeld;
     bool initialized;
@@ -179,7 +179,6 @@ class DoDAWeapon : Weapon
         bool rightCanReload = rightPistol != null
             && rightPistol.CanReload();
 
-        // Both pistols are full, or neither can draw a usable magazine.
         if (!leftCanReload && !rightCanReload)
         {
             return;
@@ -211,7 +210,6 @@ class DoDAWeapon : Weapon
         }
         else
         {
-            // Equal load: retain the player’s selected-hand preference.
             reloadTarget = activePistol;
         }
 
@@ -231,8 +229,6 @@ class DoDAWeapon : Weapon
         }
         else
         {
-            // The queued target starts Reload when its Select transition
-            // finishes and it reaches Ready.
             owner.player.PendingWeapon = reloadTarget;
         }
     }
@@ -344,17 +340,19 @@ class DoDAWeapon : Weapon
         bool reloadPressed = reloadDown && !wasReloadHeld;
         wasReloadHeld = reloadDown;
 
-        CVar devSwapCVar = CVar.GetCVar(
-            'dev_swaphand',
+        CVar swapBerettaCVar = CVar.GetCVar(
+            'doda_swap_beretta',
             owner.player
         );
 
-        bool devSwapNow = devSwapCVar
-            ? devSwapCVar.GetBool()
+        bool swapBerettaDown = swapBerettaCVar
+            ? swapBerettaCVar.GetBool()
             : false;
 
-        bool devSwapPressed = devSwapNow != wasDevSwapHand;
-        wasDevSwapHand = devSwapNow;
+        bool swapBerettaPressed =
+            swapBerettaDown && !wasSwapBerettaHeld;
+
+        wasSwapBerettaHeld = swapBerettaDown;
 
         Weapon readyWeapon = owner.player.ReadyWeapon;
         Weapon pendingWeapon = owner.player.PendingWeapon;
@@ -378,13 +376,11 @@ class DoDAWeapon : Weapon
             leanInput.WasLeaningLeftPressed(),
             leanInput.WasLeaningRightPressed(),
             isLeaning,
-            devSwapPressed
+            swapBerettaPressed
         );
 
         bool readyWasSelf = readyWeapon == self;
 
-        // Complete a queued low-magazine reload after an automatic
-        // hand-switch reaches Ready.
         if (
             readyWasSelf
             && pistol != null
@@ -402,14 +398,20 @@ class DoDAWeapon : Weapon
             weaponSprite = owner.player.GetPSprite(PSP_WEAPON);
         }
 
-        // DoDA owns reload selection. This compares both pistols and never
-        // starts an animation if neither one can genuinely reload.
+        bool reloadAnimationActive =
+            weaponSprite != null
+            && weaponSprite.CurState != null
+            && weaponSprite.CurState.InStateSequence(
+                ResolveState("Reload")
+            );
+
         if (
             readyWasSelf
             && pistol != null
             && reloadPressed
             && pendingWeapon == WP_NOCHANGE
             && fireLockTics <= 0
+            && !reloadAnimationActive
         )
         {
             RequestLowestLoadedPistolReload(pistol);
@@ -437,7 +439,7 @@ class DoDAWeapon : Weapon
             || requestedHand != lastLoggedRequestedHand
             || actualHand != lastLoggedActualHand
             || attackPressed
-            || devSwapPressed;
+            || swapBerettaPressed;
 
         if (pipelineChanged)
         {
