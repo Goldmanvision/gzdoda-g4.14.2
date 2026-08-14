@@ -7,7 +7,7 @@ gameinfo
 {
     PlayerClasses = "FieldAgent"
     StatusBarClass = "DoDAHUD"
-    AddEventHandlers = "DoDAMissionDirector", "DoDAAimInput"
+    AddEventHandlers = "DoDAMissionDirector", "DoDAAimInput", "Map03RangeStartHandler"
 
     TitlePage = "DODABG3"
     CreditPage = "DODABG1"
@@ -33,4 +33,10 @@ map MAP02 "DEBRIEF ROOM TEST"
 {
     Sky1 = "SKY1"
     next = "EndGameS"
+}
+
+map MAP03 "SHOOTING RANGE"
+{
+    Sky1 = "SKY1"
+    next = "MAP03"
 }

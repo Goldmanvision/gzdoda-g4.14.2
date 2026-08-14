@@ -1,14 +1,16 @@
-Log started: 2026-08-11 18:09:14
+Log started: 2026-08-14 17:10:52
 GZDoom version <unknown version>
 W_Init: Init WADfiles.
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/gzdoom.pk3, 709 lumps
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/game_support.pk3, 3309 lumps
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/freedoom2.wad, 3610 lumps
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/game_widescreen_gfx.pk3, 214 lumps
-adding C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core, 499 lumps
+adding C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core, 598 lumps
+adding C:/Dev/gzdoda-g4.14.2/gzdoda/maps/MAP03.wad, 4 lumps
+adding C:/Users/nicka/AppData/Roaming/SLADE3/temp/sladetemp_run.wad, 4 lumps
 S_Init: Setting up sound.
 I_InitSound: Initializing OpenAL
-  Opened device OpenAL Soft on HDMI Splitter (NVIDIA High Definition Audio)
+  Opened device OpenAL Soft on Speakers (Steam Streaming Speakers)
   EFX enabled
 I_InitInput
 I_StartupMouse
@@ -38,7 +40,7 @@ G_ParseMapInfo: Load map definitions.
 Texman.Init: Init texture manager.
 ParseTeamInfo: Load team definitions.
 LoadActors: Load actor definitions.
-script parsing took 551.75 ms
+script parsing took 534.03 ms
 Invalid command for KEYCONF: /*
 Invalid command for KEYCONF: *
 R_Init: Init Doom refresh subsystem.
@@ -58,3 +60,983 @@ license. Check out the Freedoom website for more information:
 ============================================================================
 D_CheckNetGame: Checking network game status.
 Init complete.
+
+----------------------------------------
+
+MAP03 - SHOOTING RANGE
+
+Line 40 has no first side.
+Line 47 has no first side.
+Line 53 has no first side.
+Line 54 has no first side.
+Line 55 has no first side.
+Line 56 has no first side.
+Line 57 has no first side.
+Removing 0-length line 56
+Removing 0-length line 57
+DoDA Director WorldLoaded: Map=MAP03 Save=0 Reopen=0
+DoDA Director [before initialization gate] Map=MAP03 Save=0 Reopen=0 Result=0 Index=0 Progress=0 Phase=0 Name= Description=
+DoDA CampaignState initialized: Map=MAP03 NextMissionIndex=0 ObjectiveCount=0 ObjectiveRequired=1
+DoDA Mission initialized as PENDING.
+DoDA Director [after initialization gate] Map=MAP03 Save=0 Reopen=0 Result=1 Index=0 Progress=0 Phase=1 Name=Mission 01 Description=talk to INFORMANT.
+DoDA HUD Snapshot [after WorldLoaded] Source=Director Map=MAP03 Mission=Mission 01 Status=1 Progress=0 Phase=1 Objective=talk to INFORMANT.
+DoDA CampaignState observed: Map=MAP03 NextMissionIndex=0 OwnerClass=FieldAgent ObjectiveCount=0 ObjectiveRequired=1 ObjectiveMarkers=0 MissionMarkers=0
+DoDA HUD Snapshot [Draw source change] Source=MissionDirector Map=MAP03 MISSION: Mission 01 | STATUS: PENDING | PROGRESS: 0% | PHASE: OBJECTIVE | OBJECTIVE: talk to INFORMANT.
+]summon b92left
+Unknown actor or visual thinker 'b92left'
+]summon dodab92left
+Picked up the DoDA Pistol
+WEAPONPIPE ready=null pending=DoDAB92Left state=no-psprite readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=8
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=7
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=6
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=5
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=4
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=3
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=8
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=7
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=6
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=5
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=4
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=3
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=8
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=7
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=6
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=5
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=4
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=3
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=8
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=7
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=6
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=5
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=4
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=3
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=8
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=7
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=6
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=5
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=4
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=3
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=8
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=7
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=6
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=5
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=4
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=3
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=8
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=7
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=6
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=5
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=4
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=3
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=8
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=7
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=6
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=5
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=4
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=3
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=8
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=7
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=6
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=5
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=4
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=3
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Reload readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+[DODA/WEAPON] reload hand=0 mag=6 chamber=1 reserve=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=8
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=7
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=6
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=5
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=4
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=3
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=8
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=7
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=6
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=5
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=4
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=3
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=8
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=7
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=6
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=5
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=4
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=3
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=8
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=7
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=6
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=5
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=4
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=3
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=8
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=7
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=6
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=5
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=4
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=3
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=8
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=7
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=6
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=5
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=4
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=3
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=8
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=7
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=6
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=5
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=4
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=3
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+[DODA/WEAPON] dry fire hand=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+[DODA/WEAPON] dry fire hand=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+[DODA/WEAPON] dry fire hand=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+[DODA/WEAPON] dry fire hand=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+[DODA/WEAPON] dry fire hand=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+[DODA/WEAPON] dry fire hand=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+[DODA/WEAPON] dry fire hand=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+[DODA/WEAPON] dry fire hand=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+[DODA/WEAPON] dry fire hand=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+[DODA/WEAPON] dry fire hand=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+[DODA/WEAPON] dry fire hand=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+[DODA/WEAPON] dry fire hand=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+[DODA/WEAPON] dry fire hand=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+[DODA/WEAPON] dry fire hand=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+HANDSWAP: opposite weapon is absent from inventory
+WEAPONPIPE RequestHandSwap requested=1 accepted=0 pendingAfter=WP_NOCHANGE
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+[DODA/WEAPON] dry fire hand=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+]summon dodab92left
+]summon dodab92right
+Picked up the DoDA Pistol
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+]summon clip
+Picked up some bullets.
+]summon dodab92right
+]summon dodab92right
+]summon dodab92right
+]summon clip
+]summon clip
+]summon clip
+]summon clip
+]summon clip
+]summon clip
+]summon clip
+Picked up some bullets.
+WEAPONPIPE ready=DoDAB92Right pending=DoDAB92Left state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=DoDAB92Left state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=DoDAB92Left state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Reload readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+[DODA/WEAPON] reload hand=0 mag=14 chamber=1 reserve=65
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP queued: current=0 requested=1 target=DoDAB92Right
+WEAPONPIPE RequestHandSwap requested=1 accepted=1 pendingAfter=DoDAB92Right
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=1 fireLock=0
+HANDSWAP queued: current=1 requested=0 target=DoDAB92Left
+WEAPONPIPE RequestHandSwap requested=0 accepted=1 pendingAfter=DoDAB92Left
+WEAPONPIPE ready=DoDAB92Right pending=DoDAB92Left state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=DoDAB92Left state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP queued: current=0 requested=1 target=DoDAB92Right
+WEAPONPIPE RequestHandSwap requested=1 accepted=1 pendingAfter=DoDAB92Right
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=1 fireLock=0
+HANDSWAP queued: current=1 requested=0 target=DoDAB92Left
+WEAPONPIPE RequestHandSwap requested=0 accepted=1 pendingAfter=DoDAB92Left
+WEAPONPIPE ready=DoDAB92Right pending=DoDAB92Left state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=DoDAB92Left state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP queued: current=0 requested=1 target=DoDAB92Right
+WEAPONPIPE RequestHandSwap requested=1 accepted=1 pendingAfter=DoDAB92Right
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=1 fireLock=0
+HANDSWAP queued: current=1 requested=0 target=DoDAB92Left
+WEAPONPIPE RequestHandSwap requested=0 accepted=1 pendingAfter=DoDAB92Left
+WEAPONPIPE ready=DoDAB92Right pending=DoDAB92Left state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=DoDAB92Left state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP queued: current=0 requested=1 target=DoDAB92Right
+WEAPONPIPE RequestHandSwap requested=1 accepted=1 pendingAfter=DoDAB92Right
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=1 fireLock=0
+HANDSWAP queued: current=1 requested=0 target=DoDAB92Left
+WEAPONPIPE RequestHandSwap requested=0 accepted=1 pendingAfter=DoDAB92Left
+WEAPONPIPE ready=DoDAB92Right pending=DoDAB92Left state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=DoDAB92Left state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP queued: current=0 requested=1 target=DoDAB92Right
+WEAPONPIPE RequestHandSwap requested=1 accepted=1 pendingAfter=DoDAB92Right
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=1 fireLock=0
+HANDSWAP queued: current=1 requested=0 target=DoDAB92Left
+WEAPONPIPE RequestHandSwap requested=0 accepted=1 pendingAfter=DoDAB92Left
+WEAPONPIPE ready=DoDAB92Right pending=DoDAB92Left state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=DoDAB92Left state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=1 fireLock=0
+HANDSWAP queued: current=0 requested=1 target=DoDAB92Right
+WEAPONPIPE RequestHandSwap requested=1 accepted=1 pendingAfter=DoDAB92Right
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAB92Right state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=1 fireLock=0
+HANDSWAP queued: current=1 requested=0 target=DoDAB92Left
+WEAPONPIPE RequestHandSwap requested=0 accepted=1 pendingAfter=DoDAB92Left
+WEAPONPIPE ready=DoDAB92Right pending=DoDAB92Left state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Right pending=DoDAB92Left state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
