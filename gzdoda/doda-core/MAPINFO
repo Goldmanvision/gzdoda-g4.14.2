@@ -21,6 +21,8 @@ DoomEdNums
     9304 = "DoDAMissionPickup"
     9305 = "DoDAMissionTerminal"
     9306 = "DoDAMissionObjectivePickup"
+	9307 = "DoDAB92Right"
+	9308 = "DoDAB92Left"
 }
 
 map MAP01 "MISSION AREA TEST"
@@ -32,11 +34,11 @@ map MAP01 "MISSION AREA TEST"
 map MAP02 "DEBRIEF ROOM TEST"
 {
     Sky1 = "SKY1"
-    next = "EndGameS"
+    next = "MAP03"
 }
 
 map MAP03 "SHOOTING RANGE"
 {
     Sky1 = "SKY1"
-    next = "MAP03"
+    next = "EndGameS"
 }

@@ -107,5 +107,10 @@ class DoDAB92Right : DoDAPistol
         B92R E 1;
         B92R F 1;
         Goto Ready;
+	
+	Spawn:
+		B92R T -1;
+		Loop;
+
     }
 }
