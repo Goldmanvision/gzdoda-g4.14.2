@@ -8,7 +8,7 @@ class DoDAMissionPickup : CustomInventory
     {
         Radius 20;
         Height 16;
-        Scale 0.3;
+        Scale 0.1;
 
         Inventory.Amount 1;
         Inventory.MaxAmount 1;

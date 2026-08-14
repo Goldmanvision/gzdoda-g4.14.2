@@ -10,6 +10,8 @@ version "2.4"
 
 #region CharacterClasses
 #include "DoDA/CharacterClasses/FieldAgent.zs"
+#include "DoDA/CharacterClasses/Analyst.zs"
+#include "DoDA/CharacterClasses/SAC.zs"
 #endregion
 
 #region UserInterface
