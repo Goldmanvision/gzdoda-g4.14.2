@@ -1,9 +1,7 @@
 ﻿# DoDA - GZDoom Tactical Mod
 
-DoDA is a tactical shooter modification for GZDoom.
-
 ## Overview
-DoDA introduces custom weapon systems, mission management, and advanced character mechanics (like leaning and deadzone aiming) to the GZDoom engine.
+DoDA implements custom weapon systems, mission management, and advanced character mechanics (like leaning and deadzone aiming) to the GZDoom engine.
 
 ## Requirements
 *   **Engine:** [GZDoom](https://zdoom.org/downloads) (latest version recommended)
