@@ -11,11 +11,16 @@ class DoDALeanController : Object
     bool WasScrollUp;
     bool WasScrollDown;
 
+    bool LeanLock;
+    int LockedHand;
+
     void Reset()
     {
         LeanAmount = 0.0;
         LeanDistance = 20.0;
         AppliedOffset = 0.0;
+        LeanLock = false;
+        LockedHand = -1;
 
         WasScrollUp = false;
         WasScrollDown = false;
@@ -44,7 +49,8 @@ class DoDALeanController : Object
         double minLeanDistance = 8.0;
         double maxLeanDistance = 40.0;
 
-        bool isLeaning = leaningLeft || leaningRight;
+        // Q+E simultaneously = no lean.
+        bool isLeaning = (leaningLeft || leaningRight) && !(leaningLeft && leaningRight);
 
         if (isLeaning)
         {
@@ -75,15 +81,30 @@ class DoDALeanController : Object
         if (leaningLeft && !leaningRight)
         {
             targetLean = -1.0;
+            LeanLock = true;
+            LockedHand = DoDAHandSwapController.Hand_Left;
         }
         else if (leaningRight && !leaningLeft)
         {
             targetLean = 1.0;
+            LeanLock = true;
+            LockedHand = DoDAHandSwapController.Hand_Right;
+        }
+        else
+        {
+            LeanLock = false;
+            LockedHand = -1;
         }
 
         LeanAmount += (targetLean - LeanAmount) * leanSmoothing;
 
         AppliedOffset = LeanAmount * LeanDistance;
+
+        let agent = FieldAgent(owner);
+        if (agent != null)
+        {
+            agent.LeanOffset = AppliedOffset;
+        }
 
         double rightX = Cos(owner.angle - 90.0);
         double rightY = Sin(owner.angle - 90.0);
@@ -96,6 +117,16 @@ class DoDALeanController : Object
             ),
             VPSF_ABSOLUTEOFFSET
         );
+    }
+
+    clearscope bool IsLeanLocked()
+    {
+        return LeanLock;
+    }
+
+    clearscope int GetLockedHand()
+    {
+        return LockedHand;
     }
 
     clearscope double GetLeanAmount()

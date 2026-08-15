@@ -13,6 +13,8 @@ class FieldAgent : DoomPlayer
     double DeadzoneYawLimit;
     double DeadzonePitchLimit;
 
+    double LeanOffset;
+
     // Smoothed per-tick deadzone input, used for light trackball inertia.
     double SmoothedMouseX;
     double SmoothedMouseY;

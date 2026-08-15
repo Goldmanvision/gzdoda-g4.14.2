@@ -376,7 +376,9 @@ class DoDAWeapon : Weapon
             leanInput.WasLeaningLeftPressed(),
             leanInput.WasLeaningRightPressed(),
             isLeaning,
-            swapBerettaPressed
+            swapBerettaPressed,
+            leanController.IsLeanLocked(),
+            leanController.GetLockedHand()
         );
 
         bool readyWasSelf = readyWeapon == self;

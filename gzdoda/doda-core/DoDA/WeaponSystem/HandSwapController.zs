@@ -55,12 +55,22 @@ class DoDAHandSwapController : Object
         bool leaningLeftPressed,
         bool leaningRightPressed,
         bool isLeaning,
-        bool swapBerettaPressed
+        bool swapBerettaPressed,
+        bool leanLock,
+        int lockedHand
     )
     {
         if (!Initialized)
         {
             Reset(Hand_Right);
+        }
+
+        // Tactical lean lock has highest priority.
+        if (leanLock)
+        {
+            DesiredHand = lockedHand;
+            ClearManualHandLock();
+            return DesiredHand;
         }
 
         // V always toggles between B92s. When Deadzone Aim is active, the

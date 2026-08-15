@@ -38,4 +38,10 @@ class DeadzoneHUDBridge : Object
         let controller = GetController();
         return controller != null ? controller.GetDeadzonePitchLimit() : 0.0;
     }
+
+    static double GetLeanOffset(PlayerPawn owner)
+    {
+        let agent = FieldAgent(owner);
+        return agent != null ? agent.LeanOffset : 0.0;
+    }
 }
