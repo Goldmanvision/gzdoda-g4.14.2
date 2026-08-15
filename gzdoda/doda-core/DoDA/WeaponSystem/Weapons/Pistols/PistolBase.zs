@@ -250,6 +250,27 @@ class DoDAPistol : DoDAWeapon
         pistol.reloadInProgress = true;
     }
 
+    action State A_DoDA_Ready()
+    {
+        let pistol = DoDAPistol(invoker);
+        if (pistol && !pistol.chamberLoaded)
+        {
+            return ResolveState("ReadyEmpty");
+        }
+        A_WeaponReady(WRF_ALLOWZOOM | WRF_NOSECONDARY);
+        return null;
+    }
+
+    action State A_DoDA_Fire()
+    {
+        let pistol = DoDAPistol(invoker);
+        if (pistol && !pistol.chamberLoaded)
+        {
+            return ResolveState("DryFire");
+        }
+        return null;
+    }
+
     // Called on B92LE0/B92RE0: the supplied magazine-seat/chamber frame.
     action void DoDA_CommitReload()
     {

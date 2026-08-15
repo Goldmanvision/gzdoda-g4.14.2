@@ -19,7 +19,11 @@ class DoDAB92Left : DoDAPistol
     // Do not add WRF_ALLOWRELOAD here: native reload would bypass DoDA's
     // lowest-loaded-pistol selection and full-magazine validation.
     Ready:
-        B92L G 1 A_WeaponReady(
+        B92L G 1 A_DoDA_Ready;
+        Loop;
+
+    ReadyEmpty:
+        B92L T 1 A_WeaponReady(
             WRF_ALLOWZOOM
             | WRF_NOSECONDARY
         );
@@ -62,7 +66,7 @@ class DoDAB92Left : DoDAPistol
         Loop;
 
     Fire:
-        B92L G 1;
+        B92L G 1 A_DoDA_Fire;
         B92L A 1 Bright;
         B92L B 1 Bright DoDA_FireTrace;
         B92L C 1;
@@ -70,10 +74,14 @@ class DoDAB92Left : DoDAPistol
         B92L E 1;
         B92L F 1;
         Goto Ready;
+    
+    DryFire:
+        B92L D -1;
+        Goto ReadyEmpty;
 		
 	Spawn:
 		B92L T -1;
-		Loop;
+		Goto ReadyEmpty;
 
     }
 }

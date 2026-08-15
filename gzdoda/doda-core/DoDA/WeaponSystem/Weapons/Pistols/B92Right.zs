@@ -35,7 +35,11 @@ class DoDAB92Right : DoDAPistol
 
     // Reload is controlled by DoDAWeapon.RequestLowestLoadedPistolReload().
     Ready:
-        B92R G 1 A_WeaponReady(
+        B92R G 1 A_DoDA_Ready;
+        Loop;
+
+    ReadyEmpty:
+        B92R D 1 A_WeaponReady(
             WRF_ALLOWZOOM
             | WRF_NOSECONDARY
         );
@@ -99,7 +103,7 @@ class DoDAB92Right : DoDAPistol
         Loop;
 
     Fire:
-        B92R G 1;
+        B92R G 1 A_DoDA_Fire;
         B92R A 1 Bright;
         B92R B 1 Bright DoDA_FireTrace;
         B92R C 1;
@@ -107,6 +111,10 @@ class DoDAB92Right : DoDAPistol
         B92R E 1;
         B92R F 1;
         Goto Ready;
+	
+    DryFire:
+        B92R D 2;
+        Goto ReadyEmpty;
 	
 	Spawn:
 		B92R T -1;
