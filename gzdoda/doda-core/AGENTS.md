@@ -2,265 +2,303 @@
 
 ## Project root
 
-This repository root is the `gzdoda/doda-core` PK3 source directory.
+The mod project root is:
+
+```text
+gzdoda/doda-core/
+```
 
 Important project paths:
 
 - Root ZScript translation unit: `zscript.txt`
-- Active ZScript source: `DoDA/`, according to the current
-  `zscript.txt` include graph
+- Active gameplay source: prove from current `zscript.txt`, current source, and
+  human-provided GZDoom logs before editing
 - Local GZDoom/ZScript documentation: `ZDoom_Documentation/`
-- Latest engine/compiler output: `console_log.txt`
-- DoDA architecture reference: `doda-architecture.md`
+- Human-provided GZDoom output: `console_log.txt`
+- Architecture notes: `doda-architecture.md`
 - Maps: `maps/`
 - Packaged artifact: `doda-core.pk3`
+- Legacy/stub wiki site: `../doda-wiki/`
 
-Do not work outside this project root unless explicitly instructed.
+Do not work outside `gzdoda/doda-core/` unless explicitly instructed.
 
-The unpacked `doda-core/` source directory is authoritative for editing.
-`doda-core.pk3` is a packaged artifact, not the authoritative source for
+The unpacked `doda-core/` directory is authoritative for source edits.
+`doda-core.pk3` is a packaged artifact and is not authoritative source for
 implementation changes.
+
+## Authority order
+
+When sources disagree, use this order:
+
+1. Explicit human instructions in the current task.
+2. This `AGENTS.md`.
+3. Current active `zscript.txt` include graph.
+4. Current active source files at the paths proven by `zscript.txt` and
+   human-provided GZDoom logs.
+5. Human-provided GZDoom runtime logs and manual test results.
+6. Local `ZDoom_Documentation/`.
+7. Explicitly approved architecture documentation under `doda-core/`.
+8. Historical commits, old logs, old handoffs, backups, archives, packaged PK3
+   files, and wiki pages.
+
+Never treat a stale path, backup, old branch view, historical source excerpt,
+packaged artifact, or generic wiki page as stronger authority than active source
+and a human-provided runtime log.
 
 ## Documentation authority
 
-Use the local documentation corpus under `ZDoom_Documentation/` as the
-primary authority for ZScript and documented GZDoom APIs.
+Use `ZDoom_Documentation/` as the primary authority for ZScript syntax and
+documented GZDoom APIs.
 
 Documentation lookup order:
 
 1. Read `ZDoom_Documentation/__ZDoom_Docs_TOC.txt`.
-2. Read the specific numbered topic file for the requested API or feature.
-3. Search `ZDoom_Documentation/ZDoomDocs_FULL.txt` only when the relevant
-   topic file cannot be identified or does not answer the question.
-4. Use external web sources only after stating:
-   `LOCAL DOCUMENTATION DOES NOT ANSWER THIS QUESTION`.
+2. Read the most-specific numbered topic file for the requested API or feature.
+3. Read `ZDoom_Documentation/ZDoomDocs_FULL.txt` only when the specific topic
+   cannot be found or does not answer the question.
+4. Use external sources only after explicitly stating:
 
-Never invent a ZScript language feature, GZDoom API member, event callback,
-actor property, state syntax, flag, data lump rule, DoomEdNum, spawn ID, UDMF
-placement rule, map metadata rule, or engine behavior.
+```text
+LOCAL DOCUMENTATION DOES NOT ANSWER THIS QUESTION
+```
+
+Never invent a ZScript feature, API member, event callback, actor property,
+state syntax, action scope, flag, data-lump rule, DoomEdNum, spawn ID, UDMF
+placement rule, map metadata rule, sprite naming rule, or engine behavior.
 
 Before proposing or editing code that uses a GZDoom/ZScript API:
 
-- Read the relevant local documentation file.
-- Report its exact local path.
-- State whether the documentation directly supports the proposed use.
-- If the local documentation does not support it, stop and ask for direction
-  or identify the need for source-code or engine-version investigation.
+- Read the relevant local documentation.
+- Report the exact local documentation path.
+- State whether the local documentation directly supports the intended usage.
+- If the documentation does not support the usage, stop and report the need
+  for further source/engine investigation.
+- Do not use current DoDA source as proof that an undocumented API call is
+  valid merely because it appears in code.
 
-Do not cite DoDA source files as authority for ZScript language semantics.
-Cite local ZDoom documentation for language/API rules and cite DoDA source only
-for project-specific implementation conventions.
+## Wiki status
+
+`gzdoda/doda-wiki/` is currently a legacy/stub documentation site.
+
+- Do not treat its current pages as authoritative technical, gameplay,
+  architecture, source-path, build, test, control, weapon, map, or API
+  documentation.
+- Do not copy malformed generated tool-call payloads from the wiki into source,
+  documentation, or prompts.
+- Until explicitly rebuilt and approved, the wiki is informational only.
+- Do not update, repair, generate, restructure, package, or deploy the wiki
+  unless the task explicitly requests wiki work.
 
 ## ZScript integration
 
 - `zscript.txt` is the root translation unit and authoritative include order.
 - Preserve `version "2.4"` in root `zscript.txt`.
 - Do not add a version declaration to included `.zs` files.
-- Inspect `zscript.txt` before adding, removing, moving, renaming, or changing
-  any ZScript module.
+- Inspect current `zscript.txt` before adding, removing, moving, renaming, or
+  changing any ZScript module.
 - Add new includes in dependency-correct order.
-- Do not change unrelated include order.
-- Treat a source file as active only if it is included by the current
-  `zscript.txt` and reachable from the configured runtime setup.
-- The project currently contains active source under both `DoDA/` and `doda/`.
-  Preserve existing include paths and case exactly unless an explicitly
-  authorized task performs a validated source-layout consolidation.
-- Do not assume case-only path changes are safe on all filesystems, in all
-  archive tools, or in all GZDoom loading environments.
+- Do not reorder unrelated includes.
+- Treat a source file as active only when it is included by the current
+  translation unit or is proven runtime-active by a human-provided GZDoom log.
+- Do not infer active status from naming, timestamps, directory casing, old
+  documentation, GitHub browsing alone, or package contents.
 
-## Active-source authority
+## Source-path and backup policy
 
-- `zscript.txt` is the root translation unit and authoritative include order.
-- Treat a source file as active only if it is included by the current
-  `zscript.txt` and reachable from the configured runtime setup.
-- The active ZScript source tree is currently `DoDA/`.
-- Do not assume paths under `doda/` exist or are active. Verify every path
-  against the current repository and `zscript.txt` before citing or editing it.
-- Never edit `DoDA/WeaponSystem/WeaponBase_bak.zs`. It is backup/orphan source.
-- Treat `DoDA/Aim/DeadzoneController.zs` as legacy/orphan source unless the
-  current `zscript.txt` and `MAPINFO` explicitly restore it to active runtime
-  registration.
-- Do not use a stale, backup, packed-PK3, historical, or orphan file as the
-  source of truth when an active unpacked source file exists.
-- The active weapon-base source is `DoDA/WeaponSystem/WeaponBase.zs` unless
-  the current `zscript.txt` proves otherwise.
-- Do not infer active source from filename, directory casing, timestamp, or
-  package contents alone. Prove activity from the current translation unit and
-  runtime registration/configuration.
-- 
+- Current source may use both `DoDA/` and lower-case `doda/` paths.
+- Do not assume one path root is inactive because a similarly named path exists
+  elsewhere.
+- A human-provided GZDoom runtime error naming a source path is evidence that
+  the path is active for that run.
+- Before editing a file, identify:
+  - exact repository path;
+  - exact include path;
+  - active/legacy/backup status;
+  - evidence for that status.
+- Never edit `DoDA/WeaponSystem/WeaponBase_bak.zs`; it is backup/orphan source.
+- Treat `DoDA/Aim/DeadzoneController.zs` as legacy/orphan unless current
+  `zscript.txt`, current `MAPINFO`, and runtime evidence explicitly restore it.
+- Do not delete, rename, case-normalize, consolidate, or move `DoDA/` or
+  `doda/` paths unless a separate, explicitly authorized, validated source-tree
+  cleanup task proves all runtime references are safe.
+- Do not use an old source excerpt as authority when the current checkout
+  differs.
+
+## Build and test policy
+
+This is a GZDoom PK3/folder-based mod project. It is not an MSBuild, .NET, C++,
+Rider, Visual Studio, CMake, Gradle, npm, or conventional IDE-build project.
+
+- Never invoke, configure, troubleshoot, or interpret:
+  - MSBuild;
+  - `dotnet build`;
+  - Rider Build;
+  - Visual Studio Build;
+  - CMake;
+  - Make;
+  - Gradle;
+  - npm build;
+  - or any generic IDE build command for `doda-core`.
+- Do not create project files, solution files, response files, build scripts,
+  or toolchain configuration to make this mod compatible with a generic build
+  system.
+- Any MSBuild/Rider/generic IDE build output is irrelevant to DoDA ZScript
+  validity and must not be reported as a successful build, failed build, test,
+  warning, or validation result.
+- Treat the Rider/JetBrains Build panel as unavailable for DoDA validation.
+- Ignore MSBuild response-file errors such as `MSB1013`; they are unrelated to
+  GZDoom/ZScript.
+
+The authoritative compile/load/test workflow is manual:
+
+1. The human author uses SLADE to edit, validate, package, or inspect map and
+   asset content.
+2. The human author manually launches GZDoom with the unpacked
+   `gzdoda/doda-core` folder or an explicitly chosen test archive.
+3. GZDoom script parsing, map loading, in-game behavior, and the resulting
+   `console_log.txt` determine compile/load/test status.
+
+Agents must not:
+
+- launch GZDoom;
+- invoke SLADE;
+- run a project build;
+- package a PK3;
+- claim runtime validation;
+- claim a sprite resolves;
+- claim a map loads;
+- claim a weapon state works;
+- claim a gameplay feature works.
+
+Agents may inspect `console_log.txt` only when the human author explicitly
+provides or saves it after a manual GZDoom run.
+
+Agents must distinguish:
+
+- static source inspection;
+- requested source changes;
+- human-run GZDoom parsing/load evidence;
+- human-run in-game behavior evidence;
+- untested assumptions.
+
+After an implementation task, report:
+
+- exact files changed;
+- exact active paths edited;
+- local documentation read;
+- expected manual SLADE steps, if any;
+- exact manual GZDoom test procedure;
+- expected console-log success/failure indicators;
+- known untested behavior;
+- `git status --short`;
+- `git diff --stat`.
 
 ## Deadzone aim authority
 
 - `DoDA/Aim/AimInput.zs` owns raw mouse capture and dispatch only.
-- AimInput must return false while deadzone aim is inactive.
+- AimInput returns false while deadzone aim is inactive.
 - While deadzone aim is active, AimInput may consume mouse input and write only
-  raw input values to the established `doda_raw_mouse_x` and
-  `doda_raw_mouse_y` user CVars.
-- AimInput must not own deadzone activation, smoothing, gap math, camera
-  handoff, HUD state, weapon state, or reload behavior.
-- `DoDA/CharacterClasses/FieldAgent.zs` is the active deadzone authority for
-  the current MAPINFO player class.
-- FieldAgent solely owns deadzone activation, reset behavior, raw-mouse
-  consumption, smoothing, yaw/pitch reticle offsets, deadzone limits, clamping,
-  and transfer of input overflow to player angle/pitch.
-- HUD modules read FieldAgent deadzone state only. HUD code must never own,
-  modify, smooth, reset, clamp, or duplicate deadzone math.
-- Weapon modules consume FieldAgent deadzone state for presentation,
-  active-hand selection, spread/trace behavior, and firing behavior.
-- Weapon code must not write camera/view state, player angle/pitch, or
-  duplicate deadzone math.
-- Do not treat a visible HUD overlay as proof that input capture, controller
-  state, camera handoff, weapon consumption, or trace behavior is correct.
-- If deadzone behavior still feels like camera fighting after the active layers
-  are clean and validated, identify the need for GZDoom engine-source or C++
-  investigation rather than inventing ZScript-only workarounds.
+  established raw-input CVars such as `doda_raw_mouse_x` and
+  `doda_raw_mouse_y`.
+- AimInput does not own deadzone activation, smoothing, gap math, camera
+  handoff, HUD state, weapon state, reload behavior, or evidence behavior.
+- The active MAPINFO player class is the current authority for deadzone state
+  unless current active source proves otherwise.
+- For the current FieldAgent architecture, FieldAgent owns deadzone activation,
+  reset behavior, raw-input consumption, smoothing, yaw/pitch offsets, limits,
+  clamping, and overflow transfer to player angle/pitch.
+- HUD modules read deadzone state only.
+- HUD code must never own, modify, smooth, reset, clamp, or duplicate deadzone
+  math.
+- Weapon modules consume deadzone state for presentation, hand selection,
+  spread/trace behavior, and firing behavior.
+- Weapon code must not duplicate deadzone math or independently rewrite player
+  angle/pitch.
+- A visible HUD overlay is not proof that input capture, deadzone state, camera
+  handoff, weapon behavior, or trace behavior is correct.
+- If clean, tested ZScript layers still produce camera fighting or unsupported
+  behavior, identify the need for GZDoom engine-source/C++ investigation rather
+  than inventing ZScript-only workarounds.
+
+## Lean authority
+
+- Lean input owns Q/E button reading and edge detection only.
+- Lean controller owns lean direction, smoothing, applied lateral view offset,
+  and active lean-hand lock state.
+- HUD may read lean state/offset for presentation only.
+- Weapon code may consume lean output for sprite presentation, trace origin,
+  and permitted hand-lock routing only.
+- HUD must not own or mutate lean math.
+- Lean behavior requirements:
+  - Q held: left view translation and left-hand lock.
+  - E held: right view translation and right-hand lock.
+  - Q+E: no lean target and no hand lock.
+  - Release: smooth return to centered view and release hand lock.
+  - Lean lock has priority over manual pistol swap and deadzone threshold swap.
+  - V must not override lean hand lock.
+  - Camera roll is not part of the lean MVP.
+- Do not claim tactical lean is complete without human-run GZDoom evidence for
+  view translation, hand lock, V lockout, threshold restoration, HUD behavior,
+  and trace-origin behavior.
 
 ## Player classes
 
-- MAPINFO currently configures `FieldAgent` as the active player class unless
-  current MAPINFO is explicitly changed.
-- `Analyst` and `SAC` are included experimental player classes unless MAPINFO
-  is explicitly updated to expose them.
+- MAPINFO currently configures the active player class unless current MAPINFO
+  is explicitly changed.
+- `Analyst` and `SAC` are experimental unless active MAPINFO exposes them.
 - Do not make feature changes independently in FieldAgent, Analyst, and SAC.
-- If FieldAgent, Analyst, and SAC must remain playable, first propose a shared,
-  documented deadzone abstraction while retaining one per-player owner of
-  runtime state.
-- Do not claim Analyst or SAC behavior is validated merely because the classes
-  compile or are included.
-- Do not silently change default player class selection or player start
+- If multiple player classes must share behavior, first propose a documented,
+  single-owner shared abstraction with per-player runtime state.
+- Do not claim an included class is tested merely because it compiles.
+- Do not silently change default player class selection or global start
   inventory.
 
-## Weapon and ammo authority
+## Weapon and ammunition authority
 
-- `DoDA/WeaponSystem/HandSwapController.zs` owns desired-hand resolution only.
-- `DoDA/WeaponSystem/SpriteAnimator.zs` owns weapon PSprite presentation only.
-- Lean input/controller code owns lean input/state and any documented lean
-  camera offset behavior; weapon code consumes lean output where needed.
-- Left and right B92 pistols are gameplay-distinct weapons, not merely
-  mirrored or flipped presentation.
-- Each B92 inventory instance retains independent magazine rounds and chamber
-  state.
-- `Clip` is the intentionally shared loose-reserve ammo pool for the current
-  B92 design.
-- A shared-reserve-ammo change must not reset, refill, replace, or otherwise
-  mutate either pistol's independent magazine/chamber state.
-- Do not change the shared-reserve design to separate per-hand reserve pools
-  without an explicit gameplay design decision.
-- Do not silently restore default starting pistols. Starting loadout is map and
-  test-harness policy, not a weapon-system fallback.
-- Do not claim dual-B92 functionality is complete based on a solo-right or
-  solo-left test.
-- Treat a solo weapon test, a weapon pickup test, a hand-swap test, a reload
-  test, and a dual-pistol persistence test as distinct validation cases.
+- Left and right B92 pistols are gameplay-distinct weapons, not mirrored art.
+- Each B92 inventory instance retains independent magazine and chamber state.
+- `Clip` is the intended shared loose-reserve pool for the B92 design.
+- Shared reserve changes must not reset, refill, replace, or otherwise mutate
+  either pistol’s independent magazine/chamber state.
+- Do not change shared B92 reserve to per-hand reserve without explicit design
+  approval.
+- Do not silently restore default starting pistols.
+- Treat solo pistol, weapon pickup, hand swap, reload, dry fire, and dual-pistol
+  persistence as separate validation cases.
+- Keep weapon-specific state machines in their respective weapon classes.
+- Keep generic cross-weapon presentation/input dispatch in the active weapon
+  base only when it is safe for weapons that omit optional states.
+- Generic weapon-base code must null-check optional state labels returned by
+  `ResolveState()` before passing them to state methods such as
+  `InStateSequence()`.
 
-## Shooting-range regression policy
+## Shotgun policy
 
-- The first shooting-range map is an isolated regression harness, not mission
-  content.
-- Prefer `MAP03` for the shooting range unless an explicit map-slot decision
-  changes this.
-- Do not modify MAP01 mission flow or MAP02 debrief behavior unless explicitly
-  instructed.
-- The shooting-range baseline is an unarmed FieldAgent.
-- The range supplies one-time pickup stations for `DoDAB92Right` and
-  `DoDAB92Left`.
-- The range supplies a repeatable/infinite `Clip` ammo dispenser.
-- The ammo dispenser may add only the existing shared `Clip` reserve ammo.
-- The ammo dispenser must not grant weapons, duplicate weapon inventory,
-  reset pistol state, refill magazines directly, alter chamber state, or
-  advance mission/campaign state.
-- Do not invent DoomEdNums, spawn IDs, UDMF actor-placement rules, pickup
-  behavior, map metadata, or dispenser behavior. Inspect current MAPINFO,
-  active actor classes, map format, map assets, and existing map conventions
-  first.
-- Do not edit maps, WAD/DBS files, sprites, graphics, sounds, textures, or
-  binary files unless the task explicitly authorizes those changes.
-- A shooting-range task must include an actual GZDoom sandbox validation plan
-  for:
-    1. unarmed spawn;
-    2. right-B92 pickup;
-    3. left-B92 pickup;
-    4. repeated infinite-ammo-dispenser use;
-    5. predictable shared Clip reserve increases;
-    6. no weapon duplication from the dispenser;
-    7. independent left/right magazine and chamber persistence;
-    8. deadzone threshold hand switching;
-    9. selected-hand firing;
-    10. dry fire;
-    11. lowest-loaded eligible pistol reload selection;
-    12. active and companion weapon HUD data;
-    13. death, restart, and map-reset behavior.
-- A successful solo-right test does not validate the dual-pistol system.
-- Do not claim dual-B92 support is fixed or complete without a recorded
-  in-game range test using both B92 pickups.
+The shotgun is currently under active runtime stabilization.
 
-## Change policy
-
-Before editing:
-
-1. Inspect the relevant active source files.
-2. Inspect `zscript.txt` and identify the active include path for every source
-   file that would be changed.
-3. Read the relevant local ZDoom documentation.
-4. Read `console_log.txt` if the task involves an existing error, load result,
-   or gameplay regression.
-5. State the proposed files, behavior change, risks, source-authority status,
-   and validation plan.
-6. If maps or pickups are involved, establish current map format and actor
-   placement/spawn registration before proposing changes.
-
-While editing:
-
-- Make the smallest complete change.
-- Preserve modular subsystem boundaries.
-- Do not refactor unrelated code.
-- Do not modify unrelated include order.
-- Do not change sprites, graphics, maps, sounds, textures, binary files, or
-  packaged PK3 files unless explicitly requested.
-- Do not alter `.idea/` project files.
-- Do not commit, push, create branches, merge, or change Git configuration
-  unless explicitly instructed.
-- Do not leave duplicate ownership, partial patches,
-
-## Build and test policy
-
-- This is a GZDoom PK3/folder-based mod project, not an MSBuild, .NET, C++,
-  Rider, Visual Studio, CMake, Gradle, npm, or conventional IDE-build project.
-- Never invoke, configure, troubleshoot, or interpret MSBuild, dotnet build,
-  Rider Build, Visual Studio Build, CMake, Make, Gradle, npm build, or any
-  generic IDE build command for `doda-core`.
-- Do not create project files, solution files, response files, build scripts,
-  or toolchain configuration in an attempt to make the mod compatible with
-  MSBuild or any other generic build system.
-- Any MSBuild, Rider, or generic IDE build output is irrelevant to DoDA ZScript
-  validity and must not be reported as a successful build, failed build, test,
-  warning, or validation result.
-- The only authoritative compile/load/test workflow is manual:
-  1. The human author opens, edits, validates, or packages maps/assets with
-     SLADE.
-  2. The human author manually launches GZDoom with the unpacked
-     `gzdoda/doda-core` directory or explicitly chosen test archive.
-  3. GZDoom script parsing, map loading, in-game behavior, and
-     `console_log.txt` determine whether the project compiled and tested.
-- Junie and other coding agents must not attempt to launch GZDoom, invoke
-  SLADE, execute a project build, package a PK3, or claim runtime validation.
-- Agents may inspect `console_log.txt` only when the human author explicitly
-  provides or saves it after a manual GZDoom run.
-- Agents must distinguish:
-  - static source inspection;
-  - requested code changes;
-  - human-run GZDoom compilation/load evidence;
-  - human-run in-game behavioral evidence.
-- Do not claim that ZScript compiles, MAP03 loads, a sprite resolves, a weapon
-  state works, or a gameplay behavior is validated unless the human author has
-  manually run GZDoom and supplied the relevant `console_log.txt` or direct
-  test result.
-- After an implementation task, agents must provide:
-  - exact files changed;
-  - expected manual SLADE steps, if any;
-  - exact manual GZDoom test procedure;
-  - expected console-log success/failure indicators;
-  - known untested behavior.
-- Treat the Rider/JetBrains Build panel as unavailable for DoDA validation.
-  Ignore MSBuild errors such as MSB1013 and response-file errors; they are
-  unrelated to GZDoom/ZScript.
+- Do not expand evidence, map, holster, slot, or unrelated systems while
+  shotgun compiler/runtime failures remain unresolved.
+- Before changing shotgun code, inspect the active shotgun path shown by the
+  current `zscript.txt` and/or human-provided GZDoom error log.
+- Do not assume `DoDA/WeaponSystem/...` is the active shotgun path when runtime
+  evidence names a lower-case `doda/WeaponSystem/...` path.
+- The project-owned shotgun must consume existing DoDA deadzone/lean weapon
+  presentation behavior rather than duplicating deadzone math.
+- Use only verified imported sprite families.
+- Do not reference unverified placeholder bases such as `SHTG`, `SHTF`, or
+  `SHOT` when current assets do not contain them.
+- Current Brutal Doom placeholder asset mapping:
+  - `SHTN A`: hipfire ready;
+  - `SHTN B-F`, `S-T`, `U-W`, `X`, `Y-Z`, `[`, `]`: reload/shell insertion;
+  - `SHT8 A-B`: ADS/deadzone enter;
+  - `SHT8 C`: ADS/deadzone ready;
+  - `SHT8 D`: ADS/deadzone fire frame;
+  - `SHT8 E-F`: ADS recoil;
+  - `SHT8 G-J`: ADS rack/recovery candidate, requiring visual verification;
+  - `SHT6 A-I`: inspect only;
+  - `SHTC A`: world pickup/spawn candidate.
+- Do not rename `SHTN[0` or `SHTN]0` without explicit asset-conversion work.
+- Do not import Brutal Doom ACS/token/inspect/sprint/purist systems into DoDA.
+- Shotgun target behavior:
+  - deadzone aim held: fire, then defer rack until deadzone aim releases;
+  - deadzone aim released: perform required rack

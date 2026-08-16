@@ -1,9 +1,11 @@
-# GZDoDA Project Overview
+# Overview
 
-GZDoDA is a project aimed at enhancing the development and community engagement for the GZDoom engine. This wiki serves as a central hub for all information related to GZDoDA, including its features, development roadmap, and contribution guidelines.
+DoDA is an advanced gameplay mod for GZDoom, focusing on tactical depth, realistic weapon manipulation, and environmental interaction.
 
-## Key Features
+## Core Pillars
+- **Weapon System**: Independent magazine/chamber states, hand-swapping, and tactical reload cycles.
+- **Mission Management**: Objective tracking, evidence acquisition, and campaign state persistence.
+- **Tactical Abilities**: Deadzone aiming and controlled lateral leaning.
+- **Player Mechanics**: Modular class systems (FieldAgent, Analyst, SAC) with distinct starting states and abilities.
 
-- **Enhanced Development Tools**: Improved tools and resources for developers.
-- **Community Resources**: Forums, chat channels, and other community engagement platforms.
-- **Documentation**: Comprehensive guides and tutorials for both new and experienced users.
+This wiki is automatically maintained as a reference for the active source code, ensuring accuracy for development and community support.

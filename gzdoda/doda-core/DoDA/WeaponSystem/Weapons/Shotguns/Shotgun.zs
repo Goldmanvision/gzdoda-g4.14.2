@@ -143,27 +143,27 @@ class DoDAShotgun : DoDAWeapon
         }
     }
 
-    ui int GetTubeShellCount()
+    clearscope int GetTubeShellCount()
     {
         return tubeShells;
     }
 
-    ui int GetTubeCapacity()
+    clearscope int GetTubeCapacity()
     {
         return TubeCapacity;
     }
 
-    ui bool IsChamberLoaded()
+    clearscope bool IsChamberLoaded()
     {
         return chamberLoaded;
     }
 
-    ui bool IsRackPending()
+    clearscope bool IsRackPending()
     {
         return pendingRack;
     }
 
-    ui int GetReserveShellCount()
+    clearscope int GetReserveShellCount()
     {
         if (owner == null)
         {
@@ -179,7 +179,7 @@ class DoDAShotgun : DoDAWeapon
             : 0;
     }
 
-    ui String GetChamberStatusText()
+    clearscope String GetChamberStatusText()
     {
         if (chamberLoaded)
         {

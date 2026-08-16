@@ -20,7 +20,7 @@ class DoDAWeaponHUDData : Object
 
 class DoDAWeaponHUDBridge : Object
 {
-    static clearscope DoDAWeaponHUDData GetWeaponData(
+    static ui DoDAWeaponHUDData GetWeaponData(
         Weapon weapon,
         Weapon readyWeapon
     )
@@ -94,7 +94,7 @@ class DoDAWeaponHUDBridge : Object
         return pistolData;
     }
 
-    static clearscope DoDAWeaponHUDData GetActiveWeaponData(
+    static ui DoDAWeaponHUDData GetActiveWeaponData(
         Weapon readyWeapon
     )
     {
@@ -104,7 +104,7 @@ class DoDAWeaponHUDBridge : Object
         );
     }
 
-    static clearscope DoDAWeaponHUDData GetCompanionWeaponData(
+    static ui DoDAWeaponHUDData GetCompanionWeaponData(
         Actor pawn,
         Weapon readyWeapon
     )
@@ -140,7 +140,7 @@ class DoDAWeaponHUDBridge : Object
         );
     }
 
-    static clearscope int GetReserveRounds(
+    static ui int GetReserveRounds(
         Weapon readyWeapon
     )
     {
