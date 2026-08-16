@@ -18,24 +18,21 @@ class DoDAShotgun : DoDAWeapon
 
     action State A_Shotgun_Fire()
     {
-        if (!invoker) return null;
+        if (!invoker || !owner) return ResolveState("Ready");
         invoker.pendingRack = true;
-        let agent = FieldAgent(invoker.owner);
-        if (agent && agent.IsDeadzoneAimActive())
+        let agent = FieldAgent(owner);
+        if (agent && agent.DeadzoneAimActive)
         {
             return ResolveState("PendingRack");
         }
-        else
-        {
-            return ResolveState("Rack");
-        }
+        return ResolveState("Rack");
     }
 
     action State A_Shotgun_CheckPendingRack()
     {
-        if (!invoker) return null;
-        let agent = FieldAgent(invoker.owner);
-        if (agent && !agent.IsDeadzoneAimActive())
+        if (!invoker || !owner) return ResolveState("Ready");
+        let agent = FieldAgent(owner);
+        if (agent && !agent.DeadzoneAimActive)
         {
             return ResolveState("Rack");
         }
@@ -44,7 +41,7 @@ class DoDAShotgun : DoDAWeapon
 
     action State A_Shotgun_ResetRack()
     {
-        if (!invoker) return null;
+        if (!invoker) return ResolveState("Ready");
         invoker.pendingRack = false;
         return ResolveState("Ready");
     }
