@@ -67,8 +67,8 @@ class DoDAB92Left : DoDAPistol
 
     Fire:
         B92L G 1 A_DoDA_Fire;
-        B92L A 1 Bright;
         B92L B 1 Bright DoDA_FireTrace;
+        B92L A 1 Bright;
         B92L C 1;
         B92L D 1;
         B92L E 1;
