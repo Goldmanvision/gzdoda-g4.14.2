@@ -1,7 +1,3 @@
-///////////////////////////
-// DoDA/WeaponSystem/Weapons/Shotguns/Shotgun.zs
-///////////////////////////
-
 class DoDAShotgun : DoDAWeapon
 {
     const TubeCapacity = 7;
@@ -117,15 +113,6 @@ class DoDAShotgun : DoDAWeapon
         if (deadzoneActive && isInLowReadyFamily)
         {
             lowReadyIdleTics = 0;
-
-            owner.player.SetPSprite(
-                PSP_WEAPON,
-                pendingRack
-                    ? ResolveState("RackWait")
-                    : ResolveState("Ready")
-            );
-
-            return;
         }
 
         bool isReady =
@@ -136,11 +123,27 @@ class DoDAShotgun : DoDAWeapon
                 ResolveState("RackWait")
             );
 
+        bool isPostReload =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("PostReload")
+            );
+
+        let reserveShells = Ammo(
+            owner.FindInventory('Shell')
+        );
+
+        bool hasReserveShells =
+            reserveShells != null
+            && reserveShells.Amount > 0;
+
         if (pendingRack && isRackWait)
         {
             lowReadyIdleTics++;
 
-            if (lowReadyIdleTics >= LowReadyDelayTics)
+            if (
+                deadzoneActive
+                || lowReadyIdleTics >= LowReadyDelayTics
+            )
             {
                 lowReadyIdleTics = 0;
 
@@ -157,6 +160,21 @@ class DoDAShotgun : DoDAWeapon
             lowReadyIdleTics = 0;
         }
 
+        if (
+            reloadPressed
+            && isPostReload
+            && tubeShells < TubeCapacity
+            && hasReserveShells
+        )
+        {
+            owner.player.SetPSprite(
+                PSP_WEAPON,
+                ResolveState("Reload")
+            );
+
+            return;
+        }
+
         if (attackPressed && isReady)
         {
             owner.player.SetPSprite(
@@ -169,14 +187,6 @@ class DoDAShotgun : DoDAWeapon
             return;
         }
 
-        let reserveShells = Ammo(
-            owner.FindInventory('Shell')
-        );
-
-        bool hasReserveShells =
-            reserveShells != null
-            && reserveShells.Amount > 0;
-
         if (
             reloadPressed
             && isReady
@@ -187,7 +197,7 @@ class DoDAShotgun : DoDAWeapon
         {
             owner.player.SetPSprite(
                 PSP_WEAPON,
-                ResolveState("Reload")
+                ResolveState("PreReload")
             );
         }
     }
@@ -199,11 +209,6 @@ class DoDAShotgun : DoDAWeapon
             return;
         }
 
-        if (!pendingRack)
-        {
-            return;
-        }
-
         PSprite weaponSprite = owner.player.GetPSprite(
             PSP_WEAPON
         );
@@ -211,6 +216,24 @@ class DoDAShotgun : DoDAWeapon
         if (
             weaponSprite == null
             || weaponSprite.CurState == null
+        )
+        {
+            return;
+        }
+
+        if (
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("HipRack")
+            )
+            || weaponSprite.CurState.InStateSequence(
+                ResolveState("RaiseFromLowReadyToRack")
+            )
+            || weaponSprite.CurState.InStateSequence(
+                ResolveState("RackCycle")
+            )
+            || weaponSprite.CurState.InStateSequence(
+                ResolveState("RackReturn")
+            )
         )
         {
             return;
@@ -233,18 +256,14 @@ class DoDAShotgun : DoDAWeapon
                 ResolveState("RaiseFromLowReady")
             );
 
-        bool inRaiseFromLowReadyToRack =
-            weaponSprite.CurState.InStateSequence(
-                ResolveState("RaiseFromLowReadyToRack")
-            );
-
         if (
             inLowerToLowReady
             || inLowReady
             || inRaiseFromLowReady
-            || inRaiseFromLowReadyToRack
         )
         {
+            pendingRack = true;
+
             owner.player.SetPSprite(
                 PSP_WEAPON,
                 ResolveState("RaiseFromLowReadyToRack")
@@ -257,11 +276,14 @@ class DoDAShotgun : DoDAWeapon
             weaponSprite.CurState.InStateSequence(
                 ResolveState("RackWait")
             )
+            || weaponSprite.CurState == ResolveState("Ready")
         )
         {
+            pendingRack = true;
+
             owner.player.SetPSprite(
                 PSP_WEAPON,
-                ResolveState("RackCycle")
+                ResolveState("HipRack")
             );
         }
     }
@@ -360,27 +382,40 @@ class DoDAShotgun : DoDAWeapon
             return;
         }
 
-        bool isInLowReadyFamily =
+        bool inLowerToLowReady =
             weaponSprite.CurState.InStateSequence(
                 ResolveState("LowerToLowReady")
-            )
-            || weaponSprite.CurState.InStateSequence(
+            );
+
+        bool inLowReady =
+            weaponSprite.CurState.InStateSequence(
                 ResolveState("LowReady")
-            )
-            || weaponSprite.CurState.InStateSequence(
+            );
+
+        bool inRaiseFromLowReady =
+            weaponSprite.CurState.InStateSequence(
                 ResolveState("RaiseFromLowReady")
-            )
-            || weaponSprite.CurState.InStateSequence(
+            );
+
+        bool inRaiseFromLowReadyToRack =
+            weaponSprite.CurState.InStateSequence(
                 ResolveState("RaiseFromLowReadyToRack")
             );
 
-        if (isInLowReadyFamily)
+        bool isInLowReadyFamily =
+            inLowerToLowReady
+            || inLowReady
+            || inRaiseFromLowReady
+            || inRaiseFromLowReadyToRack;
+
+        if (
+            (pendingRack || !chamberLoaded)
+            && !isInLowReadyFamily
+        )
         {
             owner.player.SetPSprite(
                 PSP_WEAPON,
-                pendingRack
-                    ? ResolveState("RackWait")
-                    : ResolveState("Ready")
+                ResolveState("LowerToLowReady")
             );
         }
     }
@@ -741,7 +776,7 @@ class DoDAShotgun : DoDAWeapon
             reserveShells.Amount
         );
 
-        return ResolveState("Ready");
+        return ResolveState("PostReload");
     }
 
     action State A_Shotgun_FinishRack()
@@ -821,6 +856,16 @@ class DoDAShotgun : DoDAWeapon
         SHTN G 1 A_WeaponReady(WRF_NOFIRE);
         Loop;
 
+    PreReload:
+        SHTN A 1;
+        SHTN B 1;
+        SHTN C 1;
+        SHTN D 1;
+        SHTN E 1;
+        SHTN F 1;
+        SHTN G 1;
+        Goto Reload;
+
     Reload:
         SHTN S 1;
         SHTN T 1;
@@ -832,6 +877,16 @@ class DoDAShotgun : DoDAWeapon
         SHTN Z 1;
         SHTN [ 1;
         SHTN ] 1 A_Shotgun_LoadSingleShell;
+        Goto PostReload;
+
+    PostReload:
+        SHTN G 1;
+        SHTN F 1;
+        SHTN E 1;
+        SHTN D 1;
+        SHTN C 1;
+        SHTN B 1;
+        SHTN A 1;
         Goto Ready;
 
     LowerToLowReady:
@@ -857,6 +912,16 @@ class DoDAShotgun : DoDAWeapon
         SGUP C 2;
         SGUP B 2;
         SGUP A 2;
+        Goto RackCycle;
+
+    HipRack:
+        SHTN A 1;
+        SHTN B 1;
+        SHTN C 1;
+        SHTN D 1;
+        SHTN E 1;
+        SHTN F 1;
+        SHTN G 1;
         Goto RackCycle;
 
     RackCycle:
