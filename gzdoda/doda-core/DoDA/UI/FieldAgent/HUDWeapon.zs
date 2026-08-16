@@ -8,9 +8,11 @@ class DoDAHUDWeapon : Object
         String label,
         bool available,
         bool equipped,
+        bool isShotgun,
         int magazineRounds,
         int magazineCapacity,
         bool chamberLoaded,
+        String chamberStatus,
         int y
     )
     {
@@ -23,7 +25,31 @@ class DoDAHUDWeapon : Object
         if (!available)
         {
             textColor = Font.CR_RED;
-            text = String.Format("%s: UNAVAILABLE", label);
+
+            text = String.Format(
+                "%s: UNAVAILABLE",
+                label
+            );
+        }
+        else if (isShotgun)
+        {
+            if (chamberStatus == "SPENT / UNRACKED")
+            {
+                textColor = Font.CR_GOLD;
+            }
+            else if (chamberStatus == "EMPTY")
+            {
+                textColor = Font.CR_RED;
+            }
+
+            text = String.Format(
+                "%s%s  TUBE %02d/%02d  CH %s",
+                equipped ? ">" : " ",
+                label,
+                magazineRounds,
+                magazineCapacity,
+                chamberStatus
+            );
         }
         else if (magazineCapacity <= 0)
         {
@@ -60,15 +86,19 @@ class DoDAHUDWeapon : Object
         String primaryLabel,
         bool primaryAvailable,
         bool primaryEquipped,
+        bool primaryIsShotgun,
         int primaryMagazineRounds,
         int primaryMagazineCapacity,
         bool primaryChamberLoaded,
+        String primaryChamberStatus,
         String companionLabel,
         bool companionAvailable,
         bool companionEquipped,
+        bool companionIsShotgun,
         int companionMagazineRounds,
         int companionMagazineCapacity,
         bool companionChamberLoaded,
+        String companionChamberStatus,
         int reserveRounds
     )
     {
@@ -91,9 +121,11 @@ class DoDAHUDWeapon : Object
             primaryLabel,
             primaryAvailable,
             primaryEquipped,
+            primaryIsShotgun,
             primaryMagazineRounds,
             primaryMagazineCapacity,
             primaryChamberLoaded,
+            primaryChamberStatus,
             primaryY
         );
 
@@ -103,19 +135,29 @@ class DoDAHUDWeapon : Object
                 companionLabel,
                 true,
                 companionEquipped,
+                companionIsShotgun,
                 companionMagazineRounds,
                 companionMagazineCapacity,
                 companionChamberLoaded,
+                companionChamberStatus,
                 companionY
             );
         }
+
+        String reserveLabel = primaryIsShotgun
+            ? "SHELLS"
+            : "RESERVE";
 
         Screen.DrawText(
             SmallFont,
             Font.CR_GOLD,
             16,
             reserveY,
-            String.Format("RESERVE  %03d", reserveRounds),
+            String.Format(
+                "%s  %03d",
+                reserveLabel,
+                reserveRounds
+            ),
             DTA_CleanNoMove,
             true
         );

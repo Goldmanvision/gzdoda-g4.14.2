@@ -49,6 +49,10 @@ class DoDAWeapon : Weapon
         +WEAPON.NOAUTOAIM;
     }
 
+    virtual void HandleManualWeaponControl()
+    {
+    }
+
     void PrintDebugSpriteOffsets(int hand)
     {
         Console.Printf(
@@ -340,20 +344,6 @@ class DoDAWeapon : Weapon
         bool reloadPressed = reloadDown && !wasReloadHeld;
         wasReloadHeld = reloadDown;
 
-        CVar swapBerettaCVar = CVar.GetCVar(
-            'doda_swap_beretta',
-            owner.player
-        );
-
-        bool swapBerettaDown = swapBerettaCVar
-            ? swapBerettaCVar.GetBool()
-            : false;
-
-        bool swapBerettaPressed =
-            swapBerettaDown && !wasSwapBerettaHeld;
-
-        wasSwapBerettaHeld = swapBerettaDown;
-
         Weapon readyWeapon = owner.player.ReadyWeapon;
         Weapon pendingWeapon = owner.player.PendingWeapon;
         PSprite weaponSprite = owner.player.GetPSprite(PSP_WEAPON);
@@ -369,6 +359,8 @@ class DoDAWeapon : Weapon
 
         handSwapController.SetCurrentHand(actualHand);
 
+        bool leanLocked = leanController.IsLeanLocked();
+
         int requestedHand = handSwapController.ResolveDesiredHand(
             deadzoneActive,
             yawGap,
@@ -376,17 +368,56 @@ class DoDAWeapon : Weapon
             leanInput.WasLeaningLeftPressed(),
             leanInput.WasLeaningRightPressed(),
             isLeaning,
-            swapBerettaPressed,
-            leanController.IsLeanLocked(),
+            false,
+            leanLocked,
             leanController.GetLockedHand()
         );
 
-        if (leanController.IsLeanLocked() && swapBerettaPressed)
+        CVar swapBerettaCVar = CVar.GetCVar(
+            'doda_swap_beretta',
+            owner.player
+        );
+
+        bool swapBerettaDown = swapBerettaCVar
+            ? swapBerettaCVar.GetBool()
+            : false;
+
+        bool swapBerettaPressed =
+            swapBerettaDown && !wasSwapBerettaHeld;
+
+        wasSwapBerettaHeld = swapBerettaDown;
+
+        if (swapBerettaPressed)
+        {
+            requestedHand = handSwapController.ResolveDesiredHand(
+                deadzoneActive,
+                yawGap,
+                yawLimit,
+                leanInput.WasLeaningLeftPressed(),
+                leanInput.WasLeaningRightPressed(),
+                isLeaning,
+                true,
+                leanLocked,
+                leanController.GetLockedHand()
+            );
+        }
+
+        if (leanLocked && swapBerettaPressed)
         {
             leanController.SetLockedHand(requestedHand);
         }
 
         bool readyWasSelf = readyWeapon == self;
+
+        if (
+            swapBerettaPressed
+            && readyWasSelf
+            && !leanLocked
+        )
+        {
+            HandleManualWeaponControl();
+            weaponSprite = owner.player.GetPSprite(PSP_WEAPON);
+        }
 
         if (
             readyWasSelf

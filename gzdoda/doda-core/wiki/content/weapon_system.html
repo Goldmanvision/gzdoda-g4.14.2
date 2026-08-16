@@ -1,0 +1,22 @@
+﻿<h2>Weapon System</h2>
+<p>The weapon system handles weapon logic, animation, and implementation for all weapons, including the B92 pistols and the DoDA shotgun.</p>
+
+<h3>Active Files</h3>
+<ul>
+    <li><code>DoDA/WeaponSystem/HandSwapController.zs</code></li>
+    <li><code>DoDA/WeaponSystem/SpriteAnimator.zs</code></li>
+    <li><code>DoDA/WeaponSystem/WeaponBase.zs</code></li>
+    <li><code>DoDA/WeaponSystem/Weapons/Pistols/PistolBase.zs</code></li>
+    <li><code>DoDA/WeaponSystem/Weapons/Pistols/B92Left.zs</code></li>
+    <li><code>DoDA/WeaponSystem/Weapons/Pistols/B92Right.zs</code></li>
+    <li><code>DoDA/WeaponSystem/Weapons/Shotguns/Shotgun.zs</code></li>
+    <li><code>DoDA/WeaponSystem/Ammo/AmmoDispenser.zs</code></li>
+</ul>
+
+<h3>DoDAWeapon (WeaponBase.zs)</h3>
+<p>The base class for all DoDA weapons. Handles lean, deadzone, and sprite animation pipelines.</p>
+<ul>
+    <li><code>yawGap</code>, <code>pitchGap</code>: Deadzone aim offsets.</li>
+    <li><code>leanInput</code>, <code>leanController</code>: Lean ability components.</li>
+    <li><code>handSwapController</code>: Manages weapon hand swapping.</li>
+</ul>

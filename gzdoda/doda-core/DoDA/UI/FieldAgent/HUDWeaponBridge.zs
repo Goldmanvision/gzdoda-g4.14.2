@@ -8,8 +8,10 @@ class DoDAWeaponHUDData : Object
 {
     bool Available;
     bool Equipped;
+    bool IsShotgun;
 
     String Label;
+    String ChamberStatus;
 
     int MagazineRounds;
     int MagazineCapacity;
@@ -23,6 +25,37 @@ class DoDAWeaponHUDBridge : Object
         Weapon readyWeapon
     )
     {
+        if (weapon == null)
+        {
+            return null;
+        }
+
+        let shotgun = DoDAShotgun(weapon);
+
+        if (shotgun != null)
+        {
+            let shotgunData = new("DoDAWeaponHUDData");
+
+            shotgunData.Available = true;
+            shotgunData.Equipped = weapon == readyWeapon;
+            shotgunData.IsShotgun = true;
+            shotgunData.Label = "SHOTGUN";
+
+            shotgunData.MagazineRounds =
+                shotgun.GetTubeShellCount();
+
+            shotgunData.MagazineCapacity =
+                shotgun.GetTubeCapacity();
+
+            shotgunData.ChamberLoaded =
+                shotgun.IsChamberLoaded();
+
+            shotgunData.ChamberStatus =
+                shotgun.GetChamberStatusText();
+
+            return shotgunData;
+        }
+
         let pistol = DoDAPistol(weapon);
 
         if (pistol == null || !pistol.UsesWeaponHUD())
@@ -30,35 +63,45 @@ class DoDAWeaponHUDBridge : Object
             return null;
         }
 
-        let data = new("DoDAWeaponHUDData");
+        let pistolData = new("DoDAWeaponHUDData");
 
-        data.Available = true;
-        data.Equipped = weapon == readyWeapon;
-        data.MagazineRounds = pistol.GetMagazineRounds();
-        data.MagazineCapacity = pistol.GetMagazineCapacity();
-        data.ChamberLoaded = pistol.IsChamberLoaded();
+        pistolData.Available = true;
+        pistolData.Equipped = weapon == readyWeapon;
+        pistolData.IsShotgun = false;
+
+        pistolData.MagazineRounds =
+            pistol.GetMagazineRounds();
+
+        pistolData.MagazineCapacity =
+            pistol.GetMagazineCapacity();
+
+        pistolData.ChamberLoaded =
+            pistol.IsChamberLoaded();
 
         if (DoDAB92Left(weapon) != null)
         {
-            data.Label = "LEFT B92";
+            pistolData.Label = "LEFT B92";
         }
         else if (DoDAB92Right(weapon) != null)
         {
-            data.Label = "RIGHT B92";
+            pistolData.Label = "RIGHT B92";
         }
         else
         {
-            data.Label = "B92";
+            pistolData.Label = "B92";
         }
 
-        return data;
+        return pistolData;
     }
 
     static clearscope DoDAWeaponHUDData GetActiveWeaponData(
         Weapon readyWeapon
     )
     {
-        return GetWeaponData(readyWeapon, readyWeapon);
+        return GetWeaponData(
+            readyWeapon,
+            readyWeapon
+        );
     }
 
     static clearscope DoDAWeaponHUDData GetCompanionWeaponData(
@@ -91,13 +134,23 @@ class DoDAWeaponHUDBridge : Object
             pawn.FindInventory(companionClass)
         );
 
-        return GetWeaponData(companionWeapon, readyWeapon);
+        return GetWeaponData(
+            companionWeapon,
+            readyWeapon
+        );
     }
 
     static clearscope int GetReserveRounds(
         Weapon readyWeapon
     )
     {
+        let shotgun = DoDAShotgun(readyWeapon);
+
+        if (shotgun != null)
+        {
+            return shotgun.GetReserveShellCount();
+        }
+
         let pistol = DoDAPistol(readyWeapon);
 
         if (pistol == null || !pistol.UsesWeaponHUD())

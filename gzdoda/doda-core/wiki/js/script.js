@@ -1,0 +1,1 @@
+﻿console.log("DoDA Wiki initialized");

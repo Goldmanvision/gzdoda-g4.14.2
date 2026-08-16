@@ -1,0 +1,16 @@
+// Root SNDINFO
+// Paths are relative to doda-core.
+
+doda/pistol/dryfire = "sounds/pistol/B92DryFire.wav"
+doda/pistol/fire1 = "sounds/pistol/B92Fire1.wav"
+doda/pistol/fire2 = "sounds/pistol/B92Fire2.wav"
+doda/pistol/fire3 = "sounds/pistol/B92Fire3.wav"
+doda/pistol/mag_eject = "sounds/pistol/B92MagazineEject.wav"
+doda/pistol/mag_load = "sounds/pistol/B92MagazineLoad.wav"
+doda/pistol/slide = "sounds/pistol/B92Slide.wav"
+
+doda/shotgun/dryfire = "sounds/shotgun/shotgunDryFire.wav"
+doda/shotgun/fire = "sounds/shotgun/shotgunFire.wav"
+doda/shotgun/rack = "sounds/shotgun/shotgunRack.wav"
+doda/shotgun/shell_load = "sounds/shotgun/shotgunShell.wav"
+doda/shotgun/shell_eject = "sounds/shotgun/shotgunShell2.wav"
