@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DoDA Wiki</title>
+    <title>DoDA Wiki - HUD Weapon Readout</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -36,8 +36,27 @@
         </ul>
     </nav>
     <div id="content">
-        <h2>Welcome</h2>
-        <p>This is the official documentation for DoDA.</p>
+        <h2>HUD Weapon Readout</h2>
+        <p>The HUD displays weapon state. It is strictly read-only and must not own or mutate weapon gameplay state.</p>
+
+        <h3>Readout Contract</h3>
+        <h4>B92 Pistols</h4>
+        <pre>
+LEFT B92 / RIGHT B92
+MAG xx/xx
+CH 0 or 1
+RESERVE xxx
+        </pre>
+
+        <h4>Shotgun</h4>
+        <pre>
+SHOTGUN
+TUBE xx/07
+CH LIVE
+CH SPENT / UNRACKED
+CH EMPTY
+SHELLS xxx
+        </pre>
     </div>
 </body>
 </html>

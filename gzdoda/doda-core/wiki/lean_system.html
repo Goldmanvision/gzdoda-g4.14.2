@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DoDA Wiki</title>
+    <title>DoDA Wiki - Lean System</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -36,8 +36,24 @@
         </ul>
     </nav>
     <div id="content">
-        <h2>Welcome</h2>
-        <p>This is the official documentation for DoDA.</p>
+        <h2>Lean System</h2>
+        <p>The Lean System is responsible for view translation and hand-locking behavior.</p>
+
+        <h3>Ownership</h3>
+        <ul>
+            <li><code>LeanInput</code>: Owned by the input system. Responsible for Q/E button reading and edge detection.</li>
+            <li><code>LeanController</code>: Owned by the ability controller. Responsible for direction, smoothing, and lateral view offset.</li>
+        </ul>
+
+        <h3>Requirements</h3>
+        <ul>
+            <li>Q held: left view translation and left-hand lock.</li>
+            <li>E held: right view translation and right-hand lock.</li>
+            <li>Q+E: no lean target, no hand lock.</li>
+            <li>Release: smooth return to center.</li>
+            <li>Lean lock has priority over manual swap.</li>
+            <li>Camera roll is not included.</li>
+        </ul>
     </div>
 </body>
 </html>

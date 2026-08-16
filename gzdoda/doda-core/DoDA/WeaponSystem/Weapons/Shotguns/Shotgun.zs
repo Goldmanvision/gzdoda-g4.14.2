@@ -18,6 +18,7 @@ class DoDAShotgun : DoDAWeapon
     {
         Weapon.SelectionOrder 1300;
         Weapon.AmmoType "Shell";
+		Weapon.SlotNumber 3;
         Weapon.AmmoUse 0;
         Weapon.AmmoGive 8;
         Inventory.PickupMessage "$GOTSHOTGUN";
@@ -91,11 +92,20 @@ class DoDAShotgun : DoDAWeapon
             return;
         }
 
+        let reserveShells = Ammo(
+            owner.FindInventory('Shell')
+        );
+
+        bool hasReserveShells =
+            reserveShells != null
+            && reserveShells.Amount > 0;
+
         if (
             reloadPressed
             && isReady
             && !pendingRack
             && tubeShells < TubeCapacity
+            && hasReserveShells
         )
         {
             owner.player.SetPSprite(

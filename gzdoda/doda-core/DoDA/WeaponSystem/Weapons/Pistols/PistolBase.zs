@@ -20,7 +20,7 @@ class DoDAPistol : DoDAWeapon
     Default
     {
         Weapon.Kickback 100;
-
+		Weapon.SlotNumber 2;
         +WEAPON.NOAUTOFIRE;
 
         Tag "DoDA Pistol Base";

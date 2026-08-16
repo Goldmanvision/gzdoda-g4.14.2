@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DoDA Wiki</title>
+    <title>DoDA Wiki - Deadzone Aim</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -36,8 +36,15 @@
         </ul>
     </nav>
     <div id="content">
-        <h2>Welcome</h2>
-        <p>This is the official documentation for DoDA.</p>
+        <h2>Deadzone Aim</h2>
+        <p>Deadzone Aim is owned by <code>FieldAgent</code>, not weapons.</p>
+        
+        <h3>Aim Contract</h3>
+        <ul>
+            <li><code>GetDeadzoneYawGap()</code> and <code>GetDeadzonePitchGap()</code> are the fire-trace offset contract.</li>
+            <li>Yaw convention: Negative yaw moves the reticle right on screen.</li>
+            <li>Pitch convention: Positive pitch moves it down (matches active deadzone HUD implementation).</li>
+        </ul>
     </div>
 </body>
 </html>
