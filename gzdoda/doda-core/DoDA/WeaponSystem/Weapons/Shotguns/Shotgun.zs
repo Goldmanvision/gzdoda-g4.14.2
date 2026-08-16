@@ -4,28 +4,31 @@
 //
 // --------------------------------------------------------------------------
 
-class DoDAShotgun : DoomWeapon
+class DoDAShotgun : DoDAWeapon
 {
-	Default
-	{
-		Weapon.SelectionOrder 1300;
-		Weapon.AmmoUse 1;
-		Weapon.AmmoGive 8;
-		Weapon.AmmoType "Shell";
-		Inventory.PickupMessage "$GOTSHOTGUN";
-		Obituary "$OB_MPSHOTGUN";
-		Tag "$TAG_SHOTGUN";
-	}
-    action State A_Shotgun_FireAction()
+    Default {
+        Weapon.SelectionOrder 1300;
+        Weapon.AmmoUse 1;
+        Weapon.AmmoGive 8;
+        Weapon.AmmoType "Shell";
+        Inventory.PickupMessage "$GOTSHOTGUN";
+        Obituary "$OB_MPSHOTGUN";
+        Tag "$TAG_SHOTGUN";
+    }
+
+    action State A_Shotgun_Fire()
     {
         if (!invoker) return null;
+        invoker.pendingRack = true;
         let agent = FieldAgent(invoker.owner);
         if (agent && agent.IsDeadzoneAimActive())
         {
-            invoker.pendingRack = true;
             return ResolveState("PendingRack");
         }
-        return ResolveState("Rack");
+        else
+        {
+            return ResolveState("Rack");
+        }
     }
 
     action State A_Shotgun_CheckPendingRack()
@@ -59,7 +62,7 @@ class DoDAShotgun : DoomWeapon
         Loop;
     Fire:
         SHTG A 4 A_FireBullets(5.6, 0, 7, 5, "BulletPuff");
-        TNT1 A 0 A_Shotgun_FireAction;
+        TNT1 A 0 A_Shotgun_Fire;
         Stop;
     PendingRack:
         SHTG A 1;

@@ -221,3 +221,46 @@ While editing:
 - Do not commit, push, create branches, merge, or change Git configuration
   unless explicitly instructed.
 - Do not leave duplicate ownership, partial patches,
+
+## Build and test policy
+
+- This is a GZDoom PK3/folder-based mod project, not an MSBuild, .NET, C++,
+  Rider, Visual Studio, CMake, Gradle, npm, or conventional IDE-build project.
+- Never invoke, configure, troubleshoot, or interpret MSBuild, dotnet build,
+  Rider Build, Visual Studio Build, CMake, Make, Gradle, npm build, or any
+  generic IDE build command for `doda-core`.
+- Do not create project files, solution files, response files, build scripts,
+  or toolchain configuration in an attempt to make the mod compatible with
+  MSBuild or any other generic build system.
+- Any MSBuild, Rider, or generic IDE build output is irrelevant to DoDA ZScript
+  validity and must not be reported as a successful build, failed build, test,
+  warning, or validation result.
+- The only authoritative compile/load/test workflow is manual:
+  1. The human author opens, edits, validates, or packages maps/assets with
+     SLADE.
+  2. The human author manually launches GZDoom with the unpacked
+     `gzdoda/doda-core` directory or explicitly chosen test archive.
+  3. GZDoom script parsing, map loading, in-game behavior, and
+     `console_log.txt` determine whether the project compiled and tested.
+- Junie and other coding agents must not attempt to launch GZDoom, invoke
+  SLADE, execute a project build, package a PK3, or claim runtime validation.
+- Agents may inspect `console_log.txt` only when the human author explicitly
+  provides or saves it after a manual GZDoom run.
+- Agents must distinguish:
+  - static source inspection;
+  - requested code changes;
+  - human-run GZDoom compilation/load evidence;
+  - human-run in-game behavioral evidence.
+- Do not claim that ZScript compiles, MAP03 loads, a sprite resolves, a weapon
+  state works, or a gameplay behavior is validated unless the human author has
+  manually run GZDoom and supplied the relevant `console_log.txt` or direct
+  test result.
+- After an implementation task, agents must provide:
+  - exact files changed;
+  - expected manual SLADE steps, if any;
+  - exact manual GZDoom test procedure;
+  - expected console-log success/failure indicators;
+  - known untested behavior.
+- Treat the Rider/JetBrains Build panel as unavailable for DoDA validation.
+  Ignore MSBuild errors such as MSB1013 and response-file errors; they are
+  unrelated to GZDoom/ZScript.
