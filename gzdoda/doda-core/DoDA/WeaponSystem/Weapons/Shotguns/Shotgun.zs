@@ -16,35 +16,34 @@ class DoDAShotgun : DoomWeapon
 		Obituary "$OB_MPSHOTGUN";
 		Tag "$TAG_SHOTGUN";
 	}
-    action void A_Shotgun_Fire()
+    action State A_Shotgun_FireAction()
     {
-        let agent = FieldAgent(self.owner);
+        if (!invoker) return null;
+        let agent = FieldAgent(invoker.owner);
         if (agent && agent.IsDeadzoneAimActive())
         {
             invoker.pendingRack = true;
+            return ResolveState("PendingRack");
         }
+        return ResolveState("Rack");
     }
 
-    action void A_Shotgun_CheckRack()
+    action State A_Shotgun_CheckPendingRack()
     {
-        if (!invoker.pendingRack)
-        {
-            self.SetStateLabel("Rack");
-        }
-    }
-
-    action void A_Shotgun_CheckPendingRack()
-    {
-        let agent = FieldAgent(self.owner);
+        if (!invoker) return null;
+        let agent = FieldAgent(invoker.owner);
         if (agent && !agent.IsDeadzoneAimActive())
         {
-            self.SetStateLabel("Rack");
+            return ResolveState("Rack");
         }
+        return null;
     }
 
-    action void A_Shotgun_ResetRack()
+    action State A_Shotgun_ResetRack()
     {
+        if (!invoker) return null;
         invoker.pendingRack = false;
+        return ResolveState("Ready");
     }
 
     States
@@ -59,17 +58,17 @@ class DoDAShotgun : DoomWeapon
         SHTG A 1 A_Raise;
         Loop;
     Fire:
-        TNT1 A 0 A_Shotgun_Fire;
-        SHTG A 4;
-        TNT1 A 0 A_Shotgun_CheckRack;
-        Goto PendingRack;
+        SHTG A 4 A_FireBullets(5.6, 0, 7, 5, "BulletPuff");
+        TNT1 A 0 A_Shotgun_FireAction;
+        Stop;
     PendingRack:
-        SHTG A 1 A_Shotgun_CheckPendingRack;
+        SHTG A 1;
+        TNT1 A 1 A_Shotgun_CheckPendingRack;
         Loop;
     Rack:
         SHTG A 10;
         TNT1 A 0 A_Shotgun_ResetRack;
-        Goto Ready;
+        Stop;
     Flash:
         SHTF A 4 Bright A_Light1;
         SHTF B 3 Bright A_Light2;
