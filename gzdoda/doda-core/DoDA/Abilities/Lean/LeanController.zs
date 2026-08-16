@@ -78,17 +78,25 @@ class DoDALeanController : Object
 
         double targetLean = 0.0;
 
+        bool wasLeanLocked = LeanLock;
+
         if (leaningLeft && !leaningRight)
         {
             targetLean = -1.0;
             LeanLock = true;
-            LockedHand = DoDAHandSwapController.Hand_Left;
+            if (!wasLeanLocked)
+            {
+                LockedHand = DoDAHandSwapController.Hand_Left;
+            }
         }
         else if (leaningRight && !leaningLeft)
         {
             targetLean = 1.0;
             LeanLock = true;
-            LockedHand = DoDAHandSwapController.Hand_Right;
+            if (!wasLeanLocked)
+            {
+                LockedHand = DoDAHandSwapController.Hand_Right;
+            }
         }
         else
         {
@@ -127,6 +135,11 @@ class DoDALeanController : Object
     clearscope int GetLockedHand()
     {
         return LockedHand;
+    }
+
+    void SetLockedHand(int hand)
+    {
+        LockedHand = hand;
     }
 
     clearscope double GetLeanAmount()

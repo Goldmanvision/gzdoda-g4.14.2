@@ -19,6 +19,7 @@ version "2.4"
 #include "DoDA/UI/FieldAgent/HUDDeadzone.zs"
 #include "DoDA/UI/FieldAgent/HUDWeapon.zs"
 #include "DoDA/UI/FieldAgent/HUDWeaponBridge.zs"
+#include "DoDA/UI/FieldAgent/HUDDeadzoneBridge.zs"
 #include "DoDA/UI/FieldAgent/HUD.zs"
 #endregion
 
@@ -34,6 +35,7 @@ version "2.4"
 #include "DoDA/WeaponSystem/Weapons/Pistols/PistolBase.zs"
 #include "DoDA/WeaponSystem/Weapons/Pistols/B92Left.zs"
 #include "DoDA/WeaponSystem/Weapons/Pistols/B92Right.zs"
+#include "DoDA/WeaponSystem/Weapons/Shotguns/Shotgun.zs"
 #include "DoDA/WeaponSystem/Ammo/AmmoDispenser.zs"
 #endregion
 
@@ -47,6 +49,7 @@ version "2.4"
 #include "DoDA/MissionSystem/MissionDefs.zs"
 #include "DoDA/MissionSystem/MissionState.zs"
 #include "DoDA/MissionSystem/CampaignState.zs"
+#include "DoDA/MissionSystem/Evidence/EvidenceLedger.zs"
 #include "DoDA/MissionSystem/LastMissionReport.zs"
 #include "DoDA/MissionSystem/MissionManager.zs"
 #include "DoDA/MissionSystem/MissionDirector.zs"

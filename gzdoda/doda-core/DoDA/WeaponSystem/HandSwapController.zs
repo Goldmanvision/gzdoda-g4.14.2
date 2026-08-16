@@ -66,7 +66,7 @@ class DoDAHandSwapController : Object
         }
 
         // Tactical lean lock has highest priority.
-        if (leanLock)
+        if (leanLock && !swapBerettaPressed)
         {
             DesiredHand = lockedHand;
             ClearManualHandLock();

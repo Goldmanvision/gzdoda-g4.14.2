@@ -88,7 +88,11 @@ class FieldAgent : DoomPlayer
             ? debugForceCVar.GetBool()
             : false;
 
-        bool deadzoneActive = realAltFire || forceDeadzone;
+        bool leaningLeft = (player.cmd.buttons & BT_USER1) != 0;
+        bool leaningRight = (player.cmd.buttons & BT_USER2) != 0;
+        bool isLeaning = (leaningLeft || leaningRight) && !(leaningLeft && leaningRight);
+
+        bool deadzoneActive = realAltFire || forceDeadzone || isLeaning;
         bool justActivated = deadzoneActive && !DeadzoneAimActive;
 
         DeadzoneAimActive = deadzoneActive;

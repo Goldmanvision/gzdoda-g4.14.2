@@ -4,6 +4,14 @@
 
 // DoDA input bindings.
 
+addmenukey "Use" +use
+defaultbind f +use
+
+addmenukey "Left Lean" +user1
+defaultbind q +user1
+addmenukey "Right Lean" +user2
+defaultbind e +user2
+
 addkeysection "DoDA Controls" DoDAControls
 
 

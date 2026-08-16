@@ -102,7 +102,8 @@ class DoDAHUD : BaseStatusBar
             agent.GetDeadzonePitchLimit(),
             CPlayer.FOV,
             Screen.GetWidth(),
-            Screen.GetHeight()
+            Screen.GetHeight(),
+            DeadzoneHUDBridge.GetLeanOffset(CPlayer.mo)
         );
     }
 }

@@ -381,6 +381,11 @@ class DoDAWeapon : Weapon
             leanController.GetLockedHand()
         );
 
+        if (leanController.IsLeanLocked() && swapBerettaPressed)
+        {
+            leanController.SetLockedHand(requestedHand);
+        }
+
         bool readyWasSelf = readyWeapon == self;
 
         if (

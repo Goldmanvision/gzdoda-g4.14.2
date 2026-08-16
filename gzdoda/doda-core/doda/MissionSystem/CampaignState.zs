@@ -12,6 +12,8 @@ class DoDACampaignState : Inventory
     int ObservedObjectivePickupMarkerCount;
     int ObservedMissionPickupMarkerCount;
 
+    DoDAEvidenceLedger EvidenceLedger;
+
     bool WasLoggedThisMap;
 
     Default

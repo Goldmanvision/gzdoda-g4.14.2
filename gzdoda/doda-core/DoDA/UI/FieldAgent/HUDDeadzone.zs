@@ -12,7 +12,8 @@ class DoDAHUDDeadzone : Object
         double pitchLimit,
         double fov,
         int screenWidth,
-        int screenHeight
+        int screenHeight,
+        double leanOffset
     )
     {
         if (!active)
@@ -41,7 +42,8 @@ class DoDAHUDDeadzone : Object
         double halfViewWidth = viewWidth * 0.5;
         double halfViewHeight = viewHeight * 0.5;
 
-        double cx = viewX + halfViewWidth;
+        // Apply leanOffset as HUD pixel offset (factor 1.0 for now)
+        double cx = viewX + halfViewWidth + leanOffset;
         double cy = viewY + halfViewHeight;
 
         double aspect = viewWidth / double(viewHeight);
