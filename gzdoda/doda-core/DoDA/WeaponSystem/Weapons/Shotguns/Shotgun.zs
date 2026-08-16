@@ -30,10 +30,7 @@ class DoDAShotgun : DoDAWeapon
     {
         Super.Tick();
 
-        if (
-            owner == null
-            || owner.player == null
-        )
+        if (owner == null || owner.player == null)
         {
             return;
         }
@@ -110,10 +107,7 @@ class DoDAShotgun : DoDAWeapon
 
     override void HandleManualWeaponControl()
     {
-        if (
-            owner == null
-            || owner.player == null
-        )
+        if (owner == null || owner.player == null)
         {
             return;
         }
@@ -196,10 +190,7 @@ class DoDAShotgun : DoDAWeapon
 
     action void A_Shotgun_DryFireSound()
     {
-        if (
-            invoker == null
-            || invoker.owner == null
-        )
+        if (invoker == null || invoker.owner == null)
         {
             return;
         }
@@ -212,10 +203,7 @@ class DoDAShotgun : DoDAWeapon
 
     action void A_Shotgun_RackSound()
     {
-        if (
-            invoker == null
-            || invoker.owner == null
-        )
+        if (invoker == null || invoker.owner == null)
         {
             return;
         }
@@ -381,17 +369,10 @@ class DoDAShotgun : DoDAWeapon
             invoker.owner.FindInventory('Shell')
         );
 
-        int reserveCount = reserveShells != null
-            ? reserveShells.Amount
-            : 0;
-
         if (invoker.tubeShells >= invoker.TubeCapacity)
         {
             Console.Printf(
-                "[DODA/SHOTGUN] reload blocked: tube=%d/%d reserve=%d",
-                invoker.tubeShells,
-                invoker.TubeCapacity,
-                reserveCount
+                "[DODA/SHOTGUN] reload blocked: tube full"
             );
 
             return ResolveState("Ready");
@@ -409,15 +390,7 @@ class DoDAShotgun : DoDAWeapon
             return ResolveState("Ready");
         }
 
-        if (!invoker.owner.TakeInventory('Shell', 1))
-        {
-            Console.Printf(
-                "[DODA/SHOTGUN] reload failed: TakeInventory Shell"
-            );
-
-            return ResolveState("Ready");
-        }
-
+        reserveShells.Amount--;
         invoker.tubeShells++;
 
         A_StartSound(

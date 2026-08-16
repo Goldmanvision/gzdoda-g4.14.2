@@ -23,6 +23,7 @@ DoomEdNums
     9306 = "DoDAMissionObjectivePickup"
 	9307 = "DoDAB92Right"
 	9308 = "DoDAB92Left"
+	9309 = "DoDAShotgun"
 }
 
 map MAP01 "MISSION AREA TEST"
