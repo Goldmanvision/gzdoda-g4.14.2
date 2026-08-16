@@ -1,22 +1,24 @@
-/*//////////////////////////|
-// root/KEYCONF
-*///////////////////////////|
-
 // DoDA input bindings.
+
+addkeysection "DoDA Controls" DoDAControls
+
+
+// Core interactions.
 
 addmenukey "Use" +use
 defaultbind f +use
 
 addmenukey "Left Lean" +user1
 defaultbind q +user1
+
 addmenukey "Right Lean" +user2
 defaultbind e +user2
 
-addkeysection "DoDA Controls" DoDAControls
+addmenukey "Reload Weapon" +reload
+defaultbind r +reload
 
 
 // Deadzone Aim Mode.
-// This existing binding is preserved unchanged.
 
 addmenukey "DoDA Aim Mode" +doda_aimmode
 alias +doda_aimmode "DoDA_SetDeadzone 1"
@@ -24,9 +26,9 @@ alias -doda_aimmode "DoDA_SetDeadzone 0"
 defaultbind mouse2 +doda_aimmode
 
 
-// Swap Beretta.
-// A held key sets the action CVar; WeaponBase consumes only its rising edge,
-// so one V press creates exactly one B92 class-swap request.
+// Manual B92 hand swap.
+// V is the intended key for WeaponBase's dev_swaphand/manual-control
+// rising-edge handling.
 
 addmenukey "Swap Beretta" +doda_swapberetta
 alias +doda_swapberetta "doda_swap_beretta 1"
@@ -34,8 +36,12 @@ alias -doda_swapberetta "doda_swap_beretta 0"
 defaultbind v +doda_swapberetta
 
 
-// Reload.
-// This existing binding is preserved unchanged.
+// Weapon-slot defaults.
 
-addmenukey "Reload Weapon" +reload
-defaultbind r +reload
+addmenukey "Select B92 Pistols" doda_select_b92
+alias doda_select_b92 "slot 2"
+defaultbind 2 doda_select_b92
+
+addmenukey "Select Shotgun" doda_select_shotgun
+alias doda_select_shotgun "slot 3"
+defaultbind 3 doda_select_shotgun

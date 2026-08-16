@@ -409,10 +409,12 @@ class DoDAWeapon : Weapon
 
         bool readyWasSelf = readyWeapon == self;
 
+        // V-driven weapon-specific manual actions must remain available while
+        // Deadzone Aim / tactical lean is active. DoDAShotgun overrides this
+        // hook to start HipRack; pistols retain the empty base implementation.
         if (
             swapBerettaPressed
             && readyWasSelf
-            && !leanLocked
         )
         {
             HandleManualWeaponControl();
