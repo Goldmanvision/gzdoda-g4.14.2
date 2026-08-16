@@ -7,10 +7,10 @@ user float doda_aim_sensitivity = 0.20;
 user float doda_raw_mouse_x = 0.0;
 user float doda_raw_mouse_y = 0.0;
 
-// Swap Beretta action state.
-// KEYCONF holds this true while the remappable action is held; WeaponBase
-// consumes its rising edge into one B92 hand-swap request.
+// DoDA weapon-input state.
+
 user bool doda_swap_beretta = false;
+user bool doda_weapon_secondary = false;
 
 // Deadzone development controls.
 user bool doda_debug_force_deadzone = false;
@@ -21,3 +21,4 @@ user float doda_debug_sprite_y = 0.0;
 user float doda_debug_sprite_rot = 0.0;
 user float doda_debug_sprite_scale = 1.0;
 user bool doda_debug_print_now = false;
+

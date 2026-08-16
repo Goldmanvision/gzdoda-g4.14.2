@@ -53,7 +53,7 @@ class DoDAB92Right : DoDAPistol
         TNT1 A 0 DoDA_SelectRightReloadAnimation;
         R92R A 2 DoDA_BeginReload;
         R92R B 2;
-        R92R C 2;
+        R92R C 2 DoDA_PlayMagazineEjectSound;
         R92R D 2;
         R92R E 2;
         R92R F 2;
@@ -64,9 +64,10 @@ class DoDAB92Right : DoDAPistol
         R92R K 2;
         R92R L 2;
         B92R D 2;
-        B92R E 2 DoDA_CommitReload;
+        B92R E 2 DoDA_PlayMagazineLoadSound;
+        B92R E 0 DoDA_CommitReload;
         B92R F 2;
-        B92R G 2;
+        B92R G 2 DoDA_PlaySlideSound;
         Goto Ready;
 
     // Solo-right Beretta reload. This runs only when the player does not
@@ -74,7 +75,7 @@ class DoDAB92Right : DoDAPistol
     ReloadSolo:
         S92R A 2 DoDA_BeginReload;
         S92R B 2;
-        S92R C 2;
+        S92R C 2 DoDA_PlayMagazineEjectSound;
         S92R D 2;
         S92R E 2;
         S92R F 2;
@@ -85,9 +86,10 @@ class DoDAB92Right : DoDAPistol
         S92R K 2;
         S92R L 2;
         B92R D 2;
-        B92R E 2 DoDA_CommitReload;
+        B92R E 2 DoDA_PlayMagazineLoadSound;
+        B92R E 0 DoDA_CommitReload;
         B92R F 2;
-        B92R G 2;
+        B92R G 2 DoDA_PlaySlideSound;
         Goto Ready;
 
     Deselect:
@@ -106,19 +108,17 @@ class DoDAB92Right : DoDAPistol
         B92R G 1 A_DoDA_Fire;
         B92R A 1 Bright;
         B92R B 1 Bright DoDA_FireTrace;
+        B92R B 0 Bright DoDA_PlayFireSound;
         B92R C 1;
         B92R D 1;
         B92R E 1;
         B92R F 1;
         Goto Ready;
-	
+
     DryFire:
+        TNT1 A 0 DoDA_PlayDryFireSound;
         B92R D 2;
         Goto ReadyEmpty;
-	
-	Spawn:
-		B92R T -1;
-		Loop;
 
     }
 }

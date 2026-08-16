@@ -1,16 +1,34 @@
-// Root SNDINFO
-// Paths are relative to doda-core.
+// ============================================================
+// DoDA custom weapon sound definitions.
+// Sound resources are extensionless Doom Sound lumps in /sounds.
+// ============================================================
 
-doda/pistol/dryfire = "sounds/pistol/B92DryFire.wav"
-doda/pistol/fire1 = "sounds/pistol/B92Fire1.wav"
-doda/pistol/fire2 = "sounds/pistol/B92Fire2.wav"
-doda/pistol/fire3 = "sounds/pistol/B92Fire3.wav"
-doda/pistol/mag_eject = "sounds/pistol/B92MagazineEject.wav"
-doda/pistol/mag_load = "sounds/pistol/B92MagazineLoad.wav"
-doda/pistol/slide = "sounds/pistol/B92Slide.wav"
 
-doda/shotgun/dryfire = "sounds/shotgun/shotgunDryFire.wav"
-doda/shotgun/fire = "sounds/shotgun/shotgunFire.wav"
-doda/shotgun/rack = "sounds/shotgun/shotgunRack.wav"
-doda/shotgun/shell_load = "sounds/shotgun/shotgunShell.wav"
-doda/shotgun/shell_eject = "sounds/shotgun/shotgunShell2.wav"
+// Shotgun.
+
+doda/shotgun/fire        SGFIRE
+doda/shotgun/rack        SGRACK
+doda/shotgun/dryfire     SGDRY
+doda/shotgun/shell_load1 SGLOAD1
+doda/shotgun/shell_load2 SGLOAD2
+
+// Randomized shotgun shell-ejection sounds.
+
+doda/shotgun/shell_eject1 SGEJCT1
+doda/shotgun/shell_eject2 SGEJCT2
+doda/shotgun/shell_eject3 SGEJCT3
+doda/shotgun/shell_eject4 SGEJCT4
+doda/shotgun/shell_eject5 SGEJCT5
+doda/shotgun/shell_eject6 SGEJCT6
+doda/shotgun/shell_eject7 SGEJCT7
+
+// B92 pistol.
+
+doda/pistol/fire1        B92FIR1
+doda/pistol/fire2        B92FIR2
+doda/pistol/fire3        B92FIR3
+doda/pistol/dryfire      B92DRY
+doda/pistol/mag_eject    B92EJCT
+doda/pistol/mag_load     B92LOAD
+doda/pistol/slide        B92SLIDE
+

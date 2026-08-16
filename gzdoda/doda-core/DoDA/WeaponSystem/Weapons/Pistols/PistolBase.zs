@@ -20,7 +20,7 @@ class DoDAPistol : DoDAWeapon
     Default
     {
         Weapon.Kickback 100;
-		Weapon.SlotNumber 2;
+        Weapon.SlotNumber 2;
         +WEAPON.NOAUTOFIRE;
 
         Tag "DoDA Pistol Base";
@@ -230,6 +230,90 @@ class DoDAPistol : DoDAWeapon
         return true;
     }
 
+    action void DoDA_PlayFireSound()
+    {
+        if (invoker == null || invoker.owner == null)
+        {
+            return;
+        }
+
+        int soundVariant = Random(1, 3);
+
+        if (soundVariant == 1)
+        {
+            A_StartSound(
+                "doda/pistol/fire1",
+                CHAN_WEAPON
+            );
+        }
+        else if (soundVariant == 2)
+        {
+            A_StartSound(
+                "doda/pistol/fire2",
+                CHAN_WEAPON
+            );
+        }
+        else
+        {
+            A_StartSound(
+                "doda/pistol/fire3",
+                CHAN_WEAPON
+            );
+        }
+    }
+
+    action void DoDA_PlayDryFireSound()
+    {
+        if (invoker == null || invoker.owner == null)
+        {
+            return;
+        }
+
+        A_StartSound(
+            "doda/pistol/dryfire",
+            CHAN_BODY
+        );
+    }
+
+    action void DoDA_PlayMagazineEjectSound()
+    {
+        if (invoker == null || invoker.owner == null)
+        {
+            return;
+        }
+
+        A_StartSound(
+            "doda/pistol/mag_eject",
+            CHAN_BODY
+        );
+    }
+
+    action void DoDA_PlayMagazineLoadSound()
+    {
+        if (invoker == null || invoker.owner == null)
+        {
+            return;
+        }
+
+        A_StartSound(
+            "doda/pistol/mag_load",
+            CHAN_BODY
+        );
+    }
+
+    action void DoDA_PlaySlideSound()
+    {
+        if (invoker == null || invoker.owner == null)
+        {
+            return;
+        }
+
+        A_StartSound(
+            "doda/pistol/slide",
+            CHAN_BODY
+        );
+    }
+
     // Called on the first R92L/R92R animation frame. It protects against
     // a stale queued request after reserve ammo changes.
     action void DoDA_BeginReload()
@@ -253,10 +337,12 @@ class DoDAPistol : DoDAWeapon
     action State A_DoDA_Ready()
     {
         let pistol = DoDAPistol(invoker);
+
         if (pistol && !pistol.chamberLoaded)
         {
             return ResolveState("ReadyEmpty");
         }
+
         A_WeaponReady(WRF_ALLOWZOOM | WRF_NOSECONDARY);
         return null;
     }
@@ -264,10 +350,12 @@ class DoDAPistol : DoDAWeapon
     action State A_DoDA_Fire()
     {
         let pistol = DoDAPistol(invoker);
+
         if (pistol && !pistol.chamberLoaded)
         {
             return ResolveState("DryFire");
         }
+
         return null;
     }
 

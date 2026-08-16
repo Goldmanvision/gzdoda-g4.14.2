@@ -1,7 +1,3 @@
-///////////////////////////
-// DoDA/WeaponSystem/SpriteAnimator.zs
-///////////////////////////
-
 class DoDASpriteAnimator : Object
 {
     double FinalX;

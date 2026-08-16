@@ -17,6 +17,8 @@ class DoDAWeapon : Weapon
 
     int fireLockTics;
     bool wasSwapBerettaHeld;
+    bool wasWeaponSecondaryHeld;
+    bool wasDeadzoneAimActive;
     bool wasHoldingFire;
     bool wasReloadHeld;
     bool initialized;
@@ -50,6 +52,14 @@ class DoDAWeapon : Weapon
     }
 
     virtual void HandleManualWeaponControl()
+    {
+    }
+
+    virtual void HandleSecondaryWeaponAction()
+    {
+    }
+
+    virtual void HandleDeadzoneAimActivated()
     {
     }
 
@@ -289,6 +299,11 @@ class DoDAWeapon : Weapon
         bool deadzoneActive = agent != null
             && agent.IsDeadzoneAimActive();
 
+        bool deadzoneAimJustActivated =
+            deadzoneActive && !wasDeadzoneAimActive;
+
+        wasDeadzoneAimActive = deadzoneActive;
+
         yawGap = agent ? agent.GetDeadzoneYawGap() : 0.0;
         pitchGap = agent ? agent.GetDeadzonePitchGap() : 0.0;
 
@@ -387,6 +402,20 @@ class DoDAWeapon : Weapon
 
         wasSwapBerettaHeld = swapBerettaDown;
 
+        CVar secondaryActionCVar = CVar.GetCVar(
+            'doda_weapon_secondary',
+            owner.player
+        );
+
+        bool secondaryActionDown = secondaryActionCVar
+            ? secondaryActionCVar.GetBool()
+            : false;
+
+        bool secondaryActionPressed =
+            secondaryActionDown && !wasWeaponSecondaryHeld;
+
+        wasWeaponSecondaryHeld = secondaryActionDown;
+
         if (swapBerettaPressed)
         {
             requestedHand = handSwapController.ResolveDesiredHand(
@@ -409,9 +438,21 @@ class DoDAWeapon : Weapon
 
         bool readyWasSelf = readyWeapon == self;
 
-        // V-driven weapon-specific manual actions must remain available while
-        // Deadzone Aim / tactical lean is active. DoDAShotgun overrides this
-        // hook to start HipRack; pistols retain the empty base implementation.
+        if (deadzoneAimJustActivated && readyWasSelf)
+        {
+            HandleDeadzoneAimActivated();
+            weaponSprite = owner.player.GetPSprite(PSP_WEAPON);
+        }
+
+        if (
+            secondaryActionPressed
+            && readyWasSelf
+        )
+        {
+            HandleSecondaryWeaponAction();
+            weaponSprite = owner.player.GetPSprite(PSP_WEAPON);
+        }
+
         if (
             swapBerettaPressed
             && readyWasSelf
@@ -479,7 +520,9 @@ class DoDAWeapon : Weapon
             || requestedHand != lastLoggedRequestedHand
             || actualHand != lastLoggedActualHand
             || attackPressed
-            || swapBerettaPressed;
+            || swapBerettaPressed
+            || secondaryActionPressed
+            || deadzoneAimJustActivated;
 
         if (pipelineChanged)
         {
@@ -607,7 +650,44 @@ class DoDAWeapon : Weapon
         bool isSelectState =
             weaponSprite.CurState == ResolveState("Select");
 
-        if (isReadyState || isFireState || isReloadState)
+        bool isLowReadyState =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("LowerToLowReady")
+            )
+            || weaponSprite.CurState.InStateSequence(
+                ResolveState("LowReady")
+            )
+            || weaponSprite.CurState.InStateSequence(
+                ResolveState("RaiseFromLowReady")
+            )
+            || weaponSprite.CurState.InStateSequence(
+                ResolveState("RaiseFromLowReadyToRack")
+            );
+
+        bool isRackState =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("RackWait")
+            )
+            || weaponSprite.CurState.InStateSequence(
+                ResolveState("HipRack")
+            )
+            || weaponSprite.CurState.InStateSequence(
+                ResolveState("RackCycle")
+            )
+            || weaponSprite.CurState.InStateSequence(
+                ResolveState("RackReturn")
+            )
+            || weaponSprite.CurState.InStateSequence(
+                ResolveState("PostFire")
+            );
+
+        if (
+            isReadyState
+            || isFireState
+            || isReloadState
+            || isLowReadyState
+            || isRackState
+        )
         {
             spriteAnimator.Apply(
                 weaponSprite,

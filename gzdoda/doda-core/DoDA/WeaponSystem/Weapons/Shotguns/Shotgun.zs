@@ -5,6 +5,7 @@
 class DoDAShotgun : DoDAWeapon
 {
     const TubeCapacity = 7;
+    const LowReadyDelayTics = 105;
 
     int tubeShells;
     bool chamberLoaded;
@@ -14,11 +15,13 @@ class DoDAShotgun : DoDAWeapon
     bool wasShotgunReloadHeld;
     bool shotgunInitialized;
 
+    int lowReadyIdleTics;
+
     Default
     {
         Weapon.SelectionOrder 1300;
         Weapon.AmmoType "Shell";
-		Weapon.SlotNumber 3;
+        Weapon.SlotNumber 3;
         Weapon.AmmoUse 0;
         Weapon.AmmoGive 8;
         Inventory.PickupMessage "$GOTSHOTGUN";
@@ -41,6 +44,7 @@ class DoDAShotgun : DoDAWeapon
             tubeShells = TubeCapacity;
             chamberLoaded = true;
             pendingRack = false;
+            lowReadyIdleTics = 0;
             shotgunInitialized = true;
         }
 
@@ -62,6 +66,7 @@ class DoDAShotgun : DoDAWeapon
 
         if (owner.player.ReadyWeapon != self)
         {
+            lowReadyIdleTics = 0;
             return;
         }
 
@@ -74,11 +79,83 @@ class DoDAShotgun : DoDAWeapon
             || weaponSprite.CurState == null
         )
         {
+            lowReadyIdleTics = 0;
+            return;
+        }
+
+        let agent = FieldAgent(owner);
+
+        bool deadzoneActive = agent != null
+            && agent.IsDeadzoneAimActive();
+
+        bool inLowerToLowReady =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("LowerToLowReady")
+            );
+
+        bool inLowReady =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("LowReady")
+            );
+
+        bool inRaiseFromLowReady =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("RaiseFromLowReady")
+            );
+
+        bool inRaiseFromLowReadyToRack =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("RaiseFromLowReadyToRack")
+            );
+
+        bool isInLowReadyFamily =
+            inLowerToLowReady
+            || inLowReady
+            || inRaiseFromLowReady
+            || inRaiseFromLowReadyToRack;
+
+        if (deadzoneActive && isInLowReadyFamily)
+        {
+            lowReadyIdleTics = 0;
+
+            owner.player.SetPSprite(
+                PSP_WEAPON,
+                pendingRack
+                    ? ResolveState("RackWait")
+                    : ResolveState("Ready")
+            );
+
             return;
         }
 
         bool isReady =
             weaponSprite.CurState == ResolveState("Ready");
+
+        bool isRackWait =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("RackWait")
+            );
+
+        if (pendingRack && isRackWait)
+        {
+            lowReadyIdleTics++;
+
+            if (lowReadyIdleTics >= LowReadyDelayTics)
+            {
+                lowReadyIdleTics = 0;
+
+                owner.player.SetPSprite(
+                    PSP_WEAPON,
+                    ResolveState("LowerToLowReady")
+                );
+
+                return;
+            }
+        }
+        else
+        {
+            lowReadyIdleTics = 0;
+        }
 
         if (attackPressed && isReady)
         {
@@ -122,11 +199,7 @@ class DoDAShotgun : DoDAWeapon
             return;
         }
 
-        if (
-            !pendingRack
-            && !chamberLoaded
-            && tubeShells <= 0
-        )
+        if (!pendingRack)
         {
             return;
         }
@@ -136,13 +209,178 @@ class DoDAShotgun : DoDAWeapon
         );
 
         if (
-            weaponSprite != null
-            && weaponSprite.CurState == ResolveState("Ready")
+            weaponSprite == null
+            || weaponSprite.CurState == null
+        )
+        {
+            return;
+        }
+
+        lowReadyIdleTics = 0;
+
+        bool inLowerToLowReady =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("LowerToLowReady")
+            );
+
+        bool inLowReady =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("LowReady")
+            );
+
+        bool inRaiseFromLowReady =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("RaiseFromLowReady")
+            );
+
+        bool inRaiseFromLowReadyToRack =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("RaiseFromLowReadyToRack")
+            );
+
+        if (
+            inLowerToLowReady
+            || inLowReady
+            || inRaiseFromLowReady
+            || inRaiseFromLowReadyToRack
         )
         {
             owner.player.SetPSprite(
                 PSP_WEAPON,
-                ResolveState("HipRack")
+                ResolveState("RaiseFromLowReadyToRack")
+            );
+
+            return;
+        }
+
+        if (
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("RackWait")
+            )
+        )
+        {
+            owner.player.SetPSprite(
+                PSP_WEAPON,
+                ResolveState("RackCycle")
+            );
+        }
+    }
+
+    override void HandleSecondaryWeaponAction()
+    {
+        if (owner == null || owner.player == null)
+        {
+            return;
+        }
+
+        PSprite weaponSprite = owner.player.GetPSprite(
+            PSP_WEAPON
+        );
+
+        if (
+            weaponSprite == null
+            || weaponSprite.CurState == null
+        )
+        {
+            return;
+        }
+
+        lowReadyIdleTics = 0;
+
+        bool isRackWait =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("RackWait")
+            );
+
+        bool inLowerToLowReady =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("LowerToLowReady")
+            );
+
+        bool inLowReady =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("LowReady")
+            );
+
+        bool inRaiseFromLowReady =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("RaiseFromLowReady")
+            );
+
+        bool inRaiseFromLowReadyToRack =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("RaiseFromLowReadyToRack")
+            );
+
+        if (pendingRack && isRackWait)
+        {
+            owner.player.SetPSprite(
+                PSP_WEAPON,
+                ResolveState("LowerToLowReady")
+            );
+
+            return;
+        }
+
+        if (
+            pendingRack
+            && (
+                inLowerToLowReady
+                || inLowReady
+                || inRaiseFromLowReady
+                || inRaiseFromLowReadyToRack
+            )
+        )
+        {
+            owner.player.SetPSprite(
+                PSP_WEAPON,
+                ResolveState("RaiseFromLowReady")
+            );
+        }
+    }
+
+    override void HandleDeadzoneAimActivated()
+    {
+        if (owner == null || owner.player == null)
+        {
+            return;
+        }
+
+        lowReadyIdleTics = 0;
+
+        PSprite weaponSprite = owner.player.GetPSprite(
+            PSP_WEAPON
+        );
+
+        if (
+            weaponSprite == null
+            || weaponSprite.CurState == null
+        )
+        {
+            return;
+        }
+
+        bool isInLowReadyFamily =
+            weaponSprite.CurState.InStateSequence(
+                ResolveState("LowerToLowReady")
+            )
+            || weaponSprite.CurState.InStateSequence(
+                ResolveState("LowReady")
+            )
+            || weaponSprite.CurState.InStateSequence(
+                ResolveState("RaiseFromLowReady")
+            )
+            || weaponSprite.CurState.InStateSequence(
+                ResolveState("RaiseFromLowReadyToRack")
+            );
+
+        if (isInLowReadyFamily)
+        {
+            owner.player.SetPSprite(
+                PSP_WEAPON,
+                pendingRack
+                    ? ResolveState("RackWait")
+                    : ResolveState("Ready")
             );
         }
     }
@@ -207,7 +445,7 @@ class DoDAShotgun : DoDAWeapon
 
         A_StartSound(
             "doda/shotgun/dryfire",
-            CHAN_WEAPON
+            CHAN_BODY
         );
     }
 
@@ -220,8 +458,98 @@ class DoDAShotgun : DoDAWeapon
 
         A_StartSound(
             "doda/shotgun/rack",
-            CHAN_WEAPON
+            CHAN_BODY
         );
+    }
+
+    action void A_Shotgun_ShellEjectSound()
+    {
+        if (invoker == null || invoker.owner == null)
+        {
+            return;
+        }
+
+        int soundVariant = Random(1, 7);
+
+        if (soundVariant == 1)
+        {
+            A_StartSound(
+                "doda/shotgun/shell_eject1",
+                CHAN_BODY,
+                CHANF_OVERLAP
+            );
+        }
+        else if (soundVariant == 2)
+        {
+            A_StartSound(
+                "doda/shotgun/shell_eject2",
+                CHAN_BODY,
+                CHANF_OVERLAP
+            );
+        }
+        else if (soundVariant == 3)
+        {
+            A_StartSound(
+                "doda/shotgun/shell_eject3",
+                CHAN_BODY,
+                CHANF_OVERLAP
+            );
+        }
+        else if (soundVariant == 4)
+        {
+            A_StartSound(
+                "doda/shotgun/shell_eject4",
+                CHAN_BODY,
+                CHANF_OVERLAP
+            );
+        }
+        else if (soundVariant == 5)
+        {
+            A_StartSound(
+                "doda/shotgun/shell_eject5",
+                CHAN_BODY,
+                CHANF_OVERLAP
+            );
+        }
+        else if (soundVariant == 6)
+        {
+            A_StartSound(
+                "doda/shotgun/shell_eject6",
+                CHAN_BODY,
+                CHANF_OVERLAP
+            );
+        }
+        else
+        {
+            A_StartSound(
+                "doda/shotgun/shell_eject7",
+                CHAN_BODY,
+                CHANF_OVERLAP
+            );
+        }
+    }
+
+    action void A_Shotgun_LoadShellSound()
+    {
+        if (invoker == null || invoker.owner == null)
+        {
+            return;
+        }
+
+        if (Random(1, 2) == 1)
+        {
+            A_StartSound(
+                "doda/shotgun/shell_load1",
+                CHAN_BODY
+            );
+        }
+        else
+        {
+            A_StartSound(
+                "doda/shotgun/shell_load2",
+                CHAN_BODY
+            );
+        }
     }
 
     action State A_Shotgun_BeginFire()
@@ -360,8 +688,9 @@ class DoDAShotgun : DoDAWeapon
 
         invoker.chamberLoaded = false;
         invoker.pendingRack = true;
+        invoker.lowReadyIdleTics = 0;
 
-        return ResolveState("Ready");
+        return ResolveState("PostFire");
     }
 
     action State A_Shotgun_LoadSingleShell()
@@ -403,10 +732,7 @@ class DoDAShotgun : DoDAWeapon
         reserveShells.Amount--;
         invoker.tubeShells++;
 
-        A_StartSound(
-            "doda/shotgun/shell_load",
-            CHAN_WEAPON
-        );
+        invoker.A_Shotgun_LoadShellSound();
 
         Console.Printf(
             "[DODA/SHOTGUN] reload success: tube=%d/%d reserve=%d",
@@ -429,17 +755,7 @@ class DoDAShotgun : DoDAWeapon
             return ResolveState("Ready");
         }
 
-        bool ejectedLiveShell = invoker.chamberLoaded;
-
         invoker.chamberLoaded = false;
-
-        if (ejectedLiveShell)
-        {
-            A_StartSound(
-                "doda/shotgun/shell_eject",
-                CHAN_WEAPON
-            );
-        }
 
         if (invoker.tubeShells > 0)
         {
@@ -448,14 +764,18 @@ class DoDAShotgun : DoDAWeapon
         }
 
         invoker.pendingRack = false;
+        invoker.lowReadyIdleTics = 0;
 
-        return ResolveState("Ready");
+        invoker.wasShotgunAttackHeld =
+            (invoker.owner.player.cmd.buttons & BT_ATTACK) != 0;
+
+        return ResolveState("RackReturn");
     }
 
     States
     {
     Spawn:
-        SHTC A -1;
+        SHTC C -1;
         Stop;
 
     Ready:
@@ -487,7 +807,24 @@ class DoDAShotgun : DoDAWeapon
         SHTA E 1 A_Shotgun_AfterShot;
         Stop;
 
+    PostFire:
+        SHTN A 1;
+        SHTN B 1;
+        SHTN C 1;
+        SHTN D 1;
+        SHTN E 1;
+        SHTN F 1;
+        SHTN G 1;
+        Goto RackWait;
+
+    RackWait:
+        SHTN G 1 A_WeaponReady(WRF_NOFIRE);
+        Loop;
+
     Reload:
+        SHTN S 1;
+        SHTN T 1;
+        SHTN U 1;
         SHTN V 1;
         SHTN W 1;
         SHTN X 1;
@@ -495,33 +832,56 @@ class DoDAShotgun : DoDAWeapon
         SHTN Z 1;
         SHTN [ 1;
         SHTN ] 1 A_Shotgun_LoadSingleShell;
-        Stop;
+        Goto Ready;
 
-    HipRack:
+    LowerToLowReady:
+        SGUP A 2;
+        SGUP B 2;
+        SGUP C 2;
+        SGUP D 2;
+        Goto LowReady;
+
+    LowReady:
+        SGUP D 1 A_WeaponReady(WRF_NOFIRE);
+        Loop;
+
+    RaiseFromLowReady:
+        SGUP D 2;
+        SGUP C 2;
+        SGUP B 2;
+        SGUP A 2;
+        Goto RackWait;
+
+    RaiseFromLowReadyToRack:
+        SGUP D 2;
+        SGUP C 2;
+        SGUP B 2;
+        SGUP A 2;
+        Goto RackCycle;
+
+    RackCycle:
         TNT1 A 0 A_Shotgun_RackSound;
-        SHTN A 1;
-        SHTN B 1;
-        SHTN C 1;
-        SHTN D 1;
-        SHTN E 1;
-        SHTN G 1;
         SHTN H 1;
         SHTN I 1;
         SHTN J 1;
         SHTN K 1;
         SHTN L 1;
-        SHTN M 1;
+        SHTN M 1 A_Shotgun_ShellEjectSound;
         SHTN N 1;
         SHTN O 1;
         SHTN P 1;
         SHTN Q 1;
-        SHTN R 1;
+        SHTN R 1 A_Shotgun_FinishRack;
+        Stop;
+
+    RackReturn:
+        SHTN G 1;
         SHTN F 1;
         SHTN E 1;
         SHTN D 1;
         SHTN C 1;
         SHTN B 1;
-        SHTN A 1 A_Shotgun_FinishRack;
-        Stop;
+        SHTN A 1;
+        Goto Ready;
     }
 }

@@ -26,14 +26,21 @@ alias -doda_aimmode "DoDA_SetDeadzone 0"
 defaultbind mouse2 +doda_aimmode
 
 
-// Manual B92 hand swap.
-// V is the intended key for WeaponBase's dev_swaphand/manual-control
-// rising-edge handling.
+// Manual B92 hand swap / shotgun rack.
 
 addmenukey "Swap Beretta" +doda_swapberetta
 alias +doda_swapberetta "doda_swap_beretta 1"
 alias -doda_swapberetta "doda_swap_beretta 0"
 defaultbind v +doda_swapberetta
+
+
+// Secondary weapon action.
+// For DoDAShotgun, C toggles the normal-ready and low-ready poses.
+
+addmenukey "Weapon Secondary Action" +doda_weaponsecondary
+alias +doda_weaponsecondary "doda_weapon_secondary 1"
+alias -doda_weaponsecondary "doda_weapon_secondary 0"
+defaultbind c +doda_weaponsecondary
 
 
 // Weapon-slot defaults.
