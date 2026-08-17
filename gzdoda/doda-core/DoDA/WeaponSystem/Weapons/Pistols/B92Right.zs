@@ -9,6 +9,19 @@ class DoDAB92Right : DoDAPistol
         return DoDAHandSwapController.Hand_Right;
     }
 
+    action State A_DoDA_Ready()
+    {
+        let pistol = DoDAPistol(invoker);
+
+        if (pistol && !pistol.chamberLoaded)
+        {
+            return ResolveState("ReadyEmpty");
+        }
+
+        A_WeaponReady(WRF_ALLOWZOOM);
+        return null;
+    }
+
     // The standard Reload state starts here. If no left-hand B92 exists in
     // the player's inventory, redirect immediately to the solo sequence.
     action state DoDA_SelectRightReloadAnimation()
@@ -39,11 +52,7 @@ class DoDAB92Right : DoDAPistol
         Loop;
 
     ReadyEmpty:
-        B92R D 1 A_WeaponReady(
-            WRF_ALLOWZOOM
-            | WRF_NOSECONDARY
-            | WRF_ALLOWRELOAD
-        );
+        B92R D 1 A_WeaponReady(WRF_NOFIRE | WRF_ALLOWZOOM);
         Loop;
 
     AltFire:
@@ -107,13 +116,6 @@ class DoDAB92Right : DoDAPistol
 
     Fire:
         B92R G 1 A_DoDA_Fire;
-        B92R B 0 {
-            let p = DoDAPistol(invoker);
-            if (p && !p.ConsumeFiredRound())
-            {
-                SetStateLabel("DryFire");
-            }
-        }
         B92R A 1 Bright;
         B92R B 1 Bright DoDA_FireTrace;
         B92R B 0 Bright DoDA_SpawnPistolCasing();

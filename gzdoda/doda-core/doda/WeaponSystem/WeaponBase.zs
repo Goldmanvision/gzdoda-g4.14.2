@@ -69,6 +69,26 @@ class DoDAWeapon : Weapon
         return firePressed;
     }
 
+    virtual bool UsesManualFireDispatch() { return false; }
+
+    virtual State GetFireState(bool holdingFire, bool firePressed)
+    {
+        if (firePressed)
+        {
+            State fireState = ResolveState("Fire");
+            if (fireState != null)
+            {
+                Console.Printf("DEBUG: %s selected Fire state", GetClassName());
+            }
+            else
+            {
+                Console.Printf("DEBUG: %s selected none", GetClassName());
+            }
+            return fireState;
+        }
+        return null;
+    }
+
     void PrintDebugSpriteOffsets(int hand)
     {
         Console.Printf(
@@ -184,6 +204,8 @@ class DoDAWeapon : Weapon
             || owner.player.PendingWeapon != WP_NOCHANGE
         )
         {
+            Console.Printf("[DEBUG/RELOAD] RequestLowestLoadedPistolReload early exit 1: owner=%d player=%d activePistol=%d pending=%s",
+                owner!=null?1:0, owner? (owner.player!=null?1:0):0, activePistol!=null?1:0, DescribeWeapon(owner?owner.player.PendingWeapon:WP_NOCHANGE));
             return;
         }
 
@@ -203,6 +225,7 @@ class DoDAWeapon : Weapon
 
         if (!leftCanReload && !rightCanReload)
         {
+            Console.Printf("[DEBUG/RELOAD] RequestLowestLoadedPistolReload early exit 2: leftCanReload=%d rightCanReload=%d", leftCanReload?1:0, rightCanReload?1:0);
             return;
         }
 
@@ -237,6 +260,7 @@ class DoDAWeapon : Weapon
 
         if (reloadTarget == null)
         {
+            Console.Printf("[DEBUG/RELOAD] RequestLowestLoadedPistolReload early exit 3: reloadTarget is null");
             return;
         }
 
@@ -502,7 +526,10 @@ class DoDAWeapon : Weapon
             && pistol.IsReloadQueued()
             && pendingWeapon == WP_NOCHANGE
             && weaponSprite != null
-            && weaponSprite.CurState == ResolveState("Ready")
+            && (
+                weaponSprite.CurState == ResolveState("Ready")
+                || weaponSprite.CurState == ResolveState("ReadyEmpty")
+            )
         )
         {
             owner.player.SetPSprite(
@@ -511,6 +538,16 @@ class DoDAWeapon : Weapon
             );
 
             weaponSprite = owner.player.GetPSprite(PSP_WEAPON);
+        }
+
+        if (readyWasSelf && ShouldStartFire(attackDown, attackPressed) && fireLockTics <= 0 && UsesManualFireDispatch())
+        {
+            State fireState = GetFireState(attackDown, attackPressed);
+            if (fireState != null)
+            {
+                owner.player.SetPSprite(PSP_WEAPON, fireState);
+                Console.Printf("DODA manual fire dispatch: %s", GetClassName());
+            }
         }
 
         bool reloadAnimationActive =
@@ -532,6 +569,11 @@ class DoDAWeapon : Weapon
             RequestLowestLoadedPistolReload(pistol);
             pendingWeapon = owner.player.PendingWeapon;
             weaponSprite = owner.player.GetPSprite(PSP_WEAPON);
+        }
+        else if (readyWasSelf && pistol != null && reloadPressed)
+        {
+            Console.Printf("[DEBUG/RELOAD] Reload blocked: readyWasSelf=%d pistol!=null=%d reloadPressed=%d pendingWeapon=%s fireLockTics=%d reloadAnimationActive=%d",
+                readyWasSelf?1:0, pistol!=null?1:0, reloadPressed?1:0, DescribeWeapon(pendingWeapon), fireLockTics, reloadAnimationActive?1:0);
         }
 
         bool requestGate =

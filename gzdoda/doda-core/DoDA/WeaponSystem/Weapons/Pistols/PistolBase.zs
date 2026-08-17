@@ -27,6 +27,11 @@ class DoDAPistol : DoDAWeapon
         Inventory.PickupMessage "Picked up the DoDA Pistol";
     }
 
+    override bool ShouldStartFire(bool holdingFire, bool firePressed)
+    {
+        return false;
+    }
+
     void EnsureFirearmState()
     {
         if (firearmStateInitialized)
@@ -97,8 +102,11 @@ class DoDAPistol : DoDAWeapon
         
         // Allow reloading even if magazine is empty, as long as reserve ammo exists
         let reserveAmmo = GetReserveAmmo();
+        bool can = reserveAmmo != null && reserveAmmo.Amount > 0 && magazineRounds < MagazineCapacity;
         
-        return reserveAmmo != null && reserveAmmo.Amount > 0 && magazineRounds < MagazineCapacity;
+        Console.Printf("[DEBUG/RELOAD] CanReload() weapon=%s mag=%d chamber=%d reserve=%d can=%d", GetClassName(), magazineRounds, chamberLoaded ? 1 : 0, reserveAmmo ? reserveAmmo.Amount : 0, can ? 1 : 0);
+        
+        return can;
     }
 
     bool TryReload()
@@ -171,7 +179,9 @@ class DoDAPistol : DoDAWeapon
 
     void QueueReload()
     {
-        if (CanReload())
+        bool can = CanReload();
+        Console.Printf("[DEBUG/RELOAD] QueueReload() weapon=%s can=%d", GetClassName(), can ? 1 : 0);
+        if (can)
         {
             reloadQueued = true;
         }
@@ -324,6 +334,18 @@ class DoDAPistol : DoDAWeapon
     {
         let pistol = DoDAPistol(invoker);
 
+        bool can = pistol != null && pistol.CanReload();
+        
+        String weaponName = "null";
+        if (pistol != null) weaponName = String.Format("%s", pistol.GetClassName());
+        int rounds = pistol ? pistol.magazineRounds : 0;
+        int chamber = (pistol && pistol.chamberLoaded) ? 1 : 0;
+        int queued = (pistol && pistol.reloadQueued) ? 1 : 0;
+        int inProgress = (pistol && pistol.reloadInProgress) ? 1 : 0;
+        int canInt = can ? 1 : 0;
+
+        Console.Printf("[DEBUG/RELOAD] DoDA_BeginReload() weapon=%s mag=%d chamber=%d queued=%d inProgress=%d can=%d", weaponName, rounds, chamber, queued, inProgress, canInt);
+
         if (pistol == null || !pistol.reloadQueued || !pistol.CanReload())
         {
             if (invoker != null)
@@ -367,6 +389,15 @@ class DoDAPistol : DoDAWeapon
     action void DoDA_CommitReload()
     {
         let pistol = DoDAPistol(invoker);
+
+        String weaponName = "null";
+        if (pistol != null) weaponName = String.Format("%s", pistol.GetClassName());
+        int rounds = pistol ? pistol.magazineRounds : 0;
+        int chamber = (pistol && pistol.chamberLoaded) ? 1 : 0;
+        int queued = (pistol && pistol.reloadQueued) ? 1 : 0;
+        int inProgress = (pistol && pistol.reloadInProgress) ? 1 : 0;
+
+        Console.Printf("[DEBUG/RELOAD] DoDA_CommitReload() weapon=%s mag=%d chamber=%d queued=%d inProgress=%d", weaponName, rounds, chamber, queued, inProgress);
 
         if (pistol == null || !pistol.reloadInProgress)
         {

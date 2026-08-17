@@ -42,6 +42,29 @@
         return firePressed;
     }
 
+    override bool UsesManualFireDispatch() { return true; }
+
+    override State GetFireState(bool holdingFire, bool firePressed)
+    {
+        if (fireMode == Fire_Burst)
+        {
+            if (burstInProgress) return null;
+            Console.Printf("MP5 requesting BurstFire");
+            State burstState = ResolveState("BurstFire");
+            if (burstState == null)
+            {
+                Console.Printf("MP5 BurstFire state missing");
+                burstInProgress = false;
+                burstShotsRemaining = 0;
+                return null;
+            }
+            burstShotsRemaining = 3;
+            burstInProgress = true;
+            return burstState;
+        }
+        return ResolveState("Fire");
+    }
+
     override void Tick()
     {
         Super.Tick();
@@ -52,24 +75,18 @@
             return;
         }
 
+        if (owner.player.ReadyWeapon != self)
+        {
+            burstShotsRemaining = 0;
+            burstInProgress = false;
+            isReloading = false;
+            wasMP5AttackHeld = false;
+            return;
+        }
+
         bool attackDown = (owner.player.cmd.buttons & BT_ATTACK) != 0;
         bool attackPressed = attackDown && !wasMP5AttackHeld;
         wasMP5AttackHeld = attackDown;
-
-        if (ShouldStartFire(attackDown, attackPressed) && fireLockTics <= 0)
-        {
-            if (fireMode == Fire_Burst)
-            {
-                if (burstInProgress) return;
-                burstShotsRemaining = 3;
-                burstInProgress = true;
-                owner.player.SetPSprite(PSP_WEAPON, ResolveState("BurstFire"));
-            }
-            else
-            {
-                owner.player.SetPSprite(PSP_WEAPON, ResolveState("Fire"));
-            }
-        }
     }
 
     clearscope int GetFireMode()
@@ -267,6 +284,7 @@
     BurstFire:
         // Burst round 1
         MP5A A 1 Bright {
+            Console.Printf("MP5 entered BurstFire");
             let mp5 = DoDAMP5KSD(invoker);
             if (mp5) Console.Printf("MP5 burst shot: remaining=%d mag=%d chamber=%d", mp5.burstShotsRemaining, mp5.magazineRounds, mp5.chamberLoaded ? 1 : 0);
             MP5KSD_Fire();

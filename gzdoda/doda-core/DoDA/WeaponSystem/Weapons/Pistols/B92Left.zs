@@ -9,6 +9,19 @@ class DoDAB92Left : DoDAPistol
         return DoDAHandSwapController.Hand_Left;
     }
 
+    action State A_DoDA_Ready()
+    {
+        let pistol = DoDAPistol(invoker);
+
+        if (pistol && !pistol.chamberLoaded)
+        {
+            return ResolveState("ReadyEmpty");
+        }
+
+        A_WeaponReady(WRF_ALLOWZOOM);
+        return null;
+    }
+
     States
     {
     Spawn:
@@ -23,11 +36,7 @@ class DoDAB92Left : DoDAPistol
         Loop;
 
     ReadyEmpty:
-        B92L T 1 A_WeaponReady(
-            WRF_ALLOWZOOM
-            | WRF_NOSECONDARY
-            | WRF_ALLOWRELOAD
-        );
+        B92L T 1 A_WeaponReady(WRF_NOFIRE | WRF_ALLOWZOOM);
         Loop;
 
     AltFire:
@@ -70,13 +79,6 @@ class DoDAB92Left : DoDAPistol
 
     Fire:
         B92L G 1 A_DoDA_Fire;
-        B92L B 0 {
-            let p = DoDAPistol(invoker);
-            if (p && !p.ConsumeFiredRound())
-            {
-                SetStateLabel("DryFire");
-            }
-        }
         B92L B 1 Bright DoDA_FireTrace;
         B92L B 0 Bright DoDA_SpawnPistolCasing();
         B92L A 1 Bright;
