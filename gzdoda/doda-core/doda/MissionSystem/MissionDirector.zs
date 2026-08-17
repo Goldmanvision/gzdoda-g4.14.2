@@ -72,6 +72,20 @@ void ConfigureMissionForIndex(int index)
         bIsSaveGame = e.IsSaveGame;
         bIsReopen = e.IsReopen;
 
+        if (!e.IsSaveGame && !e.IsReopen)
+        {
+            players[consoleplayer].mo.A_StartSound(
+                "doda/mapstart",
+                CHAN_AUTO,
+                CHANF_UI
+            );
+
+            Console.Printf(
+                "DoDA map-start sound played: Map=%s",
+                level.MapName
+            );
+        }
+
         Console.Printf(
             "DoDA Director WorldLoaded: Map=%s Save=%d Reopen=%d",
             level.MapName,

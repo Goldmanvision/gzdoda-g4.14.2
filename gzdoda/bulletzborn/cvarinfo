@@ -1,0 +1,3 @@
+//The cvar is here. Nothing else to be said.
+
+server int cl_tracerbasespeed = 105;

@@ -22,3 +22,6 @@ user float doda_debug_sprite_rot = 0.0;
 user float doda_debug_sprite_scale = 1.0;
 user bool doda_debug_print_now = false;
 
+// Pistol hand-swap lock.
+user bool doda_toggle_pistol_swap_lock = false;
+

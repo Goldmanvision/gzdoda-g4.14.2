@@ -40,7 +40,19 @@ defaultbind v +doda_swapberetta
 addmenukey "Weapon Secondary Action" +doda_weaponsecondary
 alias +doda_weaponsecondary "doda_weapon_secondary 1"
 alias -doda_weaponsecondary "doda_weapon_secondary 0"
-defaultbind c +doda_weaponsecondary
+defaultbind x +doda_weaponsecondary
+
+// Pistol swap lock.
+addmenukey "Toggle Pistol Swap Lock" +doda_toggle_pistol_swap_lock
+alias +doda_toggle_pistol_swap_lock "doda_toggle_pistol_swap_lock 1"
+alias -doda_toggle_pistol_swap_lock "doda_toggle_pistol_swap_lock 0"
+defaultbind c +doda_toggle_pistol_swap_lock
+
+// MP5 Fire Mode.
+addmenukey "Cycle MP5 Fire Mode" +doda_firemode
+alias +doda_firemode "+user3"
+alias -doda_firemode "-user3"
+defaultbind c +doda_firemode
 
 
 // Weapon-slot defaults.
@@ -52,3 +64,11 @@ defaultbind 2 doda_select_b92
 addmenukey "Select Shotgun" doda_select_shotgun
 alias doda_select_shotgun "slot 3"
 defaultbind 3 doda_select_shotgun
+
+addmenukey "Select MP5KSD" doda_select_mp5
+alias doda_select_mp5 "slot 4"
+defaultbind 4 doda_select_mp5
+
+addmenukey "Holster" DoDA_Holster
+alias DoDA_Holster "use DoDAHolster"
+defaultbind 1 DoDA_Holster

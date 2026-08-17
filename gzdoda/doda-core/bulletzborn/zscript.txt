@@ -1,0 +1,243 @@
+//Special thanks to WildWeasel's Cola 3 for the idea of replacing the bulletpuff.
+class BulletZPuff : BulletPuff replaces BulletPuff
+{
+	Default
+	{
+		+NODECAL;
+		+PUFFONACTORS;
+		+ALLOWTHRUFLAGS;
+		+THRUACTORS;
+		+ALWAYSPUFF;
+		+PUFFGETSOWNER;
+		+NOBLOOD;
+		+BLOODLESSIMPACT;
+		+SKYEXPLODE;
+		+BOUNCEONWALLS;
+		+USEBOUNCESTATE;
+		-BLOODSPLATTER;
+		-ALLOWPARTICLES;
+		-RANDOMIZE;
+		BounceType "Doom";
+		VSpeed 0;
+		DamageType "DummyDamage";
+	}
+	States
+	{
+	Spawn:
+	Melee:
+	Death:
+	XDeath:	
+	Death.Sky:
+	Bounce.Wall:
+		PUFF A 1 Bright NoDelay
+		{
+			//Console.printf("Spawned!");
+			Vector2 ownerVec = Vec2To(target);
+			double distance = ownerVec.Length();
+			Actor oldtarget = target.target;
+			target.target = self;
+			//Console.printf("Distance %d",distance);
+			let bullet = _ZTracer(target.A_SpawnProjectile("_ZTracer"));
+			target.target = oldtarget;
+			
+		}
+		Stop;
+	}
+}
+
+/*
+	
+	TRACER SYSTEM FOR ZSCRIPT 2.4 | APRIL 7TH 2017
+	AUTHOR: (DENIS) BELMONDO
+	
+	USAGE: make a new class, inherit from _ZTracer and change the properties as
+		   you wish.
+	
+	you may use this in your project. just leave this comment at the top of 
+	this script and give credit please! thank you :^)
+	
+*/
+
+class _ZTracer : FastProjectile
+{
+
+	const TRACERDURATION	= 1; // tics
+	const TRACERFANCY		= 0; // fake bool
+	const TRACERLENGTH		= 81.0; // float
+	const TRACERSCALE		= 4.0; // float
+	const TRACERSTEP		= 0.01; // float
+	const TRACERFANCYSTEP	= 0.01; // float
+	const TRACERACTOR		= "_ZTracerTrail"; // actor name
+
+	float x1, y1, z1;
+	float x2, y2, z2;
+	
+	// intentional briticism to avoid conflicts with "color" keyword.
+	static const color colours[] = {
+		"9b 5b 13",
+		"af 7b 1f",
+		"c3 9b 2f",
+		"d7 bb 43",
+		"ff ff 73",
+		"ff ff 73"  /* appears twice so a segment of this color is longer
+					than the others. */
+	};
+	
+	// literally just stole this from wikipedia
+	float lerp(float v0, float v1, float t) {
+		return (1 - t) * v0 + t * v1;
+	}
+	
+	override void BeginPlay()
+	{
+		// we don't want to lerp into weird coordinates
+		x1 = pos.x;
+		y1 = pos.y;
+		z1 = pos.z;
+		
+		x2 = pos.x;
+		y2 = pos.y;
+		z2 = pos.z;
+        Super.BeginPlay(); //Thanks to Player701!
+        Speed = Cvar.FindCvar('cl_tracerbasespeed').GetInt();
+	}
+	
+	override void Tick()
+	{
+	
+		if (level.frozen || globalfreeze) return;
+		
+		x1 = pos.x;
+		y1 = pos.y;
+		z1 = pos.z;
+		
+		x2 = pos.x + vel.x / GetDefaultSpeed("_ZTracer") * TRACERLENGTH;
+		y2 = pos.y + vel.y / GetDefaultSpeed("_ZTracer") * TRACERLENGTH;
+		z2 = pos.z + vel.z / GetDefaultSpeed("_ZTracer") * TRACERLENGTH;
+		
+		if (TRACERFANCY == 0)
+		{
+			for(float i = 0; i < 1; i += TRACERSTEP) {
+				A_SpawnParticle (
+					colours[clamp(i * colours.Size(), 0, colours.Size() - 1)],
+					SPF_FULLBRIGHT,
+					TRACERDURATION,
+					TRACERSCALE * i,
+					0,
+					(-pos.x) + lerp(x1, x2, i),
+					(-pos.y) + lerp(y1, y2, i),
+					(-pos.z) + lerp(z1, z2, i),
+					0, 0, 0,
+					0, 0, 0,
+					1.0
+				);
+			} 
+		}
+		else
+		{
+			for(float i = 0; i < 1; i += TRACERFANCYSTEP) {
+				A_SpawnItemEx (
+					TRACERACTOR,
+					(-pos.x) + lerp(x1, x2, i),
+					(-pos.y) + lerp(y1, y2, i),
+					(-pos.z) + lerp(z1, z2, i),
+					0, 0, 0, 0,
+					SXF_ABSOLUTEPOSITION
+				);
+			}
+		}
+
+		Super.Tick();
+	}
+	
+}
+
+extend class _ZTracer
+{
+	Default 
+   {
+		DamageFunction (3 * Random(1, 5));
+		Height 1;
+		Radius 1;
+		Speed 60;
+		+BLOODSPLATTER;
+	}
+	States {
+		Spawn:
+			TNT1 A 1;
+			loop;
+		Death:
+			TNT1 A 0 ;
+			PUFF A 1 Bright;
+			PUFF BBBBBBBBBBBBB 0 A_SpawnItemEx("CoolBulletPuff",0,0,0,random(-5,5),random(-5,5),random(-5,5));
+			TNT1 A 0 A_PlaySound("bullet/ricochet", CHAN_WEAPON, 0.5, 0, 1.8);
+			FRTB A 0 A_SpawnItemEx ("Wallsmoke", 0,0,0, 0,0,0, 0, 160, 64);
+			NULL A 0 A_SpawnItemEx ("PUFFEffectSpawner", 0,0,0, 0,0,0, 0, 160);
+			TNT1 A 0 A_SpawnProjectile("Ricochet2",0,0,Random(-180,180), 2, Random(-50,50));
+		XDeath:
+			TNT1 A -1 A_Jump(256, "Null");
+			Stop;
+	}
+}
+
+class _ZTracerTrail : Actor
+{
+	Default {
+		Alpha 0.5;
+		RenderStyle "Add";
+		Scale 0.25;
+		+NOINTERACTION;
+	}
+	States {
+		Spawn:
+			PUFF A 2 Bright;
+			TNT1 A -1 A_Jump(256, "Null");
+			Stop;
+	}
+}
+
+
+
+class BulletZFX : Actor
+{
+	Default
+	{ 
+		+NOBLOCKMAP;
+		+NOGRAVITY;
+		+SHADOW;
+		+NOTELEPORT;
+		+CANNOTPUSH;
+		+NODAMAGETHRUST;
+		RenderStyle "Translucent";
+		Alpha 0.6;
+	}
+	States
+	{
+		Spawn:
+			PUFF AAABC 4;
+			TNT1 A 1;
+			Stop;
+	}
+}
+
+class CoolBulletPuff : BulletPuff
+{
+  	Default	{
+	Projectile;
+	Renderstyle "Add";
+	Height 1;
+	Radius 1;
+	Speed 20;
+	Scale 0.4;
+	Alpha 0.9;
+	Speed 32;	
+	VSpeed 1;
+	-SOLID
+	}	
+	States	{
+	Spawn:
+	  PUFF AAAAAA 3 Bright A_FadeOut(0.3);
+	  TNT1 A 0 A_PlaySound("bullet/ricochet", CHAN_WEAPON, 0.5, 0, 1.8);
+	  Stop;
+	}
+}

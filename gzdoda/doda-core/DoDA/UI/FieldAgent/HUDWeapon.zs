@@ -9,16 +9,23 @@ class DoDAHUDWeapon : Object
         bool available,
         bool equipped,
         bool isShotgun,
+        bool isMP5,
         int magazineRounds,
         int magazineCapacity,
         bool chamberLoaded,
         String chamberStatus,
+        int fireMode,
         int y
     )
     {
         int textColor = equipped
             ? Font.CR_GREEN
             : Font.CR_WHITE;
+
+        if (!isShotgun && !isMP5 && (magazineRounds + (chamberLoaded ? 1 : 0)) == 0)
+        {
+            textColor = Font.CR_RED;
+        }
 
         String text;
 
@@ -49,6 +56,17 @@ class DoDAHUDWeapon : Object
                 magazineRounds,
                 magazineCapacity,
                 chamberStatus
+            );
+        }
+        else if (isMP5)
+        {
+            text = String.Format(
+                "%s%s  %02d + %d  %s",
+                equipped ? ">" : " ",
+                label,
+                magazineRounds,
+                chamberLoaded ? 1 : 0,
+                fireMode == 0 ? "SEMI" : (fireMode == 1 ? "BURST" : "AUTO")
             );
         }
         else if (magazineCapacity <= 0)
@@ -87,10 +105,12 @@ class DoDAHUDWeapon : Object
         bool primaryAvailable,
         bool primaryEquipped,
         bool primaryIsShotgun,
+        bool primaryIsMP5,
         int primaryMagazineRounds,
         int primaryMagazineCapacity,
         bool primaryChamberLoaded,
         String primaryChamberStatus,
+        int primaryFireMode,
         String companionLabel,
         bool companionAvailable,
         bool companionEquipped,
@@ -122,10 +142,12 @@ class DoDAHUDWeapon : Object
             primaryAvailable,
             primaryEquipped,
             primaryIsShotgun,
+            primaryIsMP5, // New
             primaryMagazineRounds,
             primaryMagazineCapacity,
             primaryChamberLoaded,
             primaryChamberStatus,
+            primaryFireMode, // New
             primaryY
         );
 
@@ -136,10 +158,12 @@ class DoDAHUDWeapon : Object
                 true,
                 companionEquipped,
                 companionIsShotgun,
+                false, // companionIsMP5
                 companionMagazineRounds,
                 companionMagazineCapacity,
                 companionChamberLoaded,
                 companionChamberStatus,
+                0, // companionFireMode
                 companionY
             );
         }

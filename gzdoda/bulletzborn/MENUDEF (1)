@@ -1,0 +1,6 @@
+OptionMenu "ScallianoOptions"
+{
+	Slider "Tracer Speed", "cl_tracerbasespeed", 55, 160, 5, 1
+	 StaticText "Change how fast bullet tracers travels."
+	 StaticText ""
+}

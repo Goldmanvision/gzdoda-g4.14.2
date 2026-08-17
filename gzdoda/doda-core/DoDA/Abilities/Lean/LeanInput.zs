@@ -36,7 +36,8 @@ class DoDALeanInput : Object
 
         LeaningLeft = (buttons & BT_USER1) != 0;
         LeaningRight = (buttons & BT_USER2) != 0;
-        ScrollUp = (buttons & BT_USER3) != 0;
+        // ScrollUp = (buttons & BT_USER3) != 0;
+        ScrollUp = false;
         ScrollDown = (buttons & BT_USER4) != 0;
 
         LeaningLeftPressed = LeaningLeft && !PreviousLeaningLeft;

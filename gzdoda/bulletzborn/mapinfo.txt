@@ -1,0 +1,4 @@
+DamageType DummyDamage
+{
+	Factor = 0
+}

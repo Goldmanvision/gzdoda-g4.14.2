@@ -1,11 +1,11 @@
-Log started: 2026-08-16 10:21:02
+Log started: 2026-08-16 22:11:23
 GZDoom version <unknown version>
 W_Init: Init WADfiles.
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/gzdoom.pk3, 709 lumps
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/game_support.pk3, 3309 lumps
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/freedoom2.wad, 3610 lumps
 adding C:/Dev/gzdoda-g4.14.2/gzdoda/game_widescreen_gfx.pk3, 214 lumps
-adding C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core, 2116 lumps
+adding C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core, 2244 lumps
 S_Init: Setting up sound.
 I_InitSound: Initializing OpenAL
   Opened device OpenAL Soft on Speakers (Steam Streaming Speakers)
@@ -38,7 +38,12 @@ G_ParseMapInfo: Load map definitions.
 Texman.Init: Init texture manager.
 ParseTeamInfo: Load team definitions.
 LoadActors: Load actor definitions.
-script parsing took 543.46 ms
+Script warning, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weapons/shotguns/shotgun.zs" line 540:
+Truncation of floating point constant 1.500000
+Script warning, "C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weapons/shotguns/shotgun.zs" line 540:
+Truncation of floating point constant 2.500000
+2 warnings while parsing scripts
+script parsing took 552.88 ms
 R_Init: Init Doom refresh subsystem.
 DecalLibrary: Load decals.
 Adding dehacked patch freedoom2.wad:DEHACKED
@@ -61,437 +66,265 @@ Init complete.
 
 MAP01 - MISSION AREA TEST
 
+Unknown rumble mapping 'doda/mapstart'
+DoDA map-start sound played: Map=MAP01
 DoDA Director WorldLoaded: Map=MAP01 Save=0 Reopen=0
 DoDA Director [before initialization gate] Map=MAP01 Save=0 Reopen=0 Result=0 Index=0 Progress=0 Phase=0 Name= Description=
 DoDA CampaignState initialized: Map=MAP01 NextMissionIndex=0 ObjectiveCount=0 ObjectiveRequired=1
 DoDA Mission initialized as PENDING.
 DoDA Director [after initialization gate] Map=MAP01 Save=0 Reopen=0 Result=1 Index=0 Progress=0 Phase=1 Name=Mission 01 Description=talk to INFORMANT.
 DoDA HUD Snapshot [after WorldLoaded] Source=Director Map=MAP01 Mission=Mission 01 Status=1 Progress=0 Phase=1 Objective=talk to INFORMANT.
-WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0 swapLock=0
 DoDA CampaignState observed: Map=MAP01 NextMissionIndex=0 OwnerClass=FieldAgent ObjectiveCount=0 ObjectiveRequired=1 ObjectiveMarkers=0 MissionMarkers=0
 DoDA HUD Snapshot [Draw source change] Source=MissionDirector Map=MAP01 MISSION: Mission 01 | STATUS: PENDING | PROGRESS: 0% | PHASE: OBJECTIVE | OBJECTIVE: talk to INFORMANT.
-WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
-Got the pump-action shotgun!
-WEAPONPIPE ready=DoDAB92Left pending=DoDAShotgun state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAB92Left pending=DoDAShotgun state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAB92Left pending=DoDAShotgun state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAB92Left pending=DoDAShotgun state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAB92Left pending=DoDAShotgun state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAB92Left pending=DoDAShotgun state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=Select readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-Unknown rumble mapping 'doda/shotgun/rack'
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=0 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
-WEAPONPIPE ready=DoDAShotgun pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAB92Left pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAMP5KSD state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAMP5KSD state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAB92Left pending=DoDAMP5KSD state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=0 requestedHand=0 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Select readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+MP5 mode: 3-ROUND BURST
+MP5 Fire State Entered
+MP5 shot: mag=29 chamber=1 reserve=100
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=3 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=2 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=1 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+MP5 mode: FULL AUTO
+MP5 Fire State Entered
+MP5 shot: mag=28 chamber=1 reserve=100
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=3 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=2 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=1 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+MP5 Fire State Entered
+MP5 shot: mag=27 chamber=1 reserve=100
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=3 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=2 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=1 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+MP5 Fire State Entered
+MP5 shot: mag=26 chamber=1 reserve=100
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=3 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=2 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=1 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+MP5 Fire State Entered
+MP5 shot: mag=25 chamber=1 reserve=100
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=3 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=2 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=1 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+MP5 Fire State Entered
+MP5 shot: mag=24 chamber=1 reserve=100
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=3 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=2 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=1 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+MP5 Fire State Entered
+MP5 shot: mag=23 chamber=1 reserve=100
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=3 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=2 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=1 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+MP5 Fire State Entered
+MP5 shot: mag=22 chamber=1 reserve=100
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=3 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=2 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=1 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+MP5 Fire State Entered
+MP5 shot: mag=21 chamber=1 reserve=100
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=3 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=2 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=1 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+MP5 mode: SEMI
+MP5 Fire State Entered
+MP5 shot: mag=20 chamber=1 reserve=100
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=3 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=2 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=1 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+MP5 Fire State Entered
+MP5 shot: mag=19 chamber=1 reserve=100
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=3 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=2 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=1 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+MP5 Fire State Entered
+MP5 shot: mag=18 chamber=1 reserve=100
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=3 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=2 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=1 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+MP5 Fire State Entered
+MP5 shot: mag=17 chamber=1 reserve=100
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=3 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=2 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=1 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+MP5 Fire State Entered
+MP5 shot: mag=16 chamber=1 reserve=100
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=3 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=2 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=1 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Fire readyIsSelf=1 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=DoDAB92Right state=Deselect readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=DoDAB92Right state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAMP5KSD pending=DoDAB92Right state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=Ready readyIsSelf=1 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=0 attackPressed=0 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+WEAPONPIPE ready=DoDAB92Right pending=WP_NOCHANGE state=other-state readyIsSelf=0 attack=1 attackPressed=1 actualHand=1 requestedHand=1 requestGate=0 fireLock=0 swapLock=0
+VM execution aborted: Invalid class DoDAB92Right in function call to DoDAMP5KSD.StateFunction.4. DoDAMP5KSD expected
+Called from DoDAMP5KSD.Tick at C:/Dev/gzdoda-g4.14.2/gzdoda/doda-core/:doda/weaponsystem/weapons/smgs/mp5ksd.zs, line 70
+Called from weapon state DoDAMP5KSD.4 in DoDAB92Right
+Called from PlayerInfo.SetPSprite [Native]

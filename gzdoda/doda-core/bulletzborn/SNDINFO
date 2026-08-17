@@ -1,0 +1,690 @@
+
+pistol/dryfire								LDDRY1
+shotgun/dryfire								LDDRY2
+$alias supershotgun/dryfire					shotgun/dryfire
+$alias chaingun/dryfire						pistol/dryfire
+$alias rocketlauncher/dryfire				shotgun/dryfire
+plasmarifle/dryfire							LDDRY3
+bfg9000/dryfire								LDDRYBFG
+bfg9000/raredryfire							LDDRYRBF
+
+fists/swing1								LDFISTW1
+fists/swing2								LDFISTW2
+fists/swing3								LDFISTW3
+$random fists/swing { fists/swing1 fists/swing2 fists/swing3 }
+$limit fists/swing			0
+fists/hitflesh1								LDFISTH1
+fists/hitflesh2								LDFISTH2
+fists/hitflesh3								LDFISTH3
+fists/hitflesh4								LDFISTH4
+fists/hitflesh5								LDFISTH5
+fists/hitflesh6								LDFISTH6
+fists/hitflesh7								LDFISTH7
+fists/hitflesh8								LDFISTH8
+fists/hitflesh9								LDFISTH9
+fists/hitflesh10							LDFISTH0
+$random fists/hitflesh { fists/hitflesh1 fists/hitflesh2 fists/hitflesh3 fists/hitflesh4 fists/hitflesh5 fists/hitflesh6 fists/hitflesh7 fists/hitflesh8 fists/hitflesh9 fists/hitflesh10 }
+$limit fists/hitflesh		0
+fists/hitwall1								LDFISTM1
+fists/hitwall2								LDFISTM2
+fists/hitwall3								LDFISTM3
+$random fists/hitwall { fists/hitwall1 fists/hitwall2 fists/hitwall3 }
+$limit fists/hitwall		0
+fists/berserkflesh1							LDFISTB1
+fists/berserkflesh2							LDFISTB2
+fists/berserkflesh3							LDFISTB3
+$random fists/berserkflesh { fists/berserkflesh1 fists/berserkflesh2 fists/berserkflesh3 }
+$limit fists/berserkflesh	0
+fists/berserk1								LDFISTB1
+fists/berserk2								LDFISTB2
+$random fists/berserk { fists/berserk1 fists/berserk2 }
+$limit fists/berserk		0
+
+fists/commonpickup							LDKNIFPK
+fists/commonswing1							LDCFISW1
+fists/commonswing2							LDCFISW2
+fists/commonswing3							LDCFISW3
+fists/commonswing4							LDCFISW4
+$random fists/commonswing { fists/commonswing1 fists/commonswing2 fists/commonswing3 fists/commonswing4 }
+$limit fists/commonswing		0
+fists/commonhitflesh1						LDCFISH1
+fists/commonhitflesh2						LDCFISH2
+fists/commonhitflesh3						LDCFISH3
+fists/commonhitflesh4						LDCFISH4
+$random fists/commonhitflesh { fists/commonhitflesh1 fists/commonhitflesh2 fists/commonhitflesh3 fists/commonhitflesh4 }
+$limit fists/commonhitflesh	0
+fists/commonhitwall1						LDCFISM1
+fists/commonhitwall2						LDCFISM2
+fists/commonhitwall3						LDCFISM3
+fists/commonhitwall4						LDCFISM4
+$random fists/commonhitwall { fists/commonhitwall1 fists/commonhitwall2 fists/commonhitwall3 fists/commonhitwall4 }
+$limit fists/commonhitwall		0
+
+fists/uncommonpickup						LDPFISPK
+fists/uncommonswing1						LDUFISW1
+fists/uncommonswing2						LDUFISW2
+fists/uncommonswing3						LDUFISW3
+$random fists/uncommonswing { fists/uncommonswing1 fists/uncommonswing2 fists/uncommonswing3 }
+$limit fists/uncommonswing		0
+$random fists/rareswing { fists/uncommonswing1 fists/uncommonswing2 fists/uncommonswing3 }
+$limit fists/rareswing		0
+$random fists/epicswing { fists/uncommonswing1 fists/uncommonswing2 fists/uncommonswing3 }
+$limit fists/epicswing		0
+fists/uncommonhitflesh1						LDUFISH1
+fists/uncommonhitflesh2						LDUFISH2
+fists/uncommonhitflesh3						LDUFISH3
+fists/uncommonhitflesh4						LDUFISH4
+$random fists/uncommonhitflesh { fists/uncommonhitflesh1 fists/uncommonhitflesh2 fists/uncommonhitflesh3 fists/uncommonhitflesh4 }
+$limit fists/uncommonhitflesh	0
+fists/uncommonhitwall1						LDUFISM1
+fists/uncommonhitwall2						LDUFISM2
+fists/uncommonhitwall3						LDUFISM3
+fists/uncommonhitwall4						LDUFISM4
+$random fists/uncommonhitwall { fists/uncommonhitwall1 fists/uncommonhitwall2 fists/uncommonhitwall3 fists/uncommonhitwall4 }
+$limit fists/uncommonhitwall		0
+
+chainsaw/attack								LDSAWATK
+chainsaw/idle								LDSAWIDL
+chainsaw/draw								LDSAWUP
+chainsaw/pickup								LDSAWPK
+chainsaw/stop								LDSAWSTP
+chainsaw/start								LDSAWSTR
+
+chainsaw/hitflesh1							LDSAW1
+chainsaw/hitflesh2							LDSAW2
+chainsaw/hitflesh3							LDSAW3
+chainsaw/hitflesh4							LDSAW4
+chainsaw/hitflesh5							LDSAW5
+chainsaw/hitflesh6							LDSAW6
+chainsaw/hitflesh7							LDSAW7
+chainsaw/hitflesh8							LDSAW8
+chainsaw/hitflesh9							LDSAW9
+chainsaw/hitflesh10							LDSAW0
+$random chainsaw/hitflesh { chainsaw/hitflesh1 chainsaw/hitflesh2 chainsaw/hitflesh3 chainsaw/hitflesh4 chainsaw/hitflesh5 chainsaw/hitflesh6 chainsaw/hitflesh7 chainsaw/hitflesh8 chainsaw/hitflesh9 chainsaw/hitflesh10 }
+$limit chainsaw/hitflesh			0
+chainsaw/hitwall1							LDSAWAL1
+chainsaw/hitwall2							LDSAWAL2
+chainsaw/hitwall3							LDSAWAL3
+$random chainsaw/hitwall { chainsaw/hitwall1 chainsaw/hitwall2 chainsaw/hitwall3 }
+$limit chainsaw/hitwall				0
+
+pistol/fire									LDPISTOL
+$limit pistol/fire					0
+pistol/pickup								LDPISTPK
+pistol/draw									LDPISTUP
+
+pistol/commonfire							LDCPIST
+$limit pistol/commonfire			0
+pistol/uncommonfire							LDUPIST
+$limit pistol/uncommonfire			0
+pistol/rarefire								LDRPIST
+$limit pistol/rarefire				0
+pistol/epicfire								LDEPIST
+$limit pistol/epicfire				0
+
+shotgun/fire								LDSHOTFI
+$limit shotgun/fire					0
+shotgun/pump								LDSHOTPU
+shotgun/pickup								LDSHOTPK
+$alias shotgun/draw							shotgun/pickup
+
+shotgun/commonfire							LDCSHTG
+$limit shotgun/commonfire			0
+shotgun/commonpump							LDCSHTGP
+shotgun/uncommonfire						LDUSHTG
+$limit shotgun/uncommonfire			0
+shotgun/uncommonpump						LDUSHTGP
+shotgun/rarefire							LDRSHTG
+$limit shotgun/rarefire				0
+shotgun/rarepump							LDRSHTGP
+shotgun/epicfire							LDESHTG
+$limit shotgun/epicfire				0
+shotgun/epicpump							LDESHTGP
+
+shotgun/rapidpump							LDRSHTGP
+
+supershotgun/fire							LDSSG
+$limit supershotgun/fire			0
+supershotgun/open							LDSSGOPN
+supershotgun/load							LDSSGLOD
+supershotgun/close							LDSSGCLS
+supershotgun/pickup							LDSSGPK
+$alias supershotgun/draw					supershotgun/pickup
+
+supershotgun/commonfire						LDCSSG
+$limit supershotgun/commonfire		0
+$alias supershotgun/commonopen				supershotgun/open
+$alias supershotgun/commonload				supershotgun/load
+$alias supershotgun/commonclose				supershotgun/close
+supershotgun/uncommonfire					LDUSSG
+$limit supershotgun/uncommonfire	0
+$alias supershotgun/uncommonopen			supershotgun/open
+$alias supershotgun/uncommonload			supershotgun/load
+$alias supershotgun/uncommonclose			supershotgun/close
+supershotgun/rarefire						LDRSSG
+$limit supershotgun/rarefire		0
+supershotgun/rareopen						LDRSSGO
+supershotgun/rareload						LDRSSGL
+supershotgun/rareclose						LDRSSGC
+supershotgun/epicfire						LDESSG
+$limit supershotgun/epicfire		0
+$alias supershotgun/epicopen				supershotgun/rareopen
+$alias supershotgun/epicload				supershotgun/rareload
+$alias supershotgun/epicclose				supershotgun/rareclose
+
+chaingun/fire1								LDCHAIN1
+chaingun/fire2								LDCHAIN2
+chaingun/fire3								LDCHAIN3
+$random chaingun/fire { chaingun/fire1 chaingun/fire2 chaingun/fire3 }
+$limit chaingun/fire				0
+chaingun/pickup								LDCGUNPK
+chaingun/draw								LDCGUNUP
+
+chaingun/commonfire1						LDCCGUN1
+chaingun/commonfire2						LDCCGUN2
+chaingun/commonfire3						LDCCGUN3
+$random chaingun/commonfire { chaingun/commonfire1 chaingun/commonfire2 chaingun/commonfire3 }
+$limit chaingun/commonfire			0
+chaingun/uncommonfire						LDUCGUN
+$limit chaingun/uncommonfire		0
+chaingun/rarefire1							LDRCGUN1
+chaingun/rarefire2							LDRCGUN2
+chaingun/rarefire3							LDRCGUN3
+$random chaingun/rarefire { chaingun/rarefire1 chaingun/rarefire2 chaingun/rarefire3 }
+$limit chaingun/rarefire			0
+chaingun/epicfire1							LDECGUN1
+chaingun/epicfire2							LDECGUN2
+$random chaingun/epicfire { chaingun/epicfire1 chaingun/epicfire2 }
+$limit chaingun/epicfire			0
+
+rocketlauncher/fire							LDROCKET
+$limit rocketlauncher/fire			0
+rocketlauncher/loop							LDROCKLP
+rocketlauncher/explode						LDROCKXP
+$limit rocketlauncher/explode		0
+rocketlauncher/pickup						LDRLAUPK
+rocketlauncher/draw							LDRLAUUP
+
+rocketlauncher/commonfire					LDCRLA
+$limit rocketlauncher/commonfire	0
+rocketlauncher/commonexplode				LDCRLAXP
+$limit rocketlauncher/commonexplode	0
+rocketlauncher/uncommonfire					LDURLA
+$limit rocketlauncher/uncommonfire	0
+rocketlauncher/uncommonexplode				LDROCKXP
+$limit rocketlauncher/uncommonexplode	0
+rocketlauncher/rarefire						LDRRLA
+$limit rocketlauncher/rarefire		0
+rocketlauncher/rareexplode					LDRRLAXP
+$limit rocketlauncher/rareexplode	0
+rocketlauncher/epicfire						LDERLA
+$limit rocketlauncher/epicfire		0
+rocketlauncher/epicexplode					LDERLAXP
+$limit rocketlauncher/epicexplode	0
+rocketlauncher/keganexplode					LDSTOCXP
+$limit rocketlauncher/keganexplode	0
+
+rocketlauncher/plasmaticfire				LDPLASRK
+
+plasmarifle/fire							LDPLASMA
+$limit plasmarifle/fire				0
+plasmarifle/impact							LDPLASXP
+$limit plasmarifle/impact			0
+plasmarifle/cooldown						LDPLASCO
+plasmarifle/pickup							LDPLASPK
+plasmarifle/draw							LDPLASUP
+
+plasmarifle/commonfire						LDCPLAS
+$limit plasmarifle/commonfire		0
+plasmarifle/uncommonfire					LDUPLAS
+$limit plasmarifle/uncommonfire		0
+plasmarifle/rarefire						LDRPLAS
+$limit plasmarifle/rarefire			0
+plasmarifle/epicfire						LDEPLAS
+$limit plasmarifle/epicfire			0
+plasmarifle/epicloop						LDEPLASL
+
+bfg9000/fire								LDBFG
+$limit bfg9000/fire					0
+bfg9000/charge								LDBFGCHG
+$limit bfg9000/charge				0
+bfg9000/impact								LDBFGXP
+$limit bfg9000/impact				0
+bfg9000/loop								LDBFGLP
+bfg9000/pickup								LDBFGPK
+bfg9000/draw								LDBFGUP
+
+bfg9000/commonfire							LDCBFG
+$limit bfg9000/commonfire			0
+bfg9000/commonfireinstant					LDCBFG2
+$limit bfg9000/commonfireinstant	0
+bfg9000/commonimpact						LDCBFGXP
+$limit bfg9000/commonimpact			0
+bfg9000/uncommonfire						LDUBFG
+$limit bfg9000/uncommonfire			0
+bfg9000/uncommoncharge						LDUBFGCH
+$limit bfg9000/uncommoncharge		0
+bfg9000/uncommonimpact						LDUBFGXP
+$limit bfg9000/uncommonimpact		0
+bfg9000/uncommonloop						LDUBFGLP
+bfg9000/rarefire							LDRBFG
+$limit bfg9000/rarefire				0
+bfg9000/rarecharge							LDRBFGCH
+$limit bfg9000/rarecharge			0
+bfg9000/rapidcharge							LDRBFGC2
+$limit bfg9000/rapidcharge			0
+bfg9000/epicfire							LDEBFG
+$limit bfg9000/epicfire				0
+bfg9000/epicimpact							LDEBFGXP
+$limit bfg9000/epicimpact			0
+
+bfg9000/kineticimpact						LDKINBFG
+$limit bfg9000/kineticimpact		0
+
+//------------------------------------------------------------------------------
+
+effects/newlegendarypickup1					LDLEGEN1
+effects/newlegendarypickup2					LDLEGEN2
+effects/newlegendarypickup3					LDLEGEN3
+$random effects/newlegendarypickup { effects/newlegendarypickup1 effects/newlegendarypickup2 effects/newlegendarypickup3 }
+effects/epicnewlegendarypickup				LDLEGENE
+
+effects/agitatingpickup						LDAGITAT
+effects/mysteriouspickup					LDMYSTER
+effects/seriouspickup						LDSERIOU
+effects/desperatepickup						LDDESPER
+effects/augmentedpickup						LDAUGMEN
+
+//------------------------------------------------------------------------------
+
+effects/legendaryenemyloop					LDLELOOP
+effects/legendaryenemy						LDLETRAN
+$limit effects/legendaryenemy		0
+effects/legendaryenemyboss					LDLEBOSS
+$limit effects/legendaryenemyboss	0
+
+//------------------------------------------------------------------------------
+
+effects/hunting								LDHUNTIN
+$limit effects/hunting				0
+effects/huntingenergy						LDHUNTEN
+$limit effects/huntingenergy		0
+
+effects/lucky								LDLUCKY
+
+effects/medic								LDMEDIC
+
+effects/shaman								LDSHAMAN
+
+effects/chargeup							LDCHARGE
+effects/chargeupdone						LDCHARGX
+
+effects/irradiated1							LDRADP1
+effects/irradiated2							LDRADP2
+effects/irradiated3							LDRADP3
+effects/irradiated4							LDRADP4
+
+$random effects/irradiated { effects/irradiated1 effects/irradiated2 effects/irradiated3 effects/irradiated4 }
+$limit effects/irradiated					0
+
+effects/gauss								LDGAUSS
+$limit effects/gauss						0
+
+effects/seekerrocket						LDSEEKRK
+effects/plasmarocket						LDPLASRK
+$limit effects/plasmarocket					0
+
+effects/acceleratorrocketlauncher			LDACCROK
+$limit effects/acceleratorrocketlauncher	0
+effects/acceleratorplasmarifle1				LDACCPL1
+$limit effects/acceleratorplasmarifle1		0
+effects/acceleratorplasmarifle2				LDACCPL2
+$limit effects/acceleratorplasmarifle2		0
+$random effects/acceleratorplasmarifle { effects/acceleratorplasmarifle1 effects/acceleratorplasmarifle2 }
+$limit effects/acceleratorplasmarifle		0
+effects/acceleratorbfg9000					LDACCBFG
+$limit effects/acceleratorbfg9000			0
+
+effects/stasis								LDSTASIS
+$limit effects/stasis						0
+effects/stasis2								LDSTASI2
+$limit effects/stasis2						0
+
+effects/energizingstart						LDKINBFG
+$limit effects/energizingstart				0
+effects/energizing							LDENERAN
+$limit effects/energizing					0
+
+effects/stealthchainsaw						LDSILEN3
+$limit effects/stealthchainsaw				0
+effects/stealthpistol						LDSILEN3
+$limit effects/stealthpistol				0
+effects/stealthshotgun						LDSILEN1
+$limit effects/stealthshotgun				0
+effects/stealthsupershotgun					LDSILEN2
+$limit effects/stealthsupershotgun			0
+effects/stealthchaingun						LDSILEN3
+$limit effects/stealthchaingun				0
+effects/stealthrocketlauncher				LDSTLROK
+$limit effects/stealthrocketlauncher		0
+effects/stealthplasmarifle					LDSTLPLS
+$limit effects/stealthplasmarifle			0
+effects/stealthbfg9000						LDSTLBFG
+$limit effects/stealthbfg9000				0
+
+effects/renegade1							LDAAAGH1
+effects/renegade2							LDAAAGH2
+effects/renegade3							LDAAAGH3
+effects/renegade4							LDAAAGH4
+effects/renegade5							LDAAAGH5
+effects/renegade6							LDAAAGH6
+$random effects/renegade { effects/renegade1 effects/renegade2 effects/renegade3 effects/renegade4 effects/renegade5 effects/renegade6 }
+$limit effects/renegade			0
+
+effects/agitatingshort						LDAGITF1
+$limit effects/agitatingshort	0
+effects/agitatinglong						LDAGITF2
+$limit effects/agitatinglong	0
+$alias effects/agitatingrocket				effects/agitatinglong
+$limit effects/agitatingrocket	0
+$alias effects/agitatingplasma				effects/agitatingshort
+$limit effects/agitatingplasma	0
+$alias effects/agitatingbfg9000				effects/agitatinglong
+$limit effects/agitatingbfg9000	0
+effects/agitatingrocketloop					LDAGITL1
+$limit effects/agitatingrocketloop	0
+effects/agitatingbfg9000loop				LDAGITL2
+$limit effects/agitatingbfg9000loop	0
+
+effects/upgradingmeter						LDUPGRA1
+$limit effects/upgradingmeter	0
+effects/upgradinglevel						LDUPGRA2
+$limit effects/upgradinglevel	0
+
+effects/grouptherapy						LDROCKXP
+$limit effects/grouptherapy		2
+
+effects/sensing								LDSENSIN
+$limit effects/sensing			0
+
+effects/wildfire							LDFUKINV
+$limit effects/wildfire			1
+effects/chronostrike						LDWARUDO
+$limit effects/chronostrike		1
+effects/restoring							LDSOULPK
+$limit effects/restoring		1
+effects/resupplying							LDBPAKPK
+$limit effects/resupplying		1
+effects/vanguard							LDARM2PK
+$limit effects/vanguard			1
+
+effects/goldeneye							LDGOLDEN
+$limit effects/goldeneye		0
+effects/goldeneyeexplode1					LDGOLDX1
+effects/goldeneyeexplode2					LDGOLDX2
+$random effects/goldeneyeexplode { effects/goldeneyeexplode1 effects/goldeneyeexplode2 }
+$limit effects/goldeneyeexplode	0
+
+effects/blazingrocket						LDBLAZIF
+$limit effects/blazingrocket		0
+effects/blazingplasma						LDBLAZIF
+$limit effects/blazingplasma		0
+effects/blazingbfg							LDBLAZIF
+$limit effects/blazingbfg			0
+effects/blazingimpact						LDBLAZIH
+$limit effects/blazingimpact		0
+
+effects/blazingstartrocket					LDBLZRST
+$limit effects/blazingstartrocket	0
+effects/blazingstartplasma					LDBLZRST
+$limit effects/blazingstartplasma	0
+effects/blazingstartbfg						LDBEAMS2
+$limit effects/blazingstartbfg		0
+effects/blazinglooprocket					LDBLZRLP
+$limit effects/blazinglooprocket	0
+effects/blazingloopplasma					LDBLZRLP
+$limit effects/blazingloopplasma	0
+effects/blazingloopbfg						LDBLZBLP
+$limit effects/blazingloopbfg		0
+
+effects/beamstartplasma						LDBEAMS1
+$limit effects/beamstartplasma	0
+effects/beamloopplasma						LDBEAML1
+$limit effects/beamloopplasma	0
+effects/beamendplasma						LDBEAME1
+$limit effects/beamendplasma	0
+effects/beamstartbfg						LDBEAMS2
+$limit effects/beamstartbfg		0
+effects/beamloopbfg							LDBEAML2
+$limit effects/beamloopbfg		0
+effects/beamendbfg							LDBEAME2
+$limit effects/beamendbfg		0
+
+effects/blaster								LDBLASTE
+$limit effects/blaster			0
+
+$alias pistol/dualfire						pistol/rarefire
+
+$alias pistol/advancedfire					pistol/rarefire
+effects/advancedreloadout					LDADVAN1
+effects/advancedreloadin					LDADVAN2
+effects/advancedreloadcock					LDADVAN3
+
+hehheenh/hehheenh1							LDHEHEH1
+hehheenh/hehheenh2							LDHEHEH2
+hehheenh/hehheenh3							LDHEHEH3
+hehheenh/hehheenh4							LDHEHEH4
+$random hehheenh/hehheenh { hehheenh/hehheenh1 hehheenh/hehheenh2 hehheenh/hehheenh3 hehheenh/hehheenh4 }
+$limit hehheenh/hehheenh		0
+
+effects/onepunch							LDONEPUN
+$limit effects/onepunch				0
+effects/onepunchloop						LDONEPUL
+$limit effects/onepunchloop			0
+effects/onepunchshockwave					LDONEPSK
+$limit effects/onepunchshockwave	0
+effects/onepunchcharge1						LDONEPC1
+effects/onepunchcharge2						LDONEPC2
+effects/onepunchcharge3						LDONEPC3
+$random effects/onepunchcharge { effects/onepunchcharge1 effects/onepunchcharge2 effects/onepunchcharge3 }
+$limit effects/onepunchcharge		0
+
+effects/northernstarloop					LDNSLOOP
+$limit effects/northernstarloop	0
+effects/kenshiroyell						LDKENSH1
+$limit effects/kenshiroyell		0
+effects/kenshiroloop						LDKENSH2
+$limit effects/kenshiroloop		0
+effects/kenshirostop						LDKENSH3
+$limit effects/kenshirostop		0
+effects/northernstargib1					LDNSGIB1
+effects/northernstargib2					LDNSGIB2
+effects/northernstargib3					LDNSGIB3
+effects/northernstargib4					LDNSGIB4
+effects/northernstargib5					LDNSGIB5
+effects/northernstargib6					LDNSGIB6
+effects/northernstargib7					LDNSGIB7
+effects/northernstargib8					LDNSGIB8
+effects/northernstargib9					LDNSGIB9
+$random effects/northernstargib { effects/northernstargib1 effects/northernstargib2 effects/northernstargib3 effects/northernstargib4 effects/northernstargib5 effects/northernstargib6 effects/northernstargib7 effects/northernstargib8 effects/northernstargib9 }
+$limit effects/northernstargib	0
+
+effects/facekickinghitflesh1				LDFKHFL1
+effects/facekickinghitflesh2				LDFKHFL2
+effects/facekickinghitflesh3				LDFKHFL3
+$random effects/facekickinghitflesh { effects/facekickinghitflesh1 effects/facekickinghitflesh2 effects/facekickinghitflesh3 }
+$limit effects/facekickinghitflesh		0
+effects/facekickinghitwall1				LDFKHWL1
+effects/facekickinghitwall2				LDFKHWL2
+effects/facekickinghitwall3				LDFKHWL3
+$random effects/facekickinghitwall { effects/facekickinghitwall1 effects/facekickinghitwall2 effects/facekickinghitwall3 }
+$limit effects/facekickinghitwall		0
+
+effects/sixshooter							LDSIXSHO
+$limit effects/sixshooter		0
+effects/sixshooter2							LDSIXSH2
+$limit effects/sixshooter2		0
+
+effects/machineloop							LDMACHI1
+$limit effects/machineloop		0
+effects/machineend							LDMACHI2
+$limit effects/machineend		0
+
+effects/imaginary							LDIMAGIN
+$limit effects/imaginary		0
+effects/imaginaryidle						LDIMAGI2
+$limit effects/imaginaryidle	0
+
+effects/raycaster							LDERLAXP
+$limit effects/raycaster		2
+
+effects/annihilating						LDEBFGXP
+$limit effects/annihilating		2
+
+effects/nanocircuit1						LDNANOC1
+effects/nanocircuit2						LDNANOC2
+effects/nanocircuit3						LDNANOC3
+$random effects/nanocircuit { effects/nanocircuit1 effects/nanocircuit2 effects/nanocircuit3 }
+$limit effects/nanocircuit		0
+
+effects/gyrojet1							LDGYROJ1
+effects/gyrojet2							LDGYROJ2
+effects/gyrojet3							LDGYROJ3
+effects/gyrojet4							LDGYROJ4
+effects/gyrojet5							LDGYROJ5
+$random effects/gyrojet { effects/gyrojet1 effects/gyrojet2 effects/gyrojet3 effects/gyrojet4 effects/gyrojet5 }
+$limit effects/gyrojet			0
+
+//------------------------------------------------------------------------------
+
+$alias baby/attack							plasmarifle/fire
+$alias chainguy/attack						chaingun/fire
+$alias spider/attack						chaingun/fire
+
+imp/pain									LDIMPPAN
+caco/pain									LDCACPAN
+$alias plasmarifle/impact					weapons/plasmax
+
+//------------------------------------------------------------------------------
+
+items/pistoldrop							LDGUNSMA
+items/shotgundrop							LDGUNMED
+$alias items/supershotgundrop				items/shotgundrop
+$alias items/chaingundrop					items/shotgundrop
+items/rocketlauncherdrop					LDGUNBIG
+$alias items/plasmarifledrop				items/rocketlauncherdrop
+items/bfg9000drop							LDGUNBFG
+
+$alias items/brassknuckledrop				items/pistoldrop
+$alias items/chainsawdrop					items/shotgundrop
+
+//------------------------------------------------------------------------------
+
+casings/bullet1								LDPCASE1
+casings/bullet2								LDPCASE2
+casings/bullet3								LDPCASE3
+casings/bullet4								LDPCASE4
+casings/bullet5								LDPCASE5
+casings/bullet6								LDPCASE6
+casings/bullet7								LDPCASE7
+casings/bullet8								LDPCASE8
+$random casings/bullet { casings/bullet1 casings/bullet2 casings/bullet3 casings/bullet4 casings/bullet5 casings/bullet6 casings/bullet7 casings/bullet8 }
+$volume casings/bullet 0.5
+$attenuation casings/bullet 1.5
+
+casings/shell1								LDSCASE1
+casings/shell2								LDSCASE2
+casings/shell3								LDSCASE3
+casings/shell4								LDSCASE4
+casings/shell5								LDSCASE5
+casings/shell6								LDSCASE6
+$random casings/shell { casings/shell1 casings/shell2 casings/shell3 casings/shell4 casings/shell5 casings/shell6 }
+$volume casings/shell 0.5
+$attenuation casings/shell 1.5
+
+casings/chaingun1							LDCCASE1
+casings/chaingun2							LDCCASE2
+casings/chaingun3							LDCCASE3
+casings/chaingun4							LDCCASE4
+casings/chaingun5							LDCCASE5
+casings/chaingun6							LDCCASE6
+casings/chaingun7							LDCCASE7
+casings/chaingun8							LDCCASE8
+$random casings/chaingun { casings/chaingun1 casings/chaingun2 casings/chaingun3 casings/chaingun4 casings/chaingun5 casings/chaingun6 casings/chaingun7 casings/chaingun8 }
+$volume casings/bullet 0.5
+$attenuation casings/bullet 1.5
+
+//------------------------------------------------------------------------------
+
+bullet/ricochet1							LDBULLR1
+bullet/ricochet2							LDBULLR2
+bullet/ricochet3							LDBULLR3
+bullet/ricochet4							LDBULLR4
+bullet/ricochet5							LDBULLR5
+bullet/ricochet6							LDBULLR6
+bullet/ricochet7							LDBULLR7
+bullet/ricochet8							LDBULLR8
+bullet/ricochet9							LDBULLR9
+bullet/ricochet0							LDBULLR0
+$random bullet/ricochet { bullet/ricochet1 bullet/ricochet2 bullet/ricochet3 bullet/ricochet4 bullet/ricochet5 bullet/ricochet6 bullet/ricochet7 bullet/ricochet8 bullet/ricochet9 bullet/ricochet0 }
+$volume bullet/ricochet 0.8
+$attenuation bullet/ricochet 1.3
+
+bullet/hitflesh1							LDBULLF1
+bullet/hitflesh2							LDBULLF2
+bullet/hitflesh3							LDBULLF3
+bullet/hitflesh4							LDBULLF4
+bullet/hitflesh5							LDBULLF5
+bullet/hitflesh6							LDBULLF6
+$random bullet/hitflesh { bullet/hitflesh1 bullet/hitflesh2 bullet/hitflesh3 bullet/hitflesh4 bullet/hitflesh5 bullet/hitflesh6 }
+$volume bullet/hitflesh 0.8
+$attenuation bullet/hitflesh 1.8
+
+
+//------------------------------------------------------------------------------
+
+items/healthbonuspickup						LDHBONPK
+items/armorbonuspickup						LDABONPK
+
+items/stimpackpickup						LDSTIMPK
+items/medikitpickup							LDMEDIPK
+
+items/backpackpickup						LDBPAKPK
+items/computermappickup						LDCMAPPK
+items/soulspherepickup						LDSOULPK
+items/megaspherepickup						LDMEGAPK
+items/radsuitpickup							LDSUITPK
+items/invulnerabilitypickup					LDINVLPK
+items/infraredpickup						LDIREDPK
+items/berserkpickup							LDBERSPK
+items/blurspherepickup						LDBLURPK
+
+items/shellpickup							LDSHELPK
+items/cellpickup							LDCELLPK
+items/clipboxpickup							LDCBOXPK
+items/clippickup							LDCLIPPK
+items/rocketpickup							LDROCKPK
+
+items/greenarmorpickup						LDARM1PK
+items/bluearmorpickup						LDARM2PK
+
+items/cardpickup							LDCARDPK
+items/skullpickup							LDSKULPK
+
+//------------------------------------------------------------------------------
+
+menu/infoopen								LDINFO1
+menu/infoclose								LDINFO2
+
+menu/activate								LDMENU4
+menu/backup									LDMENU5
+menu/prompt									LDMENU7
+menu/cursor									LDMENU1
+menu/change									LDMENU2
+menu/invalid								LDMENU6
+menu/dismiss								LDMENU9
+menu/choose									LDMENU8
+menu/clear									LDMENU3
+
+menu/quit1									LDQUIT1
+menu/quit2									LDQUIT2

@@ -84,6 +84,28 @@ class DoDAPistol : DoDAWeapon
         return chamberLoaded;
     }
 
+
+    bool IsEmpty()
+    {
+        EnsureFirearmState();
+        return magazineRounds == 0 && !chamberLoaded;
+    }
+
+    bool CanReload()
+    {
+        EnsureFirearmState();
+        
+        // Allow reloading even if magazine is empty, as long as reserve ammo exists
+        let reserveAmmo = GetReserveAmmo();
+        
+        return reserveAmmo != null && reserveAmmo.Amount > 0 && magazineRounds < MagazineCapacity;
+    }
+
+    bool TryReload()
+    {
+        return CommitReload();
+    }
+
     clearscope int GetReserveRounds()
     {
         if (owner == null)
@@ -146,24 +168,6 @@ class DoDAPistol : DoDAWeapon
         return true;
     }
 
-    bool CanReload()
-    {
-        EnsureFirearmState();
-
-        if (IsFullyLoaded())
-        {
-            return false;
-        }
-
-        let reserveAmmo = GetReserveAmmo();
-
-        if (reserveAmmo == null)
-        {
-            return false;
-        }
-
-        return reserveAmmo.Amount + magazineRounds > 0;
-    }
 
     void QueueReload()
     {
@@ -373,7 +377,7 @@ class DoDAPistol : DoDAWeapon
         pistol.reloadInProgress = false;
     }
 
-    virtual int GetWeaponHand()
+    override int GetWeaponHand()
     {
         return DoDAHandSwapController.Hand_Right;
     }
@@ -393,9 +397,14 @@ class DoDAPistol : DoDAWeapon
         return Weapon(owner.FindInventory('DoDAB92Left'));
     }
 
-    bool RequestHandSwap(int requestedHand)
+    bool RequestHandSwap(int requestedHand, bool isManualRequest = false)
     {
         if (owner == null || owner.player == null)
+        {
+            return false;
+        }
+
+        if (!isManualRequest && handSwapController && handSwapController.IsPistolSwapLocked())
         {
             return false;
         }

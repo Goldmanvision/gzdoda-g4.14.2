@@ -21,6 +21,7 @@ class DoDAWeapon : Weapon
     bool wasDeadzoneAimActive;
     bool wasHoldingFire;
     bool wasReloadHeld;
+    bool wasPistolSwapLockHeld;
     bool initialized;
 
     DoDALeanInput leanInput;
@@ -61,6 +62,11 @@ class DoDAWeapon : Weapon
 
     virtual void HandleDeadzoneAimActivated()
     {
+    }
+
+    virtual bool ShouldStartFire(bool holdingFire, bool firePressed)
+    {
+        return firePressed;
     }
 
     void PrintDebugSpriteOffsets(int hand)
@@ -147,11 +153,12 @@ class DoDAWeapon : Weapon
         bool attackPressed,
         int actualHand,
         int requestedHand,
-        bool requestGate
+        bool requestGate,
+        bool swapLock
     )
     {
         Console.Printf(
-            "WEAPONPIPE ready=%s pending=%s state=%s readyIsSelf=%d attack=%d attackPressed=%d actualHand=%d requestedHand=%d requestGate=%d fireLock=%d",
+            "WEAPONPIPE ready=%s pending=%s state=%s readyIsSelf=%d attack=%d attackPressed=%d actualHand=%d requestedHand=%d requestGate=%d fireLock=%d swapLock=%d",
             DescribeWeapon(readyWeapon),
             DescribeWeapon(pendingWeapon),
             DescribeWeaponState(weaponSprite),
@@ -161,7 +168,8 @@ class DoDAWeapon : Weapon
             actualHand,
             requestedHand,
             requestGate ? 1 : 0,
-            fireLockTics
+            fireLockTics,
+            swapLock ? 1 : 0
         );
     }
 
@@ -402,6 +410,34 @@ class DoDAWeapon : Weapon
 
         wasSwapBerettaHeld = swapBerettaDown;
 
+        bool readyWasSelf = readyWeapon == self;
+
+        CVar pistolSwapLockCVar = CVar.GetCVar(
+            'doda_toggle_pistol_swap_lock',
+            owner.player
+        );
+
+        bool pistolSwapLockDown = pistolSwapLockCVar
+            ? pistolSwapLockCVar.GetBool()
+            : false;
+
+        bool pistolSwapLockPressed =
+            pistolSwapLockDown && !wasPistolSwapLockHeld;
+
+        wasPistolSwapLockHeld = pistolSwapLockDown;
+
+        if (pistolSwapLockPressed && readyWasSelf && pistol != null)
+        {
+            handSwapController.TogglePistolSwapLock();
+
+            Console.Printf(
+                "DODA pistol swap lock: %s",
+                handSwapController.IsPistolSwapLocked()
+                    ? "ON"
+                    : "OFF"
+            );
+        }
+
         CVar secondaryActionCVar = CVar.GetCVar(
             'doda_weapon_secondary',
             owner.player
@@ -435,8 +471,6 @@ class DoDAWeapon : Weapon
         {
             leanController.SetLockedHand(requestedHand);
         }
-
-        bool readyWasSelf = readyWeapon == self;
 
         if (deadzoneAimJustActivated && readyWasSelf)
         {
@@ -535,7 +569,8 @@ class DoDAWeapon : Weapon
                 attackPressed,
                 actualHand,
                 requestedHand,
-                requestGate
+                requestGate,
+                handSwapController.IsPistolSwapLocked()
             );
 
             pipelineInitialized = true;
@@ -552,7 +587,7 @@ class DoDAWeapon : Weapon
 
         if (requestGate)
         {
-            bool requestAccepted = pistol.RequestHandSwap(requestedHand);
+            bool requestAccepted = pistol.RequestHandSwap(requestedHand, swapBerettaPressed);
 
             Console.Printf(
                 "WEAPONPIPE RequestHandSwap requested=%d accepted=%d pendingAfter=%s",
@@ -710,6 +745,74 @@ class DoDAWeapon : Weapon
         }
     }
 
+    virtual int GetWeaponHand()
+    {
+        return Hand_Right;
+    }
+
+    action void DoDA_SpawnPistolCasing()
+    {
+        let pistol = DoDAPistol(invoker);
+        if (pistol == null || invoker.owner == null)
+        {
+            return;
+        }
+
+        bool isLeftPistol = pistol.GetWeaponHand() == Hand_Left;
+
+        let agent = FieldAgent(invoker.owner);
+        bool deadzoneActive = agent != null && agent.IsDeadzoneAimActive();
+        double yawOffset = deadzoneActive ? agent.GetDeadzoneYawGap() : 0.0;
+        double weaponFacingAngle = invoker.owner.angle + yawOffset;
+
+        // B92Left = forward-left (angle + 45), B92Right = forward-right (angle - 45)
+        double ejectAngle = weaponFacingAngle + (isLeftPistol ? 45.0 : -45.0);
+        vector2 ejectDirection = AngleToVector(ejectAngle, 1.0);
+
+        double PistolCasingForwardDiagonalSpawnOffset = 10.0;
+        double PistolCasingSpawnZFraction = 0.60;
+
+        vector2 spawnXY = invoker.owner.Pos.XY + ejectDirection * PistolCasingForwardDiagonalSpawnOffset;
+        vector3 spawnPos = (
+            spawnXY.X,
+            spawnXY.Y,
+            invoker.owner.Pos.Z + invoker.owner.height * PistolCasingSpawnZFraction
+        );
+
+        Actor casing = Spawn("DoDAPistolCasing", spawnPos);
+        if (casing)
+        {
+            double PistolCasingEjectSpeed = 5.0;
+            casing.vel = invoker.owner.vel;
+            casing.vel.x += ejectDirection.X * PistolCasingEjectSpeed;
+            casing.vel.y += ejectDirection.Y * PistolCasingEjectSpeed;
+            casing.vel.z += FRandom(2.0, 3.0);
+            casing.angle = ejectAngle;
+        }
+    }
+
+    action void DoDA_SpawnCasing(class<Actor> casingType)
+    {
+        if (invoker == null || invoker.owner == null)
+        {
+            return;
+        }
+
+        Vector3 spawnPos = invoker.owner.Vec3Angle(
+            4.0,
+            invoker.owner.angle + 90.0, // Ejection offset
+            invoker.owner.height * 0.7 // Eye-levelish
+        );
+
+        Actor casing = Spawn(casingType, spawnPos);
+        if (casing)
+        {
+            casing.vel = invoker.owner.vel;
+            casing.vel.xy += (Random(-1.0, 1.0), Random(-1.0, 1.0));
+            casing.vel.z += 2.0;
+        }
+    }
+
     action void DoDA_FireTrace()
     {
         if (
@@ -738,6 +841,9 @@ class DoDAWeapon : Weapon
         }
 
         invoker.fireLockTics = 9;
+
+        bool DEBUG_PISTOL = false;
+        if (DEBUG_PISTOL) Console.Printf("PISTOLSHOT weapon=%s loadedAfter=%d", invoker.GetClassName(), pistol.GetLoadedRoundCount());
 
         let agent = FieldAgent(invoker.owner);
 
@@ -776,7 +882,7 @@ class DoDAWeapon : Weapon
             + pitchOffset
             + Sin(randomAngle) * randomRadius;
 
-        A_StartSound("weapons/pistol", CHAN_WEAPON);
+        pistol.DoDA_PlayFireSound();
 
         FLineTraceData trace;
 
@@ -840,3 +946,13 @@ class DoDAWeapon : Weapon
         Spawn("BulletPuff", trace.HitLocation);
     }
 }
+    // [KEYCONF]
+    // ...
+    // Note: DoDA Weapon Controls are in KEYCONF
+    
+    // ...
+    // Existing fire dispatch (e.g., in a subclass or base)
+    // ...
+    
+    // [MP5KSD Implementation]
+    // ...

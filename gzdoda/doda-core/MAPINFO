@@ -7,7 +7,7 @@ gameinfo
 {
     PlayerClasses = "FieldAgent"
     StatusBarClass = "DoDAHUD"
-    AddEventHandlers = "DoDAMissionDirector", "DoDAAimInput", "Map03RangeStartHandler"
+    AddEventHandlers = "DoDAMissionDirector", "DoDAAimInput", "Map03RangeStartHandler", "MP5ModeHandler"
 
     TitlePage = "DODABG3"
     CreditPage = "DODABG1"
@@ -24,6 +24,7 @@ DoomEdNums
 	9307 = "DoDAB92Right"
 	9308 = "DoDAB92Left"
 	9309 = "DoDAShotgun"
+	9401 = "DoDAMP5KSD"
 }
 
 map MAP01 "MISSION AREA TEST"

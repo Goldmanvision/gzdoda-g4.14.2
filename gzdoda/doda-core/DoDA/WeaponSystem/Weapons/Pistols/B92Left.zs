@@ -26,6 +26,7 @@ class DoDAB92Left : DoDAPistol
         B92L T 1 A_WeaponReady(
             WRF_ALLOWZOOM
             | WRF_NOSECONDARY
+            | WRF_ALLOWRELOAD
         );
         Loop;
 
@@ -69,8 +70,15 @@ class DoDAB92Left : DoDAPistol
 
     Fire:
         B92L G 1 A_DoDA_Fire;
+        B92L B 0 {
+            let p = DoDAPistol(invoker);
+            if (p && !p.ConsumeFiredRound())
+            {
+                SetStateLabel("DryFire");
+            }
+        }
         B92L B 1 Bright DoDA_FireTrace;
-        B92L B 0 Bright DoDA_PlayFireSound;
+        B92L B 0 Bright DoDA_SpawnPistolCasing();
         B92L A 1 Bright;
         B92L C 1;
         B92L D 1;

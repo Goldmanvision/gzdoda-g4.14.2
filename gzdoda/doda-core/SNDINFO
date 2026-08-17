@@ -32,3 +32,12 @@ doda/pistol/mag_eject    B92EJCT
 doda/pistol/mag_load     B92LOAD
 doda/pistol/slide        B92SLIDE
 
+doda/mapstart            LSAX1
+
+doda/mp5/fire           MP5FIRE
+doda/mp5/dryfire        MP5CLIC
+doda/mp5/mag_open       MP5OPEN
+doda/mp5/mag_close      MP5CLOS
+doda/mp5/cock           MP5COCK
+doda/mp5/slap           MP5SLAP
+

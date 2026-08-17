@@ -9,6 +9,7 @@ class DoDAWeaponHUDData : Object
     bool Available;
     bool Equipped;
     bool IsShotgun;
+    bool IsMP5;
 
     String Label;
     String ChamberStatus;
@@ -16,6 +17,7 @@ class DoDAWeaponHUDData : Object
     int MagazineRounds;
     int MagazineCapacity;
     bool ChamberLoaded;
+    int FireMode;
 }
 
 class DoDAWeaponHUDBridge : Object
@@ -60,6 +62,21 @@ class DoDAWeaponHUDBridge : Object
 
         if (pistol == null || !pistol.UsesWeaponHUD())
         {
+            let mp5 = DoDAMP5KSD(weapon);
+            if (mp5 != null)
+            {
+                let mp5Data = new("DoDAWeaponHUDData");
+                mp5Data.Available = true;
+                mp5Data.Equipped = weapon == readyWeapon;
+                mp5Data.IsShotgun = false;
+                mp5Data.IsMP5 = true;
+                mp5Data.Label = "MP5KSD";
+                mp5Data.MagazineRounds = mp5.magazineRounds;
+                mp5Data.MagazineCapacity = mp5.MagazineCapacity;
+                mp5Data.ChamberLoaded = mp5.chamberLoaded;
+                mp5Data.FireMode = mp5.GetFireMode();
+                return mp5Data;
+            }
             return null;
         }
 
@@ -153,11 +170,18 @@ class DoDAWeaponHUDBridge : Object
 
         let pistol = DoDAPistol(readyWeapon);
 
-        if (pistol == null || !pistol.UsesWeaponHUD())
+        if (pistol != null && pistol.UsesWeaponHUD())
         {
-            return 0;
+            return pistol.GetReserveRounds();
         }
 
-        return pistol.GetReserveRounds();
+        let mp5 = DoDAMP5KSD(readyWeapon);
+        if (mp5 != null && mp5.owner != null)
+        {
+            let reserveAmmo = Ammo(mp5.owner.FindInventory('Clip'));
+            return reserveAmmo ? reserveAmmo.Amount : 0;
+        }
+
+        return 0;
     }
 }

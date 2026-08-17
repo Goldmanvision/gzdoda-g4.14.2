@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DoDA Wiki - Debugging Playbook</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="introduction.html">Introduction</a></li>
+            <li class="dropdown">
+                <a href="#">Architecture</a>
+                <div class="dropdown-content">
+                    <a href="architecture.html">Architecture Overview</a>
+                    <a href="structure.html">Structure</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#">Systems</a>
+                <div class="dropdown-content">
+                    <a href="weapon_system.html">Weapon System</a>
+                    <a href="weapon_base.html">Weapon Base</a>
+                    <a href="b92_pistols.html">B92 Pistols</a>
+                    <a href="shotgun.html">Shotgun</a>
+                    <a href="hud_weapon.html">HUD Weapon</a>
+                    <a href="deadzone_aim.html">Deadzone Aim</a>
+                    <a href="lean_system.html">Lean System</a>
+                    <a href="mission_system.html">Mission System</a>
+                    <a href="aim_abilities.html">Aim & Abilities</a>
+                </div>
+            </li>
+            <li><a href="character_classes.html">Character Classes</a></li>
+            <li><a href="ui.html">UI</a></li>
+            <li><a href="testing.html">Testing</a></li>
+        </ul>
+    </nav>
+    <div id="content">
+        <h2>Debugging Playbook</h2>
+        <p>This playbook outlines procedures for investigating common DoDA issues.</p>
+        
+        <h3>Common Issues</h3>
+        <ul>
+            <li><strong>Compile Failures</strong>: Check <code>console_log.txt</code> for script parsing errors. Ensure <code>zscript.txt</code> includes are in the correct order.</li>
+            <li><strong>Weapon Issues</strong>: Verify independent magazine/chamber state for B92 pistols. Check shotgun rack state machine.</li>
+            <li><strong>Aim Issues</strong>: Verify <code>FieldAgent</code> owns deadzone state and is not being overridden by weapon code.</li>
+        </ul>
+    </div>
+</body>
+</html>

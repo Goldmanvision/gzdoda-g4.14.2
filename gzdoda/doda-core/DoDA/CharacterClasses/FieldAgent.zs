@@ -24,6 +24,8 @@ class FieldAgent : DoomPlayer
         Player.DisplayName "Field Agent";
         Player.StartItem "DoDAB92Left";
         Player.StartItem "DoDAB92Right";
+        Player.StartItem "DoDAMP5KSD";
+        Player.StartItem "DoDAHolster";
         Player.StartItem "Clip", 100;
     }
 

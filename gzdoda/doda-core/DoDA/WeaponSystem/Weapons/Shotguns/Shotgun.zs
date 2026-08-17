@@ -5,6 +5,7 @@ class DoDAShotgun : DoDAWeapon
 
     int tubeShells;
     bool chamberLoaded;
+    bool chamberHasSpentShell;
     bool pendingRack;
 
     bool wasShotgunAttackHeld;
@@ -39,6 +40,7 @@ class DoDAShotgun : DoDAWeapon
         {
             tubeShells = TubeCapacity;
             chamberLoaded = true;
+            chamberHasSpentShell = false;
             pendingRack = false;
             lowReadyIdleTics = 0;
             shotgunInitialized = true;
@@ -223,13 +225,16 @@ class DoDAShotgun : DoDAWeapon
 
         if (
             weaponSprite.CurState.InStateSequence(
-                ResolveState("HipRack")
+                ResolveState("HipRackApproach")
             )
             || weaponSprite.CurState.InStateSequence(
                 ResolveState("RaiseFromLowReadyToRack")
             )
             || weaponSprite.CurState.InStateSequence(
-                ResolveState("RackCycle")
+                ResolveState("RackFromPreRack")
+            )
+            || weaponSprite.CurState.InStateSequence(
+                ResolveState("RackFromReady")
             )
             || weaponSprite.CurState.InStateSequence(
                 ResolveState("RackReturn")
@@ -276,14 +281,25 @@ class DoDAShotgun : DoDAWeapon
             weaponSprite.CurState.InStateSequence(
                 ResolveState("RackWait")
             )
-            || weaponSprite.CurState == ResolveState("Ready")
         )
         {
             pendingRack = true;
 
             owner.player.SetPSprite(
                 PSP_WEAPON,
-                ResolveState("HipRack")
+                ResolveState("RackFromPreRack")
+            );
+
+            return;
+        }
+
+        if (weaponSprite.CurState == ResolveState("Ready"))
+        {
+            pendingRack = true;
+
+            owner.player.SetPSprite(
+                PSP_WEAPON,
+                ResolveState("HipRackApproach")
             );
         }
     }
@@ -469,6 +485,59 @@ class DoDAShotgun : DoDAWeapon
         }
 
         return "EMPTY";
+    }
+
+    action void A_Shotgun_EjectChamberShell()
+    {
+        if (
+            invoker == null
+            || invoker.owner == null
+            || invoker.owner.player == null
+        )
+        {
+            return;
+        }
+
+        if (!invoker.chamberLoaded && !invoker.chamberHasSpentShell)
+        {
+            return;
+        }
+
+        invoker.chamberLoaded = false;
+        invoker.chamberHasSpentShell = false;
+
+        invoker.A_Shotgun_ShellEjectSound();
+        invoker.DoDA_SpawnShotgunCasing();
+    }
+
+    action void DoDA_SpawnShotgunCasing()
+    {
+        if (invoker == null || invoker.owner == null)
+        {
+            return;
+        }
+
+        // Right side, forward of the camera, and below eye height.
+        Vector3 spawnPos = invoker.owner.Vec3Angle(
+            10.0,
+            invoker.owner.angle - 55.0,
+            invoker.owner.height * 0.42
+        );
+
+        Actor casing = Spawn("DoDAShotgunCasing", spawnPos);
+
+        if (casing == null)
+        {
+            return;
+        }
+
+        double ejectAngle = invoker.owner.angle - 55.0;
+        double ejectSpeed = Random(6.0, 8.0);
+
+        casing.vel = invoker.owner.vel;
+        casing.vel.x += Cos(ejectAngle) * ejectSpeed;
+        casing.vel.y += Sin(ejectAngle) * ejectSpeed;
+        casing.vel.z += Random(1.5, 2.5);
     }
 
     action void A_Shotgun_DryFireSound()
@@ -722,6 +791,7 @@ class DoDAShotgun : DoDAWeapon
         }
 
         invoker.chamberLoaded = false;
+        invoker.chamberHasSpentShell = true;
         invoker.pendingRack = true;
         invoker.lowReadyIdleTics = 0;
 
@@ -791,6 +861,7 @@ class DoDAShotgun : DoDAWeapon
         }
 
         invoker.chamberLoaded = false;
+        invoker.chamberHasSpentShell = false;
 
         if (invoker.tubeShells > 0)
         {
@@ -912,9 +983,9 @@ class DoDAShotgun : DoDAWeapon
         SGUP C 2;
         SGUP B 2;
         SGUP A 2;
-        Goto RackCycle;
+        Goto RackFromPreRack;
 
-    HipRack:
+    HipRackApproach:
         SHTN A 1;
         SHTN B 1;
         SHTN C 1;
@@ -922,16 +993,31 @@ class DoDAShotgun : DoDAWeapon
         SHTN E 1;
         SHTN F 1;
         SHTN G 1;
-        Goto RackCycle;
+        Goto RackFromReady;
 
-    RackCycle:
+    RackFromPreRack:
         TNT1 A 0 A_Shotgun_RackSound;
         SHTN H 1;
         SHTN I 1;
         SHTN J 1;
         SHTN K 1;
         SHTN L 1;
-        SHTN M 1 A_Shotgun_ShellEjectSound;
+        SHTN M 1 A_Shotgun_EjectChamberShell;
+        SHTN N 1;
+        SHTN O 1;
+        SHTN P 1;
+        SHTN Q 1;
+        SHTN R 1 A_Shotgun_FinishRack;
+        Stop;
+
+    RackFromReady:
+        TNT1 A 0 A_Shotgun_RackSound;
+        SHTN H 1;
+        SHTN I 1;
+        SHTN J 1;
+        SHTN K 1;
+        SHTN L 1;
+        SHTN M 1 A_Shotgun_EjectChamberShell;
         SHTN N 1;
         SHTN O 1;
         SHTN P 1;

@@ -42,6 +42,7 @@ class DoDAB92Right : DoDAPistol
         B92R D 1 A_WeaponReady(
             WRF_ALLOWZOOM
             | WRF_NOSECONDARY
+            | WRF_ALLOWRELOAD
         );
         Loop;
 
@@ -106,9 +107,16 @@ class DoDAB92Right : DoDAPistol
 
     Fire:
         B92R G 1 A_DoDA_Fire;
+        B92R B 0 {
+            let p = DoDAPistol(invoker);
+            if (p && !p.ConsumeFiredRound())
+            {
+                SetStateLabel("DryFire");
+            }
+        }
         B92R A 1 Bright;
         B92R B 1 Bright DoDA_FireTrace;
-        B92R B 0 Bright DoDA_PlayFireSound;
+        B92R B 0 Bright DoDA_SpawnPistolCasing();
         B92R C 1;
         B92R D 1;
         B92R E 1;

@@ -1,0 +1,12 @@
+OptionMenu "bulletz-options"
+{
+	Slider "Tracer Speed", "cl_tracerbasespeed", 20, 160, 5, 1
+	 StaticText "Change how fast bullet tracers travels."
+	 StaticText ""
+}
+
+AddOptionMenu "OptionsMenu"
+{
+	StaticText ""
+	Submenu "BulletZ Options", "bulletz-options"
+}

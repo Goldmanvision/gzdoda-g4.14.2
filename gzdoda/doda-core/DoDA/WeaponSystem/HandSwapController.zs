@@ -12,6 +12,7 @@ class DoDAHandSwapController : Object
 
     bool ManualHandLock;
     int ManualLockedHand;
+    bool pistolSwapLocked;
 
     bool Initialized;
 
@@ -21,6 +22,7 @@ class DoDAHandSwapController : Object
         DesiredHand = initialHand;
         ManualHandLock = false;
         ManualLockedHand = initialHand;
+        pistolSwapLocked = false;
         Initialized = true;
     }
 
@@ -165,6 +167,16 @@ class DoDAHandSwapController : Object
     clearscope int GetManualLockedHand()
     {
         return ManualLockedHand;
+    }
+
+    void TogglePistolSwapLock()
+    {
+        pistolSwapLocked = !pistolSwapLocked;
+    }
+
+    clearscope bool IsPistolSwapLocked()
+    {
+        return pistolSwapLocked;
     }
 
     clearscope bool NeedsWeaponSwap()
