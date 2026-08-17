@@ -1,22 +1,23 @@
-﻿class DoDAMP5KSD : DoDAWeapon
+class DoDAMP5KSD : DoDAWeapon
 {
     const MagazineCapacity = 30;
     const TotalCapacity = 31;
 
-    int magazineRounds;
-    bool chamberLoaded;
-    bool mp5Initialized;
-    int fireMode;
-    bool wasFireModePressed;
-    int burstShotsRemaining;
-    bool burstInProgress;
-    bool isReloading;
-    bool reloadWasEmpty;
-    bool wasMP5AttackHeld;
-
     const Fire_Semi = 0;
     const Fire_Burst = 1;
     const Fire_Auto = 2;
+
+    int magazineRounds;
+    bool chamberLoaded;
+    bool mp5Initialized;
+
+    int fireMode;
+    int burstShotsRemaining;
+    bool burstInProgress;
+
+    bool isReloading;
+    bool reloadWasEmpty;
+    bool wasMP5AttackHeld;
 
     Default
     {
@@ -25,9 +26,11 @@
         Weapon.AmmoType "Clip";
         Weapon.AmmoUse 0;
         Weapon.AmmoGive 30;
+
         Inventory.PickupMessage "You got the MP5kSD";
         Obituary "%o was mowed down by %k's MP5kSD.";
         Tag "MP5kSD";
+
         +WEAPON.NOAUTOFIRE;
         +WEAPON.NOAUTOAIM;
         +WEAPON.NOALERT;
@@ -39,29 +42,54 @@
         {
             return holdingFire;
         }
+
         return firePressed;
     }
 
-    override bool UsesManualFireDispatch() { return true; }
+    override bool UsesManualFireDispatch()
+    {
+        return true;
+    }
 
     override State GetFireState(bool holdingFire, bool firePressed)
     {
+        if (isReloading || burstInProgress)
+        {
+            return null;
+        }
+
+        if (IsEmpty())
+        {
+            return ResolveState("DryFire");
+        }
+
         if (fireMode == Fire_Burst)
         {
-            if (burstInProgress) return null;
-            Console.Printf("MP5 requesting BurstFire");
             State burstState = ResolveState("BurstFire");
+
             if (burstState == null)
             {
                 Console.Printf("MP5 BurstFire state missing");
-                burstInProgress = false;
+
                 burstShotsRemaining = 0;
+                burstInProgress = false;
+
                 return null;
             }
-            burstShotsRemaining = 3;
+
+            burstShotsRemaining = Min(3, GetLoadedRoundCount());
             burstInProgress = true;
+
+            Console.Printf(
+                "MP5 requesting BurstFire: shots=%d mag=%d chamber=%d",
+                burstShotsRemaining,
+                magazineRounds,
+                chamberLoaded ? 1 : 0
+            );
+
             return burstState;
         }
+
         return ResolveState("Fire");
     }
 
@@ -85,7 +113,6 @@
         }
 
         bool attackDown = (owner.player.cmd.buttons & BT_ATTACK) != 0;
-        bool attackPressed = attackDown && !wasMP5AttackHeld;
         wasMP5AttackHeld = attackDown;
     }
 
@@ -99,10 +126,19 @@
         fireMode = (fireMode + 1) % 3;
 
         A_StartSound("doda/mp5/click", CHAN_WEAPON);
-        
-        if (fireMode == Fire_Semi) Console.Printf("MP5 mode: SEMI");
-        else if (fireMode == Fire_Burst) Console.Printf("MP5 mode: 3-ROUND BURST");
-        else Console.Printf("MP5 mode: FULL AUTO");
+
+        if (fireMode == Fire_Semi)
+        {
+            Console.Printf("MP5 mode: SEMI");
+        }
+        else if (fireMode == Fire_Burst)
+        {
+            Console.Printf("MP5 mode: 3-ROUND BURST");
+        }
+        else
+        {
+            Console.Printf("MP5 mode: FULL AUTO");
+        }
     }
 
     void EnsureFirearmState()
@@ -144,48 +180,101 @@
 
     bool CanReload()
     {
-        if (!owner) return false;
-        let reserveAmmo = Ammo(owner.FindInventory('Clip'));
-        return GetLoadedRoundCount() < TotalCapacity && reserveAmmo != null && reserveAmmo.Amount > 0;
+        if (!owner)
+        {
+            return false;
+        }
+
+        let reserveAmmo = Ammo(owner.FindInventory("Clip"));
+
+        return GetLoadedRoundCount() < TotalCapacity
+            && reserveAmmo != null
+            && reserveAmmo.Amount > 0;
     }
 
     void TryReload()
     {
-        if (isReloading) { Console.Printf("MP5 reload refused: already in progress"); return; }
-        if (magazineRounds >= MagazineCapacity) { Console.Printf("MP5 reload refused: magazine full"); return; }
-        if (!owner) { Console.Printf("MP5 reload refused: no owner"); return; }
-        let reserveAmmo = Ammo(owner.FindInventory('Clip'));
-        if (!reserveAmmo || reserveAmmo.Amount <= 0) { Console.Printf("MP5 reload refused: no reserve"); return; }
-        
-        reloadWasEmpty = (magazineRounds == 0 && !chamberLoaded);
-        State reloadState;
-        if (reloadWasEmpty)
+        if (isReloading)
         {
-            reloadState = ResolveState('ReloadEmpty');
-        }
-        else
-        {
-            reloadState = ResolveState('ReloadTactical');
+            Console.Printf("MP5 reload refused: already in progress");
+            return;
         }
 
-        if (!reloadState) { Console.Printf("MP5 reload refused: reload state missing"); return; }
-        
+        if (burstInProgress)
+        {
+            Console.Printf("MP5 reload refused: burst in progress");
+            return;
+        }
+
+        if (magazineRounds >= MagazineCapacity)
+        {
+            Console.Printf("MP5 reload refused: magazine full");
+            return;
+        }
+
+        if (!owner || !owner.player)
+        {
+            Console.Printf("MP5 reload refused: no owner");
+            return;
+        }
+
+        let reserveAmmo = Ammo(owner.FindInventory("Clip"));
+
+        if (!reserveAmmo || reserveAmmo.Amount <= 0)
+        {
+            Console.Printf("MP5 reload refused: no reserve");
+            return;
+        }
+
+        reloadWasEmpty = IsEmpty();
+
+        State reloadState = reloadWasEmpty
+            ? ResolveState("ReloadEmpty")
+            : ResolveState("ReloadTactical");
+
+        if (!reloadState)
+        {
+            Console.Printf("MP5 reload refused: reload state missing");
+            return;
+        }
+
         isReloading = true;
-        Console.Printf("MP5 reload accepted: mag=%d chamber=%d reserve=%d", magazineRounds, chamberLoaded ? 1 : 0, reserveAmmo.Amount);
+
+        Console.Printf(
+            "MP5 reload accepted: mag=%d chamber=%d reserve=%d",
+            magazineRounds,
+            chamberLoaded ? 1 : 0,
+            reserveAmmo.Amount
+        );
+
         owner.player.SetPSprite(PSP_WEAPON, reloadState);
     }
 
     void PerformReloadTransfer()
     {
-        if (!owner) { return; }
-        let reserveAmmo = Ammo(owner.FindInventory('Clip'));
-        if (!reserveAmmo) { return; }
-        
+        if (!owner)
+        {
+            return;
+        }
+
+        let reserveAmmo = Ammo(owner.FindInventory("Clip"));
+
+        if (!reserveAmmo)
+        {
+            return;
+        }
+
         int amount = Min(MagazineCapacity - magazineRounds, reserveAmmo.Amount);
+
         magazineRounds += amount;
         reserveAmmo.Amount -= amount;
-        
-        Console.Printf("MP5 reload finished: mag=%d chamber=%d reserve=%d", magazineRounds, chamberLoaded ? 1 : 0, reserveAmmo.Amount);
+
+        Console.Printf(
+            "MP5 reload finished: mag=%d chamber=%d reserve=%d",
+            magazineRounds,
+            chamberLoaded ? 1 : 0,
+            reserveAmmo.Amount
+        );
     }
 
     bool ConsumeFiredRound()
@@ -196,33 +285,28 @@
         }
 
         chamberLoaded = false;
+
         if (magazineRounds > 0)
         {
             magazineRounds--;
             chamberLoaded = true;
         }
+
         return true;
     }
 
-    override void HandleManualWeaponControl()
+    void LoadChamberFromMagazine()
     {
-        if (!owner || !owner.player) return;
-
-        if (owner.player.cmd.buttons & BT_USER4) // V key
+        if (!chamberLoaded && magazineRounds > 0)
         {
-            // Check if we are currently busy
-            if (InStateSequence(curstate, ResolveState("Fire")) ||
-                InStateSequence(curstate, ResolveState("ReloadTactical")) ||
-                InStateSequence(curstate, ResolveState("ReloadEmpty")) ||
-                InStateSequence(curstate, ResolveState("Cock")))
-            {
-                return;
-            }
+            magazineRounds--;
+            chamberLoaded = true;
 
-            if (CanCock())
-            {
-                SetStateLabel("Cock");
-            }
+            Console.Printf(
+                "MP5 chamber loaded: mag=%d chamber=%d",
+                magazineRounds,
+                chamberLoaded ? 1 : 0
+            );
         }
     }
 
@@ -231,22 +315,100 @@
         return !chamberLoaded && magazineRounds > 0;
     }
 
+    override void HandleManualWeaponControl()
+    {
+        if (!owner || !owner.player)
+        {
+            return;
+        }
+
+        if (isReloading || burstInProgress)
+        {
+            return;
+        }
+
+        if (
+            InStateSequence(curstate, ResolveState("Fire"))
+            || InStateSequence(curstate, ResolveState("BurstFire"))
+            || InStateSequence(curstate, ResolveState("ReloadTactical"))
+            || InStateSequence(curstate, ResolveState("ReloadEmpty"))
+            || InStateSequence(curstate, ResolveState("Cock"))
+        )
+        {
+            return;
+        }
+
+        if (CanCock())
+        {
+            SetStateLabel("Cock");
+        }
+    }
+
     action void MP5KSD_Fire()
     {
         let mp5 = DoDAMP5KSD(invoker);
-        if (mp5 && mp5.ConsumeFiredRound())
+
+        if (!mp5 || !mp5.ConsumeFiredRound())
         {
-            A_FireBullets(0, 0, 1, 10, "BulletPuff", FBF_NORANDOM);
-            A_StartSound("doda/mp5/fire", CHAN_WEAPON);
-            
-            // Spawn cosmetic tracer
-            A_SpawnProjectile("DoDATracer", 0, 0, 0, 0, 0);
-            
-            mp5.fireLockTics = 4;
-            
-            let reserve = (mp5.owner) ? Ammo(mp5.owner.FindInventory('Clip')) : null;
-            Console.Printf("MP5 shot: mag=%d chamber=%d reserve=%d", mp5.magazineRounds, mp5.chamberLoaded ? 1 : 0, reserve ? reserve.Amount : 0);
+            return;
         }
+
+        A_FireBullets(0, 0, 1, 10, "BulletPuff", FBF_NORANDOM);
+        A_StartSound("doda/mp5/fire", CHAN_WEAPON);
+        A_SpawnProjectile("DoDATracer", 0, 0, 0, 0, 0);
+
+        mp5.fireLockTics = 4;
+
+        let reserve = mp5.owner
+            ? Ammo(mp5.owner.FindInventory("Clip"))
+            : null;
+
+        Console.Printf(
+            "MP5 shot: mag=%d chamber=%d reserve=%d",
+            mp5.magazineRounds,
+            mp5.chamberLoaded ? 1 : 0,
+            reserve ? reserve.Amount : 0
+        );
+    }
+
+    action void MP5KSD_BurstFire()
+    {
+        let mp5 = DoDAMP5KSD(invoker);
+
+        if (!mp5)
+        {
+            return;
+        }
+
+        if (mp5.burstShotsRemaining <= 0)
+        {
+            return;
+        }
+
+        if (!mp5.ConsumeFiredRound())
+        {
+            mp5.burstShotsRemaining = 0;
+            return;
+        }
+
+        A_FireBullets(0, 0, 1, 10, "BulletPuff", FBF_NORANDOM);
+        A_StartSound("doda/mp5/fire", CHAN_WEAPON);
+        A_SpawnProjectile("DoDATracer", 0, 0, 0, 0, 0);
+
+        mp5.fireLockTics = 4;
+        mp5.burstShotsRemaining--;
+
+        let reserve = mp5.owner
+            ? Ammo(mp5.owner.FindInventory("Clip"))
+            : null;
+
+        Console.Printf(
+            "MP5 burst shot: remaining=%d mag=%d chamber=%d reserve=%d",
+            mp5.burstShotsRemaining,
+            mp5.magazineRounds,
+            mp5.chamberLoaded ? 1 : 0,
+            reserve ? reserve.Amount : 0
+        );
     }
 
     States
@@ -256,7 +418,7 @@
         Stop;
 
     Ready:
-        MP5A A 1 A_WeaponReady(WRF_ALLOWZOOM);
+        MP5A A 1 A_WeaponReady(WRF_ALLOWZOOM | WRF_NOFIRE);
         Loop;
 
     Select:
@@ -264,43 +426,41 @@
         Loop;
 
     Deselect:
-        MP5A A 1 {
+        MP5A A 1
+        {
             let mp5 = DoDAMP5KSD(invoker);
-            if (mp5) mp5.burstShotsRemaining = 0;
+
+            if (mp5)
+            {
+                mp5.burstShotsRemaining = 0;
+                mp5.burstInProgress = false;
+                mp5.isReloading = false;
+                mp5.wasMP5AttackHeld = false;
+            }
+
             A_Lower();
         }
         Loop;
 
     Fire:
-        MP5A A 1 Bright {
-            Console.Printf("MP5 Fire State Entered");
-            MP5KSD_Fire();
-        }
+        MP5A A 1 Bright MP5KSD_Fire;
         MP5A B 1;
         MP5A C 1;
         MP5A D 1;
         Goto Ready;
 
     BurstFire:
-        // Burst round 1
-        MP5A A 1 Bright {
-            Console.Printf("MP5 entered BurstFire");
-            let mp5 = DoDAMP5KSD(invoker);
-            if (mp5) Console.Printf("MP5 burst shot: remaining=%d mag=%d chamber=%d", mp5.burstShotsRemaining, mp5.magazineRounds, mp5.chamberLoaded ? 1 : 0);
-            MP5KSD_Fire();
-        }
+        MP5A A 1 Bright MP5KSD_BurstFire;
         MP5A B 1;
         MP5A C 1;
         MP5A D 1;
 
-        // Burst round 2
-        MP5A A 1 Bright MP5KSD_Fire();
+        MP5A A 1 Bright MP5KSD_BurstFire;
         MP5A B 1;
         MP5A C 1;
         MP5A D 1;
 
-        // Burst round 3
-        MP5A A 1 Bright MP5KSD_Fire();
+        MP5A A 1 Bright MP5KSD_BurstFire;
         MP5A B 1;
         MP5A C 1;
         MP5A D 1;
@@ -308,6 +468,7 @@
         TNT1 A 0
         {
             let mp5 = DoDAMP5KSD(invoker);
+
             if (mp5)
             {
                 mp5.burstShotsRemaining = 0;
@@ -320,7 +481,6 @@
         MP5R A 1 A_StartSound("doda/mp5/dryfire", CHAN_WEAPON);
         Goto Ready;
 
-
     ReloadTactical:
         MP5R A 2;
         MP5R B 2;
@@ -331,14 +491,25 @@
         MP5R G 2;
         MP5R H 2;
         MP5R I 2;
-        MP5R J 2 {
+        MP5R J 2
+        {
             A_StartSound("doda/mp5/close", CHAN_WEAPON);
+
             let mp5 = DoDAMP5KSD(invoker);
-            if (mp5) mp5.PerformReloadTransfer();
+
+            if (mp5)
+            {
+                mp5.PerformReloadTransfer();
+            }
         }
-        TNT1 A 0 {
+        TNT1 A 0
+        {
             let mp5 = DoDAMP5KSD(invoker);
-            if (mp5) mp5.isReloading = false;
+
+            if (mp5)
+            {
+                mp5.isReloading = false;
+            }
         }
         Goto Ready;
 
@@ -352,40 +523,51 @@
         MP5R G 2;
         MP5R H 2;
         MP5R I 2;
-        MP5R J 2 {
+        MP5R J 2
+        {
             A_StartSound("doda/mp5/close", CHAN_WEAPON);
+
             let mp5 = DoDAMP5KSD(invoker);
-            if (mp5) mp5.PerformReloadTransfer();
+
+            if (mp5)
+            {
+                mp5.PerformReloadTransfer();
+            }
         }
         MPSL A 2 A_StartSound("doda/mp5/cock", CHAN_WEAPON);
         MPSL B 2;
         MPSL C 2;
         MPSL D 2;
-        MPSL E 2 {
+        MPSL E 2
+        {
             let mp5 = DoDAMP5KSD(invoker);
-            if (mp5 && !mp5.chamberLoaded && mp5.magazineRounds > 0)
+
+            if (mp5)
             {
-                mp5.magazineRounds--;
-                mp5.chamberLoaded = true;
+                mp5.LoadChamberFromMagazine();
             }
         }
         MPSL F 2;
-        TNT1 A 0 {
+        TNT1 A 0
+        {
             let mp5 = DoDAMP5KSD(invoker);
-            if (mp5) mp5.isReloading = false;
+
+            if (mp5)
+            {
+                mp5.isReloading = false;
+            }
         }
         Goto Ready;
 
     Cock:
         MP5R A 5 A_StartSound("doda/mp5/cock", CHAN_WEAPON);
-        MP5R A 5 {
+        MP5R A 5
+        {
             let mp5 = DoDAMP5KSD(invoker);
-            if (mp5) mp5.EnsureFirearmState();
-            if (mp5 && !mp5.chamberLoaded && mp5.magazineRounds > 0)
+
+            if (mp5)
             {
-                mp5.magazineRounds--;
-                mp5.chamberLoaded = true;
-                Console.Printf("MP5 cock: mag=%d chamber=%d", mp5.magazineRounds, mp5.chamberLoaded ? 1 : 0);
+                mp5.LoadChamberFromMagazine();
             }
         }
         Goto Ready;

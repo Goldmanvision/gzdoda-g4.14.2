@@ -1,4 +1,4 @@
-﻿class MP5ModeHandler : StaticEventHandler
+class MP5ModeHandler : StaticEventHandler
 {
     override bool InputProcess(InputEvent e)
     {
@@ -7,30 +7,54 @@
             return false;
         }
 
-        // C key for Mode Cycle
-        if (e.KeyString == "c" || e.KeyString == "C" || e.KeyChar == 99)
+        // C key: cycle SEMI -> BURST -> AUTO.
+        if (
+            e.KeyString == "c"
+            || e.KeyString == "C"
+            || e.KeyChar == 99
+        )
         {
             let player = players[consoleplayer];
-            if (!player || !player.mo) return false;
+
+            if (!player || !player.mo)
+            {
+                return false;
+            }
 
             let mp5 = DoDAMP5KSD(player.ReadyWeapon);
+
             if (mp5)
             {
-                EventHandler.SendNetworkEvent("DoDA_MP5CycleFireMode");
+                EventHandler.SendNetworkEvent(
+                    "DoDA_MP5CycleFireMode"
+                );
+
                 return true;
             }
         }
-        
-        // R key for Reload
-        if (e.KeyString == "r" || e.KeyString == "R" || e.KeyChar == 114)
+
+        // R key: request MP5 tactical or empty reload.
+        if (
+            e.KeyString == "r"
+            || e.KeyString == "R"
+            || e.KeyChar == 114
+        )
         {
             let player = players[consoleplayer];
-            if (!player || !player.mo) return false;
+
+            if (!player || !player.mo)
+            {
+                return false;
+            }
 
             let mp5 = DoDAMP5KSD(player.ReadyWeapon);
+
             if (mp5)
             {
-                EventHandler.SendNetworkEvent("DoDA_MP5Reload");
+                EventHandler.SendNetworkEvent(
+                    "DoDA_MP5Reload"
+                );
+
                 return true;
             }
         }
@@ -43,20 +67,33 @@
         if (e.Name == "DoDA_MP5CycleFireMode")
         {
             let player = players[e.Player];
-            if (!player || !player.mo) return;
+
+            if (!player || !player.mo)
+            {
+                return;
+            }
 
             let mp5 = DoDAMP5KSD(player.ReadyWeapon);
+
             if (mp5)
             {
                 mp5.CycleFireMode();
             }
+
+            return;
         }
-        else if (e.Name == "DoDA_MP5Reload")
+
+        if (e.Name == "DoDA_MP5Reload")
         {
             let player = players[e.Player];
-            if (!player || !player.mo) return;
+
+            if (!player || !player.mo)
+            {
+                return;
+            }
 
             let mp5 = DoDAMP5KSD(player.ReadyWeapon);
+
             if (mp5)
             {
                 mp5.TryReload();
